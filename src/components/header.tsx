@@ -5,9 +5,9 @@ interface HeaderProps {
    slug: string;
 }
 
-const navLinks = [{ label: 'Home', slug: '/' }, { label: 'Contact', slug: 'contact' }]
+const navLinks = [{ label: 'Home', slug: '/' }, { label: 'Projects', slug: 'projects' }, { label: 'Contact', slug: 'contact' }]
 
-export function Header({ label, slug }: HeaderProps) {
+export default function Header() {
    return (
       <header className="header">
          {navLinks.map(link => {
