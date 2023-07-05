@@ -1,5 +1,6 @@
 import Image from "next/image"
-// import styles from './page.module.css'
+import Link from "next/link"
+import '../styles/styles.css'
 
 export default function Home() {
 	return (
@@ -49,13 +50,7 @@ export default function Home() {
 				</a>
 			</div>
 			<ul>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-			</ul>
-			<ul>
-				<li></li>
+				<li><Link href="/contact">Hello</Link></li>
 				<li></li>
 				<li></li>
 				<li></li>
