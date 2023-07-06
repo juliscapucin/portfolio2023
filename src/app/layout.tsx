@@ -1,5 +1,5 @@
 import Header from '@/components/header'
-import '../styles/styles.css'
+import '@/styles/styles.css'
 import { Inter } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })

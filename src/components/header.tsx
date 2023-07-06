@@ -1,4 +1,8 @@
+"use client"
+
 import Link from 'next/link';
+// import { signIn, signOut, useSession, getProviders } from 'next-auth/react'
+import { useRouter } from 'next/navigation';
 
 interface HeaderProps {
    label: string;
@@ -13,13 +17,20 @@ const navLinks = [
    { label: 'Contact', slug: 'contact' }]
 
 export default function Header() {
+   const router = useRouter()
+
    return (
       <header className="header">
-         {navLinks.map(link => {
-            return <Link href={`/${link.slug}`}>
-               {link.label}
-            </Link>
-         })}
+         <nav>
+            {navLinks.map((link, index) => {
+               return <button onClick={(e) => {
+                  e.preventDefault();
+                  history.replaceState(null, '', '/juli')
+               }} key={index}>
+                  {link.label}
+               </button>
+            })}
+         </nav>
       </header>
    );
 };
