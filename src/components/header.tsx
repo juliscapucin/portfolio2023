@@ -5,7 +5,7 @@ interface HeaderProps {
    slug: string;
 }
 
-const navLinks = [{ label: 'Home', slug: '/' }, { label: 'Projects', slug: 'projects' }, { label: 'Contact', slug: 'contact' }]
+const navLinks = [{ label: 'Home', slug: '/' }, { label: 'Projects', slug: 'projects' }, { label: 'Posts', slug: 'posts' }, { label: 'Contact', slug: 'contact' }]
 
 export default function Header() {
    return (
