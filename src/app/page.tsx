@@ -1,6 +1,5 @@
 import Image from "next/image"
 import Link from "next/link"
-import '../styles/styles.css'
 
 export default function Home() {
 	return (
