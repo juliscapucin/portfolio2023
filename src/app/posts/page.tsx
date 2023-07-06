@@ -31,6 +31,11 @@ interface User {
    };
 }
 
+interface Dog {
+   message: string;
+   status: string;
+}
+
 const getPostsData = async () => {
    const res = await fetch("https://jsonplaceholder.typicode.com/posts")
    return res.json()
@@ -41,8 +46,18 @@ const getUsersData = async () => {
    return res.json()
 }
 
+const getDogData = async () => {
+   const res = await fetch("https://dog.ceo/api/breeds/image/random", { cache: "no-store" })
+   return res.json()
+}
+
+const getDogData10Sec = async () => {
+   const res = await fetch("https://dog.ceo/api/breeds/image/random", { next: { revalidate: 10 } })
+   return res.json()
+}
+
 export default async function Page() {
-   const [posts, users] = await Promise.all([getPostsData(), getUsersData()])
+   const [posts, users, dog, dog10Sec] = await Promise.all([getPostsData(), getUsersData(), getDogData(), getDogData10Sec()])
 
    return (
       <main className='juli'>
@@ -51,6 +66,14 @@ export default async function Page() {
             {posts.map((post: Post) => {
                return <div>{post.title}</div>
             })}
+         </section>
+         <section>
+            <h1>Dog</h1>
+            <Image src={dog.message} alt="dog" width={300} height={300} />
+         </section>
+         <section>
+            <h1>Dog 10 Seconds</h1>
+            <Image src={dog10Sec.message} alt="dog" width={300} height={300} />
          </section>
          <section>
             <h1>Users</h1>
