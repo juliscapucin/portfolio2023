@@ -1,5 +1,4 @@
 import Image from "next/image"
-import '../../../styles/styles.css'
 
 export default function Page({ params }: any) {
    return (
