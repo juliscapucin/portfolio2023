@@ -4,19 +4,7 @@ import Link from 'next/link';
 // import { signIn, signOut, useSession, getProviders } from 'next-auth/react'
 import { useRouter } from 'next/navigation';
 import CustomButton from './CustomButton'
-
-
-interface HeaderProps {
-   label: string;
-   slug: string;
-}
-
-const navLinks = [
-   { label: 'Home', slug: '/' },
-   { label: 'Projects', slug: 'projects' },
-   { label: 'Posts', slug: 'posts' },
-   { label: 'Posts', slug: 'posts' },
-   { label: 'Contact', slug: 'contact' }]
+import { navLinks } from '@/constants';
 
 export default function Header() {
    const router = useRouter()
@@ -27,7 +15,7 @@ export default function Header() {
             {navLinks.map((link, index) => {
                return <button className="flex justify-center items-center" onClick={(e) => {
                   e.preventDefault();
-                  history.replaceState(null, '', '/juli')
+                  history.replaceState(null, '', link.slug)
                }} key={index}>
                   {link.label}
                </button>
