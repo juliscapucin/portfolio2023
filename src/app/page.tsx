@@ -3,11 +3,11 @@ import { CustomFilter, SearchBar } from '@/components';
 
 export default function Home() {
  return (
-  <section className='juli'>
+  <section className='bg-primary'>
    <div className='relative h-80'>
     <Image
      src='/pool.avif'
-     alt='Next.js Logo'
+     alt='Pool photo'
      className='object-contain'
      fill
      priority
