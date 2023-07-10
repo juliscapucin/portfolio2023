@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;700&display=swap'); */
+@import url('https://use.typekit.net/cbg5juo.css');
 
 @tailwind base;
 @tailwind components;
@@ -7,29 +8,15 @@
 :root {
    --max-width: 1100px;
    --border-radius: 12px;
-   --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
-      'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
-      'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
-   --poppins: 'Poppins', sans-serif;
+   --font-primary: 'ff-real-headline-pro', sans-serif;
+   --font-secondary: 'ff-real-text-pro', sans-serif;
 
    --foreground-rgb: 0, 0, 0;
    --background-start-rgb: 214, 219, 220;
    --background-end-rgb: 255, 255, 255;
 
-   --primary-color: #050505;
-
-   --primary-glow: conic-gradient(
-      from 180deg at 50% 50%,
-      #16abff33 0deg,
-      #0885ff33 55deg,
-      #54d6ff33 120deg,
-      #0071ff33 160deg,
-      transparent 360deg
-   );
-   --secondary-glow: radial-gradient(
-      rgba(255, 255, 255, 1),
-      rgba(255, 255, 255, 0)
-   );
+   --color-black: #060607;
+   --color-white: #fcf9f8;
 
    --tile-start-rgb: 239, 245, 249;
    --tile-end-rgb: 228, 232, 233;
@@ -107,24 +94,4 @@ a {
    html {
       color-scheme: dark;
    }
-}
-
-h1 {
-   font-size: 5rem;
-}
-
-h2 {
-   font-size: 4rem;
-}
-
-h3 {
-   font-size: 3rem;
-}
-
-h4 {
-   font-size: 2rem;
-}
-
-h5 {
-   font-size: 1rem;
 }

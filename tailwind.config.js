@@ -4,8 +4,14 @@ module.exports = {
    theme: {
       extend: {
          gridTemplateColumns: { fluid: 'repeat(auto-fit, minmax(15rem, 1fr))' },
-         fontFamily: { poppins: ['var(--poppins)'] },
-         colors: { primary: 'var(--primary-color)' },
+         fontFamily: {
+            headline: ['var(--font-primary)'],
+            text: ['var(--font-secondary)'],
+         },
+         colors: {
+            colorBlack: 'var(--color-black)',
+            colorWhite: 'var(--color-white)',
+         },
       },
    },
    plugins: [],
