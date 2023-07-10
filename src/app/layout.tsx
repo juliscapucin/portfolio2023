@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
  return (
   <html lang='en'>
-   <body className={`font-poppins bg-primary`}>
+   <body className={`font-text font-extralight bg-colorBlack text-colorWhite`}>
     <Header />
     <main>{children}</main>
    </body>
