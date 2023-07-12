@@ -14,5 +14,7 @@
    "[markdown]": {
       "files.trimTrailingWhitespace": false
    },
-   "editor.defaultFormatter": "esbenp.prettier-vscode"
+   "editor.defaultFormatter": "esbenp.prettier-vscode",
+   "inlineFold.unfoldOnLineSelect": true,
+   "inlineFold.autoFold": false
 }

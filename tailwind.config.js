@@ -12,6 +12,9 @@ module.exports = {
             colorBlack: 'var(--color-black)',
             colorWhite: 'var(--color-white)',
          },
+         fontSize: {
+            huge: '20rem',
+         },
       },
    },
    plugins: [],
