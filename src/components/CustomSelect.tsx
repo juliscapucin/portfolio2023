@@ -13,9 +13,9 @@ export default function CustomSelect() {
     <SelectValue placeholder='Theme' />
    </SelectTrigger>
    <SelectContent>
-    <SelectItem value='light'>Light</SelectItem>
     <SelectItem value='dark'>Dark</SelectItem>
-    <SelectItem value='system'>System</SelectItem>
+    <SelectItem value='light'>Light</SelectItem>
+    <SelectItem value='color'>Color</SelectItem>
    </SelectContent>
   </Select>
  );

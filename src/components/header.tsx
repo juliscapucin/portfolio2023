@@ -16,7 +16,7 @@ export default function Header() {
  };
 
  return (
-  <header className='w-full absolute flex h-16 z-10'>
+  <header className='w-full absolute flex h-16 z-10 overflow-hidden'>
    {/* Desktop Header */}
    <GridDiv
     divClass={'flex h-full items-center justify-between'}

@@ -6,7 +6,6 @@
    "tailwind": {
       "config": "tailwind.config.js",
       "css": "src/styles/styles.css",
-      "baseColor": "dark",
       "cssVariables": false
    },
    "aliases": {
