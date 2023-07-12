@@ -40,13 +40,12 @@ export default function Header() {
      </GridDiv>
     </button>
     <nav className='w-4/5 max-w-screen-md h-full hidden md:flex justify-between items-center mr-8'>
-     {navLinks.map((link, index) => {
+     {navLinks.map((link) => {
       return (
-       <div className='overflow-hidden max-h-6'>
+       <div className='overflow-hidden max-h-6' key={link.id}>
         <button
          className='flex flex-col justify-center items-center hover:-translate-y-1/2 transition'
          onClick={(e) => handleShallowClick(e, link.slug)}
-         key={index}
          type='button'
         >
          <span>{link.label}</span>
