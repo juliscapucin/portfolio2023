@@ -42,14 +42,17 @@ export default function Header() {
     <nav className='w-4/5 max-w-screen-md h-full hidden md:flex justify-between items-center mr-8'>
      {navLinks.map((link, index) => {
       return (
-       <button
-        className='flex justify-center items-center'
-        onClick={(e) => handleShallowClick(e, link.slug)}
-        key={index}
-        type='button'
-       >
-        {link.label}
-       </button>
+       <div className='overflow-hidden max-h-6'>
+        <button
+         className='flex flex-col justify-center items-center hover:-translate-y-1/2 transition'
+         onClick={(e) => handleShallowClick(e, link.slug)}
+         key={index}
+         type='button'
+        >
+         <span>{link.label}</span>
+         <span>{link.label}</span>
+        </button>
+       </div>
       );
      })}
     </nav>

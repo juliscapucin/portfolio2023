@@ -7,7 +7,13 @@ export default function Home() {
    <section className='grid'>
     <div className='flex h-16'></div>
     <div className='flex h-64'>
-     <GridElement top={false} right={true} bottom={true} left={true} />
+     <GridElement
+      top={false}
+      right={true}
+      bottom={true}
+      left={true}
+      hoverClass='bg-green-700'
+     />
      <GridElement top={false} right={true} bottom={true} left={false} />
      <GridElement top={false} right={true} bottom={true} left={false} />
      <GridElement
