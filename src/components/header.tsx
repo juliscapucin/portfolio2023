@@ -1,12 +1,9 @@
 'use client';
 
-import Link from 'next/link';
-// import { signIn, signOut, useSession, getProviders } from 'next-auth/react'
 import { useRouter } from 'next/navigation';
-import CustomButton from './CustomButton';
 import { navLinks } from '@/constants';
 import { MouseEvent } from 'react';
-import { GridDiv, GridElement } from '@/components';
+import { GridDiv, GridElement, CustomSelect } from '@/components';
 
 export default function Header() {
  const router = useRouter();
@@ -55,6 +52,7 @@ export default function Header() {
       );
      })}
     </nav>
+    <CustomSelect />
    </GridDiv>
 
    {/* Mobile header */}
