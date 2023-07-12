@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import CustomButton from './CustomButton';
 import { navLinks } from '@/constants';
 import { MouseEvent } from 'react';
-import { GridDiv } from '@/components';
+import { GridDiv, GridElement } from '@/components';
 
 export default function Header() {
  const router = useRouter();
@@ -28,7 +28,17 @@ export default function Header() {
     bottom={true}
     left={true}
    >
-    <h1 className='pl-8 pr-16'>LOGO</h1>
+    <button className='h-full' onClick={(e) => handleShallowClick(e, '/')}>
+     <GridDiv
+      top={false}
+      right={true}
+      bottom={false}
+      left={false}
+      divClass='flex items-center justify-center'
+     >
+      <span className='min-w-[4rem]'>&#5193;</span>
+     </GridDiv>
+    </button>
     <nav className='w-4/5 max-w-screen-md h-full hidden md:flex justify-between items-center mr-8'>
      {navLinks.map((link, index) => {
       return (

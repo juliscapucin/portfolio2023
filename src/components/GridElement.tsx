@@ -1,5 +1,6 @@
 interface GridElementProps {
  text?: string;
+ elementClass?: string;
  textClass?: string;
  top?: boolean;
  right?: boolean;
@@ -10,13 +11,14 @@ interface GridElementProps {
 export default function GridElement({
  text,
  textClass,
+ elementClass,
  top,
  right,
  bottom,
  left,
 }: GridElementProps) {
  return (
-  <div className='grid-element'>
+  <div className={`grid-element ${elementClass}`}>
    {top ? (
     <div className='line'></div>
    ) : (

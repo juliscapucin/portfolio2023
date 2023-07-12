@@ -11,7 +11,8 @@ export default function Home() {
      <GridElement top={false} right={true} bottom={true} left={false} />
      <GridElement top={false} right={true} bottom={true} left={false} />
      <GridElement
-      textClass={'text-5xl'}
+      textClass={'text-huge'}
+      text='hello'
       top={false}
       right={true}
       bottom={true}
