@@ -18,7 +18,7 @@ export default function RootLayout({
  return (
   <html lang='en'>
    <body
-    className={`relative m-10 mt-0 max-w-[2200px] font-text font-extralight bg-colorBlack text-colorWhite mx-auto`}
+    className={`relative m-10 mt-0 max-w-[2000px] font-text font-extralight bg-colorBlack text-colorWhite mx-auto`}
    >
     <Header />
     {children}

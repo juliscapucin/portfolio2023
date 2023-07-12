@@ -14,12 +14,13 @@ export default function Header() {
   event.preventDefault();
   history.replaceState(null, '', slug);
  };
-
  return (
-  <header className='w-full absolute flex h-16 z-10 overflow-hidden'>
+  <header className='w-full absolute flex h-16 z-10 max-w-[2000px] overflow-hidden'>
    {/* Desktop Header */}
    <GridDiv
-    divClass={'flex h-full items-center justify-between'}
+    divClass={
+     'flex h-full items-center justify-between relative overflow-hidden'
+    }
     top={false}
     right={true}
     bottom={true}
@@ -52,8 +53,8 @@ export default function Header() {
       );
      })}
     </nav>
-    <CustomSelect />
    </GridDiv>
+   {/* <CustomSelect /> */}
 
    {/* Mobile header */}
    <nav className='md:hidden max-w-[1440px] mx-auto sm:px-16 px-8 py-8'>
