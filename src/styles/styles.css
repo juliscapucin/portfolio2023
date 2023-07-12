@@ -126,7 +126,6 @@ a {
    width: 100%;
    height: 1px;
    top: 0;
-   left: 0;
    transform: translate3d(-100%, 0, 0);
 }
 
@@ -145,7 +144,7 @@ a {
    height: 1px;
    bottom: 0;
    left: 0;
-   transform: translate3d(100%, 0, 0);
+   transform: translate3d(-100%, 0, 0);
 }
 
 /* left line */
