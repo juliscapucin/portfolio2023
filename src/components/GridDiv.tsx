@@ -4,7 +4,7 @@ interface GridDivProps {
  bottom?: boolean;
  left?: boolean;
  children: React.ReactNode;
- divClass: string;
+ divClass?: string;
 }
 
 export default function GridDiv({

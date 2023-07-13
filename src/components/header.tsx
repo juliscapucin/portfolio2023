@@ -1,28 +1,17 @@
 'use client';
 
-import Link from 'next/link';
-// import { signIn, signOut, useSession, getProviders } from 'next-auth/react'
-import { useRouter } from 'next/navigation';
-import CustomButton from './CustomButton';
 import { navLinks } from '@/constants';
-import { MouseEvent } from 'react';
 import { GridDiv, GridElement } from '@/components';
+import { handleShallowClick } from '@/utils';
 
 export default function Header() {
- const router = useRouter();
- const handleShallowClick = (
-  event: MouseEvent<HTMLButtonElement>,
-  slug: string
- ): void => {
-  event.preventDefault();
-  history.replaceState(null, '', slug);
- };
-
  return (
-  <header className='w-full absolute flex h-16 z-10'>
+  <header className='w-full absolute flex h-16 z-10 max-w-[2000px] overflow-hidden'>
    {/* Desktop Header */}
    <GridDiv
-    divClass={'flex h-full items-center justify-between'}
+    divClass={
+     'flex h-full items-center justify-between relative overflow-hidden'
+    }
     top={false}
     right={true}
     bottom={true}
@@ -40,13 +29,12 @@ export default function Header() {
      </GridDiv>
     </button>
     <nav className='w-4/5 max-w-screen-md h-full hidden md:flex justify-between items-center mr-8'>
-     {navLinks.map((link, index) => {
+     {navLinks.map((link) => {
       return (
-       <div className='overflow-hidden max-h-6'>
+       <div className='overflow-hidden max-h-6' key={link.id}>
         <button
          className='flex flex-col justify-center items-center hover:-translate-y-1/2 transition'
-         onClick={(e) => handleShallowClick(e, link.slug)}
-         key={index}
+         onClick={(e) => handleShallowClick(e, `/${link.slug}`)}
          type='button'
         >
          <span>{link.label}</span>

@@ -1,11 +1,12 @@
-import Image from 'next/image';
-import { CustomFilter, GridElement, SearchBar } from '@/components';
+import { GridElement, ProjectCard } from '@/components';
+import SectionTitle from '@/components/SectionTitle';
+
+import { projectLinks } from '@/constants';
 
 export default function Home() {
  return (
   <main>
    <section className='grid'>
-    <div className='flex h-16'></div>
     <div className='flex h-64'>
      <GridElement
       top={false}
@@ -42,8 +43,16 @@ export default function Home() {
      <GridElement top={false} right={true} bottom={true} left={false} />
      <GridElement top={false} right={true} bottom={true} left={false} />
     </div>
-    <div className='h-32'></div>
-    <div className='h-32'></div>
+    <div className='h-64'>
+     <SectionTitle />
+    </div>
+    {projectLinks.map((project, index) => {
+     return (
+      <div className='h-32' key={index}>
+       <ProjectCard title={project.label} slug={project.slug} />
+      </div>
+     );
+    })}
    </section>
   </main>
  );

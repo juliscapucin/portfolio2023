@@ -1,8 +1,8 @@
-import Image from 'next/image';
-import { projects } from '@/constants';
+import { about } from '@/constants';
 
 export default function Page() {
- const { title, paragraph1 } = projects;
+ const { title, paragraph1 } = about;
+
  return (
   <main>
    <section>
