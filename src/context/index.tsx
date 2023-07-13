@@ -6,7 +6,7 @@ import { createContext, useContext, useState } from 'react';
 interface ContextProps {
  modalOpen: boolean;
  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
- updateModalOpen: (modalOpen: boolean) => void;
+ updateModalOpen: () => void;
 }
 
 // CREATE CONTEXT
@@ -14,10 +14,11 @@ const Context = createContext({} as ContextProps);
 
 // CONTEXT PROVIDER
 const ContextProvider = ({ children }: { children: React.ReactNode }) => {
- const [modalOpen, setModalOpen] = useState(true);
+ const [modalOpen, setModalOpen] = useState(false);
 
- const updateModalOpen = (modalOpen: boolean) => {
+ const updateModalOpen = () => {
   setModalOpen(!modalOpen);
+  console.log(modalOpen);
  };
 
  return (

@@ -1,17 +1,14 @@
 'use client';
 
+import { useModalOpen } from '@/hooks';
 import { MouseEvent } from 'react';
 
 interface HeaderLinkProps {
  label: string;
- action: (e: MouseEvent<HTMLButtonElement>) => void;
+ action: (e: MouseEvent<HTMLButtonElement>) => void | (() => void);
 }
 
 export default function HeaderLink({ label, action }: HeaderLinkProps) {
- const toggleModal = (element: HTMLElement) => {
-  console.log('hi');
- };
-
  return (
   <div className='overflow-hidden max-h-6'>
    <button

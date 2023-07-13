@@ -18,9 +18,11 @@ export default function RootLayout({
    <body
     className={`relative m-10 mt-0 max-w-[2000px] font-text font-extralight bg-colorBlack text-colorWhite mx-auto`}
    >
-    <Header />
-    <div className='header-spacer h-16'></div>
-    <ContextProvider>{children}</ContextProvider>
+    <ContextProvider>
+     <Header />
+     <div className='header-spacer h-16'></div>
+     {children}
+    </ContextProvider>
    </body>
   </html>
  );

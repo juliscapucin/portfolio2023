@@ -5,7 +5,13 @@ import { GridDiv, HeaderLink } from '@/components';
 import { handleShallowClick } from '@/utils';
 import { MouseEvent } from 'react';
 
+import { useCustomContext } from '@/context';
+// import { useModalOpen } from '@/hooks';
+
 export default function Header() {
+ const { modalOpen, setModalOpen, updateModalOpen } = useCustomContext();
+ console.log(modalOpen);
+
  return (
   <header className='w-full absolute flex h-16 z-10 max-w-[2000px] overflow-hidden'>
    {/* Desktop Header */}
@@ -41,12 +47,7 @@ export default function Header() {
        />
       );
      })}
-     <HeaderLink
-      label='Contact'
-      action={(e: MouseEvent<HTMLButtonElement>) =>
-       handleShallowClick(e, `/contact`)
-      }
-     />
+     <HeaderLink label='Contact' action={updateModalOpen} />
     </nav>
    </GridDiv>
 

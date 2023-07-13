@@ -7,7 +7,7 @@ import { projectLinks } from '@/constants';
 export default function Home() {
  const { modalOpen, setModalOpen, updateModalOpen } = useCustomContext();
 
- console.log(modalOpen);
+ //   console.log(modalOpen);
 
  return (
   <main className='overflow-hidden'>
