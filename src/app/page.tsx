@@ -1,22 +1,20 @@
 'use client';
 
-import { useCustomContext } from '@/context';
-import { GridElement, ProjectCard, Modal, SectionTitle } from '@/components';
+import {
+ ContextLayout,
+ GridElement,
+ ProjectCard,
+ Modal,
+ SectionTitle,
+} from '@/components';
 import { projectLinks } from '@/constants';
 
 export default function Home() {
- const { modalOpen, setModalOpen, updateModalOpen } = useCustomContext();
-
  //   console.log(modalOpen);
 
  return (
   <main className='overflow-hidden'>
    <section className='grid'>
-    <Modal
-     containerClass={`w-full h-screen ${modalOpen ? '' : 'translate-y-full'}`}
-    >
-     <h1>Hello</h1>
-    </Modal>
     <div className='flex h-64'>
      <GridElement
       top={false}

@@ -1,3 +1,4 @@
+import ContextLayout from './ContextLayout';
 import GridDiv from './GridDiv';
 import GridElement from './GridElement';
 import Header from './header';
@@ -7,6 +8,7 @@ import ProjectCard from './ProjectCard';
 import SectionTitle from './SectionTitle';
 
 export {
+   ContextLayout,
    GridDiv,
    GridElement,
    Header,
