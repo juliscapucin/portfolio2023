@@ -6,10 +6,14 @@ import { handleShallowClick } from '@/utils';
 import { MouseEvent } from 'react';
 
 import { useCustomContext } from '@/context';
-// import { useModalOpen } from '@/hooks';
+
+interface HeaderProps {
+ label: string;
+ slug: string;
+}
 
 export default function Header() {
- const { modalOpen, setModalOpen, updateModalOpen } = useCustomContext();
+ const { modalOpen, updateModalOpen } = useCustomContext();
 
  return (
   <header className='w-full absolute flex h-16 z-10 max-w-[2000px] overflow-hidden'>

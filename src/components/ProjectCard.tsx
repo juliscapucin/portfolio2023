@@ -6,20 +6,20 @@ import { handleShallowClick } from '@/utils';
 
 interface ProjectCardProps {
  title: string;
- description?: string;
+ category: string;
  slug: string;
 }
 
 export default function ProjectCard({
  title,
- description,
+ category,
  slug,
 }: ProjectCardProps) {
  return (
   <GridDiv top={false} right={true} bottom={true} left={true}>
    <button
     className='h-full w-full p-8 overflow-hidden flex justify-start items-center text-7xl hover:opacity-50 transition-opacity'
-    onClick={(e) => handleShallowClick(e, `/projects/${slug}`)}
+    onClick={(e) => handleShallowClick(e, `/${category}/${slug}`)}
    >
     <div className='relative h-16 w-16 mr-8'>
      <Image
