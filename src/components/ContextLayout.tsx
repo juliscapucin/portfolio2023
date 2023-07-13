@@ -8,8 +8,6 @@ export default function ContextLayout({
 }: {
  children: React.ReactNode;
 }) {
- const { modalOpen, setModalOpen, updateModalOpen } = useCustomContext();
-
  return (
   <body
    className={`relative m-10 mt-0 max-w-[2000px] font-text font-extralight bg-colorBlack text-colorWhite mx-auto overflow-hidden`}
@@ -17,9 +15,7 @@ export default function ContextLayout({
    <Header />
    <div className='header-spacer h-16'></div>
    {children}
-   <Modal
-    containerClass={`w-full h-screen ${modalOpen ? '' : 'translate-y-full'}`}
-   >
+   <Modal containerClass={`w-full h-screen`}>
     <h1>Hello</h1>
    </Modal>
   </body>

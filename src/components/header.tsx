@@ -10,7 +10,6 @@ import { useCustomContext } from '@/context';
 
 export default function Header() {
  const { modalOpen, setModalOpen, updateModalOpen } = useCustomContext();
- console.log(modalOpen);
 
  return (
   <header className='w-full absolute flex h-16 z-10 max-w-[2000px] overflow-hidden'>

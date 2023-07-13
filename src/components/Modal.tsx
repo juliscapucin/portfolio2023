@@ -1,3 +1,7 @@
+'use client';
+
+import { useCustomContext } from '@/context';
+
 interface ModalProps {
  top?: boolean;
  right?: boolean;
@@ -15,10 +19,16 @@ export default function Modal({
  children,
  containerClass,
 }: ModalProps) {
+ const { modalOpen, setModalOpen, updateModalOpen } = useCustomContext();
  return (
   <aside
-   className={`dark:bg-colorBlack dark:border-colorWhite fixed top-0 z-50 ${containerClass}`}
+   className={`dark:bg-colorBlack border dark:border-colorWhite fixed top-0 p-8 z-50 transition-transform ${
+    modalOpen ? 'translate-y-1/2' : 'translate-y-full'
+   } ${containerClass}`}
   >
+   <button className='absolute top-8 right-8' onClick={updateModalOpen}>
+    X
+   </button>
    {children}
   </aside>
  );
