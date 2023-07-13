@@ -1,8 +1,11 @@
-import Link from 'next/link';
+'use client';
+
+import { GridDiv } from '@/components';
+import { handleShallowClick } from '@/utils';
 
 interface ProjectCardProps {
  title: string;
- description: string;
+ description?: string;
  slug: string;
 }
 
@@ -12,12 +15,13 @@ export default function ProjectCard({
  slug,
 }: ProjectCardProps) {
  return (
-  <div className='project-card'>
-   <h3 className='project-card__title'>{title}</h3>
-   <p className='project-card__description'>{description}</p>
-   <Link className='project-card__link' href={`/projects/${slug}`}>
-    View Project
-   </Link>
-  </div>
+  <GridDiv top={false} right={true} bottom={true} left={true}>
+   <button
+    className='h-full w-full flex justify-start items-center text-7xl'
+    onClick={(e) => handleShallowClick(e, '/projects/${slug}')}
+   >
+    <span className='font-headline text-7xl font-light ml-8'>{title}</span>
+   </button>
+  </GridDiv>
  );
 }

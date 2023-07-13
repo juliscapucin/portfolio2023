@@ -1,5 +1,11 @@
 import Image from 'next/image';
-import { CustomFilter, GridElement, SearchBar } from '@/components';
+import {
+ CustomFilter,
+ GridElement,
+ ProjectCard,
+ SearchBar,
+} from '@/components';
+import SectionTitle from '@/components/SectionTitle';
 
 export default function Home() {
  return (
@@ -42,8 +48,12 @@ export default function Home() {
      <GridElement top={false} right={true} bottom={true} left={false} />
      <GridElement top={false} right={true} bottom={true} left={false} />
     </div>
-    <div className='h-32'></div>
-    <div className='h-32'></div>
+    <div className='h-64'>
+     <SectionTitle />
+    </div>
+    <div className='h-32'>
+     <ProjectCard title={'Project1'} slug={'/project1'} />
+    </div>
    </section>
   </main>
  );

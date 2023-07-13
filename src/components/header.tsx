@@ -2,18 +2,12 @@
 
 import { useRouter } from 'next/navigation';
 import { navLinks } from '@/constants';
-import { MouseEvent } from 'react';
 import { GridDiv, GridElement, CustomSelect } from '@/components';
+import { handleShallowClick } from '@/utils';
 
 export default function Header() {
  const router = useRouter();
- const handleShallowClick = (
-  event: MouseEvent<HTMLButtonElement>,
-  slug: string
- ): void => {
-  event.preventDefault();
-  history.replaceState(null, '', slug);
- };
+
  return (
   <header className='w-full absolute flex h-16 z-10 max-w-[2000px] overflow-hidden'>
    {/* Desktop Header */}
