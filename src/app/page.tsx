@@ -54,7 +54,7 @@ export default function Home() {
     </div>
     {projectLinks.map((project, index) => {
      return (
-      <div className='h-32'>
+      <div className='h-32' key={index}>
        <ProjectCard title={project.label} slug={project.slug} />
       </div>
      );
