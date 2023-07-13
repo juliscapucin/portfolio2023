@@ -1,19 +1,19 @@
-import CustomButton from './CustomButton';
-import CustomFilter from './CustomFilter';
+import ContextLayout from './ContextLayout';
 import GridDiv from './GridDiv';
 import GridElement from './GridElement';
-import Header from './Header';
+import Header from './header';
+import HeaderLink from './HeaderLink';
+import Modal from './Modal';
 import ProjectCard from './ProjectCard';
-import SearchBar from './SearchBar';
-import SearchManufacturer from './SearchManufacturer';
+import SectionTitle from './SectionTitle';
 
 export {
-   CustomButton,
-   CustomFilter,
+   ContextLayout,
    GridDiv,
    GridElement,
    Header,
+   HeaderLink,
+   Modal,
    ProjectCard,
-   SearchBar,
-   SearchManufacturer,
+   SectionTitle,
 };

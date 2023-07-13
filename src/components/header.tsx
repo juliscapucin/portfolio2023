@@ -1,10 +1,16 @@
 'use client';
 
 import { navLinks } from '@/constants';
-import { GridDiv, GridElement } from '@/components';
+import { GridDiv, HeaderLink } from '@/components';
 import { handleShallowClick } from '@/utils';
+import { MouseEvent } from 'react';
+
+import { useCustomContext } from '@/context';
+// import { useModalOpen } from '@/hooks';
 
 export default function Header() {
+ const { modalOpen, setModalOpen, updateModalOpen } = useCustomContext();
+
  return (
   <header className='w-full absolute flex h-16 z-10 max-w-[2000px] overflow-hidden'>
    {/* Desktop Header */}
@@ -31,18 +37,16 @@ export default function Header() {
     <nav className='w-4/5 max-w-screen-md h-full hidden md:flex justify-between items-center mr-8'>
      {navLinks.map((link) => {
       return (
-       <div className='overflow-hidden max-h-6' key={link.id}>
-        <button
-         className='flex flex-col justify-center items-center hover:-translate-y-1/2 transition'
-         onClick={(e) => handleShallowClick(e, `/${link.slug}`)}
-         type='button'
-        >
-         <span>{link.label}</span>
-         <span>{link.label}</span>
-        </button>
-       </div>
+       <HeaderLink
+        label={link.label}
+        key={link.label}
+        action={(e: MouseEvent<HTMLButtonElement>) =>
+         handleShallowClick(e, `/${link.slug}`)
+        }
+       />
       );
      })}
+     <HeaderLink label='Contact' action={updateModalOpen} />
     </nav>
    </GridDiv>
 

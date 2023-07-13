@@ -1,9 +1,7 @@
-import { Header } from '@/components';
-import '@/styles/styles.css';
-import { Inter } from 'next/font/google';
+import { ContextLayout, Header, Modal } from '@/components';
+import { ContextProvider } from '@/context';
 
-//don't get what this is, figure out later
-// const inter = Inter({ subsets: ['latin'] });
+import '@/styles/styles.css';
 
 export const metadata = {
  title: 'Juli Scapucin',
@@ -17,13 +15,18 @@ export default function RootLayout({
 }) {
  return (
   <html lang='en'>
-   <body
-    className={`relative m-10 mt-0 max-w-[2000px] font-text font-extralight bg-colorBlack text-colorWhite mx-auto`}
-   >
-    <Header />
-    <div className='header-spacer h-16'></div>
-    {children}
-   </body>
+   <ContextProvider>
+    <body
+     className={`relative m-10 mt-0 max-w-[2000px] font-text font-extralight bg-colorBlack text-colorWhite mx-auto overflow-hidden`}
+    >
+     <Header />
+     <div className='header-spacer h-16'></div>
+     {children}
+     <Modal containerClass={`w-full h-screen`}>
+      <h1>Hello</h1>
+     </Modal>
+    </body>
+   </ContextProvider>
   </html>
  );
 }

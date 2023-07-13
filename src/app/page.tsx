@@ -1,11 +1,19 @@
-import { GridElement, ProjectCard } from '@/components';
-import SectionTitle from '@/components/SectionTitle';
+'use client';
 
+import {
+ ContextLayout,
+ GridElement,
+ ProjectCard,
+ Modal,
+ SectionTitle,
+} from '@/components';
 import { projectLinks } from '@/constants';
 
 export default function Home() {
+ //   console.log(modalOpen);
+
  return (
-  <main>
+  <main className='overflow-hidden'>
    <section className='grid'>
     <div className='flex h-64'>
      <GridElement
