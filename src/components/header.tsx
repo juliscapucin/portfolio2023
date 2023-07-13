@@ -1,7 +1,7 @@
 'use client';
 
 import { navLinks } from '@/constants';
-import { GridDiv, GridElement, CustomSelect } from '@/components';
+import { GridDiv, GridElement } from '@/components';
 import { handleShallowClick } from '@/utils';
 
 export default function Header() {
@@ -45,7 +45,6 @@ export default function Header() {
      })}
     </nav>
    </GridDiv>
-   {/* <CustomSelect /> */}
 
    {/* Mobile header */}
    <nav className='md:hidden max-w-[1440px] mx-auto sm:px-16 px-8 py-8'>

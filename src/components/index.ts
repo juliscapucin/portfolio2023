@@ -1,6 +1,5 @@
 import CustomButton from './CustomButton';
 import CustomFilter from './CustomFilter';
-import CustomSelect from './CustomSelect';
 import GridDiv from './GridDiv';
 import GridElement from './GridElement';
 import Header from './Header';
@@ -11,7 +10,6 @@ import SearchManufacturer from './SearchManufacturer';
 export {
    CustomButton,
    CustomFilter,
-   CustomSelect,
    GridDiv,
    GridElement,
    Header,

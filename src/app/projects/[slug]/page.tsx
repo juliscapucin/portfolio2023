@@ -1,9 +1,10 @@
-import Image from "next/image"
+import Image from 'next/image';
+import { projects } from '@/constants';
 
 export default function Page({ params }: any) {
-   return (
-      <main className='juli'>
-         <h1>Projects {params.slug}</h1>
-      </main>
-   )
+ return (
+  <main className='juli'>
+   <h1>Projects {params.slug}</h1>
+  </main>
+ );
 }

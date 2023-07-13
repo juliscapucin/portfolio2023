@@ -21,6 +21,7 @@ export default function RootLayout({
     className={`relative m-10 mt-0 max-w-[2000px] font-text font-extralight bg-colorBlack text-colorWhite mx-auto`}
    >
     <Header />
+    <div className='header-spacer h-16'></div>
     {children}
    </body>
   </html>
