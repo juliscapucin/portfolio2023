@@ -1,8 +1,9 @@
 'use client';
 
 import { navLinks } from '@/constants';
-import { GridDiv, GridElement } from '@/components';
+import { GridDiv, HeaderLink } from '@/components';
 import { handleShallowClick } from '@/utils';
+import { MouseEvent } from 'react';
 
 export default function Header() {
  return (
@@ -29,20 +30,23 @@ export default function Header() {
      </GridDiv>
     </button>
     <nav className='w-4/5 max-w-screen-md h-full hidden md:flex justify-between items-center mr-8'>
-     {navLinks.map((link) => {
+     {navLinks.map((link, index) => {
       return (
-       <div className='overflow-hidden max-h-6' key={link.id}>
-        <button
-         className='flex flex-col justify-center items-center hover:-translate-y-1/2 transition'
-         onClick={(e) => handleShallowClick(e, `/${link.slug}`)}
-         type='button'
-        >
-         <span>{link.label}</span>
-         <span>{link.label}</span>
-        </button>
-       </div>
+       <HeaderLink
+        label={link.label}
+        id={index}
+        action={(e: MouseEvent<HTMLButtonElement>) =>
+         handleShallowClick(e, `/${link.slug}`)
+        }
+       />
       );
      })}
+     <HeaderLink
+      label='Contact'
+      action={(e: MouseEvent<HTMLButtonElement>) =>
+       handleShallowClick(e, `/contact`)
+      }
+     />
     </nav>
    </GridDiv>
 

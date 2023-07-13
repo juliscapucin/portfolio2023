@@ -1,4 +1,4 @@
-import { GridElement, ProjectCard } from '@/components';
+import { GridElement, ProjectCard, Modal } from '@/components';
 import SectionTitle from '@/components/SectionTitle';
 
 import { projectLinks } from '@/constants';
@@ -7,6 +7,9 @@ export default function Home() {
  return (
   <main>
    <section className='grid'>
+    <Modal containerClass='absolute w-full h-full'>
+     <h1>Hello</h1>
+    </Modal>
     <div className='flex h-64'>
      <GridElement
       top={false}

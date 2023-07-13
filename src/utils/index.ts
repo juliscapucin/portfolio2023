@@ -18,3 +18,7 @@ export const handleShallowClick = (
       window.location.href = `${baseURL}${slug}`;
    }, 1000);
 };
+
+export const toggleModal = (element: HTMLElement) => {
+   console.log('hi');
+};
