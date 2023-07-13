@@ -17,7 +17,7 @@ export default function Modal({
 }: ModalProps) {
  return (
   <aside
-   className={`dark:bg-colorBlack dark:border-colorWhite z-50 translate-y-full ${containerClass}`}
+   className={`dark:bg-colorBlack dark:border-colorWhite fixed top-0 z-50 ${containerClass}`}
   >
    {children}
   </aside>

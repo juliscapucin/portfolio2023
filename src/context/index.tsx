@@ -14,7 +14,7 @@ const Context = createContext({} as ContextProps);
 
 // CONTEXT PROVIDER
 const ContextProvider = ({ children }: { children: React.ReactNode }) => {
- const [modalOpen, setModalOpen] = useState(false);
+ const [modalOpen, setModalOpen] = useState(true);
 
  const updateModalOpen = (modalOpen: boolean) => {
   setModalOpen(!modalOpen);

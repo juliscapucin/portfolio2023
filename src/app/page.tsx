@@ -10,9 +10,11 @@ export default function Home() {
  console.log(modalOpen);
 
  return (
-  <main>
+  <main className='overflow-hidden'>
    <section className='grid'>
-    <Modal containerClass='absolute w-full h-full'>
+    <Modal
+     containerClass={`w-full h-screen ${modalOpen ? '' : 'translate-y-full'}`}
+    >
      <h1>Hello</h1>
     </Modal>
     <div className='flex h-64'>

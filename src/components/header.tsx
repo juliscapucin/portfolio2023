@@ -43,7 +43,6 @@ export default function Header() {
      })}
      <HeaderLink
       label='Contact'
-      id='Contact'
       action={(e: MouseEvent<HTMLButtonElement>) =>
        handleShallowClick(e, `/contact`)
       }

@@ -1,6 +1,5 @@
 'use client';
 
-import { handleShallowClick } from '@/utils';
 import { MouseEvent } from 'react';
 
 interface HeaderLinkProps {
