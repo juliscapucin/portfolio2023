@@ -1,9 +1,7 @@
 import { Header } from '@/components';
-import '@/styles/styles.css';
-import { Inter } from 'next/font/google';
+import { ContextProvider } from '@/context';
 
-//don't get what this is, figure out later
-// const inter = Inter({ subsets: ['latin'] });
+import '@/styles/styles.css';
 
 export const metadata = {
  title: 'Juli Scapucin',
@@ -22,7 +20,7 @@ export default function RootLayout({
    >
     <Header />
     <div className='header-spacer h-16'></div>
-    {children}
+    <ContextProvider>{children}</ContextProvider>
    </body>
   </html>
  );

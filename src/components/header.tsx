@@ -30,11 +30,11 @@ export default function Header() {
      </GridDiv>
     </button>
     <nav className='w-4/5 max-w-screen-md h-full hidden md:flex justify-between items-center mr-8'>
-     {navLinks.map((link, index) => {
+     {navLinks.map((link) => {
       return (
        <HeaderLink
         label={link.label}
-        id={index}
+        key={link.label}
         action={(e: MouseEvent<HTMLButtonElement>) =>
          handleShallowClick(e, `/${link.slug}`)
         }
@@ -43,6 +43,7 @@ export default function Header() {
      })}
      <HeaderLink
       label='Contact'
+      id='Contact'
       action={(e: MouseEvent<HTMLButtonElement>) =>
        handleShallowClick(e, `/contact`)
       }

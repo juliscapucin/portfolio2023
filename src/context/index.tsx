@@ -1,4 +1,6 @@
-import React, { createContext, useContext, useState } from 'react';
+'use client';
+
+import { createContext, useContext, useState } from 'react';
 
 // TYPE
 interface ContextProps {
@@ -32,8 +34,6 @@ const ContextProvider = ({ children }: { children: React.ReactNode }) => {
 };
 
 // CONTEXT CUSTOM HOOK
-export function useCustomContext() {
- return useContext(Context);
-}
+const useCustomContext = () => useContext(Context);
 
-export { Context, ContextProvider };
+export { useCustomContext, ContextProvider };

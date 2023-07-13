@@ -1,9 +1,14 @@
-import { GridElement, ProjectCard, Modal } from '@/components';
-import SectionTitle from '@/components/SectionTitle';
+'use client';
 
+import { useCustomContext } from '@/context';
+import { GridElement, ProjectCard, Modal, SectionTitle } from '@/components';
 import { projectLinks } from '@/constants';
 
 export default function Home() {
+ const { modalOpen, setModalOpen, updateModalOpen } = useCustomContext();
+
+ console.log(modalOpen);
+
  return (
   <main>
    <section className='grid'>
