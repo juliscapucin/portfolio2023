@@ -11,5 +11,10 @@ export const handleShallowClick = (
    slug: string
 ): void => {
    event.preventDefault();
-   history.replaceState(null, '', slug);
+   const url = new URL(window.location.href);
+   const baseURL = `${url.protocol}//${url.host}/`;
+   setTimeout(() => {
+      console.log('waiting');
+      window.location.href = `${baseURL}${slug}`;
+   }, 1000);
 };

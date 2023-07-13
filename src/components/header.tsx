@@ -1,13 +1,10 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { navLinks } from '@/constants';
 import { GridDiv, GridElement, CustomSelect } from '@/components';
 import { handleShallowClick } from '@/utils';
 
 export default function Header() {
- const router = useRouter();
-
  return (
   <header className='w-full absolute flex h-16 z-10 max-w-[2000px] overflow-hidden'>
    {/* Desktop Header */}

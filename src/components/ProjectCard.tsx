@@ -21,11 +21,11 @@ export default function ProjectCard({
     className='h-full w-full p-8 overflow-hidden flex justify-start items-center text-7xl hover:opacity-50 transition-opacity'
     onClick={(e) => handleShallowClick(e, `/projects/${slug}`)}
    >
-    <div className='relative h-16 w-16'>
+    <div className='relative h-16 w-16 mr-8'>
      <Image
       src='/pool.avif'
       alt='photo'
-      className='object-cover'
+      className='object-cover '
       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
       fill
      />
