@@ -37,7 +37,7 @@ export default function Header() {
        <div className='overflow-hidden max-h-6' key={link.id}>
         <button
          className='flex flex-col justify-center items-center hover:-translate-y-1/2 transition'
-         onClick={(e) => handleShallowClick(e, link.slug)}
+         onClick={(e) => handleShallowClick(e, `/${link.slug}`)}
          type='button'
         >
          <span>{link.label}</span>

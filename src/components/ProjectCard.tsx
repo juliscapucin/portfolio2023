@@ -18,9 +18,9 @@ export default function ProjectCard({
   <GridDiv top={false} right={true} bottom={true} left={true}>
    <button
     className='h-full w-full flex justify-start items-center text-7xl'
-    onClick={(e) => handleShallowClick(e, '/projects/${slug}')}
+    onClick={(e) => handleShallowClick(e, `/projects/${slug}`)}
    >
-    <span className='font-headline text-7xl font-light ml-8'>{title}</span>
+    <span className='font-headline text-7xl font-thin ml-8'>{title}</span>
    </button>
   </GridDiv>
  );

@@ -7,6 +7,8 @@ import {
 } from '@/components';
 import SectionTitle from '@/components/SectionTitle';
 
+import { projectLinks } from '@/constants';
+
 export default function Home() {
  return (
   <main>
@@ -51,9 +53,13 @@ export default function Home() {
     <div className='h-64'>
      <SectionTitle />
     </div>
-    <div className='h-32'>
-     <ProjectCard title={'Project1'} slug={'/project1'} />
-    </div>
+    {projectLinks.map((project, index) => {
+     return (
+      <div className='h-32'>
+       <ProjectCard title={project.label} slug={project.slug} />
+      </div>
+     );
+    })}
    </section>
   </main>
  );
