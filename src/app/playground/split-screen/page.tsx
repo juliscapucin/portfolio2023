@@ -1,12 +1,40 @@
+'use client';
+
 import Image from 'next/image';
+import { createRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { GSDevTools } from 'gsap/GSDevTools';
+import { SplitText } from 'gsap/SplitText';
+
+gsap.registerPlugin(GSDevTools, SplitText);
 
 export default function Page() {
+ const title = createRef<HTMLHeadingElement>();
+
+ useEffect(() => {
+  const animation = gsap.timeline({});
+  const split = new SplitText(title.current, { type: 'chars' });
+
+  animation.from(split.chars, {
+   opacity: 0,
+   y: 50,
+   ease: 'back(1)',
+   stagger: {
+    from: 'start', //try "center" and "edges"
+    each: 0.02,
+   },
+  });
+  GSDevTools.create({ animation: animation });
+ }, [title]);
+
  return (
   <main>
    <section className='flex gap-32'>
     <div className='w-1/2 flex-1/2 [&>article]:h-screen [&>article>h2]:text-3xl [&>article>h2]:mb-8'>
      <div className='h-screen flex justify-start items-center'>
-      <h1 className='text-7xl'>GSAP ScrollTrigger</h1>
+      <h1 className='text-7xl' ref={title}>
+       GSAP ScrollTrigger
+      </h1>
      </div>
      <article>
       <h2>Scroll-based Animations</h2>
