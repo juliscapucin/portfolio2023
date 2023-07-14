@@ -1,5 +1,5 @@
 import { Header, Modal } from '@/components';
-import { ModalContextProvider } from '@/context';
+import { ModalContextProvider, TransitionContextProvider } from '@/context';
 
 import '@/styles/styles.css';
 
@@ -21,7 +21,9 @@ export default function RootLayout({
     >
      <Header />
      <div className='header-spacer h-16'></div>
-     <main className='p-8'>{children}</main>
+     <TransitionContextProvider>
+      <main className='p-8'>{children}</main>
+     </TransitionContextProvider>
      <Modal containerClass={`w-full h-screen`}>
       <h1>Hello</h1>
      </Modal>

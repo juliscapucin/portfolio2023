@@ -4,6 +4,7 @@ import { navLinks } from '@/constants';
 import { GridDiv, HeaderLink } from '@/components';
 import { handleShallowClick } from '@/utils';
 import { MouseEvent } from 'react';
+import { usePathname } from 'next/navigation';
 
 import { useModalContext } from '@/context';
 
@@ -14,6 +15,9 @@ interface HeaderProps {
 
 export default function Header() {
  const { modalOpen, updateModalOpen } = useModalContext();
+ const pathname = usePathname();
+
+ console.log(pathname);
 
  return (
   <header className='w-full absolute flex h-16 z-10 max-w-[2000px] overflow-hidden'>
@@ -44,6 +48,7 @@ export default function Header() {
        <HeaderLink
         label={link.label}
         key={link.label}
+        activeState={pathname === `/${link.slug}` ? true : false}
         action={(e: MouseEvent<HTMLButtonElement>) =>
          handleShallowClick(e, `/${link.slug}`)
         }
