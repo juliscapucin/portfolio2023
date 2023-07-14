@@ -3,7 +3,7 @@
 import React, { createContext } from 'react';
 import { useState } from 'react';
 
-const TransitionContext = createContext({} as ToggleCompleted);
+export const TransitionContext = createContext({} as ToggleCompleted);
 
 type ToggleCompleted = {
  completed: boolean;

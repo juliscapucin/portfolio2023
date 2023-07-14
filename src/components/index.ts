@@ -6,6 +6,7 @@ import CustomImage from './CustomImage';
 import Modal from './Modal';
 import ProjectCard from './ProjectCard';
 import SectionTitle from './SectionTitle';
+import ShallowPage from './shallowPage/ShallowPage';
 
 export {
    GridDiv,
@@ -16,4 +17,5 @@ export {
    Modal,
    ProjectCard,
    SectionTitle,
+   ShallowPage,
 };

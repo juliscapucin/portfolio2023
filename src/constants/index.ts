@@ -9,11 +9,11 @@ export const projects = {
    category: 'projects',
    title: 'Latest projects',
    links: [
-      { label: 'Project1', slug: 'project1' },
-      { label: 'Project2', slug: 'project2' },
-      { label: 'Project3', slug: 'project3' },
-      { label: 'Project4', slug: 'project4' },
-      { label: 'Project5', slug: 'project5' },
+      { label: 'Project1', slug: 'projects/project1' },
+      { label: 'Project2', slug: 'projects/project2' },
+      { label: 'Project3', slug: 'projects/project3' },
+      { label: 'Project4', slug: 'projects/project4' },
+      { label: 'Project5', slug: 'projects/project5' },
    ],
 };
 
@@ -36,11 +36,11 @@ export const playground = {
    title: 'Playground',
    paragraph1: 'A selection of experiments I develop on my free time',
    links: [
-      { label: 'Playground1', slug: 'playground1' },
-      { label: 'Playground2', slug: 'playground2' },
-      { label: 'Playground3', slug: 'playground3' },
-      { label: 'Playground4', slug: 'playground4' },
-      { label: 'Playground5', slug: 'playground5' },
+      { label: 'Playground1', slug: 'playground/playground1' },
+      { label: 'Playground2', slug: 'playground/playground2' },
+      { label: 'Playground3', slug: 'playground/playground3' },
+      { label: 'Playground4', slug: 'playground/playground4' },
+      { label: 'Playground5', slug: 'playground/playground5' },
    ],
 };
 

@@ -8,10 +8,9 @@ export const metadata = {
  description: 'Front-End Developer based in Amsterdam',
 };
 
-export default function RootLayout({
- children,
-}: {
+export default function RootLayout(props: {
  children: React.ReactNode;
+ shallowPage: React.ReactNode;
 }) {
  return (
   <html lang='en'>
@@ -22,7 +21,10 @@ export default function RootLayout({
      <Header />
      <div className='header-spacer h-16'></div>
      <TransitionContextProvider>
-      <main className='p-8'>{children}</main>
+      <main className='p-8'>
+       {props.children}
+       {props.shallowPage}
+      </main>
      </TransitionContextProvider>
      <Modal containerClass={`w-full h-screen`}>
       <h1>Hello</h1>

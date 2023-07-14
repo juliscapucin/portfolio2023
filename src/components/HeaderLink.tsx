@@ -5,7 +5,7 @@ import { MouseEvent } from 'react';
 
 interface HeaderLinkProps {
  label: string;
- action: (e: MouseEvent<HTMLButtonElement>) => void | (() => void);
+ action?: (e: MouseEvent<HTMLButtonElement>) => void | (() => void);
  activeState?: boolean;
 }
 

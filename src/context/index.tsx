@@ -1,4 +1,12 @@
 import { ModalContextProvider, useModalContext } from './ModalContext';
-import { TransitionContextProvider } from './TransitionContext';
+import {
+ TransitionContext,
+ TransitionContextProvider,
+} from './TransitionContext';
 
-export { useModalContext, ModalContextProvider, TransitionContextProvider };
+export {
+ useModalContext,
+ ModalContextProvider,
+ TransitionContext,
+ TransitionContextProvider,
+};
