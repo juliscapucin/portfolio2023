@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import Image from 'next/image';
 import { GridDiv } from '@/components';
 import { handleShallowClick } from '@/utils';
@@ -17,7 +18,10 @@ export default function ProjectCard({
 }: ProjectCardProps) {
  return (
   <GridDiv top={false} right={true} bottom={true} left={true}>
-   <button
+   <Link key={title} href={`/${slug}`}>
+    {title}
+   </Link>
+   {/* <button
     className='h-full w-full p-8 overflow-hidden flex justify-start items-center text-7xl hover:opacity-50 transition-opacity'
     onClick={(e) => handleShallowClick(e, `/${category}/${slug}`)}
    >
@@ -31,7 +35,7 @@ export default function ProjectCard({
      />
     </div>
     <span className='font-headline text-7xl font-thin'>{title}</span>
-   </button>
+   </button> */}
   </GridDiv>
  );
 }

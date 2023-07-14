@@ -1,11 +1,13 @@
 'use client';
 
+import Link from 'next/link';
 import { navLinks } from '@/constants';
 import { GridDiv, HeaderLink } from '@/components';
 import { handleShallowClick } from '@/utils';
 import { MouseEvent } from 'react';
+import { usePathname } from 'next/navigation';
 
-import { useCustomContext } from '@/context';
+import { useModalContext } from '@/context';
 
 interface HeaderProps {
  label: string;
@@ -13,7 +15,8 @@ interface HeaderProps {
 }
 
 export default function Header() {
- const { modalOpen, updateModalOpen } = useCustomContext();
+ const { modalOpen, updateModalOpen } = useModalContext();
+ const pathname = usePathname();
 
  return (
   <header className='w-full absolute flex h-16 z-10 max-w-[2000px] overflow-hidden'>
@@ -41,13 +44,15 @@ export default function Header() {
     <nav className='w-4/5 max-w-screen-md h-full hidden md:flex justify-between items-center mr-8'>
      {navLinks.map((link) => {
       return (
-       <HeaderLink
-        label={link.label}
-        key={link.label}
-        action={(e: MouseEvent<HTMLButtonElement>) =>
-         handleShallowClick(e, `/${link.slug}`)
-        }
-       />
+       <Link key={link.label} href={`/photos/${link.slug}`}></Link>
+       //  <HeaderLink
+       //   label={link.label}
+       //   key={link.label}
+       //   activeState={pathname === `/${link.slug}` ? true : false}
+       //   action={(e: MouseEvent<HTMLButtonElement>) =>
+       //    handleShallowClick(e, `/${link.slug}`)
+       //   }
+       //  />
       );
      })}
      <HeaderLink label='Contact' action={updateModalOpen} />
