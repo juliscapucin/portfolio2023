@@ -1,17 +1,9 @@
 'use client';
 
-import {
- ContextLayout,
- GridElement,
- ProjectCard,
- Modal,
- SectionTitle,
-} from '@/components';
-import { projectLinks } from '@/constants';
+import { GridElement, ProjectCard, SectionTitle } from '@/components';
+import { projects, playground } from '@/constants';
 
 export default function Home() {
- //   console.log(modalOpen);
-
  return (
   <main className='overflow-hidden'>
    <section className='grid'>
@@ -52,15 +44,100 @@ export default function Home() {
      <GridElement top={false} right={true} bottom={true} left={false} />
     </div>
     <div className='h-64'>
-     <SectionTitle />
+     <SectionTitle title='Latest Work' />
     </div>
-    {projectLinks.map((project, index) => {
+    {projects.links.map((link, index) => {
      return (
       <div className='h-32' key={index}>
-       <ProjectCard title={project.label} slug={project.slug} />
+       <ProjectCard
+        title={link.label}
+        slug={link.slug}
+        category={projects.category}
+       />
       </div>
      );
     })}
+   </section>
+   <section>
+    <div className='h-64'>
+     <SectionTitle title={playground.title} />
+    </div>
+    {playground.links.map((link, index) => {
+     return (
+      <div className='h-32' key={index}>
+       <ProjectCard
+        title={link.label}
+        slug={link.slug}
+        category={playground.category}
+       />
+      </div>
+     );
+    })}
+
+    <div className='h-32 flex'>
+     <GridElement
+      top={false}
+      right={true}
+      bottom={true}
+      left={true}
+      divClass='basis-3/4'
+     />
+     <GridElement
+      top={false}
+      right={true}
+      bottom={true}
+      left={false}
+      buttonLabel='View all'
+      width='basis-1/4'
+      divClass='flex justify-center items-center'
+     />
+    </div>
+   </section>
+   <section>
+    <div className='h-64'>
+     <SectionTitle title='Archive' />
+    </div>
+    <div className='h-32 flex'>
+     <GridElement
+      top={false}
+      right={true}
+      bottom={true}
+      left={true}
+      divClass='basis-3/4'
+     />
+     <GridElement
+      top={false}
+      right={true}
+      bottom={true}
+      left={false}
+      buttonLabel='View all'
+      width='basis-1/4'
+      divClass='flex justify-center items-center'
+     />
+    </div>
+   </section>
+   <section>
+    <div className='h-64'>
+     <SectionTitle title='About me' />
+    </div>
+    <div className='h-32 flex'>
+     <GridElement
+      top={false}
+      right={true}
+      bottom={true}
+      left={true}
+      divClass='basis-3/4'
+     />
+     <GridElement
+      top={false}
+      right={true}
+      bottom={true}
+      left={false}
+      buttonLabel='Read more'
+      width='basis-1/4'
+      divClass='flex justify-center items-center'
+     />
+    </div>
    </section>
   </main>
  );

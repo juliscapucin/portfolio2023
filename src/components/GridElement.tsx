@@ -1,6 +1,8 @@
 interface GridElementProps {
  text?: string;
- elementClass?: string;
+ buttonLabel?: string;
+ divClass?: string;
+ width?: string;
  textClass?: string;
  hoverClass?: string;
  top?: boolean;
@@ -11,16 +13,22 @@ interface GridElementProps {
 
 export default function GridElement({
  text,
+ buttonLabel,
  textClass,
  hoverClass,
- elementClass,
+ divClass,
+ width,
  top,
  right,
  bottom,
  left,
 }: GridElementProps) {
  return (
-  <div className={`grid-element ${elementClass}`}>
+  <div
+   className={`grid-element h-full ${width ? width : 'w-full'} ${
+    divClass ? divClass : ''
+   }`}
+  >
    {top ? (
     <div className='line'></div>
    ) : (
@@ -41,9 +49,16 @@ export default function GridElement({
    ) : (
     <div className='line-transparent'></div>
    )}
-   <span className={`select-none ${textClass}`}>{text}</span>
+   {text && (
+    <span className={`select-none ${textClass ? textClass : ''}`}>{text}</span>
+   )}
+   {buttonLabel && (
+    <button className={`select-none ${textClass ? textClass : ''}`}>
+     {buttonLabel}
+    </button>
+   )}
    <div
-    className={`h-full w-full opacity-0 hover:opacity-100 ${hoverClass}`}
+    className={`opacity-0 hover:opacity-100 ${hoverClass ? hoverClass : ''}`}
    ></div>
   </div>
  );
