@@ -1,5 +1,5 @@
 import { Header, Modal } from '@/components';
-import { ContextProvider } from '@/context';
+import { ModalContextProvider } from '@/context';
 
 import '@/styles/styles.css';
 
@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
  return (
   <html lang='en'>
-   <ContextProvider>
+   <ModalContextProvider>
     <body
      className={`relative m-8 mt-0 max-w-[2000px] font-text font-extralight bg-colorBlack text-colorWhite mx-auto overflow-hidden`}
     >
@@ -26,7 +26,7 @@ export default function RootLayout({
       <h1>Hello</h1>
      </Modal>
     </body>
-   </ContextProvider>
+   </ModalContextProvider>
   </html>
  );
 }

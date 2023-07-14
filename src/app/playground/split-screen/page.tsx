@@ -6,6 +6,7 @@ import { gsap } from 'gsap';
 import { GSDevTools } from 'gsap/GSDevTools';
 import { SplitText } from 'gsap/SplitText';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { CustomImage } from '@/components';
 
 gsap.registerPlugin(GSDevTools, SplitText, ScrollTrigger);
 
@@ -102,27 +103,52 @@ export default function Page() {
     </div>
     <div ref={right} className='w-1/2 flex-1/2'>
      <div className='relative h-screen w-full'>
-      <Image
+      <CustomImage
        src='/pool.avif'
-       alt='photo'
-       className='object-cover'
-       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-       fill
+       alt='pool photo'
+       height='h-screen'
+       width='w-full'
       />
      </div>
     </div>
    </section>
    <section className='flex gap-32'>
     <div ref={left2} className='w-1/2 flex-1/2'>
-     <div className='relative h-screen w-full'>
-      <Image
-       src='/pool.avif'
-       alt='photo'
-       className='object-cover'
-       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-       fill
-      />
-     </div>
+     <CustomImage
+      src='/pool.avif'
+      alt='pool photo'
+      height='h-screen'
+      width='w-full'
+      divClass='absolute top-0 left-0'
+     />
+     <CustomImage
+      src='/pool2.avif'
+      alt='pool photo'
+      height='h-screen'
+      width='w-full'
+      divClass='absolute top-0 left-0'
+     />
+     <CustomImage
+      src='/bus.avif'
+      alt='pool photo'
+      height='h-screen'
+      width='w-full'
+      divClass='absolute top-0 left-0'
+     />
+     <CustomImage
+      src='/door.avif'
+      alt='pool photo'
+      height='h-screen'
+      width='w-full'
+      divClass='absolute top-0 left-0'
+     />
+     <CustomImage
+      src='/parking.avif'
+      alt='pool photo'
+      height='h-screen'
+      width='w-full'
+      divClass='absolute top-0 left-0'
+     />
     </div>
     <div
      ref={right2}

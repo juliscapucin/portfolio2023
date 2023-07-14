@@ -5,7 +5,7 @@ import { GridDiv, HeaderLink } from '@/components';
 import { handleShallowClick } from '@/utils';
 import { MouseEvent } from 'react';
 
-import { useCustomContext } from '@/context';
+import { useModalContext } from '@/context';
 
 interface HeaderProps {
  label: string;
@@ -13,7 +13,7 @@ interface HeaderProps {
 }
 
 export default function Header() {
- const { modalOpen, updateModalOpen } = useCustomContext();
+ const { modalOpen, updateModalOpen } = useModalContext();
 
  return (
   <header className='w-full absolute flex h-16 z-10 max-w-[2000px] overflow-hidden'>

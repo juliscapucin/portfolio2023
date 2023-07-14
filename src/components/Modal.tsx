@@ -1,6 +1,6 @@
 'use client';
 
-import { useCustomContext } from '@/context';
+import { useModalContext } from '@/context';
 
 interface ModalProps {
  top?: boolean;
@@ -19,7 +19,7 @@ export default function Modal({
  children,
  containerClass,
 }: ModalProps) {
- const { modalOpen, setModalOpen, updateModalOpen } = useCustomContext();
+ const { modalOpen, setModalOpen, updateModalOpen } = useModalContext();
  return (
   <aside
    className={`dark:bg-colorBlack border dark:border-colorWhite fixed top-0 p-8 z-50 transition-transform ${
