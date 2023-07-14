@@ -3,9 +3,11 @@ import Image from 'next/image';
 export default function Page() {
  return (
   <main>
-   <h1 className='text-7xl'>GSAP ScrollTrigger</h1>
-   <section className='flex gap-8'>
-    <div className='w-1/2 flex-1/2 space-y-16 > * + * [&>article>h2]:text-3xl'>
+   <section className='flex gap-32'>
+    <div className='w-1/2 flex-1/2 [&>article]:h-screen [&>article>h2]:text-3xl [&>article>h2]:mb-8'>
+     <div className='h-screen flex justify-start items-center'>
+      <h1 className='text-7xl'>GSAP ScrollTrigger</h1>
+     </div>
      <article>
       <h2>Scroll-based Animations</h2>
       <p>
@@ -43,11 +45,11 @@ export default function Page() {
      </article>
     </div>
     <div className='w-1/2 flex-1/2'>
-     <div className='relative h-full w-full'>
+     <div className='relative h-screen w-full'>
       <Image
        src='/pool.avif'
        alt='photo'
-       className='object-cover '
+       className='object-cover'
        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
        fill
       />
