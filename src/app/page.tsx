@@ -2,8 +2,16 @@
 
 import { GridElement, ProjectCard, SectionTitle } from '@/components';
 import { projects, playground } from '@/constants';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
+ const router = useRouter();
+
+ //  useEffect(() => {
+ //   router.push('/About', { shallow: true });
+ //  }, [router]);
+
  return (
   <main className='overflow-hidden'>
    <section className='grid'>
