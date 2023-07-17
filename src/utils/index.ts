@@ -21,18 +21,21 @@ export const animateToFullScreen = (
    const animationEnd = document.querySelector('.transition-fullscreen');
 
    if (!animationStart || !animationEnd) return;
-   const animationStartClone = animationStart!.cloneNode(true) as Element;
+   animationEnd.innerHTML = '';
+   const animationStartClone = animationStart.cloneNode(true);
 
    if (!animationStartClone) return;
-   animationStart!.insertAdjacentElement('afterend', animationStartClone!);
+   animationStart.parentNode?.appendChild(animationStartClone);
 
-   const state = Flip.getState(animationStartClone as HTMLElement);
+   const animationStart2 = document.querySelector(transitionStart);
 
-   animationEnd!.innerHTML = '';
-   animationEnd?.classList.remove('hidden');
-   animationStartClone?.classList.remove('h-16', 'w-16');
-   animationStartClone?.classList.add('h-full', 'w-full');
-   animationEnd?.appendChild(animationStartClone as Node);
+   if (!animationStart2) return;
+   const state = Flip.getState(animationStart2);
+
+   animationEnd.classList.remove('hidden');
+   animationStart2.classList.remove('h-16', 'w-16');
+   animationStart2.classList.add('h-full', 'w-full');
+   animationEnd.appendChild(animationStart2);
 
    Flip.from(state, {
       duration: 1,
