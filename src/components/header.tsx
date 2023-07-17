@@ -7,6 +7,7 @@ import { MouseEvent } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
 import { useModalContext } from '@/context';
+import { animateToLeft } from '@/utils';
 
 interface HeaderProps {
  label: string;
@@ -19,7 +20,7 @@ export default function Header() {
  const router = useRouter();
 
  return (
-  <header className='w-full absolute flex h-16 z-10 max-w-[2000px] overflow-hidden'>
+  <header className='w-full absolute flex h-16 z-50 max-w-[2000px] overflow-hidden'>
    {/* Desktop Header */}
    <GridDiv
     divClass={
@@ -30,7 +31,10 @@ export default function Header() {
     bottom={true}
     left={true}
    >
-    <button className='h-full' onClick={(e) => router.push('/')}>
+    <button
+     className='h-full'
+     onClick={(e) => animateToLeft(() => router.back())}
+    >
      <GridDiv
       top={false}
       right={true}

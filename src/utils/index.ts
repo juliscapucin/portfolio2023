@@ -9,25 +9,6 @@ import { Flip } from 'gsap/Flip';
 
 gsap.registerPlugin(GSDevTools, Flip);
 
-export function cn(...inputs: ClassValue[]) {
-   return twMerge(clsx(inputs));
-}
-
-// export const handleShallowClick = (
-//    event: MouseEvent<HTMLButtonElement>,
-//    slug: string
-// ): void => {
-//    // event.preventDefault();
-//    const router = useRouter();
-//    const url = new URL(window.location.href);
-//    const baseURL = `${url.protocol}//${url.host}/`;
-//    setTimeout(() => {
-//       console.log('waiting');
-//       // window.location.href = `${baseURL}${slug}`;
-//       router.push('/About', { shallow: true });
-//    }, 1000);
-// };
-
 export const toggleModal = (element: HTMLElement) => {
    console.log('hi');
 };
@@ -38,15 +19,20 @@ export const animateToFullScreen = (
 ) => {
    const animationStart = document.querySelector(transitionStart);
    const animationEnd = document.querySelector('.transition-fullscreen');
-   const state = Flip.getState(animationStart);
 
    if (!animationStart || !animationEnd) return;
+   const animationStartClone = animationStart!.cloneNode(true) as Element;
+
+   if (!animationStartClone) return;
+   animationStart!.insertAdjacentElement('afterend', animationStartClone!);
+
+   const state = Flip.getState(animationStartClone as HTMLElement);
 
    animationEnd!.innerHTML = '';
    animationEnd?.classList.remove('hidden');
-   animationStart?.classList.remove('h-16', 'w-16');
-   animationStart?.classList.add('h-full', 'w-full');
-   animationEnd?.appendChild(animationStart as Node);
+   animationStartClone?.classList.remove('h-16', 'w-16');
+   animationStartClone?.classList.add('h-full', 'w-full');
+   animationEnd?.appendChild(animationStartClone as Node);
 
    Flip.from(state, {
       duration: 1,
@@ -54,7 +40,17 @@ export const animateToFullScreen = (
       ease: 'power1.inOut',
       onComplete: () => {
          routerFunction();
-         // animationEnd?.classList.add('hidden');
+      },
+   });
+};
+
+export const animateToLeft = (routerFunction: () => void) => {
+   gsap.to('.animate-left', {
+      duration: 1,
+      x: '-100%',
+      ease: 'power1.inOut',
+      onComplete: () => {
+         routerFunction();
       },
    });
 };

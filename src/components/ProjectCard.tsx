@@ -1,6 +1,6 @@
 'use client';
 
-import { MouseEvent } from 'react';
+import { MouseEvent, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { GridDiv } from '@/components';
@@ -24,11 +24,12 @@ export default function ProjectCard({
 
  const handleShallowClick = (): void => {
   router.push(`/${slug}`);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
  };
 
  return (
   <>
-   <div className='transition-fullscreen w-screen h-screen top-0 left-0 fixed z-20 hidden pointer-events-none'></div>
+   <div className='transition-fullscreen w-screen h-screen top-0 left-0 fixed z-10 hidden pointer-events-none'></div>
 
    <GridDiv top={false} right={true} bottom={true} left={true}>
     <button

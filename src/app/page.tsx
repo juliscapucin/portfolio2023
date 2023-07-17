@@ -9,7 +9,7 @@ export default function Home() {
  const router = useRouter();
 
  return (
-  <main className='overflow-hidden'>
+  <div className='overflow-hidden mt-16'>
    <section className='grid'>
     <div className='flex h-64'>
      <GridElement
@@ -145,6 +145,6 @@ export default function Home() {
      />
     </div>
    </section>
-  </main>
+  </div>
  );
 }

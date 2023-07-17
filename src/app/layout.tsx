@@ -21,7 +21,7 @@ export default function RootLayout(props: {
      <Header />
      {/* <div className='header-spacer h-16'></div> */}
      <TransitionContextProvider>
-      <main>
+      <main className='relative'>
        {props.children}
        {props.shallowPage}
       </main>
