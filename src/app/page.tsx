@@ -8,10 +8,6 @@ import { useRouter } from 'next/navigation';
 export default function Home() {
  const router = useRouter();
 
- //  useEffect(() => {
- //   router.push('/About', { shallow: true });
- //  }, [router]);
-
  return (
   <main className='overflow-hidden'>
    <section className='grid'>
@@ -60,7 +56,8 @@ export default function Home() {
        <ProjectCard
         title={link.label}
         slug={link.slug}
-        category={projects.category}
+        id={link.id}
+        coverImage={link.coverImage}
        />
       </div>
      );
@@ -76,7 +73,8 @@ export default function Home() {
        <ProjectCard
         title={link.label}
         slug={link.slug}
-        category={playground.category}
+        id={link.id}
+        coverImage={link.coverImage}
        />
       </div>
      );

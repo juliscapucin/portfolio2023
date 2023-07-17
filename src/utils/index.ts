@@ -32,11 +32,17 @@ export const toggleModal = (element: HTMLElement) => {
    console.log('hi');
 };
 
-export const animateToFullScreen = (transitionStart: string) => {
+export const animateToFullScreen = (
+   transitionStart: string,
+   routerFunction: () => void
+) => {
    const animationStart = document.querySelector(transitionStart);
    const animationEnd = document.querySelector('.transition-fullscreen');
    const state = Flip.getState(animationStart);
 
+   if (!animationStart || !animationEnd) return;
+
+   animationEnd!.innerHTML = '';
    animationEnd?.classList.remove('hidden');
    animationStart?.classList.remove('h-16', 'w-16');
    animationStart?.classList.add('h-full', 'w-full');
@@ -46,5 +52,9 @@ export const animateToFullScreen = (transitionStart: string) => {
       duration: 1,
       absolute: true,
       ease: 'power1.inOut',
+      onComplete: () => {
+         routerFunction();
+         // animationEnd?.classList.add('hidden');
+      },
    });
 };

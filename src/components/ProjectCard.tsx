@@ -8,44 +8,60 @@ import { useRouter } from 'next/navigation';
 import { animateToFullScreen } from '@/utils';
 
 interface ProjectCardProps {
+ id: string;
  title: string;
- category: string;
  slug: string;
+ coverImage: string;
 }
 
 export default function ProjectCard({
  title,
- category,
+ id,
  slug,
+ coverImage,
 }: ProjectCardProps) {
  const router = useRouter();
 
  const handleShallowClick = (): void => {
-  setTimeout(() => {
-   console.log('transition');
-   router.push(`/${slug}`, { shallow: true });
-  }, 1000);
+  router.push(`/${slug}`);
  };
 
  return (
-  <GridDiv top={false} right={true} bottom={true} left={true}>
-   <button
-    className='h-full w-full p-8 overflow-hidden flex justify-start items-center text-7xl hover:opacity-50 transition-opacity'
-    onClick={() => {
-     animateToFullScreen(`.${title}`);
-    }}
-   >
-    <div className={`${title} relative h-16 w-16 mr-8 overflow-hidden`}>
-     <Image
-      src='/pool.avif'
-      alt='photo'
-      className='object-cover '
-      sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-      fill
-     />
-    </div>
-    <span className='font-headline text-7xl font-thin'>{title}</span>
-   </button>
-  </GridDiv>
+  <>
+   <div className='transition-fullscreen w-screen h-screen top-0 left-0 fixed z-20 hidden pointer-events-none'></div>
+
+   <GridDiv top={false} right={true} bottom={true} left={true}>
+    <button
+     className='h-full w-full p-8 overflow-hidden flex justify-start items-center text-7xl hover:opacity-50 transition-opacity'
+     onClick={() => {
+      animateToFullScreen(`.${id}`, handleShallowClick);
+     }}
+    >
+     <div className={`relative h-16 w-16 mr-8 overflow-hidden`}>
+      <Image
+       src={`/${coverImage}`}
+       alt='photo'
+       className='object-cover '
+       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+       fill
+      />
+     </div>
+
+     {/* Duplicated image for animation */}
+     <div className='absolute top-8 left-8'>
+      <div className={`${id} relative h-16 w-16 overflow-hidden`}>
+       <Image
+        src={`/${coverImage}`}
+        alt='photo'
+        className='object-cover '
+        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+        fill
+       />
+      </div>
+     </div>
+     <span className='font-headline text-7xl font-thin'>{title}</span>
+    </button>
+   </GridDiv>
+  </>
  );
 }

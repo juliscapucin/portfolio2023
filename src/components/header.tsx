@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { navLinks } from '@/constants';
 import { GridDiv, HeaderLink } from '@/components';
 import { MouseEvent } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 import { useModalContext } from '@/context';
 
@@ -16,6 +16,7 @@ interface HeaderProps {
 export default function Header() {
  const { modalOpen, updateModalOpen } = useModalContext();
  const pathname = usePathname();
+ const router = useRouter();
 
  return (
   <header className='w-full absolute flex h-16 z-10 max-w-[2000px] overflow-hidden'>
@@ -29,7 +30,7 @@ export default function Header() {
     bottom={true}
     left={true}
    >
-    <button className='h-full' onClick={(e) => console.log(e)}>
+    <button className='h-full' onClick={(e) => router.push('/')}>
      <GridDiv
       top={false}
       right={true}
@@ -43,15 +44,15 @@ export default function Header() {
     <nav className='w-4/5 max-w-screen-md h-full hidden md:flex justify-between items-center mr-8'>
      {navLinks.map((link) => {
       return (
-       <Link key={link.label} href={`/photos/${link.slug}`}></Link>
-       //  <HeaderLink
-       //   label={link.label}
-       //   key={link.label}
-       //   activeState={pathname === `/${link.slug}` ? true : false}
-       //   action={(e: MouseEvent<HTMLButtonElement>) =>
-       //    handleShallowClick(e, `/${link.slug}`)
-       //   }
-       //  />
+       //  <Link key={link.label} href={`/photos/${link.slug}`}></Link>
+       <HeaderLink
+        label={link.label}
+        key={link.label}
+        activeState={pathname === `/${link.slug}` ? true : false}
+        action={(e: MouseEvent<HTMLButtonElement>) =>
+         console.log(e, `/${link.slug}`)
+        }
+       />
       );
      })}
      <HeaderLink label='Contact' action={updateModalOpen} />
