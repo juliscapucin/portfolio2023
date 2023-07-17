@@ -19,6 +19,7 @@ export default function RootLayout(props: {
      className={`relative m-8 mt-0 max-w-[2000px] font-text font-extralight bg-colorBlack text-colorWhite mx-auto overflow-hidden`}
     >
      <Header />
+     <div className='transition-fullscreen bg-red-700 w-screen h-screen fixed z-20 hidden pointer-events-none'></div>
      <div className='header-spacer h-16'></div>
      <TransitionContextProvider>
       <main className='p-8'>

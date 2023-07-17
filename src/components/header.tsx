@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { navLinks } from '@/constants';
 import { GridDiv, HeaderLink } from '@/components';
-import { handleShallowClick } from '@/utils';
 import { MouseEvent } from 'react';
 import { usePathname } from 'next/navigation';
 
@@ -30,7 +29,7 @@ export default function Header() {
     bottom={true}
     left={true}
    >
-    <button className='h-full' onClick={(e) => handleShallowClick(e, '/')}>
+    <button className='h-full' onClick={(e) => console.log(e)}>
      <GridDiv
       top={false}
       right={true}

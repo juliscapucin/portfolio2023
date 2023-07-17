@@ -4,8 +4,8 @@ import { MouseEvent } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { GridDiv } from '@/components';
-import { handleShallowClick } from '@/utils';
 import { useRouter } from 'next/navigation';
+import { animateToFullScreen } from '@/utils';
 
 interface ProjectCardProps {
  title: string;
@@ -29,19 +29,18 @@ export default function ProjectCard({
 
  return (
   <GridDiv top={false} right={true} bottom={true} left={true}>
-   {/* <Link key={title} href={`/${slug}`}>
-    {title}
-   </Link> */}
    <button
     className='h-full w-full p-8 overflow-hidden flex justify-start items-center text-7xl hover:opacity-50 transition-opacity'
-    onClick={handleShallowClick}
+    onClick={() => {
+     animateToFullScreen(`.${title}`);
+    }}
    >
-    <div className='relative h-16 w-16 mr-8'>
+    <div className={`${title} relative h-16 w-16 mr-8 overflow-hidden`}>
      <Image
       src='/pool.avif'
       alt='photo'
       className='object-cover '
-      sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+      sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
       fill
      />
     </div>
