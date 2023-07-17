@@ -16,12 +16,12 @@ export default function RootLayout(props: {
   <html lang='en'>
    <ModalContextProvider>
     <body
-     className={`relative m-8 mt-0 max-w-[2000px] font-text font-extralight bg-colorBlack text-colorWhite mx-auto overflow-hidden`}
+     className={`relative mt-0 max-w-[2000px] font-text font-extralight bg-colorBlack text-colorWhite mx-auto overflow-hidden`}
     >
      <Header />
-     <div className='header-spacer h-16'></div>
+     {/* <div className='header-spacer h-16'></div> */}
      <TransitionContextProvider>
-      <main className='p-8'>
+      <main className='relative'>
        {props.children}
        {props.shallowPage}
       </main>

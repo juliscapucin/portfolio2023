@@ -9,11 +9,36 @@ export const projects = {
    category: 'projects',
    title: 'Latest projects',
    links: [
-      { label: 'Project1', slug: 'projects/project1' },
-      { label: 'Project2', slug: 'projects/project2' },
-      { label: 'Project3', slug: 'projects/project3' },
-      { label: 'Project4', slug: 'projects/project4' },
-      { label: 'Project5', slug: 'projects/project5' },
+      {
+         label: 'Project1',
+         slug: 'projects/project1',
+         id: 'project1',
+         coverImage: 'pool.avif',
+      },
+      {
+         label: 'Project2',
+         slug: 'projects/project2',
+         id: 'project2',
+         coverImage: 'pool.avif',
+      },
+      {
+         label: 'Project3',
+         slug: 'projects/project3',
+         id: 'project3',
+         coverImage: 'pool.avif',
+      },
+      {
+         label: 'Project4',
+         slug: 'projects/project4',
+         id: 'project4',
+         coverImage: 'pool.avif',
+      },
+      {
+         label: 'Project5',
+         slug: 'projects/project5',
+         id: 'project5',
+         coverImage: 'pool.avif',
+      },
    ],
 };
 
@@ -36,11 +61,36 @@ export const playground = {
    title: 'Playground',
    paragraph1: 'A selection of experiments I develop on my free time',
    links: [
-      { label: 'Playground1', slug: 'playground/playground1' },
-      { label: 'Playground2', slug: 'playground/playground2' },
-      { label: 'Playground3', slug: 'playground/playground3' },
-      { label: 'Playground4', slug: 'playground/playground4' },
-      { label: 'Playground5', slug: 'playground/playground5' },
+      {
+         label: 'Playground1',
+         slug: 'playground/playground1',
+         id: 'playground1',
+         coverImage: 'pool.avif',
+      },
+      {
+         label: 'Playground2',
+         slug: 'playground/playground2',
+         id: 'playground2',
+         coverImage: 'pool.avif',
+      },
+      {
+         label: 'Playground3',
+         slug: 'playground/playground3',
+         id: 'playground3',
+         coverImage: 'pool.avif',
+      },
+      {
+         label: 'Playground4',
+         slug: 'playground/playground4',
+         id: 'playground4',
+         coverImage: 'pool.avif',
+      },
+      {
+         label: 'Playground5',
+         slug: 'playground/playground5',
+         id: 'playground5',
+         coverImage: 'pool.avif',
+      },
    ],
 };
 
