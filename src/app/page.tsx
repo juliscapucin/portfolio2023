@@ -4,6 +4,7 @@ import { GridElement, ProjectCard, SectionTitle } from '@/components';
 import { projects, playground } from '@/constants';
 import { useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
+import { gsap } from 'gsap';
 
 export default function Home() {
  const router = useRouter();

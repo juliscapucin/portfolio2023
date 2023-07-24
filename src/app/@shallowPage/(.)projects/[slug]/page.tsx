@@ -2,20 +2,8 @@
 
 import Image from 'next/image';
 import { ShallowPage } from '@/components';
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
 
 export default function Page({ params }: any) {
- const imageRef = useRef(null);
-
- useEffect(() => {
-  gsap.to('.transition-fullscreen', {
-   duration: 1,
-   opacity: 0,
-   delay: 0.5,
-  });
- }, [imageRef]);
-
  return (
   <ShallowPage>
    <div className='w-screen h-screen'>
@@ -27,12 +15,17 @@ export default function Page({ params }: any) {
       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
       fill
       priority
-      ref={imageRef}
      />
     </div>
    </div>
-   <div className='px-8 py-16'>
+   <div className='px-8 py-16 bg-colorBlack'>
     <h1 className='text-7xl z-35'>{params.slug} intercepted</h1>
+    <p>
+     Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae impedit
+     obcaecati temporibus cum. Laudantium ad voluptatem consequuntur. Omnis
+     quasi, accusamus optio ab aliquid deleniti ut. Ipsam excepturi nam vitae
+     sit.
+    </p>
     <p>
      Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae impedit
      obcaecati temporibus cum. Laudantium ad voluptatem consequuntur. Omnis

@@ -54,6 +54,9 @@ export const animateToFullScreen = (
 };
 
 export const animateToLeft = (routerFunction: () => void) => {
+   const fullscreen = document.querySelector('.transition-fullscreen');
+   if (fullscreen) gsap.set(fullscreen, { opacity: 0 });
+
    gsap.to('.animate-left', {
       duration: 1,
       x: '-100%',
