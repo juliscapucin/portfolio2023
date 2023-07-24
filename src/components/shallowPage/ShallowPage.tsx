@@ -15,8 +15,6 @@ export default function ShallowPage({
  const router = useRouter();
 
  const onDismiss = useCallback(() => {
-  gsap.set('.transition-fullscreen', { opacity: 0 });
-
   animateToLeft(() => {
    router.back();
   });
@@ -40,7 +38,7 @@ export default function ShallowPage({
 
  return (
   <div
-   className='animate-left fixed top-0 left-0 right-0 bottom-0 overflow-auto z-10'
+   className='fixed top-0 left-0 right-0 bottom-0 overflow-auto z-10'
    ref={overlay}
    onClick={onClick}
   >

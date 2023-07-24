@@ -28,9 +28,6 @@ export const animateToFullScreen = (
 
    animationStartParent.appendChild(animationStartClone);
 
-   console.log('parent', animationStartParent);
-   console.log('end', animationEnd);
-
    const state = Flip.getState(animationStartClone);
 
    animationEnd.classList.remove('hidden');
@@ -53,20 +50,45 @@ export const animateToFullScreen = (
 export const animateToLeft = (routerFunction: () => void) => {
    const animationFullScreen = document.querySelector('.transition-fullscreen');
 
+   gsap.set('.animate-left', {
+      y: '-100%',
+   });
+
    if (!animationFullScreen) return;
    animationFullScreen?.classList.add('hidden');
    animationFullScreen.innerHTML = '';
 
-   console.log('animationFullScreen', animationFullScreen);
-
-   gsap.to('.animate-left', {
-      duration: 1,
-      x: '-100%',
-      ease: 'power1.inOut',
+   const timeline = gsap.timeline({
       onComplete: () => {
          routerFunction();
       },
    });
 
+   timeline
+      .to('.animate-left', {
+         duration: 0.5,
+         y: '0%',
+         ease: 'power1.inOut',
+         onComplete: animateToTransparent,
+      })
+      .to('.animate-left', {
+         duration: 0.5,
+         x: '-100%',
+         ease: 'power1.inOut',
+      });
+
    document.documentElement.classList.remove('overflow-hidden');
+};
+
+const animateToTransparent = () => {
+   const animateOpacity = gsap.utils.toArray(
+      '.animate-opacity'
+   ) as HTMLElement[];
+
+   if (animateOpacity.length === 0) return;
+   animateOpacity.forEach((element) => {
+      gsap.set(element, {
+         opacity: 0,
+      });
+   });
 };

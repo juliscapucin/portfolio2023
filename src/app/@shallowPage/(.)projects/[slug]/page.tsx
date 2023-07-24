@@ -6,7 +6,7 @@ import { ShallowPage } from '@/components';
 export default function Page({ params }: any) {
  return (
   <ShallowPage>
-   <div className='w-screen h-screen'>
+   <div className='animate-left top-0 left-0 w-screen h-screen z-20 fixed translate-y-full'>
     <div className={`relative h-full w-full overflow-hidden`}>
      <Image
       src='/pool.avif'
@@ -18,7 +18,19 @@ export default function Page({ params }: any) {
      />
     </div>
    </div>
-   <div className='px-8 py-16 bg-colorBlack'>
+   <div className='animate-opacity w-screen h-screen'>
+    <div className={`relative h-full w-full overflow-hidden`}>
+     <Image
+      src='/pool.avif'
+      alt='photo'
+      className='object-cover '
+      sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+      fill
+      priority
+     />
+    </div>
+   </div>
+   <div className='animate-opacity px-8 py-16 bg-colorBlack'>
     <h1 className='text-7xl z-35'>{params.slug} intercepted</h1>
     <p>
      Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae impedit
