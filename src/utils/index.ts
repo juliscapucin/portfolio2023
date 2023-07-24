@@ -20,6 +20,10 @@ export const animateToFullScreen = (
    const animationStart = document.querySelector(transitionStart);
    const animationEnd = document.querySelector('.transition-fullscreen');
 
+   gsap.set('.transition-fullscreen', {
+      opacity: 1,
+   });
+
    if (!animationStart || !animationEnd) return;
    animationEnd.innerHTML = '';
    const animationStartClone = animationStart.cloneNode(true);
@@ -36,6 +40,8 @@ export const animateToFullScreen = (
    animationStart2.classList.remove('h-16', 'w-16');
    animationStart2.classList.add('h-full', 'w-full');
    animationEnd.appendChild(animationStart2);
+
+   document.documentElement.classList.add('overflow-hidden');
 
    Flip.from(state, {
       duration: 1,
@@ -56,4 +62,6 @@ export const animateToLeft = (routerFunction: () => void) => {
          routerFunction();
       },
    });
+
+   document.documentElement.classList.remove('overflow-hidden');
 };

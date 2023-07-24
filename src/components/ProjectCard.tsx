@@ -24,7 +24,6 @@ export default function ProjectCard({
 
  const handleShallowClick = (): void => {
   router.push(`/${slug}`);
-  window.scrollTo({ top: 0, behavior: 'smooth' });
  };
 
  return (
