@@ -2,22 +2,19 @@
 
 import Image from 'next/image';
 import { ShallowPage } from '@/components';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
 
 export default function Page({ params }: any) {
+ const imageRef = useRef(null);
+
  useEffect(() => {
-  const handleScroll = () => {
-   if (window.scrollY === 0) {
-    document.querySelector('.transition-fullscreen')?.classList.add('hidden');
-   }
-  };
-
-  window.addEventListener('scroll', handleScroll);
-
-  return () => {
-   window.removeEventListener('scroll', handleScroll);
-  };
- }, []);
+  gsap.to('.transition-fullscreen', {
+   duration: 1,
+   opacity: 0,
+   delay: 0.5,
+  });
+ }, [imageRef]);
 
  return (
   <ShallowPage>
@@ -30,6 +27,7 @@ export default function Page({ params }: any) {
       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
       fill
       priority
+      ref={imageRef}
      />
     </div>
    </div>

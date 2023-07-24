@@ -19,7 +19,6 @@ export default function RootLayout(props: {
      className={`relative mt-0 max-w-[2000px] font-text font-extralight bg-colorBlack text-colorWhite mx-auto overflow-hidden`}
     >
      <Header />
-     {/* <div className='header-spacer h-16'></div> */}
      <TransitionContextProvider>
       <main className='relative'>
        {props.children}

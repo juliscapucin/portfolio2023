@@ -20,7 +20,7 @@ export default function Header() {
  const router = useRouter();
 
  return (
-  <header className='w-full absolute flex h-16 z-50 max-w-[2000px] overflow-hidden'>
+  <header className='w-full fixed top-0 flex h-16 z-50 max-w-[2000px] overflow-hidden'>
    {/* Desktop Header */}
    <GridDiv
     divClass={
