@@ -36,10 +36,10 @@ export default function ShallowPage({
   [onDismiss]
  );
 
- useEffect(() => {
-  document.addEventListener('keydown', onKeyDown);
-  return () => document.removeEventListener('keydown', onKeyDown);
- }, [onKeyDown]);
+ //  useEffect(() => {
+ //   document.addEventListener('keydown', onKeyDown);
+ //   return () => document.removeEventListener('keydown', onKeyDown);
+ //  }, [onKeyDown]);
 
  return (
   <div

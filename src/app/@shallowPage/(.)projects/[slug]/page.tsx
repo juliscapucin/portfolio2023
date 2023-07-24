@@ -21,7 +21,7 @@ export default function Page({ params }: any) {
 
  return (
   <ShallowPage>
-   <div className='w-screen h-screen'>
+   <div className='w-screen h-screen bg-colorBlack'>
     <div className={`relative h-full w-full overflow-hidden`}>
      <Image
       src='/pool.avif'
