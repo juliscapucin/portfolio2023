@@ -43,7 +43,7 @@ export default function ShallowPage({
 
  return (
   <div
-   className='animate-left fixed top-0 left-0 right-0 bottom-0 overflow-auto z-10'
+   className='animate-left fixed top-0 left-0 right-0 bottom-0 overflow-auto z-10 bg-colorBlack'
    ref={overlay}
    onClick={onClick}
   >
