@@ -18,28 +18,25 @@ export const animateToFullScreen = (
    routerFunction: () => void
 ) => {
    const animationStart = document.querySelector(transitionStart);
+   const animationStartParent = animationStart?.parentNode;
    const animationEnd = document.querySelector('.transition-fullscreen');
 
-   gsap.set('.transition-fullscreen', {
-      opacity: 1,
-   });
+   if (!animationStart || !animationEnd || !animationStartParent) return;
 
-   if (!animationStart || !animationEnd) return;
    animationEnd.innerHTML = '';
-   const animationStartClone = animationStart.cloneNode(true);
+   const animationStartClone = animationStart.cloneNode(true) as HTMLDivElement;
 
-   if (!animationStartClone) return;
-   animationStart.parentNode?.appendChild(animationStartClone);
+   animationStartParent.appendChild(animationStartClone);
 
-   const animationStart2 = document.querySelector(transitionStart);
+   console.log('parent', animationStartParent);
+   console.log('end', animationEnd);
 
-   if (!animationStart2) return;
-   const state = Flip.getState(animationStart2);
+   const state = Flip.getState(animationStartClone);
 
    animationEnd.classList.remove('hidden');
-   animationStart2.classList.remove('h-16', 'w-16');
-   animationStart2.classList.add('h-full', 'w-full');
-   animationEnd.appendChild(animationStart2);
+   animationStartClone.classList.remove('h-16', 'w-16');
+   animationStartClone.classList.add('h-full', 'w-full');
+   animationEnd.appendChild(animationStartClone);
 
    document.documentElement.classList.add('overflow-hidden');
 
@@ -54,8 +51,13 @@ export const animateToFullScreen = (
 };
 
 export const animateToLeft = (routerFunction: () => void) => {
-   const fullscreen = document.querySelector('.transition-fullscreen');
-   if (fullscreen) gsap.set(fullscreen, { opacity: 0 });
+   const animationFullScreen = document.querySelector('.transition-fullscreen');
+
+   if (!animationFullScreen) return;
+   animationFullScreen?.classList.add('hidden');
+   animationFullScreen.innerHTML = '';
+
+   console.log('animationFullScreen', animationFullScreen);
 
    gsap.to('.animate-left', {
       duration: 1,
