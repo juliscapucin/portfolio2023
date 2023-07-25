@@ -23,6 +23,10 @@ export const animateToFullScreen = (
 
    if (!animationStart || !animationEnd || !animationStartParent) return;
 
+   gsap.set('.transition-fullscreen', {
+      opacity: 1,
+   });
+
    animationEnd.innerHTML = '';
    const animationStartClone = animationStart.cloneNode(true) as HTMLDivElement;
 

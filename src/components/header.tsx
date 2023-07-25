@@ -33,7 +33,7 @@ export default function Header() {
    >
     <button
      className='h-full'
-     onClick={(e) => animateToLeft(() => router.back())}
+     onClick={() => animateToLeft(() => router.back())}
     >
      <GridDiv
       top={false}
