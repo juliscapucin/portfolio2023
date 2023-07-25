@@ -48,7 +48,7 @@ export default function ProjectCard({
      </div>
 
      {/* Duplicated image for animation */}
-     <div className='absolute top-8 left-8'>
+     <div className='absolute top-8 left-8 parent-start'>
       <div className={`${id} relative h-16 w-16 overflow-hidden`}>
        <Image
         src={`/${coverImage}`}

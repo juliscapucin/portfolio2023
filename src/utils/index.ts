@@ -18,28 +18,26 @@ export const animateToFullScreen = (
    routerFunction: () => void
 ) => {
    const animationStart = document.querySelector(transitionStart);
+   const animationStartParent = animationStart?.parentNode;
    const animationEnd = document.querySelector('.transition-fullscreen');
+
+   if (!animationStart || !animationEnd || !animationStartParent) return;
 
    gsap.set('.transition-fullscreen', {
       opacity: 1,
    });
 
-   if (!animationStart || !animationEnd) return;
    animationEnd.innerHTML = '';
-   const animationStartClone = animationStart.cloneNode(true);
+   const animationStartClone = animationStart.cloneNode(true) as HTMLDivElement;
 
-   if (!animationStartClone) return;
-   animationStart.parentNode?.appendChild(animationStartClone);
+   animationStartParent.appendChild(animationStartClone);
 
-   const animationStart2 = document.querySelector(transitionStart);
-
-   if (!animationStart2) return;
-   const state = Flip.getState(animationStart2);
+   const state = Flip.getState(animationStartClone);
 
    animationEnd.classList.remove('hidden');
-   animationStart2.classList.remove('h-16', 'w-16');
-   animationStart2.classList.add('h-full', 'w-full');
-   animationEnd.appendChild(animationStart2);
+   animationStartClone.classList.remove('h-16', 'w-16');
+   animationStartClone.classList.add('h-full', 'w-full');
+   animationEnd.appendChild(animationStartClone);
 
    document.documentElement.classList.add('overflow-hidden');
 
@@ -54,14 +52,47 @@ export const animateToFullScreen = (
 };
 
 export const animateToLeft = (routerFunction: () => void) => {
-   gsap.to('.animate-left', {
-      duration: 1,
-      x: '-100%',
-      ease: 'power1.inOut',
+   const animationFullScreen = document.querySelector('.transition-fullscreen');
+
+   gsap.set('.animate-left', {
+      y: '-100%',
+   });
+
+   if (!animationFullScreen) return;
+   animationFullScreen?.classList.add('hidden');
+   animationFullScreen.innerHTML = '';
+
+   const timeline = gsap.timeline({
       onComplete: () => {
          routerFunction();
       },
    });
 
+   timeline
+      .to('.animate-left', {
+         duration: 0.5,
+         y: '0%',
+         ease: 'power1.inOut',
+         onComplete: animateToTransparent,
+      })
+      .to('.animate-left', {
+         duration: 0.5,
+         x: '-100%',
+         ease: 'power1.inOut',
+      });
+
    document.documentElement.classList.remove('overflow-hidden');
+};
+
+const animateToTransparent = () => {
+   const animateOpacity = gsap.utils.toArray(
+      '.animate-opacity'
+   ) as HTMLElement[];
+
+   if (animateOpacity.length === 0) return;
+   animateOpacity.forEach((element) => {
+      gsap.set(element, {
+         opacity: 0,
+      });
+   });
 };

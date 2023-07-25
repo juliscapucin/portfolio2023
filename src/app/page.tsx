@@ -3,10 +3,18 @@
 import { GridElement, ProjectCard, SectionTitle } from '@/components';
 import { projects, playground } from '@/constants';
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { gsap } from 'gsap';
 
 export default function Home() {
  const router = useRouter();
+ const pathname = usePathname();
+
+ useEffect(() => {
+  if (pathname === '/') {
+   document.documentElement.classList.remove('overflow-hidden');
+  }
+ }, [pathname]);
 
  return (
   <div className='overflow-hidden mt-16'>

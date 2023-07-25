@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useRef, useEffect, MouseEventHandler } from 'react';
+import { useCallback, useRef, MouseEventHandler } from 'react';
 import { useRouter } from 'next/navigation';
 import { gsap } from 'gsap';
 import { animateToLeft } from '@/utils';
@@ -36,14 +36,9 @@ export default function ShallowPage({
   [onDismiss]
  );
 
- useEffect(() => {
-  document.addEventListener('keydown', onKeyDown);
-  return () => document.removeEventListener('keydown', onKeyDown);
- }, [onKeyDown]);
-
  return (
   <div
-   className='animate-left fixed top-0 left-0 right-0 bottom-0 overflow-auto z-10'
+   className='fixed top-0 left-0 right-0 bottom-0 overflow-auto z-10'
    ref={overlay}
    onClick={onClick}
   >
