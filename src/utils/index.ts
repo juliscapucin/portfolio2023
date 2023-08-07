@@ -1,8 +1,3 @@
-import { type ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-import { MouseEvent } from 'react';
-// import { useRouter } from 'next/navigation';
-
 import { gsap } from 'gsap';
 import { GSDevTools } from 'gsap/GSDevTools';
 import { Flip } from 'gsap/Flip';
@@ -51,37 +46,60 @@ export const animateToFullScreen = (
    });
 };
 
-export const animateToLeft = (routerFunction: () => void) => {
-   const animationFullScreen = document.querySelector('.transition-fullscreen');
+export const animateToLeft = (
+   element: string,
+   action: string,
+   routerFunction?: () => void
+) => {
+   const animateToLeftElement = document.querySelector(`.${element}`);
 
-   gsap.set('.animate-left', {
-      y: '-100%',
+   if (!animateToLeftElement) return;
+
+   const timeline = gsap.timeline();
+
+   if (action === 'enter')
+      timeline.set(animateToLeftElement, {
+         x: '100%',
+         opacity: 1,
+      });
+
+   if (routerFunction) routerFunction();
+
+   timeline.to(animateToLeftElement, {
+      duration: 0.6,
+      x: action === 'enter' ? '0%' : '-100%',
+      opacity: action === 'enter' ? 1 : 0,
+      ease: 'power1.inOut',
    });
+};
 
-   if (!animationFullScreen) return;
-   animationFullScreen?.classList.add('hidden');
-   animationFullScreen.innerHTML = '';
+export const animateToRight = (
+   element: string,
+   action: string,
+   routerFunction?: () => void
+) => {
+   const animateToRightElement = document.querySelector(`.${element}`);
+
+   if (!animateToRightElement) return;
 
    const timeline = gsap.timeline({
       onComplete: () => {
-         routerFunction();
+         if (routerFunction) routerFunction();
       },
    });
 
-   timeline
-      .to('.animate-left', {
-         duration: 0.5,
-         y: '0%',
-         ease: 'power1.inOut',
-         onComplete: animateToTransparent,
-      })
-      .to('.animate-left', {
-         duration: 0.5,
+   if (action === 'enter')
+      timeline.set(animateToRightElement, {
          x: '-100%',
-         ease: 'power1.inOut',
+         opacity: 1,
       });
 
-   document.documentElement.classList.remove('overflow-hidden');
+   timeline.to(animateToRightElement, {
+      duration: 0.6,
+      x: action === 'enter' ? '0%' : '100%',
+      opacity: action === 'enter' ? 1 : 0,
+      ease: 'power1.inOut',
+   });
 };
 
 const animateToTransparent = () => {

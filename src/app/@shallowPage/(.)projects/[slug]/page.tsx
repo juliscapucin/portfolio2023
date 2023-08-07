@@ -18,13 +18,13 @@ export default function Page({ params }: any) {
  //  const trigger = document.querySelector('.scroll-trigger');
  //  console.log(trigger);
 
- useEffect(() => {
-  gsap.to('.transition-fullscreen', {
-   duration: 0.5,
-   delay: 0.5,
-   opacity: 0,
-  });
- }, [left]);
+ //  useEffect(() => {
+ //   gsap.to('.transition-fullscreen', {
+ //    duration: 0.5,
+ //    delay: 0.5,
+ //    opacity: 0,
+ //   });
+ //  }, [left]);
 
  useEffect(() => {
   ScrollTrigger.create({
@@ -51,7 +51,7 @@ export default function Page({ params }: any) {
  return (
   <ShallowPage>
    {/* transition */}
-   <div className='animate-left top-0 left-0 w-screen h-screen z-20 fixed translate-y-full'>
+   {/* <div className='animate-left top-0 left-0 w-screen h-screen z-20 fixed translate-y-full'>
     <div className={`relative h-full w-full overflow-hidden`}>
      <Image
       src='/pool.avif'
@@ -62,9 +62,9 @@ export default function Page({ params }: any) {
       priority
      />
     </div>
-   </div>
+   </div> */}
    {/* Project header */}
-   <section className='animate-opacity relative w-screen h-screen'>
+   <section className='relative w-screen h-screen'>
     <div className={`relative h-full w-full overflow-hidden`}>
      <Image
       src='/pool.avif'
@@ -76,7 +76,7 @@ export default function Page({ params }: any) {
      />
     </div>
    </section>
-   <section className='animate-opacity px-8 py-16 bg-colorBlack'>
+   <section className='px-8 py-16 bg-colorBlack'>
     <h1 className='text-7xl z-35'>{params.slug} intercepted</h1>
     <p>
      Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae impedit
@@ -92,7 +92,7 @@ export default function Page({ params }: any) {
     </p>
    </section>
    {/* Split screen */}
-   <section className='bg-colorBlack animate-opacity'>
+   <section className='bg-colorBlack'>
     <section className='flex gap-32'>
      <div
       ref={left}

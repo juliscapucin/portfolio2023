@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { GridDiv } from '@/components';
 import { useRouter } from 'next/navigation';
-import { animateToFullScreen } from '@/utils';
+import { animateToLeft } from '@/utils';
 
 interface ProjectCardProps {
  id: string;
@@ -22,19 +22,15 @@ export default function ProjectCard({
 }: ProjectCardProps) {
  const router = useRouter();
 
- const handleShallowClick = (): void => {
-  router.push(`/${slug}`);
- };
-
  return (
   <>
-   <div className='transition-fullscreen w-screen h-screen top-0 left-0 fixed z-10 hidden pointer-events-none'></div>
+   {/* <div className='transition-fullscreen w-screen h-screen top-0 left-0 fixed z-10 hidden pointer-events-none'></div> */}
 
    <GridDiv top={false} right={true} bottom={true} left={true}>
     <button
      className='h-full w-full p-8 overflow-hidden flex justify-start items-center text-7xl hover:opacity-50 transition-opacity'
      onClick={() => {
-      animateToFullScreen(`.${id}`, handleShallowClick);
+      animateToLeft('main-page', 'leave', () => router.push(`/${slug}`));
      }}
     >
      <div className={`relative h-16 w-16 mr-8 overflow-hidden`}>

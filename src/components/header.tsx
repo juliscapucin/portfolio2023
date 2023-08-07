@@ -3,11 +3,11 @@
 import Link from 'next/link';
 import { navLinks } from '@/constants';
 import { GridDiv, HeaderLink } from '@/components';
-import { MouseEvent } from 'react';
+import { MouseEvent, use } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
 import { useModalContext } from '@/context';
-import { animateToLeft } from '@/utils';
+import { animateToRight } from '@/utils';
 
 interface HeaderProps {
  label: string;
@@ -33,7 +33,10 @@ export default function Header() {
    >
     <button
      className='h-full'
-     onClick={() => animateToLeft(() => router.back())}
+     onClick={() => {
+      animateToRight('shallow-page', 'leave', () => router.back());
+      animateToRight('main-page', 'enter');
+     }}
     >
      <GridDiv
       top={false}
@@ -48,14 +51,11 @@ export default function Header() {
     <nav className='w-4/5 max-w-screen-md h-full hidden md:flex justify-between items-center mr-8'>
      {navLinks.map((link) => {
       return (
-       //  <Link key={link.label} href={`/photos/${link.slug}`}></Link>
        <HeaderLink
         label={link.label}
         key={link.label}
         activeState={pathname === `/${link.slug}` ? true : false}
-        action={(e: MouseEvent<HTMLButtonElement>) =>
-         console.log(e, `/${link.slug}`)
-        }
+        action={() => router.push(`/${link.slug}`)}
        />
       );
      })}

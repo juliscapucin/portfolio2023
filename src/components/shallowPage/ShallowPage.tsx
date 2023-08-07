@@ -1,9 +1,8 @@
 'use client';
 
-import { useCallback, useRef, MouseEventHandler } from 'react';
+import { useCallback, useRef, MouseEventHandler, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { gsap } from 'gsap';
-import { animateToLeft } from '@/utils';
+import { animateToLeft, animateToRight } from '@/utils';
 
 export default function ShallowPage({
  children,
@@ -15,7 +14,7 @@ export default function ShallowPage({
  const router = useRouter();
 
  const onDismiss = useCallback(() => {
-  animateToLeft(() => {
+  animateToRight('shallowPage', 'leave', () => {
    router.back();
   });
  }, [router]);
@@ -36,9 +35,14 @@ export default function ShallowPage({
   [onDismiss]
  );
 
+ useEffect(() => {
+  animateToLeft('shallow-page', 'enter');
+  document.documentElement.classList.add('overflow-hidden');
+ }, []);
+
  return (
   <div
-   className='scroll-trigger fixed top-0 left-0 right-0 bottom-0 overflow-auto z-10'
+   className='shallow-page scroll-trigger fixed top-0 left-0 right-0 bottom-0 overflow-auto z-10'
    ref={overlay}
    onClick={onClick}
   >
