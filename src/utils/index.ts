@@ -64,6 +64,24 @@ export const animateToLeft = (enterElement: string) => {
    });
 };
 
+export const animateToRight = (enterElement: string) => {
+   const animateToRightEnter = document.querySelector(`.${enterElement}`);
+
+   if (!animateToRightEnter) return;
+
+   const timeline = gsap.timeline();
+
+   timeline.set(animateToRightEnter, {
+      x: '-100%',
+   });
+
+   timeline.to(animateToRightEnter, {
+      duration: 0.3,
+      x: '0%',
+      ease: 'power4.out',
+   });
+};
+
 export const animateToLeftTransition = (
    leaveElement: string,
    routerFunction: () => void
@@ -92,12 +110,12 @@ export const animateToLeftTransition = (
 };
 
 export const animateToRightTransition = (
-   element: string,
+   leaveElement: string,
    routerFunction: () => void
 ) => {
-   const animateToRightElement = document.querySelector(`.${element}`);
+   const animateToRightLeave = document.querySelector(`.${leaveElement}`);
 
-   if (!animateToRightElement) return;
+   if (!animateToRightLeave) return;
 
    const timeline = gsap.timeline({
       onComplete: () => {
@@ -105,13 +123,13 @@ export const animateToRightTransition = (
       },
    });
 
-   timeline.set(animateToRightElement, {
-      x: '-100%',
+   timeline.set(animateToRightLeave, {
+      x: '0%',
    });
 
-   timeline.to(animateToRightElement, {
+   timeline.to(animateToRightLeave, {
       duration: 0.3,
-      x: '0%',
+      x: '100%',
       ease: 'power4.inOut',
    });
 };

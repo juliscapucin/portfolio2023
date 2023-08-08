@@ -1,10 +1,10 @@
 'use client';
 
-import { GridElement, ProjectCard, SectionTitle } from '@/components';
-import { projects, playground } from '@/constants';
 import { useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { gsap } from 'gsap';
+import { projects, playground } from '@/constants';
+import { GridElement, ProjectCard, SectionTitle } from '@/components';
+import { animateToRight } from '@/utils';
 
 export default function Home() {
  const router = useRouter();
@@ -13,6 +13,7 @@ export default function Home() {
  useEffect(() => {
   if (pathname === '/') {
    document.documentElement.classList.remove('overflow-hidden');
+   animateToRight(`home-page`);
   }
  }, [pathname]);
 

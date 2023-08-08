@@ -34,18 +34,26 @@ export default function Header() {
     <button
      className='h-full'
      onClick={() => {
-      animateToRightTransition('shallow-page', () => router.back());
+      if (pathname.includes('/projects/project'))
+       animateToRightTransition('shallow-page', () => router.back());
+      else {
+       animateToRightTransition(`${pathname.slice(1)}-page`, () =>
+        router.push('/')
+       );
+      }
      }}
     >
-     <GridDiv
-      top={false}
-      right={true}
-      bottom={false}
-      left={false}
-      divClass='flex items-center justify-center'
-     >
-      <span className='min-w-[4rem]'>&#5193;</span>
-     </GridDiv>
+     {pathname !== '/' && (
+      <GridDiv
+       top={false}
+       right={true}
+       bottom={false}
+       left={false}
+       divClass='flex items-center justify-center'
+      >
+       <span className='min-w-[4rem]'>&#5193;</span>
+      </GridDiv>
+     )}
     </button>
     <nav className='w-4/5 max-w-screen-md h-full hidden md:flex justify-between items-center mr-8'>
      {navLinks.map((link) => {
