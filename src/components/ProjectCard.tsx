@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { GridDiv } from '@/components';
 import { useRouter } from 'next/navigation';
-import { animateToLeftTransition } from '@/utils';
+import { animateToLeftTransition } from '@/animations';
 
 interface ProjectCardProps {
  id: string;

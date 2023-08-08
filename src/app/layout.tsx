@@ -1,5 +1,5 @@
 import { Header, Modal } from '@/components';
-import { ModalContextProvider } from '@/context';
+import { ModalContextProvider, PageContextProvider } from '@/context';
 
 import '@/styles/styles.css';
 
@@ -19,12 +19,12 @@ export default function RootLayout(props: {
      className={`relative mt-0 max-w-[2000px] font-text font-extralight bg-colorBlack text-colorWhite mx-auto overflow-hidden`}
     >
      <Header />
-
-     <main className='relative mt-16'>
-      {props.children}
-      {props.shallowPage}
-     </main>
-
+     <PageContextProvider>
+      <main className='relative mt-16'>
+       {props.children}
+       {props.shallowPage}
+      </main>
+     </PageContextProvider>
      <Modal containerClass={`w-full h-screen`}>
       <h1>Hello</h1>
      </Modal>

@@ -1,13 +1,12 @@
 'use client';
 
 import { useEffect } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { projects, playground } from '@/constants';
 import { GridElement, ProjectCard, SectionTitle } from '@/components';
-import { animateToRight } from '@/utils';
+import { animateToRight } from '@/animations';
 
 export default function Home() {
- const router = useRouter();
  const pathname = usePathname();
 
  useEffect(() => {

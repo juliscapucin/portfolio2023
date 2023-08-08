@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { animateToLeft } from '@/utils';
+import { animateToLeft } from '@/animations';
 import { archive } from '@/constants';
 
 export default function Page() {

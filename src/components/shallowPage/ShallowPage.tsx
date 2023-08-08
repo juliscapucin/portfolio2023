@@ -2,7 +2,7 @@
 
 import { useCallback, useRef, MouseEventHandler, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { animateToLeft, animateToRightTransition } from '@/utils';
+import { animateToLeft, animateToRightTransition } from '@/animations';
 
 export default function ShallowPage({
  children,

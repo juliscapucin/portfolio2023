@@ -1,3 +1,9 @@
 import { ModalContextProvider, useModalContext } from './ModalContext';
+import { PageContextProvider, usePageContext } from './PageContext';
 
-export { useModalContext, ModalContextProvider };
+export {
+ useModalContext,
+ ModalContextProvider,
+ usePageContext,
+ PageContextProvider,
+};

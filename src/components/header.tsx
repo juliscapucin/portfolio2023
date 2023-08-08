@@ -1,13 +1,14 @@
 'use client';
 
-import Link from 'next/link';
 import { navLinks } from '@/constants';
 import { GridDiv, HeaderLink } from '@/components';
-import { MouseEvent, use } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
 import { useModalContext } from '@/context';
-import { animateToLeftTransition, animateToRightTransition } from '@/utils';
+import {
+ animateToLeftTransition,
+ animateToRightTransition,
+} from '@/animations';
 
 interface HeaderProps {
  label: string;
@@ -65,9 +66,19 @@ export default function Header() {
         action={() => {
          const filteredPathname = pathname === '/' ? 'home' : pathname.slice(1);
 
-         animateToLeftTransition(`${filteredPathname}-page`, () =>
-          router.push(`/${link.slug}`)
+         const actualPage = navLinks.filter(
+          (element) => element.slug === pathname.slice(1)
          );
+
+         if ((actualPage && link.id > actualPage[0].id) || pathname === '/') {
+          animateToLeftTransition(`${filteredPathname}-page`, () =>
+           router.push(`/${link.slug}`)
+          );
+         } else {
+          animateToRightTransition(`${filteredPathname}-page`, () =>
+           router.push(`/${link.slug}`)
+          );
+         }
         }}
        />
       );

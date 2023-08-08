@@ -2,7 +2,7 @@
 
 import { about } from '@/constants';
 import { useEffect } from 'react';
-import { animateToLeft } from '@/utils';
+import { animateToLeft } from '@/animations';
 
 export default function Page() {
  const { title, paragraph1, slug } = about;
