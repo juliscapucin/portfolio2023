@@ -12,9 +12,6 @@ export default function Page() {
  const { title, paragraph1, slug } = projectsPage;
 
  useEffect(() => {
-  console.log(pathname.slice(1));
-  console.log(previousPage);
-
   const actualPage = navLinks.filter(
    (element) => element.slug === pathname.slice(1)
   );
@@ -23,8 +20,8 @@ export default function Page() {
    (element) => element.slug === previousPage
   );
 
-  console.log(actualPage);
-  console.log(previousPageId);
+  console.log('previousPageId', previousPageId[0].id);
+  console.log('actualPage', actualPage[0].id);
 
   if (actualPage && previousPageId && actualPage[0].id > previousPageId[0].id) {
    animateToLeft(`${slug}-page`);
