@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { GridDiv } from '@/components';
 import { useRouter } from 'next/navigation';
-import { animateToLeft } from '@/utils';
+import { animateToLeftTransition } from '@/utils';
 
 interface ProjectCardProps {
  id: string;
@@ -30,7 +30,7 @@ export default function ProjectCard({
     <button
      className='h-full w-full p-8 overflow-hidden flex justify-start items-center text-7xl hover:opacity-50 transition-opacity'
      onClick={() => {
-      animateToLeft('main-page', 'leave', () => router.push(`/${slug}`));
+      animateToLeftTransition('main-page', () => router.push(`/${slug}`));
      }}
     >
      <div className={`relative h-16 w-16 mr-8 overflow-hidden`}>

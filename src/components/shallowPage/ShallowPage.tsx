@@ -2,7 +2,7 @@
 
 import { useCallback, useRef, MouseEventHandler, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { animateToLeft, animateToRight } from '@/utils';
+import { animateToLeft, animateToRightTransition } from '@/utils';
 
 export default function ShallowPage({
  children,
@@ -14,7 +14,7 @@ export default function ShallowPage({
  const router = useRouter();
 
  const onDismiss = useCallback(() => {
-  animateToRight('shallowPage', 'leave', () => {
+  animateToRightTransition('shallowPage', () => {
    router.back();
   });
  }, [router]);
@@ -36,7 +36,7 @@ export default function ShallowPage({
  );
 
  useEffect(() => {
-  animateToLeft('shallow-page', 'enter');
+  animateToLeft('shallow-page');
   document.documentElement.classList.add('overflow-hidden');
  }, []);
 

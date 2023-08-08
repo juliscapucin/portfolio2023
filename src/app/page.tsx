@@ -17,7 +17,7 @@ export default function Home() {
  }, [pathname]);
 
  return (
-  <div className='main-page overflow-hidden'>
+  <div className='home-page main-page overflow-hidden'>
    <section className='grid'>
     <div className='flex h-64'>
      <GridElement

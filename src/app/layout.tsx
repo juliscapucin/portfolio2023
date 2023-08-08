@@ -20,7 +20,7 @@ export default function RootLayout(props: {
     >
      <Header />
 
-     <main className='relative'>
+     <main className='relative mt-16'>
       {props.children}
       {props.shallowPage}
      </main>

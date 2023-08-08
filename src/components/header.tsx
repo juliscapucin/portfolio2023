@@ -7,7 +7,7 @@ import { MouseEvent, use } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
 import { useModalContext } from '@/context';
-import { animateToRight } from '@/utils';
+import { animateToLeftTransition, animateToRightTransition } from '@/utils';
 
 interface HeaderProps {
  label: string;
@@ -34,8 +34,7 @@ export default function Header() {
     <button
      className='h-full'
      onClick={() => {
-      animateToRight('shallow-page', 'leave', () => router.back());
-      animateToRight('main-page', 'enter');
+      animateToRightTransition('shallow-page', () => router.back());
      }}
     >
      <GridDiv
@@ -55,7 +54,13 @@ export default function Header() {
         label={link.label}
         key={link.label}
         activeState={pathname === `/${link.slug}` ? true : false}
-        action={() => router.push(`/${link.slug}`)}
+        action={() => {
+         const filteredPathname = pathname === '/' ? 'home' : pathname.slice(1);
+
+         animateToLeftTransition(`${filteredPathname}-page`, () =>
+          router.push(`/${link.slug}`)
+         );
+        }}
        />
       );
      })}

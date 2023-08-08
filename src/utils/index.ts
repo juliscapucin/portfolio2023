@@ -46,37 +46,54 @@ export const animateToFullScreen = (
    });
 };
 
-export const animateToLeft = (
-   element: string,
-   action: string,
-   routerFunction?: () => void
-) => {
-   const animateToLeftElement = document.querySelector(`.${element}`);
+export const animateToLeft = (enterElement: string) => {
+   const animateToLeftEnter = document.querySelector(`.${enterElement}`);
 
-   if (!animateToLeftElement) return;
+   if (!animateToLeftEnter) return;
 
    const timeline = gsap.timeline();
 
-   if (action === 'enter')
-      timeline.set(animateToLeftElement, {
-         x: '100%',
-         opacity: 1,
-      });
+   timeline.set(animateToLeftEnter, {
+      x: '100%',
+   });
 
-   if (routerFunction) routerFunction();
-
-   timeline.to(animateToLeftElement, {
-      duration: 0.6,
-      x: action === 'enter' ? '0%' : '-100%',
-      opacity: action === 'enter' ? 1 : 0,
-      ease: 'power1.inOut',
+   timeline.to(animateToLeftEnter, {
+      duration: 0.3,
+      x: '0%',
+      ease: 'power4.out',
    });
 };
 
-export const animateToRight = (
+export const animateToLeftTransition = (
+   leaveElement: string,
+   routerFunction: () => void
+) => {
+   const animateToLeftLeave = document.querySelector(`.${leaveElement}`);
+
+   if (!animateToLeftLeave) return;
+
+   const timeline = gsap.timeline({
+      onComplete: () => {
+         if (routerFunction) {
+            routerFunction();
+         }
+      },
+   });
+
+   timeline.set(animateToLeftLeave, {
+      x: '0%',
+   });
+
+   timeline.to(animateToLeftLeave, {
+      duration: 0.3,
+      x: '-100%',
+      ease: 'power4.in',
+   });
+};
+
+export const animateToRightTransition = (
    element: string,
-   action: string,
-   routerFunction?: () => void
+   routerFunction: () => void
 ) => {
    const animateToRightElement = document.querySelector(`.${element}`);
 
@@ -88,17 +105,14 @@ export const animateToRight = (
       },
    });
 
-   if (action === 'enter')
-      timeline.set(animateToRightElement, {
-         x: '-100%',
-         opacity: 1,
-      });
+   timeline.set(animateToRightElement, {
+      x: '-100%',
+   });
 
    timeline.to(animateToRightElement, {
-      duration: 0.6,
-      x: action === 'enter' ? '0%' : '100%',
-      opacity: action === 'enter' ? 1 : 0,
-      ease: 'power1.inOut',
+      duration: 0.3,
+      x: '0%',
+      ease: 'power4.inOut',
    });
 };
 

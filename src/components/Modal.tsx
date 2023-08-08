@@ -20,6 +20,7 @@ export default function Modal({
  containerClass,
 }: ModalProps) {
  const { modalOpen, setModalOpen, updateModalOpen } = useModalContext();
+
  return (
   <aside
    className={`dark:bg-colorBlack border dark:border-colorWhite fixed top-0 p-8 z-50 transition-transform ${

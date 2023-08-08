@@ -1,8 +1,10 @@
 import Image from 'next/image';
 
 export default function Page({ params }: any) {
+ const slug = params.slug;
+
  return (
-  <main className='relative'>
+  <section className={`relative ${slug}-page`}>
    <div className='transition-fullscreen w-screen h-screen top-0 left-0'>
     <div className={`relative h-full w-full overflow-hidden`}>
      <Image
@@ -15,7 +17,7 @@ export default function Page({ params }: any) {
      />
     </div>
    </div>
-   <h1 className='text-7xl z-35'>{params.slug}</h1>
-  </main>
+   <h1 className='text-7xl z-35'>{slug}</h1>
+  </section>
  );
 }
