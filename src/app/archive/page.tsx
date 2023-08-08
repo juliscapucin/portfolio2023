@@ -20,7 +20,12 @@ export default function Page() {
    (element) => element.slug === previousPage
   );
 
-  if (actualPage && previousPageId && actualPage[0].id > previousPageId[0].id) {
+  if (
+   (actualPage &&
+    previousPageId &&
+    actualPage[0]?.id > previousPageId[0]?.id) ||
+   previousPage === 'home'
+  ) {
    animateToLeft(`${slug}-page`);
   } else {
    animateToRight(`${slug}-page`);

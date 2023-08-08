@@ -70,9 +70,7 @@ export default function Header() {
           (element) => element.slug === pathname.slice(1)
          );
 
-         console.log('actualPageHeader', actualPage[0].id);
-
-         if ((actualPage && link.id > actualPage[0].id) || pathname === '/') {
+         if ((actualPage && link.id > actualPage[0]?.id) || pathname === '/') {
           animateToLeftTransition(`${filteredPathname}-page`, () =>
            router.push(`/${link.slug}`)
           );

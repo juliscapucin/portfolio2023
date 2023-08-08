@@ -1,6 +1,6 @@
 'use client';
 
-import { use, useEffect } from 'react';
+import { useEffect } from 'react';
 import { animateToLeft, animateToRight } from '@/animations';
 import { playground, navLinks } from '@/constants';
 import { usePageContext } from '@/context';
@@ -20,7 +20,12 @@ export default function Page() {
    (element) => element.slug === previousPage
   );
 
-  if (actualPage && previousPageId && actualPage[0].id > previousPageId[0].id) {
+  if (
+   (actualPage &&
+    previousPageId &&
+    actualPage[0]?.id > previousPageId[0]?.id) ||
+   previousPage === 'home'
+  ) {
    animateToLeft(`${slug}-page`);
   } else {
    animateToRight(`${slug}-page`);

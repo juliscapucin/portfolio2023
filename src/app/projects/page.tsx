@@ -18,12 +18,14 @@ export default function Page() {
 
   const previousPageId = navLinks.filter(
    (element) => element.slug === previousPage
-  );
+  ) || [{ id: 0 }];
 
-  console.log('previousPageId', previousPageId[0].id);
-  console.log('actualPage', actualPage[0].id);
-
-  if (actualPage && previousPageId && actualPage[0].id > previousPageId[0].id) {
+  if (
+   (actualPage &&
+    previousPageId &&
+    actualPage[0]?.id > previousPageId[0]?.id) ||
+   previousPage === 'home'
+  ) {
    animateToLeft(`${slug}-page`);
   } else {
    animateToRight(`${slug}-page`);

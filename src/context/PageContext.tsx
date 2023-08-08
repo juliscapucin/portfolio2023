@@ -17,7 +17,7 @@ export const PageContextProvider = ({
 }: {
  children: React.ReactNode;
 }) => {
- const [previousPage, setPreviousPage] = useState('');
+ const [previousPage, setPreviousPage] = useState('home');
 
  const updatePreviousPage = (page: string) => {
   setPreviousPage(page);

@@ -2,12 +2,14 @@
 
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import { projects, playground } from '@/constants';
+import { projects, playground, navLinks } from '@/constants';
+import { usePageContext } from '@/context';
 import { GridElement, ProjectCard, SectionTitle } from '@/components';
-import { animateToRight } from '@/animations';
+import { animateToRight, animateToLeft } from '@/animations';
 
 export default function Home() {
  const pathname = usePathname();
+ const { previousPage, updatePreviousPage } = usePageContext();
 
  useEffect(() => {
   if (pathname === '/') {
@@ -15,6 +17,11 @@ export default function Home() {
    animateToRight(`home-page`);
   }
  }, [pathname]);
+
+ useEffect(() => {
+  updatePreviousPage('home');
+  console.log('previousPage', previousPage);
+ }, []);
 
  return (
   <div className='home-page main-page overflow-hidden'>
