@@ -1,5 +1,5 @@
 import { Header, Modal } from '@/components';
-import { ModalContextProvider, TransitionContextProvider } from '@/context';
+import { ModalContextProvider, PageContextProvider } from '@/context';
 
 import '@/styles/styles.css';
 
@@ -19,12 +19,13 @@ export default function RootLayout(props: {
      className={`relative mt-0 max-w-[2000px] font-text font-extralight bg-colorBlack text-colorWhite mx-auto overflow-hidden`}
     >
      <Header />
-     <TransitionContextProvider>
-      <main className='relative'>
+     <PageContextProvider>
+      <main className='mt-16'>
+       <div className='transition-fullscreen w-screen h-screen top-0 left-0 fixed z-10 hidden pointer-events-none'></div>
        {props.children}
        {props.shallowPage}
       </main>
-     </TransitionContextProvider>
+     </PageContextProvider>
      <Modal containerClass={`w-full h-screen`}>
       <h1>Hello</h1>
      </Modal>

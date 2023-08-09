@@ -1,13 +1,14 @@
 'use client';
 
-import Link from 'next/link';
 import { navLinks } from '@/constants';
 import { GridDiv, HeaderLink } from '@/components';
-import { MouseEvent } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
 import { useModalContext } from '@/context';
-import { animateToLeft } from '@/utils';
+import {
+ animateToLeftTransition,
+ animateToRightTransition,
+} from '@/animations';
 
 interface HeaderProps {
  label: string;
@@ -33,29 +34,52 @@ export default function Header() {
    >
     <button
      className='h-full'
-     onClick={() => animateToLeft(() => router.back())}
+     onClick={() => {
+      if (pathname.includes('/projects/project'))
+       animateToRightTransition('shallow-page', () => router.back());
+      else {
+       animateToRightTransition(`${pathname.slice(1)}-page`, () =>
+        router.push('/')
+       );
+      }
+     }}
     >
-     <GridDiv
-      top={false}
-      right={true}
-      bottom={false}
-      left={false}
-      divClass='flex items-center justify-center'
-     >
-      <span className='min-w-[4rem]'>&#5193;</span>
-     </GridDiv>
+     {pathname !== '/' && (
+      <GridDiv
+       top={false}
+       right={true}
+       bottom={false}
+       left={false}
+       divClass='flex items-center justify-center'
+      >
+       <span className='min-w-[4rem]'>&#5193;</span>
+      </GridDiv>
+     )}
     </button>
     <nav className='w-4/5 max-w-screen-md h-full hidden md:flex justify-between items-center mr-8'>
      {navLinks.map((link) => {
       return (
-       //  <Link key={link.label} href={`/photos/${link.slug}`}></Link>
        <HeaderLink
         label={link.label}
         key={link.label}
         activeState={pathname === `/${link.slug}` ? true : false}
-        action={(e: MouseEvent<HTMLButtonElement>) =>
-         console.log(e, `/${link.slug}`)
-        }
+        action={() => {
+         const filteredPathname = pathname === '/' ? 'home' : pathname.slice(1);
+
+         const actualPage = navLinks.filter(
+          (element) => element.slug === pathname.slice(1)
+         );
+
+         if ((actualPage && link.id > actualPage[0]?.id) || pathname === '/') {
+          animateToLeftTransition(`${filteredPathname}-page`, () =>
+           router.push(`/${link.slug}`)
+          );
+         } else {
+          animateToRightTransition(`${filteredPathname}-page`, () =>
+           router.push(`/${link.slug}`)
+          );
+         }
+        }}
        />
       );
      })}

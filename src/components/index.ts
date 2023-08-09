@@ -1,3 +1,4 @@
+import AnimationGridDiv from './AnimationGridDiv';
 import GridDiv from './GridDiv';
 import GridElement from './GridElement';
 import Header from './header';
@@ -9,6 +10,7 @@ import SectionTitle from './SectionTitle';
 import ShallowPage from './shallowPage/ShallowPage';
 
 export {
+   AnimationGridDiv,
    GridDiv,
    GridElement,
    Header,

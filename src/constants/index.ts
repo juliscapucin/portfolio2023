@@ -1,8 +1,8 @@
 export const navLinks = [
-   { label: 'Projects', slug: 'projects', id: '1' },
-   { label: 'Playground', slug: 'playground', id: '2' },
-   { label: 'Archive', slug: 'archive', id: '3' },
-   { label: 'About', slug: 'about', id: '4' },
+   { label: 'Projects', slug: 'projects', id: 1 },
+   { label: 'Playground', slug: 'playground', id: 2 },
+   { label: 'Archive', slug: 'archive', id: 3 },
+   { label: 'About', slug: 'about', id: 4 },
 ];
 
 export const projects = {
@@ -43,21 +43,21 @@ export const projects = {
 };
 
 export const about = {
-   category: 'about',
+   slug: 'about',
    title: 'About',
    paragraph1:
       'Thanks for dropping by. Just a quick heads up… most of my work is under NDA so my folio only shows personal or few pieces of commercial work.',
 };
 
 export const archive = {
-   category: 'archive',
+   slug: 'archive',
    title: 'Archive',
    paragraph1:
       'A selection of web development, design and illustration projects I developed over the last 20 years.',
 };
 
 export const playground = {
-   category: 'playground',
+   slug: 'playground',
    title: 'Playground',
    paragraph1: 'A selection of experiments I develop on my free time',
    links: [
@@ -95,7 +95,7 @@ export const playground = {
 };
 
 export const projectsPage = {
-   category: 'projects',
+   slug: 'projects',
    title: 'Projects',
    paragraph1: 'Some recent commercial and personal projects',
 };

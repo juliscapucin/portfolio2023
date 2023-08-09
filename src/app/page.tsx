@@ -1,23 +1,32 @@
 'use client';
 
-import { GridElement, ProjectCard, SectionTitle } from '@/components';
-import { projects, playground } from '@/constants';
 import { useEffect } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
-import { gsap } from 'gsap';
+import { usePathname } from 'next/navigation';
+import { projects, playground, navLinks } from '@/constants';
+import { usePageContext } from '@/context';
+import { GridElement, ProjectCard, SectionTitle } from '@/components';
+import { animateToRight, animateToLeft } from '@/animations';
 
 export default function Home() {
- const router = useRouter();
  const pathname = usePathname();
+ const { previousPage, updatePreviousPage } = usePageContext();
 
  useEffect(() => {
-  if (pathname === '/') {
+  if (pathname === '/' && previousPage !== 'shallow-page') {
+   document.documentElement.classList.remove('overflow-hidden');
+   animateToRight(`home-page`);
+  }
+  if (previousPage === 'shallow-page') {
    document.documentElement.classList.remove('overflow-hidden');
   }
  }, [pathname]);
 
+ useEffect(() => {
+  updatePreviousPage('home');
+ }, []);
+
  return (
-  <div className='overflow-hidden mt-16'>
+  <div className='home-page main-page overflow-hidden'>
    <section className='grid'>
     <div className='flex h-64'>
      <GridElement
@@ -60,7 +69,7 @@ export default function Home() {
     </div>
     {projects.links.map((link, index) => {
      return (
-      <div className='h-32' key={index}>
+      <div key={index}>
        <ProjectCard
         title={link.label}
         slug={link.slug}
@@ -77,7 +86,7 @@ export default function Home() {
     </div>
     {playground.links.map((link, index) => {
      return (
-      <div className='h-32' key={index}>
+      <div key={index}>
        <ProjectCard
         title={link.label}
         slug={link.slug}
