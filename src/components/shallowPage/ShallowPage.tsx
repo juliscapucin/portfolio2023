@@ -35,11 +35,6 @@ export default function ShallowPage({
   [onDismiss]
  );
 
- useEffect(() => {
-  animateToLeft('shallow-page');
-  document.documentElement.classList.add('overflow-hidden');
- }, []);
-
  return (
   <div
    className='shallow-page scroll-trigger fixed top-0 left-0 right-0 bottom-0 overflow-auto z-10'

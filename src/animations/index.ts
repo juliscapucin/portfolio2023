@@ -26,18 +26,32 @@ export const animateToFullScreen = (
    const state = Flip.getState(animationStartClone);
 
    animationEnd.classList.remove('hidden');
-   animationStartClone.classList.remove('h-16', 'w-16');
-   animationStartClone.classList.add('h-full', 'w-full');
+   animationStartClone.classList.remove('opacity-0');
+   animationStartClone.classList.add('opacity-100');
+   animationStartClone.classList.remove('h-0');
+   animationStartClone.classList.add('h-full');
+   animationStartClone.classList.remove('-top-32');
+   animationStartClone.classList.add('top-0');
    animationEnd.appendChild(animationStartClone);
 
    document.documentElement.classList.add('overflow-hidden');
 
    Flip.from(state, {
-      duration: 1,
+      duration: 0.6,
       absolute: true,
-      ease: 'power1.inOut',
+      ease: 'power4.inOut',
       onComplete: () => {
          routerFunction();
+         const timeline = gsap.timeline();
+         timeline.to('.transition-fullscreen', {
+            duration: 0.5,
+            opacity: 0,
+            ease: 'power1.inOut',
+            delay: 0.5,
+            onComplete: () => {
+               animationEnd.innerHTML = '';
+            },
+         });
       },
    });
 };
@@ -128,6 +142,38 @@ export const animateToRightTransition = (
       x: '100%',
       ease: 'power4.inOut',
    });
+};
+
+export const animateToShallowPage = (
+   element: string,
+   routerFunction: () => void
+) => {
+   const elementToSelect = document.querySelector(`.${element}`);
+   const elementToAnimate = elementToSelect?.parentElement;
+
+   const timeline = gsap.timeline();
+
+   if (!elementToAnimate) return;
+   timeline
+      .to(
+         elementToAnimate,
+         {
+            duration: 1,
+            scaleY: 10,
+            zIndex: 100,
+            ease: 'power4.inOut',
+         },
+         0
+      )
+      .to(
+         elementToSelect,
+         {
+            duration: 1,
+            scaleY: 0.1,
+            ease: 'power4.inOut',
+         },
+         0
+      );
 };
 
 const animateToTransparent = () => {

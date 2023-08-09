@@ -3,7 +3,7 @@ interface GridDivProps {
  right?: boolean;
  bottom?: boolean;
  left?: boolean;
- children: React.ReactNode;
+ children?: React.ReactNode;
  divClass?: string;
 }
 

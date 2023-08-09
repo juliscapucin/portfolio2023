@@ -20,7 +20,8 @@ export default function RootLayout(props: {
     >
      <Header />
      <PageContextProvider>
-      <main className='relative mt-16'>
+      <main className='mt-16'>
+       <div className='transition-fullscreen w-screen h-screen top-0 left-0 fixed z-10 hidden pointer-events-none'></div>
        {props.children}
        {props.shallowPage}
       </main>
