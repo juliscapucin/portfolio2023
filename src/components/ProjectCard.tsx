@@ -34,7 +34,7 @@ export default function ProjectCard({
     divClass={`bg-colorBlack relative h-32`}
    >
     {/* Empty grid element for animation */}
-    <div className='absolute -top-32 left-0-0 bottom-0 w-full h-full opacity-0'>
+    <div className='absolute -top-36 left-0-0 bottom-0 w-full h-full opacity-0'>
      <AnimationGridDiv
       divClass={`project-card-${id} overflow-hidden bg-colorBlack pointer-events-none`}
      />

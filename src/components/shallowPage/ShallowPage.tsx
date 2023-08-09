@@ -2,6 +2,7 @@
 
 import { useCallback, useRef, MouseEventHandler, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { usePageContext } from '@/context';
 import { animateToLeft, animateToRightTransition } from '@/animations';
 
 export default function ShallowPage({
@@ -12,9 +13,10 @@ export default function ShallowPage({
  const overlay = useRef(null);
  const wrapper = useRef(null);
  const router = useRouter();
+ const { previousPage, updatePreviousPage } = usePageContext();
 
  const onDismiss = useCallback(() => {
-  animateToRightTransition('shallowPage', () => {
+  animateToRightTransition('shallow-page', () => {
    router.back();
   });
  }, [router]);
@@ -35,9 +37,13 @@ export default function ShallowPage({
   [onDismiss]
  );
 
+ useEffect(() => {
+  updatePreviousPage('shallow-page');
+ }, []);
+
  return (
   <div
-   className='shallow-page scroll-trigger fixed top-0 left-0 right-0 bottom-0 overflow-auto z-10'
+   className='shallow-page scroll-trigger fixed top-0 left-0 right-0 bottom-0 overflow-y-scroll overflow-x-hidden z-10'
    ref={overlay}
    onClick={onClick}
   >

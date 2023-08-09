@@ -12,15 +12,17 @@ export default function Home() {
  const { previousPage, updatePreviousPage } = usePageContext();
 
  useEffect(() => {
-  if (pathname === '/') {
+  if (pathname === '/' && previousPage !== 'shallow-page') {
    document.documentElement.classList.remove('overflow-hidden');
    animateToRight(`home-page`);
+  }
+  if (previousPage === 'shallow-page') {
+   document.documentElement.classList.remove('overflow-hidden');
   }
  }, [pathname]);
 
  useEffect(() => {
   updatePreviousPage('home');
-  console.log('previousPage', previousPage);
  }, []);
 
  return (

@@ -30,14 +30,14 @@ export const animateToFullScreen = (
    animationStartClone.classList.add('opacity-100');
    animationStartClone.classList.remove('h-0');
    animationStartClone.classList.add('h-full');
-   animationStartClone.classList.remove('-top-32');
+   animationStartClone.classList.remove('-top-36');
    animationStartClone.classList.add('top-0');
    animationEnd.appendChild(animationStartClone);
 
    document.documentElement.classList.add('overflow-hidden');
 
    Flip.from(state, {
-      duration: 0.6,
+      duration: 0.4,
       absolute: true,
       ease: 'power4.inOut',
       onComplete: () => {
