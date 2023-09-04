@@ -39,7 +39,7 @@ export default function Home() {
      <GridElement top={false} right={true} bottom={true} left={false} />
      <GridElement top={false} right={true} bottom={true} left={false} />
      <GridElement
-      textClass={'text-huge'}
+      textClass={'text-huge font-bold uppercase'}
       text='hello'
       top={false}
       right={true}

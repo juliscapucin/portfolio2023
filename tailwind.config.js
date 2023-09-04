@@ -5,7 +5,7 @@ module.exports = {
       extend: {
          gridTemplateColumns: { fluid: 'repeat(auto-fit, minmax(15rem, 1fr))' },
          fontFamily: {
-            headline: ['var(--font-primary)'],
+            headline: ['var(--font-primary) sans-serif'],
             text: ['var(--font-secondary)'],
          },
          colors: {

@@ -54,7 +54,7 @@ export default function ProjectCard({
        fill
       />
      </div>
-     <span className='font-headline text-7xl font-thin'>{title}</span>
+     <span className='font-headline text-7xl uppercase'>{title}</span>
     </button>
    </GridDiv>
   </>
