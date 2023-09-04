@@ -6,6 +6,8 @@ import { projects, playground, navLinks } from '@/constants';
 import { usePageContext } from '@/context';
 import { GridElement, ProjectCard, SectionTitle } from '@/components';
 import { animateToRight, animateToLeft } from '@/animations';
+import Hero from '@/components/Hero';
+import Footer from '@/components/Footer';
 
 export default function Home() {
  const pathname = usePathname();
@@ -27,8 +29,12 @@ export default function Home() {
 
  return (
   <div className='home-page main-page overflow-hidden'>
+   <Hero />
+
+   {/* Latest Work */}
+
    <section className='grid'>
-    <div className='flex h-64'>
+    {/* <div className='flex h-64'>
      <GridElement
       top={false}
       right={true}
@@ -63,7 +69,7 @@ export default function Home() {
      <GridElement top={false} right={true} bottom={true} left={false} />
      <GridElement top={false} right={true} bottom={true} left={false} />
      <GridElement top={false} right={true} bottom={true} left={false} />
-    </div>
+    </div> */}
     <div className='h-64'>
      <SectionTitle title='Latest Work' />
     </div>
@@ -80,6 +86,9 @@ export default function Home() {
      );
     })}
    </section>
+
+   {/* Playground */}
+
    <section>
     <div className='h-64'>
      <SectionTitle title={playground.title} />
@@ -116,52 +125,8 @@ export default function Home() {
      />
     </div>
    </section>
-   <section>
-    <div className='h-64'>
-     <SectionTitle title='Archive' />
-    </div>
-    <div className='h-32 flex'>
-     <GridElement
-      top={false}
-      right={true}
-      bottom={true}
-      left={true}
-      divClass='basis-3/4'
-     />
-     <GridElement
-      top={false}
-      right={true}
-      bottom={true}
-      left={false}
-      buttonLabel='View all'
-      width='basis-1/4'
-      divClass='flex justify-center items-center'
-     />
-    </div>
-   </section>
-   <section>
-    <div className='h-64'>
-     <SectionTitle title='About me' />
-    </div>
-    <div className='h-32 flex'>
-     <GridElement
-      top={false}
-      right={true}
-      bottom={true}
-      left={true}
-      divClass='basis-3/4'
-     />
-     <GridElement
-      top={false}
-      right={true}
-      bottom={true}
-      left={false}
-      buttonLabel='Read more'
-      width='basis-1/4'
-      divClass='flex justify-center items-center'
-     />
-    </div>
-   </section>
+
+   <Footer />
   </div>
  );
 }

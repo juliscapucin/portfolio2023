@@ -15,7 +15,7 @@ export default function HeaderLink({
  activeState,
 }: HeaderLinkProps) {
  return (
-  <div className='overflow-hidden max-h-6'>
+  <div className='overflow-hidden max-h-8'>
    <button
     className={`flex flex-col justify-center items-center hover:-translate-y-1/2 transition ${
      activeState ? 'opacity-50' : ''
@@ -23,8 +23,8 @@ export default function HeaderLink({
     onClick={action}
     type='button'
    >
-    <span className='uppercase'>{label}</span>
-    <span className='uppercase'>{label}</span>
+    <span className='text-titleMedium uppercase'>{label}</span>
+    <span className='text-titleMedium uppercase'>{label}</span>
    </button>
   </div>
  );
