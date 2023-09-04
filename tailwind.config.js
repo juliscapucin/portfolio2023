@@ -12,6 +12,9 @@ module.exports = {
             colorBlack: 'var(--color-black)',
             colorWhite: 'var(--color-white)',
          },
+         gridTemplateColumns: {
+            20: 'repeat(20, 1fr)',
+         },
          fontSize: {
             huge: '20rem',
             displayLarge: '18rem',
