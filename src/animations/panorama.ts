@@ -1,5 +1,4 @@
 import { gsap } from 'gsap';
-import { MutableRefObject } from 'react';
 
 export const animatePanorama = (heroRef: HTMLElement) => {
    if (!heroRef) return;

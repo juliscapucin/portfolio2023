@@ -7,9 +7,11 @@ import {
 } from './pageTransitions';
 
 import { animatePanorama } from './panorama';
+import { animateProjectsMenu } from './projectsMenu';
 
 export {
    animatePanorama,
+   animateProjectsMenu,
    animateToFullScreen,
    animateToLeft,
    animateToLeftTransition,
