@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { projects, playground, navLinks } from '@/constants';
 import { usePageContext } from '@/context';
-import { GridElement, ProjectCard, SectionTitle } from '@/components';
+import { GridElement, GridDiv, ProjectCard, SectionTitle } from '@/components';
 import { animateToRight, animateToLeft } from '@/animations';
 import Hero from '@/components/Hero';
 import Footer from '@/components/Footer';
@@ -29,9 +29,9 @@ export default function Home() {
 
  return (
   <div className='home-page main-page overflow-hidden'>
-   <section className='overflow-hidden'>
+   <GridDiv divClass='overflow-hidden' right={true} bottom={true}>
     <Hero />
-   </section>
+   </GridDiv>
 
    {/* Latest Work */}
 

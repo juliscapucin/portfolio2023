@@ -29,7 +29,7 @@ export default function Header() {
     }
     top={false}
     right={true}
-    bottom={true}
+    bottom={false}
     left={true}
    >
     <button

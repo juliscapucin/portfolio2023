@@ -16,7 +16,7 @@ module.exports = {
             20: 'repeat(20, 1fr)',
          },
          fontSize: {
-            huge: '20rem',
+            huge: '40rem',
             displayLarge: '18rem',
             displayMedium: '10.3rem',
             displaySmall: '5.7rem',

@@ -2,36 +2,66 @@ import { GridDiv } from '@/components';
 
 export default function () {
  return (
-  <GridDiv
-   divClass='grid grid-cols-20 grid-rows-6 min-h-screen min-w-[160vw]'
-   top={false}
-   right={true}
-   bottom={true}
-   left={true}
-  >
+  <div className='grid grid-cols-20 grid-rows-6 h-screen max-h-screen min-w-[160vw]'>
    {/* Status */}
-   <div className='border border-white col-span-full row-span-1'></div>
+   <GridDiv
+    divClass='col-span-full row-span-1'
+    top={true}
+    left={true}
+   ></GridDiv>
+
    {/* Description */}
-   <div className='border border-white col-span-full row-span-1'></div>
+   <GridDiv
+    divClass='col-span-full row-span-1'
+    top={true}
+    left={true}
+   ></GridDiv>
+
+   {/* Blank Space */}
+   <GridDiv divClass='col-span-8 row-span-1' top={true} left={true}></GridDiv>
+
    {/* Name */}
-   <div className='border border-white col-span-full row-span-1'></div>
+   <GridDiv
+    divClass='col-span-12 row-span-1 text-displayLarge overflow-hidden flex items-center'
+    top={true}
+    left={true}
+   >
+    JULI
+   </GridDiv>
+
    {/* Number */}
-   <div className='border border-white col-span-3 row-span-3'></div>
+   <GridDiv
+    divClass='col-span-3 row-span-3 text-huge overflow-hidden flex items-center'
+    top={true}
+    left={true}
+   >
+    23
+   </GridDiv>
+
    {/* Theme */}
-   <div className='border border-white col-span-1 row-span-3'></div>
+   <GridDiv divClass='col-span-1 row-span-3' top={true} left={true}></GridDiv>
+
    {/* Blank Space */}
-   <div className='border border-white col-span-2 row-span-3'></div>
+   <GridDiv divClass='col-span-2 row-span-3' top={true} left={true}></GridDiv>
+
    {/* Blank Space */}
-   <div className='border border-white col-span-4 row-span-1'></div>
+   <GridDiv divClass='col-span-4 row-span-1' top={true} left={true}></GridDiv>
+
    {/* Surname */}
-   <div className='border border-white col-span-9 row-span-1'></div>
+   <GridDiv
+    divClass='col-span-9 row-span-1 text-displayLarge overflow-hidden flex items-center'
+    top={true}
+    left={true}
+   >
+    SCAPUCIN
+   </GridDiv>
    {/* Arrow */}
-   <div className='border border-white col-span-2 row-span-1'></div>
+   <GridDiv divClass='col-span-2 row-span-1' top={true} left={true}></GridDiv>
    {/* Snackbar */}
-   <div className='border border-white col-span-5 row-span-1'></div>
+   <GridDiv divClass='col-span-5 row-span-1' top={true} left={true}></GridDiv>
    {/* Blank Space */}
-   <div className='border border-white col-span-8 row-span-1'></div>
-   <div className='border border-white col-span-15 row-span-1 bg-red-500'></div>
-  </GridDiv>
+   <GridDiv divClass='col-span-8 row-span-1' top={true} left={true}></GridDiv>
+   <GridDiv divClass='col-span-15 row-span-1' top={true} left={true}></GridDiv>
+  </div>
  );
 }
