@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { animateToLeft, animateToRight } from '@/animations';
+import { animateToLeft, animateToRight } from '@/animations/pageTransitions';
 import { archive, navLinks } from '@/constants';
 import { usePageContext } from '@/context';
 import { usePathname } from 'next/navigation';

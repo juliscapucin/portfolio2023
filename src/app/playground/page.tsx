@@ -2,14 +2,14 @@
 
 import { useEffect } from 'react';
 import { animateToLeft, animateToRight } from '@/animations';
-import { playground, navLinks } from '@/constants';
+import { playgroundPage, navLinks } from '@/constants';
 import { usePageContext } from '@/context';
 import { usePathname } from 'next/navigation';
 
 export default function Page() {
  const pathname = usePathname();
  const { previousPage, updatePreviousPage } = usePageContext();
- const { title, paragraph1, slug } = playground;
+ const { title, paragraph1, slug } = playgroundPage;
 
  useEffect(() => {
   const actualPage = navLinks.filter(

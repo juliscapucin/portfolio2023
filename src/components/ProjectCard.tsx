@@ -7,7 +7,7 @@ import {
  animateToFullScreen,
  animateToLeftTransition,
  animateToShallowPage,
-} from '@/animations';
+} from '@/animations/pageTransitions';
 
 interface ProjectCardProps {
  id: string;
@@ -31,30 +31,30 @@ export default function ProjectCard({
     right={true}
     bottom={true}
     left={true}
-    divClass={`bg-colorBlack relative h-32`}
+    divClass={`relative h-32`}
    >
     {/* Empty grid element for animation */}
     <div className='absolute -top-36 left-0-0 bottom-0 w-full h-full opacity-0'>
      <AnimationGridDiv
-      divClass={`project-card-${id} overflow-hidden bg-colorBlack pointer-events-none`}
+      divClass={`project-card-${id} overflow-hidden bg-colorWhite dark:bg-colorBlack pointer-events-none`}
      />
     </div>
     <button
-     className={`h-full w-full p-8 overflow-hidden flex justify-start items-center text-7xl hover:opacity-50 transition-opacity`}
+     className={`h-full w-full p-8 group`}
      onClick={() => {
       animateToFullScreen(`.project-card-${id}`, () => router.push(`/${slug}`));
      }}
     >
-     <div className={`relative h-16 w-16 mr-8 overflow-hidden`}>
-      <Image
-       src={`/${coverImage}`}
-       alt='photo'
-       className='object-cover '
-       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-       fill
-      />
+     <div className='h-11 overflow-hidden'>
+      <div className='flex flex-col justify-start items-start group-hover:-translate-y-1/2 transition'>
+       <span className='font-headline text-headlineSmall uppercase text-colorBlack dark:text-colorWhite'>
+        {title}
+       </span>
+       <span className='font-headline text-headlineSmall uppercase text-colorBlack dark:text-colorWhite'>
+        {title}
+       </span>
+      </div>
      </div>
-     <span className='font-headline text-7xl font-thin'>{title}</span>
     </button>
    </GridDiv>
   </>

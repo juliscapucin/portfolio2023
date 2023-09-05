@@ -3,7 +3,10 @@
 import { useCallback, useRef, MouseEventHandler, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { usePageContext } from '@/context';
-import { animateToLeft, animateToRightTransition } from '@/animations';
+import {
+ animateToLeft,
+ animateToRightTransition,
+} from '@/animations/pageTransitions';
 
 export default function ShallowPage({
  children,
@@ -47,7 +50,7 @@ export default function ShallowPage({
    ref={overlay}
    onClick={onClick}
   >
-   <div className='wrapper' ref={wrapper}>
+   <div className='wrapper max-w-[2000px] overflow-hidden m-auto' ref={wrapper}>
     {children}
    </div>
   </div>
