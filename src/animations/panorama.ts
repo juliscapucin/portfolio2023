@@ -1,12 +1,13 @@
 import { gsap } from 'gsap';
 import { MutableRefObject } from 'react';
 
-export const animatePanorama = (heroRef: MutableRefObject<null>) => {
-   gsap.set(heroRef.current, { xPercent: 0 });
+export const animatePanorama = (heroRef: HTMLElement) => {
+   if (!heroRef) return;
+   gsap.set(heroRef, { xPercent: 0 });
 
    const tl = gsap
       .timeline({ paused: true })
-      .to(heroRef.current, { xPercent: -30, ease: 'power4.inOut' });
+      .to(heroRef, { xPercent: -30, ease: 'power4.inOut' });
 
    const container = document.querySelector('body');
    if (!container) return;
@@ -17,7 +18,8 @@ export const animatePanorama = (heroRef: MutableRefObject<null>) => {
       const mouseX = e.clientX - container.getBoundingClientRect().left - 300;
 
       const mouseXPercentage = mouseX / containerWidth;
-
-      tl.progress(mouseXPercentage);
+      if (heroRef.getBoundingClientRect().bottom > e.clientY) {
+         gsap.to(tl, { duration: 1, progress: mouseXPercentage });
+      }
    });
 };

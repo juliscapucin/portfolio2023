@@ -7,7 +7,7 @@ export default function () {
  const heroRef = useRef(null);
 
  useLayoutEffect(() => {
-  animatePanorama(heroRef);
+  if (heroRef.current) animatePanorama(heroRef.current);
 
   return () => {};
  }, []);
