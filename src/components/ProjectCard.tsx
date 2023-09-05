@@ -7,7 +7,7 @@ import {
  animateToFullScreen,
  animateToLeftTransition,
  animateToShallowPage,
-} from '@/animations';
+} from '@/animations/pageTransitions';
 
 interface ProjectCardProps {
  id: string;
@@ -47,10 +47,10 @@ export default function ProjectCard({
     >
      <div className='h-11 overflow-hidden'>
       <div className='flex flex-col justify-start items-start group-hover:-translate-y-1/2 transition'>
-       <span className='font-headline text-headlineSmall uppercase text-colorWhite dark:text-colorBlack'>
+       <span className='font-headline text-headlineSmall uppercase text-colorBlack dark:text-colorWhite'>
         {title}
        </span>
-       <span className='font-headline text-headlineSmall uppercase'>
+       <span className='font-headline text-headlineSmall uppercase text-colorBlack dark:text-colorWhite'>
         {title}
        </span>
       </div>

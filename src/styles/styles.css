@@ -108,14 +108,25 @@ h6 {
    height: 100%;
 }
 
-.grid-element .line,
-.grid-element .line-transparent {
-   background-color: var(--color-white);
+.line,
+.line-transparent {
    position: absolute;
    transform: translate3d(0, 0, 0);
 }
 
+.grid-element .line {
+   background-color: var(--color-black);
+}
+
 .grid-element .line-transparent {
+   background-color: var(--color-white);
+}
+
+.dark .grid-element .line {
+   background-color: var(--color-white);
+}
+
+.dark .grid-element .line-transparent {
    background-color: var(--color-black);
 }
 

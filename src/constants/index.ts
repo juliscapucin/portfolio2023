@@ -125,3 +125,9 @@ export const projectsPage = {
    title: 'Projects',
    paragraph1: 'Some recent commercial and personal projects',
 };
+
+export const playgroundPage = {
+   slug: 'playground',
+   title: 'Playground',
+   paragraph1: 'Some recent commercial and personal projects',
+};

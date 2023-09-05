@@ -1,8 +1,22 @@
+import { useLayoutEffect, useRef } from 'react';
+
 import { GridDiv } from '@/components';
+import { animatePanorama } from '@/animations';
 
 export default function () {
+ const heroRef = useRef(null);
+
+ useLayoutEffect(() => {
+  animatePanorama(heroRef);
+
+  return () => {};
+ }, []);
+
  return (
-  <div className='grid grid-cols-20 grid-rows-6 h-screen max-h-screen min-w-[160vw]'>
+  <div
+   ref={heroRef}
+   className='grid grid-cols-20 grid-rows-6 h-screen max-h-screen min-w-[160vw]'
+  >
    {/* Status */}
    <GridDiv
     divClass='col-span-full row-span-1'
@@ -58,10 +72,9 @@ export default function () {
    {/* Arrow */}
    <GridDiv divClass='col-span-2 row-span-1' top={true} left={true}></GridDiv>
    {/* Snackbar */}
-   <GridDiv divClass='col-span-5 row-span-1' top={true} left={true}></GridDiv>
+   <GridDiv divClass='col-span-9 row-span-1' top={true} left={true}></GridDiv>
    {/* Blank Space */}
-   <GridDiv divClass='col-span-8 row-span-1' top={true} left={true}></GridDiv>
-   <GridDiv divClass='col-span-15 row-span-1' top={true} left={true}></GridDiv>
+   <GridDiv divClass='col-span-11 row-span-1' top={true} left={true}></GridDiv>
   </div>
  );
 }

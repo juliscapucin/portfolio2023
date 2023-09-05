@@ -1,6 +1,7 @@
 import Image from 'next/image';
 
 import ProjectCard from './ProjectCard';
+import GridDiv from './GridDiv';
 
 interface ProjectItems {
  label: string;
@@ -15,13 +16,13 @@ interface ProjectsMenuProps {
 
 export default function ProjectsMenu({ projectItems }: ProjectsMenuProps) {
  return (
-  <div className='grid grid-cols-12 grid-rows-6'>
+  <GridDiv divClass='grid grid-cols-12 grid-rows-6' bottom={true} left={true}>
    <div className='col-span-4 row-span-4 overflow-hidden relative'>
     <Image
      src={`/parking.avif`}
      //   placeholder='blur'
      alt='photo'
-     className='object-cover'
+     className='object-cover ml-1'
      sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
      fill
     />
@@ -41,6 +42,6 @@ export default function ProjectsMenu({ projectItems }: ProjectsMenuProps) {
      );
     })}
    </div>
-  </div>
+  </GridDiv>
  );
 }

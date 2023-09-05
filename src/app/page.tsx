@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { projects, playground, archive } from '@/constants';
 import { usePageContext } from '@/context';
 import { GridDiv, SectionTitle, ProjectsMenu } from '@/components';
-import { animateToRight, animateToLeft } from '@/animations';
+import { animateToRight } from '@/animations';
 import Hero from '@/components/Hero';
 import Footer from '@/components/Footer';
 
