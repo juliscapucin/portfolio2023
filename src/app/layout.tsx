@@ -36,10 +36,10 @@ export default function RootLayout(props: {
  shallowPage: React.ReactNode;
 }) {
  return (
-  <html lang='en'>
+  <html lang='en' className='dark'>
    <ModalContextProvider>
     <body
-     className={`${myFont.className} relative mt-0 max-w-[2000px] font-text font-extralight bg-colorBlack text-colorWhite mx-auto overflow-hidden`}
+     className={`${myFont.className} relative mt-0 max-w-[2000px] font-text font-extralight bg-colorWhite text-colorBlack dark:bg-colorBlack dark:text-colorWhite mx-auto overflow-hidden`}
     >
      <Header />
      <PageContextProvider>

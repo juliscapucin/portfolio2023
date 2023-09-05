@@ -6,6 +6,7 @@ import HeaderLink from './HeaderLink';
 import CustomImage from './CustomImage';
 import Modal from './Modal';
 import ProjectCard from './ProjectCard';
+import ProjectsMenu from './ProjectsMenu';
 import SectionTitle from './SectionTitle';
 import ShallowPage from './shallowPage/ShallowPage';
 
@@ -18,6 +19,7 @@ export {
    CustomImage,
    Modal,
    ProjectCard,
+   ProjectsMenu,
    SectionTitle,
    ShallowPage,
 };

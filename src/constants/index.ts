@@ -54,10 +54,36 @@ export const archive = {
    title: 'Archive',
    paragraph1:
       'A selection of web development, design and illustration projects I developed over the last 20 years.',
+   links: [
+      {
+         label: 'Archive1',
+         slug: 'arquive/archive1',
+         id: 'archive1',
+         coverImage: 'pool.avif',
+      },
+      {
+         label: 'Archive2',
+         slug: 'arquive/archive2',
+         id: 'archive2',
+         coverImage: 'pool.avif',
+      },
+      {
+         label: 'Archive3',
+         slug: 'arquive/archive3',
+         id: 'archive3',
+         coverImage: 'pool.avif',
+      },
+      {
+         label: 'Archive4',
+         slug: 'arquive/archive4',
+         id: 'archive4',
+         coverImage: 'pool.avif',
+      },
+   ],
 };
 
 export const playground = {
-   slug: 'playground',
+   category: 'playground',
    title: 'Playground',
    paragraph1: 'A selection of experiments I develop on my free time',
    links: [

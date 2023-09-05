@@ -23,8 +23,12 @@ export default function HeaderLink({
     onClick={action}
     type='button'
    >
-    <span className='text-titleMedium uppercase'>{label}</span>
-    <span className='text-titleMedium uppercase'>{label}</span>
+    <span className='text-titleMedium uppercase text-colorBlack dark:text-colorWhite'>
+     {label}
+    </span>
+    <span className='text-titleMedium uppercase text-colorBlack dark:text-colorWhite'>
+     {label}
+    </span>
    </button>
   </div>
  );

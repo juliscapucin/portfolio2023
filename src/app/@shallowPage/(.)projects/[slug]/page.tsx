@@ -76,7 +76,7 @@ export default function Page({ params }: any) {
      />
     </div>
    </section>
-   <section className='px-8 py-16 bg-colorBlack'>
+   <section className='px-8 py-16 bg-colorWhite dark:bg-colorBlack'>
     <h1 className='text-7xl z-35'>{params.slug} intercepted</h1>
     <p>
      Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae impedit
@@ -92,7 +92,7 @@ export default function Page({ params }: any) {
     </p>
    </section>
    {/* Split screen */}
-   <section className='bg-colorBlack'>
+   <section className='bg-colorWhite dark:bg-colorBlack'>
     <section className='flex gap-32'>
      <div
       ref={left}
