@@ -50,6 +50,7 @@ export default function Home() {
    <section className='grid'>
     <ProjectsMenu
      projectItems={[...projects.links, ...playground.links, ...archive.links]}
+     breakpoint={isBreakpoint}
     />
    </section>
 

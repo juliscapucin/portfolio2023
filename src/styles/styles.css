@@ -9,10 +9,6 @@
    --border-radius: 12px;
    --font-secondary: 'ff-real-text-pro', sans-serif;
 
-   --foreground-rgb: 0, 0, 0;
-   --background-start-rgb: 214, 219, 220;
-   --background-end-rgb: 255, 255, 255;
-
    --color-black: #060607;
    --color-white: #fcf9f8;
 
@@ -52,7 +48,10 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+span,
+button,
+a {
    font-family: var(--font-primary) sans-serif;
    font-weight: 500;
    text-transform: uppercase;

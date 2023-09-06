@@ -17,9 +17,13 @@ interface ProjectItems {
 
 interface ProjectsMenuProps {
  projectItems: ProjectItems[];
+ breakpoint: boolean;
 }
 
-export default function ProjectsMenu({ projectItems }: ProjectsMenuProps) {
+export default function ProjectsMenu({
+ projectItems,
+ breakpoint,
+}: ProjectsMenuProps) {
  const projectsImgsRef = useRef(null);
  const projectsLinksRef = useRef(null);
 
@@ -31,28 +35,34 @@ export default function ProjectsMenu({ projectItems }: ProjectsMenuProps) {
  }, []);
 
  return (
-  <GridDiv divClass='grid grid-cols-12 grid-rows-6' bottom={true} left={true}>
-   <div
-    className='col-span-4 row-span-4 overflow-hidden relative'
-    ref={projectsImgsRef}
-   >
-    {projectItems.map((img, index) => {
-     return (
-      <Image
-       src={img.coverImage}
-       key={index}
-       //   placeholder='blur'
-       alt='photo'
-       className='object-cover ml-1'
-       sizes='100vw'
-       fill
-      />
-     );
-    })}
-   </div>
+  <GridDiv
+   divClass='grid grid-cols-12 grid-rows-6 w-full'
+   bottom={true}
+   left={true}
+  >
+   {!breakpoint && (
+    <div
+     className='col-span-4 row-span-4 overflow-hidden relative'
+     ref={projectsImgsRef}
+    >
+     {projectItems.map((img, index) => {
+      return (
+       <Image
+        src={img.coverImage}
+        key={index}
+        //   placeholder='blur'
+        alt='photo'
+        className='object-cover ml-1'
+        sizes='100vw'
+        fill
+       />
+      );
+     })}
+    </div>
+   )}
    <div className='col-span-2 row-span-4'></div>
    <div
-    className='col-span-6 row-span-6 overflow-hidden'
+    className={`col-span-${breakpoint ? 10 : 6} row-span-6 overflow-hidden`}
     ref={projectsLinksRef}
    >
     {projectItems.map((link, index) => {

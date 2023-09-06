@@ -21,7 +21,7 @@ export default function Header() {
  const router = useRouter();
 
  return (
-  <header className='w-full fixed top-0 flex h-16 z-50 max-w-[2000px] overflow-hidden'>
+  <header className='w-full fixed top-0 px-8 flex h-16 z-50 max-w-[2000px] overflow-hidden'>
    {/* Desktop Header */}
    <GridDiv
     divClass={
@@ -33,9 +33,9 @@ export default function Header() {
     left={true}
    >
     <button
-     className='h-full'
      onClick={() => {
-      if (pathname.includes('/projects/project'))
+      const shallowPage = document.querySelector('.shallow-page');
+      if (shallowPage)
        animateToRightTransition('shallow-page', () => router.back());
       else {
        animateToRightTransition(`${pathname.slice(1)}-page`, () =>
@@ -56,7 +56,7 @@ export default function Header() {
       </GridDiv>
      )}
     </button>
-    <nav className='w-4/5 max-w-screen-md h-full hidden md:flex justify-between items-center mr-8'>
+    <nav className='w-full h-full hidden md:flex justify-end items-center gap-8 mr-8'>
      {navLinks.map((link) => {
       return (
        <HeaderLink
