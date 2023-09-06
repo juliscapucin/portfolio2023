@@ -15,17 +15,6 @@ export default function Page({ params }: any) {
  const left2 = createRef<HTMLDivElement>();
  const right2 = createRef<HTMLDivElement>();
 
- //  const trigger = document.querySelector('.scroll-trigger');
- //  console.log(trigger);
-
- //  useEffect(() => {
- //   gsap.to('.transition-fullscreen', {
- //    duration: 0.5,
- //    delay: 0.5,
- //    opacity: 0,
- //   });
- //  }, [left]);
-
  useEffect(() => {
   ScrollTrigger.create({
    scroller: '.scroll-trigger',

@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { projects, playground, archive } from '@/constants';
 import { usePageContext } from '@/context';
 import { useMediaQuery } from '@/hooks';
+
 import {
  GridDiv,
  SectionTitle,
@@ -20,7 +21,7 @@ export default function Home() {
  const pathname = usePathname();
  const { previousPage, updatePreviousPage } = usePageContext();
 
- const isBreakpoint = useMediaQuery(1200);
+ const breakpoint = useMediaQuery(1200);
 
  useEffect(() => {
   if (pathname === '/' && previousPage !== 'shallow-page') {
@@ -32,6 +33,7 @@ export default function Home() {
   }
  }, [pathname]);
 
+ // Track previous page for animations
  useEffect(() => {
   updatePreviousPage('home');
  }, []);
@@ -39,7 +41,8 @@ export default function Home() {
  return (
   <div className='home-page main-page overflow-hidden'>
    <GridDiv divClass='overflow-hidden' right={true} bottom={true}>
-    {isBreakpoint ? <HeroMobile /> : <HeroDesktop />}
+    {breakpoint === 'mobile' && <HeroMobile />}
+    {breakpoint === 'desktop' && <HeroDesktop />}
    </GridDiv>
 
    <div className='h-64'>
@@ -50,7 +53,7 @@ export default function Home() {
    <section className='grid'>
     <ProjectsMenu
      projectItems={[...projects.links, ...playground.links, ...archive.links]}
-     breakpoint={isBreakpoint}
+     activeBreakpoint={breakpoint}
     />
    </section>
 

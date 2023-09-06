@@ -1,24 +1,27 @@
+import { type } from 'os';
 import { useEffect, useState, useCallback } from 'react';
 
+type BreakpointState = string | null;
+
 export const useMediaQuery = (width: number) => {
- const [targetReached, setTargetReached] = useState(false);
+ const [targetReached, setTargetReached] = useState<BreakpointState>(null);
 
  const updateTarget = useCallback((e: MediaQueryListEvent) => {
   if (e.matches) {
-   setTargetReached(true);
+   setTargetReached('mobile');
   } else {
-   setTargetReached(false);
+   setTargetReached('desktop');
   }
  }, []);
 
  useEffect(() => {
   const media = window.matchMedia(`(max-width: ${width}px)`);
 
-  console.log('media', media);
-
   // Check on mount (callback is not called until a change occurs)
   if (media.matches) {
-   setTargetReached(true);
+   setTargetReached('mobile');
+  } else {
+   setTargetReached('desktop');
   }
 
   if (media.addEventListener) {
@@ -31,5 +34,6 @@ export const useMediaQuery = (width: number) => {
  }, []);
 
  console.log('targetReached', targetReached);
- return targetReached;
+
+ if (targetReached !== null) return targetReached;
 };

@@ -17,12 +17,12 @@ interface ProjectItems {
 
 interface ProjectsMenuProps {
  projectItems: ProjectItems[];
- breakpoint: boolean;
+ activeBreakpoint: string | undefined;
 }
 
 export default function ProjectsMenu({
  projectItems,
- breakpoint,
+ activeBreakpoint,
 }: ProjectsMenuProps) {
  const projectsImgsRef = useRef(null);
  const projectsLinksRef = useRef(null);
@@ -40,9 +40,9 @@ export default function ProjectsMenu({
    bottom={true}
    left={true}
   >
-   {!breakpoint && (
+   {activeBreakpoint === 'desktop' && (
     <div
-     className='col-span-4 row-span-4 overflow-hidden relative'
+     className='col-span-4 row-span-4 w-[500px] h-[500px] relative'
      ref={projectsImgsRef}
     >
      {projectItems.map((img, index) => {
@@ -53,16 +53,18 @@ export default function ProjectsMenu({
         //   placeholder='blur'
         alt='photo'
         className='object-cover ml-1'
-        sizes='100vw'
+        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
         fill
        />
       );
      })}
     </div>
    )}
-   <div className='col-span-2 row-span-4'></div>
    <div
-    className={`col-span-${breakpoint ? 10 : 6} row-span-6 overflow-hidden`}
+    className={`col-span-${activeBreakpoint === 'mobile' ? 3 : 2} row-span-6`}
+   ></div>
+   <div
+    className={`col-span-${activeBreakpoint === 'mobile' ? 9 : 6} row-span-6`}
     ref={projectsLinksRef}
    >
     {projectItems.map((link, index) => {
