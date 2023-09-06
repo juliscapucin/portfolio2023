@@ -41,10 +41,7 @@ export default function ProjectsMenu({
    left={true}
   >
    {activeBreakpoint === 'desktop' && (
-    <div
-     className='col-span-4 row-span-4 w-[500px] h-[500px] relative'
-     ref={projectsImgsRef}
-    >
+    <div className='col-span-4 row-span-4 relative' ref={projectsImgsRef}>
      {projectItems.map((img, index) => {
       return (
        <Image
