@@ -14,6 +14,8 @@ export const useMediaQuery = (width: number) => {
  useEffect(() => {
   const media = window.matchMedia(`(max-width: ${width}px)`);
 
+  console.log('media', media);
+
   // Check on mount (callback is not called until a change occurs)
   if (media.matches) {
    setTargetReached(true);
@@ -28,5 +30,6 @@ export const useMediaQuery = (width: number) => {
   }
  }, []);
 
+ console.log('targetReached', targetReached);
  return targetReached;
 };

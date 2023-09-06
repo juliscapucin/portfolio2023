@@ -2,13 +2,16 @@
 
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+
 import { projects, playground, archive } from '@/constants';
 import { usePageContext } from '@/context';
+import { useMediaQuery } from '@/hooks';
 import {
  GridDiv,
  SectionTitle,
  ProjectsMenu,
- Hero,
+ HeroDesktop,
+ HeroMobile,
  Footer,
 } from '@/components';
 import { animateToRight } from '@/animations';
@@ -16,6 +19,8 @@ import { animateToRight } from '@/animations';
 export default function Home() {
  const pathname = usePathname();
  const { previousPage, updatePreviousPage } = usePageContext();
+
+ const isBreakpoint = useMediaQuery(1200);
 
  useEffect(() => {
   if (pathname === '/' && previousPage !== 'shallow-page') {
@@ -34,7 +39,7 @@ export default function Home() {
  return (
   <div className='home-page main-page overflow-hidden'>
    <GridDiv divClass='overflow-hidden' right={true} bottom={true}>
-    <Hero />
+    {isBreakpoint ? <HeroMobile /> : <HeroDesktop />}
    </GridDiv>
 
    <div className='h-64'>

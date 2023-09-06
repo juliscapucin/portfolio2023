@@ -5,7 +5,8 @@ import GridDiv from './GridDiv';
 import GridElement from './GridElement';
 import Header from './header';
 import HeaderLink from './HeaderLink';
-import Hero from './Hero';
+import HeroDesktop from './HeroDesktop';
+import HeroMobile from './HeroMobile';
 import Footer from './Footer';
 import CustomImage from './CustomImage';
 import Modal from './Modal';
@@ -22,7 +23,8 @@ export {
    GridElement,
    Header,
    HeaderLink,
-   Hero,
+   HeroDesktop,
+   HeroMobile,
    Modal,
    ProjectCard,
    ProjectsMenu,

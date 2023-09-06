@@ -7,8 +7,6 @@ export const animateProjectsMenu = (
    const links = linksDiv.querySelectorAll('button');
    const images = imagesDiv.querySelectorAll('img');
 
-   console.log(links, images);
-
    links.forEach((item, index) => {
       gsap.set(images[index], { yPercent: -100 });
       gsap.set(images[0], { yPercent: 0 });

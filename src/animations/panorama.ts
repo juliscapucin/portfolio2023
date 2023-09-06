@@ -2,6 +2,7 @@ import { gsap } from 'gsap';
 
 export const animatePanorama = (heroRef: HTMLElement) => {
    if (!heroRef) return;
+
    gsap.set(heroRef, { xPercent: 0 });
 
    const tl = gsap
@@ -21,4 +22,7 @@ export const animatePanorama = (heroRef: HTMLElement) => {
          gsap.to(tl, { duration: 1, progress: mouseXPercentage });
       }
    });
+
+   //   initialization
+   tl.reverse();
 };
