@@ -1,3 +1,4 @@
-import useModalOpen from './useModalOpen';
+import { useMediaQuery } from './useMediaQuery';
+import { useModalOpen } from './useModalOpen';
 
-export { useModalOpen };
+export { useMediaQuery, useModalOpen };

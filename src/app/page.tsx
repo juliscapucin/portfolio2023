@@ -4,10 +4,14 @@ import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { projects, playground, archive } from '@/constants';
 import { usePageContext } from '@/context';
-import { GridDiv, SectionTitle, ProjectsMenu } from '@/components';
+import {
+ GridDiv,
+ SectionTitle,
+ ProjectsMenu,
+ Hero,
+ Footer,
+} from '@/components';
 import { animateToRight } from '@/animations';
-import Hero from '@/components/Hero';
-import Footer from '@/components/Footer';
 
 export default function Home() {
  const pathname = usePathname();

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-const useModalOpen = () => {
+export const useModalOpen = () => {
  const [count, setCount] = useState(1);
 
  const increment = () => {
@@ -15,5 +15,3 @@ const useModalOpen = () => {
   count,
  };
 };
-
-export default useModalOpen;
