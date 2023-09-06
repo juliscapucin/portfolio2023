@@ -17,9 +17,13 @@ interface ProjectItems {
 
 interface ProjectsMenuProps {
  projectItems: ProjectItems[];
+ activeBreakpoint: string | undefined;
 }
 
-export default function ProjectsMenu({ projectItems }: ProjectsMenuProps) {
+export default function ProjectsMenu({
+ projectItems,
+ activeBreakpoint,
+}: ProjectsMenuProps) {
  const projectsImgsRef = useRef(null);
  const projectsLinksRef = useRef(null);
 
@@ -31,28 +35,33 @@ export default function ProjectsMenu({ projectItems }: ProjectsMenuProps) {
  }, []);
 
  return (
-  <GridDiv divClass='grid grid-cols-12 grid-rows-6' bottom={true} left={true}>
+  <GridDiv
+   divClass='grid grid-cols-12 grid-rows-6 w-full'
+   bottom={true}
+   left={true}
+  >
+   {activeBreakpoint === 'desktop' && (
+    <div className='col-span-4 row-span-4 relative' ref={projectsImgsRef}>
+     {projectItems.map((img, index) => {
+      return (
+       <Image
+        src={img.coverImage}
+        key={index}
+        //   placeholder='blur'
+        alt='photo'
+        className='object-cover ml-1'
+        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+        fill
+       />
+      );
+     })}
+    </div>
+   )}
    <div
-    className='col-span-4 row-span-4 overflow-hidden relative'
-    ref={projectsImgsRef}
-   >
-    {projectItems.map((img, index) => {
-     return (
-      <Image
-       src={img.coverImage}
-       key={index}
-       //   placeholder='blur'
-       alt='photo'
-       className='object-cover ml-1'
-       sizes='100vw'
-       fill
-      />
-     );
-    })}
-   </div>
-   <div className='col-span-2 row-span-4'></div>
+    className={`col-span-${activeBreakpoint === 'mobile' ? 3 : 2} row-span-6`}
+   ></div>
    <div
-    className='col-span-6 row-span-6 overflow-hidden'
+    className={`col-span-${activeBreakpoint === 'mobile' ? 9 : 6} row-span-6`}
     ref={projectsLinksRef}
    >
     {projectItems.map((link, index) => {

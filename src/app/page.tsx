@@ -2,16 +2,26 @@
 
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+
 import { projects, playground, archive } from '@/constants';
 import { usePageContext } from '@/context';
-import { GridDiv, SectionTitle, ProjectsMenu } from '@/components';
+import { useMediaQuery } from '@/hooks';
+
+import {
+ GridDiv,
+ SectionTitle,
+ ProjectsMenu,
+ HeroDesktop,
+ HeroMobile,
+ Footer,
+} from '@/components';
 import { animateToRight } from '@/animations';
-import Hero from '@/components/Hero';
-import Footer from '@/components/Footer';
 
 export default function Home() {
  const pathname = usePathname();
  const { previousPage, updatePreviousPage } = usePageContext();
+
+ const breakpoint = useMediaQuery(1200);
 
  useEffect(() => {
   if (pathname === '/' && previousPage !== 'shallow-page') {
@@ -23,14 +33,16 @@ export default function Home() {
   }
  }, [pathname]);
 
+ // Track previous page for animations
  useEffect(() => {
   updatePreviousPage('home');
  }, []);
 
  return (
   <div className='home-page main-page overflow-hidden'>
-   <GridDiv divClass='overflow-hidden' right={true} bottom={true}>
-    <Hero />
+   <GridDiv divClass='overflow-hidden min-h-screen' right={true} bottom={true}>
+    {breakpoint === 'mobile' && <HeroMobile />}
+    {breakpoint === 'desktop' && <HeroDesktop />}
    </GridDiv>
 
    <div className='h-64'>
@@ -41,6 +53,7 @@ export default function Home() {
    <section className='grid'>
     <ProjectsMenu
      projectItems={[...projects.links, ...playground.links, ...archive.links]}
+     activeBreakpoint={breakpoint}
     />
    </section>
 

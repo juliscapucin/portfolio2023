@@ -15,17 +15,6 @@ export default function Page({ params }: any) {
  const left2 = createRef<HTMLDivElement>();
  const right2 = createRef<HTMLDivElement>();
 
- //  const trigger = document.querySelector('.scroll-trigger');
- //  console.log(trigger);
-
- //  useEffect(() => {
- //   gsap.to('.transition-fullscreen', {
- //    duration: 0.5,
- //    delay: 0.5,
- //    opacity: 0,
- //   });
- //  }, [left]);
-
  useEffect(() => {
   ScrollTrigger.create({
    scroller: '.scroll-trigger',
@@ -50,19 +39,6 @@ export default function Page({ params }: any) {
 
  return (
   <ShallowPage>
-   {/* transition */}
-   {/* <div className='animate-left top-0 left-0 w-screen h-screen z-20 fixed translate-y-full'>
-    <div className={`relative h-full w-full overflow-hidden`}>
-     <Image
-      src='/pool.avif'
-      alt='photo'
-      className='object-cover '
-      sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-      fill
-      priority
-     />
-    </div>
-   </div> */}
    {/* Project header */}
    <section className='relative w-screen h-screen'>
     <div className={`relative h-full w-full overflow-hidden`}>

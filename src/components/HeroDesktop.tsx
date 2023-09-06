@@ -1,21 +1,19 @@
-import { useLayoutEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { GridDiv } from '@/components';
 import { animatePanorama } from '@/animations';
 
-export default function () {
+export default function HeroDesktop() {
  const heroRef = useRef(null);
 
- useLayoutEffect(() => {
-  if (heroRef.current) animatePanorama(heroRef.current);
-
-  return () => {};
- }, []);
+ useEffect(() => {
+  if (heroRef && heroRef.current) animatePanorama(heroRef.current);
+ }, [heroRef]);
 
  return (
   <div
+   className='hero__desktop grid grid-cols-20 grid-rows-6 h-screen max-h-screen min-w-[160vw]'
    ref={heroRef}
-   className='grid grid-cols-20 grid-rows-6 h-screen max-h-screen min-w-[160vw]'
   >
    {/* Status */}
    <GridDiv
