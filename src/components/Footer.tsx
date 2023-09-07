@@ -18,7 +18,7 @@ export default function Footer() {
     {/* Nav Column */}
     {footer.map((item, index) => {
      return (
-      <div key={item.id}>
+      <div className='col-span-3 lg:grid grid-cols-3' key={item.id}>
        <div
         className={`col-span-2 flex flex-col ${index > 0 && 'mt-16 lg:mt-0'}`}
        >
@@ -33,6 +33,7 @@ export default function Footer() {
            key={link.id}
           >
            <Link className='block h-11 group overflow-hidden' href={link.url}>
+            {/* Animated Label */}
             <div className='flex flex-col justify-start items-start group-hover:-translate-y-1/2 transition'>
              <span className='font-headline text-headlineSmall uppercase text-colorBlack dark:text-colorWhite'>
               {link.label}

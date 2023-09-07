@@ -39,7 +39,7 @@ export default function RootLayout(props: {
   <html lang='en' className='dark'>
    <ModalContextProvider>
     <body
-     className={`${myFont.className} relative mt-0 max-w-[2000px] font-text font-extralight text-bodyLarge bg-colorWhite text-colorBlack dark:bg-colorBlack dark:text-colorWhite mx-auto overflow-hidden`}
+     className={`${myFont.className} relative mt-0 max-w-[2000px] font-text font-extralight text-bodyLarge bg-colorWhite text-colorBlack dark:bg-colorBlack dark:text-colorWhite mx-auto overflow-x-hidden`}
     >
      <Header />
      <PageContextProvider>
@@ -49,6 +49,8 @@ export default function RootLayout(props: {
        {props.shallowPage}
       </main>
      </PageContextProvider>
+
+     {/* Contact Modal */}
      <Modal containerClass={`w-full h-screen`}>
       <h1>Hello</h1>
      </Modal>
