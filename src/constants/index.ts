@@ -131,3 +131,34 @@ export const playgroundPage = {
    title: 'Playground',
    paragraph1: 'Some recent commercial and personal projects',
 };
+
+export const footer = [
+   {
+      title: 'Explore',
+      id: 'explore',
+      links: [
+         { label: 'Home', url: '/', id: 'home' },
+         { label: 'Work', url: '/work', id: 'work' },
+         { label: 'About', url: '/about', id: 'about' },
+      ],
+   },
+   {
+      title: 'Social',
+      id: 'social',
+      links: [
+         { label: 'Instagram', url: '/', id: 'instagram' },
+         {
+            label: 'LinkedIn',
+            url: 'https://www.linkedin.com/in/juliscapucin/',
+            id: 'linkedin',
+         },
+         {
+            label: 'The Dots',
+            url: 'https://the-dots.com/users/juli-scapucin-1472123',
+            id: 'dots',
+         },
+         { label: 'GitHub', url: '/about', id: 'github' },
+         { label: 'CodePen', url: '/about', id: 'codepen' },
+      ],
+   },
+];
