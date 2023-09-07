@@ -1,13 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import { GridDiv, AnimationGridDiv } from '@/components';
 import { useRouter } from 'next/navigation';
-import {
- animateToFullScreen,
- animateToLeftTransition,
- animateToShallowPage,
-} from '@/animations/pageTransitions';
+import { GridDiv, AnimationGridDiv } from '.';
+import { animateToFullScreen } from '@/animations/pageTransitions';
 
 interface ProjectCardProps {
  id: string;
