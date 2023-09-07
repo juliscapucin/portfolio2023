@@ -10,7 +10,7 @@ export default function Footer() {
    right={true}
    bottom={true}
    left={true}
-   divClass={`p-8 lg:grid grid-cols-12`}
+   divClass={`px-8 py-16 lg:grid grid-cols-12`}
   >
    {/* White Space */}
    <div className='col-span-1'></div>
@@ -20,7 +20,7 @@ export default function Footer() {
      return (
       <>
        <div
-        className={`col-span-2 flex flex-col ${index > 0 && 'mt-16'}`}
+        className={`col-span-2 flex flex-col ${index > 0 && 'mt-16 lg:mt-0'}`}
         key={item.id}
        >
         <span>{item.title}</span>
@@ -55,7 +55,7 @@ export default function Footer() {
     })}
    </nav>
    {/* Availability / Contact */}
-   <div className='col-span-3 flex flex-col items-start mt-16'>
+   <div className='col-span-3 flex flex-col items-start mt-16 lg:mt-0'>
     <span className='text-headlineSmall'>Available November 2023</span>
     <a href='mailto:hello@juliscapucin.com' className='text-displaySmall'>
      Say Hi :)
