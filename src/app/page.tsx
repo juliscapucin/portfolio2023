@@ -23,13 +23,12 @@ export default function Home() {
 
  const breakpoint = useMediaQuery(1200);
 
+ //  Toggle page scroll + page animation
  useEffect(() => {
-  if (pathname === '/' && previousPage !== 'shallow-page') {
+  if (pathname === '/') {
    document.documentElement.classList.remove('overflow-hidden');
-   animateToRight(`home-page`);
-  }
-  if (previousPage === 'shallow-page') {
-   document.documentElement.classList.remove('overflow-hidden');
+
+   if (previousPage !== 'shallow-page') animateToRight(`home-page`);
   }
  }, [pathname]);
 

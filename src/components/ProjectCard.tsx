@@ -38,10 +38,13 @@ export default function ProjectCard({
      divClass={`project-card-${id} overflow-hidden bg-colorWhite dark:bg-colorBlack pointer-events-none`}
     />
    </div>
+   {/* Button action */}
    <button
     className={`h-full w-full p-8 group`}
     onClick={() => {
-     animateToFullScreen(`.project-card-${id}`, () => router.push(`/${slug}`));
+     animateToFullScreen(`.project-card-${id}`, () =>
+      router.push(`/${slug}`, { scroll: false })
+     );
     }}
    >
     <div className='h-11 overflow-hidden'>

@@ -32,6 +32,7 @@ export default function Header() {
     bottom={false}
     left={true}
    >
+    {/* Back button */}
     <button
      onClick={() => {
       const shallowPage = document.querySelector('.shallow-page');
@@ -56,6 +57,8 @@ export default function Header() {
       </GridDiv>
      )}
     </button>
+
+    {/* Navbar */}
     <nav className='w-full h-full hidden md:flex justify-end items-center gap-8 mr-8'>
      {navLinks.map((link) => {
       return (
@@ -70,11 +73,13 @@ export default function Header() {
           (element) => element.slug === pathname.slice(1)
          );
 
+         // Transition to left
          if ((actualPage && link.id > actualPage[0]?.id) || pathname === '/') {
           animateToLeftTransition(`${filteredPathname}-page`, () =>
            router.push(`/${link.slug}`)
           );
          } else {
+          // Transition to right
           animateToRightTransition(`${filteredPathname}-page`, () =>
            router.push(`/${link.slug}`)
           );
