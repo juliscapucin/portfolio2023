@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 
 import { animateMobileMenu } from '@/animations';
+import { GridDiv } from '.';
 
 interface NavLinksProps {
  label: string;
@@ -16,27 +17,43 @@ export default function MenuMobile({ navLinks }: MenuProps) {
  const mobileMenuRef = useRef(null);
 
  return (
-  <div>
-   <button
-    className='absolute w-16 h-16 right-8'
-    onClick={() => {
-     if (mobileMenuRef.current) animateMobileMenu(mobileMenuRef.current);
-    }}
+  <div className='block lg:hidden'>
+   <GridDiv
+    right={true}
+    left={true}
+    divClass='absolute max-w-full h-16 mx-8 flex justify-between items-center'
    >
-    X
-   </button>
+    <button
+     className='w-1/2 h-16 right-8'
+     onClick={(e) => {
+      console.log('home');
+     }}
+    >
+     Home
+    </button>
+    <button
+     className='w-1/2 h-16 right-8'
+     onClick={(e) => {
+      if (mobileMenuRef.current) animateMobileMenu(mobileMenuRef.current);
+     }}
+    >
+     MENU
+    </button>
+   </GridDiv>
    <aside
-    className='absolute w-full min-h-full p-8 bg-colorBlack transition-transform -translate-y-full'
+    className='absolute top-0 w-full min-h-full p-8 bg-colorBlack transition-transform -translate-y-full'
     ref={mobileMenuRef}
    >
     <button
-     onClick={() => {
-      if (mobileMenuRef.current) animateMobileMenu(mobileMenuRef.current);
+     onClick={(e) => {
+      if (mobileMenuRef.current) {
+       animateMobileMenu(mobileMenuRef.current);
+      }
      }}
     >
      X
     </button>
-    <nav className='flex flex-col min-h-full'>
+    <nav className='flex flex-col h-full min-h-screen'>
      {navLinks.map((link) => {
       return (
        <a href={`/${link.slug}`} key={`${link.id}-mobile}`}>

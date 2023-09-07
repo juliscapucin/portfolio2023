@@ -1,6 +1,6 @@
 import { navLinks } from '@/constants';
 
-import { GridDiv, MenuDesktop, MenuMobile } from '@/components';
+import { GridDiv, MenuDesktop, MenuMobile } from '.';
 
 export default function Header() {
  return (
@@ -13,13 +13,7 @@ export default function Header() {
    >
     <MenuDesktop navLinks={navLinks} />
    </GridDiv>
-   <GridDiv
-    divClass={'h-[800px] max-w-full mx-8 block lg:hidden'}
-    right={true}
-    left={true}
-   >
-    <MenuMobile navLinks={navLinks} />
-   </GridDiv>
+   <MenuMobile navLinks={navLinks} />
   </header>
  );
 }
