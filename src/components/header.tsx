@@ -93,28 +93,39 @@ export default function Header() {
     </nav>
    </GridDiv>
 
-   {/* Navbar Mobile */}
-   <div className='lg:hidden absolute w-full flex overflow-hidden'>
+   {/* Menu Mobile */}
+   <div className='absolute lg:hidden w-full flex justify-end p-8 overflow-hidden'>
     <button
-     className='bg-green-500'
+     className='z-100'
      onClick={() => {
       if (mobileMenuRef.current) animateMobileMenu(mobileMenuRef.current);
      }}
     >
-     X
+     –
     </button>
-    <nav
+    {/* Navbar Mobile */}
+    <aside
+     className='w-full min-h-full p-8 bg-colorBlack absolute lg:hidden z-10 -translate-y-full'
      ref={mobileMenuRef}
-     className='mobile-menu min-w-full absolute flex flex-col lg:hidden w-full min-h-full mx-auto sm:px-16 px-8 py-8 bg-colorBlack z-10 -translate-y-full'
     >
-     {navLinks.map((link) => {
-      return (
-       <a href={`/${link.slug}`} key={`${link.id}-mobile}`}>
-        {link.label}
-       </a>
-      );
-     })}
-    </nav>
+     <button
+      className='z-100'
+      onClick={() => {
+       if (mobileMenuRef.current) animateMobileMenu(mobileMenuRef.current);
+      }}
+     >
+      X
+     </button>
+     <nav className='flex flex-col h-full'>
+      {navLinks.map((link) => {
+       return (
+        <a href={`/${link.slug}`} key={`${link.id}-mobile}`}>
+         {link.label}
+        </a>
+       );
+      })}
+     </nav>
+    </aside>
    </div>
   </header>
  );
