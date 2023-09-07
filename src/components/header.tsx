@@ -1,19 +1,15 @@
 'use client';
 
 import { navLinks } from '@/constants';
-import { GridDiv, HeaderLink } from '@/components';
 import { usePathname, useRouter } from 'next/navigation';
 
 import { useModalContext } from '@/context';
+import { GridDiv, HeaderLink } from '@/components';
+import { useMediaQuery } from '@/hooks';
 import {
  animateToLeftTransition,
  animateToRightTransition,
 } from '@/animations';
-
-interface HeaderProps {
- label: string;
- slug: string;
-}
 
 export default function Header() {
  const { modalOpen, updateModalOpen } = useModalContext();
@@ -21,11 +17,11 @@ export default function Header() {
  const router = useRouter();
 
  return (
-  <header className='w-full fixed top-0 px-8 flex h-16 z-50 max-w-[2000px] overflow-hidden'>
+  <header className='w-full fixed top-0 px-8 flex h-full lg:h-16 z-50 max-w-[2000px] overflow-hidden'>
    {/* Desktop Header */}
    <GridDiv
     divClass={
-     'flex h-full items-center justify-between relative overflow-hidden'
+     'flex h-full w-full items-center justify-between relative overflow-hidden'
     }
     top={false}
     right={true}
@@ -58,13 +54,13 @@ export default function Header() {
      )}
     </button>
 
-    {/* Navbar */}
-    <nav className='w-full h-full hidden md:flex justify-end items-center gap-8 mr-8'>
+    {/* Navbar Desktop */}
+    <nav className='w-full h-full hidden lg:flex justify-end items-center gap-8 mr-8'>
      {navLinks.map((link) => {
       return (
        <HeaderLink
         label={link.label}
-        key={link.label}
+        key={link.id}
         activeState={pathname === `/${link.slug}` ? true : false}
         action={() => {
          const filteredPathname = pathname === '/' ? 'home' : pathname.slice(1);
@@ -92,9 +88,15 @@ export default function Header() {
     </nav>
    </GridDiv>
 
-   {/* Mobile header */}
-   <nav className='md:hidden max-w-[1440px] mx-auto sm:px-16 px-8 py-8'>
-    Mobile
+   {/* Navbar Mobile */}
+   <nav className='flex flex-col lg:hidden w-full h-full mx-auto sm:px-16 px-8 py-8 bg-colorBlack z-10'>
+    {navLinks.map((link) => {
+     return (
+      <a href={`/${link.slug}`} key={`${link.id}-mobile}`}>
+       {link.label}
+      </a>
+     );
+    })}
    </nav>
   </header>
  );

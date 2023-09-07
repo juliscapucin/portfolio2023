@@ -18,10 +18,9 @@ export default function Footer() {
     {/* Nav Column */}
     {footer.map((item, index) => {
      return (
-      <>
+      <div key={item.id}>
        <div
         className={`col-span-2 flex flex-col ${index > 0 && 'mt-16 lg:mt-0'}`}
-        key={item.id}
        >
         <span>{item.title}</span>
         {/* Nav Links */}
@@ -50,7 +49,7 @@ export default function Footer() {
 
        {/* White Space */}
        <div className='col-span-1' key={index}></div>
-      </>
+      </div>
      );
     })}
    </nav>
