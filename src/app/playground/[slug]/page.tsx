@@ -17,7 +17,7 @@ export default function Page({ params }: any) {
      />
     </div>
    </div>
-   <h1 className='text-7xl z-35'>{slug}</h1>
+   <h1 className='text-7xl'>{slug}</h1>
   </section>
  );
 }
