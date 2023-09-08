@@ -1,11 +1,17 @@
 import Link from 'next/link';
 import { useRef } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 
-import { animateMobileMenu } from '@/animations';
+import {
+ animateMobileMenu,
+ animateToLeftTransition,
+ animateToRightTransition,
+} from '@/animations';
+
 import { GridDiv } from '.';
 
-import ButtonBurger from './buttons/ButtonBurger';
-import ButtonClose from './buttons/ButtonClose';
+import ButtonBurger from '@buttons/ButtonBurger';
+import ButtonClose from '@buttons/ButtonClose';
 
 interface NavLinksProps {
  label: string;
@@ -19,6 +25,8 @@ interface MenuProps {
 
 export default function MenuMobile({ navLinks }: MenuProps) {
  const mobileMenuRef = useRef(null);
+ const pathname = usePathname();
+ const router = useRouter();
 
  return (
   <div className='block lg:hidden'>
@@ -30,10 +38,23 @@ export default function MenuMobile({ navLinks }: MenuProps) {
     {/* Home Button */}
     <button
      className='w-1/2 h-16 right-8'
+     onClick={() => {
+      const shallowPage = document.querySelector('.shallow-page');
+      if (shallowPage)
+       animateToRightTransition('shallow-page', () => router.back());
+      else {
+       animateToRightTransition(`${pathname.slice(1)}-page`, () =>
+        router.push('/')
+       );
+      }
+     }}
+    >
+     {/* <button
+     className='w-1/2 h-16 right-8'
      onClick={(e) => {
       console.log('home');
      }}
-    >
+    > */}
      Home
     </button>
 

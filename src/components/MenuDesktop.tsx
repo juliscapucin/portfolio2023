@@ -4,7 +4,6 @@ import { GridDiv, MenuLink } from '@/components';
 import { useModalContext } from '@/context';
 
 import {
- animateMobileMenu,
  animateToLeftTransition,
  animateToRightTransition,
 } from '@/animations';

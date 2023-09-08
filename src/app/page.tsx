@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
-import { projects, playground, archive } from '@/constants';
+import { work, playground, archive, breakpoints } from '@/constants';
 import { usePageContext } from '@/context';
 import { useMediaQuery } from '@/hooks';
 
@@ -21,8 +21,8 @@ export default function Home() {
  const pathname = usePathname();
  const { previousPage, updatePreviousPage } = usePageContext();
 
- // Set breakpoint for mobile/desktop
- const breakpoint = useMediaQuery(1200);
+ // Set breakpoint for mobile/desktop (values are in constants.ts)
+ const breakpoint = useMediaQuery(breakpoints.desktop);
 
  //  Toggle scroll on main page + page animation
  useEffect(() => {
@@ -50,7 +50,7 @@ export default function Home() {
    {/* Work */}
    <section className='grid'>
     <ProjectsMenu
-     projectItems={[...projects.links, ...playground.links, ...archive.links]}
+     projectItems={[...work.links, ...playground.links, ...archive.links]}
      activeBreakpoint={breakpoint}
     />
    </section>
