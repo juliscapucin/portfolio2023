@@ -1,6 +1,6 @@
 import localFont from 'next/font/local';
 
-import { Header, Modal } from '@/components';
+import { Header, ContactModal } from '@/components';
 import { ModalContextProvider, PageContextProvider } from '@/context';
 
 import '@/styles/styles.css';
@@ -39,21 +39,19 @@ export default function RootLayout(props: {
   <html lang='en' className='dark'>
    <ModalContextProvider>
     <body
-     className={`${myFont.className} relative mt-0 max-w-[2000px] font-text font-extralight text-bodyLarge bg-colorWhite text-colorBlack dark:bg-colorBlack dark:text-colorWhite mx-auto overflow-x-hidden`}
+     className={`${myFont.className} relative mt-0 max-w-desktop font-text font-extralight text-bodyLarge bg-colorWhite text-colorBlack dark:bg-colorBlack dark:text-colorWhite mx-auto overflow-x-hidden`}
     >
      <Header />
      <PageContextProvider>
       <main className={`mt-16 mx-8`}>
+       {/* Transition Overlay */}
        <div className='transition-fullscreen w-screen h-screen top-0 left-0 fixed z-10 hidden pointer-events-none'></div>
        {props.children}
        {props.shallowPage}
       </main>
      </PageContextProvider>
 
-     {/* Contact Modal */}
-     <Modal containerClass={`w-full h-screen`}>
-      <h1>Hello</h1>
-     </Modal>
+     <ContactModal />
     </body>
    </ModalContextProvider>
   </html>

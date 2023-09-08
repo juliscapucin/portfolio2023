@@ -21,9 +21,10 @@ export default function Home() {
  const pathname = usePathname();
  const { previousPage, updatePreviousPage } = usePageContext();
 
+ // Set breakpoint for mobile/desktop
  const breakpoint = useMediaQuery(1200);
 
- //  Toggle page scroll + page animation
+ //  Toggle scroll on main page + page animation
  useEffect(() => {
   if (pathname === '/') {
    document.documentElement.classList.remove('overflow-hidden');
@@ -44,9 +45,7 @@ export default function Home() {
     {breakpoint === 'desktop' && <HeroDesktop />}
    </GridDiv>
 
-   <div className='h-64'>
-    <SectionTitle title='Work' />
-   </div>
+   <SectionTitle title='Work' />
 
    {/* Work */}
    <section className='grid'>

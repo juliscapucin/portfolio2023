@@ -11,26 +11,25 @@ interface ModalProps {
  containerClass?: string;
 }
 
-export default function Modal({
+export default function ContactModal({
  top,
  right,
  bottom,
  left,
- children,
  containerClass,
 }: ModalProps) {
  const { modalOpen, setModalOpen, updateModalOpen } = useModalContext();
 
  return (
   <aside
-   className={`dark:bg-colorBlack border dark:border-colorWhite fixed top-0 p-8 z-50 transition-transform ${
-    modalOpen ? 'translate-y-1/2' : 'translate-y-full'
+   className={`w-full max-w-desktop h-1/2 dark:bg-colorBlack border dark:border-colorWhite fixed top-full mx-8 p-8 z-20 transition-transform ${
+    modalOpen ? '-translate-y-full' : ''
    } ${containerClass}`}
   >
    <button className='absolute top-8 right-8' onClick={updateModalOpen}>
     X
    </button>
-   {children}
+   <h2>Hello</h2>
   </aside>
  );
 }

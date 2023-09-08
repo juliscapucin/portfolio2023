@@ -27,7 +27,6 @@ export default function MenuDesktop({ navLinks }: MenuProps) {
 
  return (
   <>
-   {' '}
    {/* Back button */}
    {/* Render if not in home page */}
    {pathname !== '/' && (
