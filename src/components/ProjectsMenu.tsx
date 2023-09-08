@@ -30,8 +30,6 @@ export default function ProjectsMenu({
  useLayoutEffect(() => {
   if (projectsImgsRef.current && projectsLinksRef.current)
    animateProjectsMenu(projectsImgsRef.current, projectsLinksRef.current);
-
-  return () => {};
  }, []);
 
  return (

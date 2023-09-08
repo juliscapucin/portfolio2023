@@ -1,40 +1,47 @@
+export const breakpoints = {
+   desktop: 1200,
+};
+
 export const navLinks = [
-   { label: 'Projects', slug: 'projects', id: 1 },
-   { label: 'Playground', slug: 'playground', id: 2 },
-   { label: 'Archive', slug: 'archive', id: 3 },
+   { label: 'Work', slug: 'work', id: 1 },
    { label: 'About', slug: 'about', id: 4 },
 ];
 
-export const projects = {
-   category: 'projects',
+export const work = {
+   category: 'latest',
    title: 'Latest projects',
    links: [
       {
          label: 'Project1',
+         category: 'latest',
          slug: 'projects/project1',
          id: 'project1',
          coverImage: '/pool.avif',
       },
       {
          label: 'Project2',
+         category: 'latest',
          slug: 'projects/project2',
          id: 'project2',
          coverImage: '/parking.avif',
       },
       {
          label: 'Project3',
+         category: 'latest',
          slug: 'projects/project3',
          id: 'project3',
          coverImage: '/bus.avif',
       },
       {
          label: 'Project4',
+         category: 'latest',
          slug: 'projects/project4',
          id: 'project4',
          coverImage: '/door.avif',
       },
       {
          label: 'Project5',
+         category: 'latest',
          slug: 'projects/project5',
          id: 'project5',
          coverImage: '/pool2.avif',
@@ -57,24 +64,28 @@ export const archive = {
    links: [
       {
          label: 'Archive1',
+         category: 'archive',
          slug: 'arquive/archive1',
          id: 'archive1',
          coverImage: '/pool.avif',
       },
       {
          label: 'Archive2',
+         category: 'archive',
          slug: 'arquive/archive2',
          id: 'archive2',
          coverImage: '/pool.avif',
       },
       {
          label: 'Archive3',
+         category: 'archive',
          slug: 'arquive/archive3',
          id: 'archive3',
          coverImage: '/pool.avif',
       },
       {
          label: 'Archive4',
+         category: 'archive',
          slug: 'arquive/archive4',
          id: 'archive4',
          coverImage: '/pool.avif',
@@ -89,30 +100,35 @@ export const playground = {
    links: [
       {
          label: 'Playground1',
+         category: 'playground',
          slug: 'playground/playground1',
          id: 'playground1',
          coverImage: '/pool.avif',
       },
       {
          label: 'Playground2',
+         category: 'playground',
          slug: 'playground/playground2',
          id: 'playground2',
          coverImage: '/pool.avif',
       },
       {
          label: 'Playground3',
+         category: 'playground',
          slug: 'playground/playground3',
          id: 'playground3',
          coverImage: '/pool.avif',
       },
       {
          label: 'Playground4',
+         category: 'playground',
          slug: 'playground/playground4',
          id: 'playground4',
          coverImage: '/pool.avif',
       },
       {
          label: 'Playground5',
+         category: 'playground',
          slug: 'playground/playground5',
          id: 'playground5',
          coverImage: '/pool.avif',
@@ -120,9 +136,9 @@ export const playground = {
    ],
 };
 
-export const projectsPage = {
-   slug: 'projects',
-   title: 'Projects',
+export const workPage = {
+   slug: 'work',
+   title: 'Work',
    paragraph1: 'Some recent commercial and personal projects',
 };
 

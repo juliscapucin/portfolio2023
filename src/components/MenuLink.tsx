@@ -3,17 +3,17 @@
 import { useModalOpen } from '@/hooks';
 import { MouseEvent } from 'react';
 
-interface HeaderLinkProps {
+interface MenuLinkProps {
  label: string;
  action?: (e: MouseEvent<HTMLButtonElement>) => void | (() => void);
  activeState?: boolean;
 }
 
-export default function HeaderLink({
+export default function MenuLink({
  label,
  action,
  activeState,
-}: HeaderLinkProps) {
+}: MenuLinkProps) {
  return (
   <div className='overflow-hidden max-h-8'>
    <button

@@ -53,7 +53,7 @@ export default function Page({ params }: any) {
     </div>
    </section>
    <section className='px-8 py-16 bg-colorWhite dark:bg-colorBlack'>
-    <h1 className='text-7xl z-35'>{params.slug} intercepted</h1>
+    <h1 className='text-7xl'>{params.slug} intercepted</h1>
     <p>
      Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae impedit
      obcaecati temporibus cum. Laudantium ad voluptatem consequuntur. Omnis

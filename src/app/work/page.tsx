@@ -1,15 +1,29 @@
 'use client';
 
 import { useEffect } from 'react';
-import { animateToLeft, animateToRight } from '@/animations';
-import { projectsPage, navLinks } from '@/constants';
-import { usePageContext } from '@/context';
 import { usePathname } from 'next/navigation';
+
+import {
+ workPage,
+ navLinks,
+ work,
+ playground,
+ archive,
+ breakpoints,
+} from '@/constants';
+
+import { usePageContext } from '@/context';
+import { useMediaQuery } from '@/hooks';
+import { ProjectsMenu } from '@/components';
+import { animateToLeft, animateToRight } from '@/animations';
 
 export default function Page() {
  const pathname = usePathname();
  const { previousPage, updatePreviousPage } = usePageContext();
- const { title, paragraph1, slug } = projectsPage;
+ const { title, paragraph1, slug } = workPage;
+
+ // Set breakpoint for mobile/desktop (values are in constants.ts)
+ const breakpoint = useMediaQuery(breakpoints.desktop);
 
  useEffect(() => {
   const actualPage = navLinks.filter(
@@ -36,8 +50,12 @@ export default function Page() {
 
  return (
   <section className={`${slug}-page`}>
-   <h1 className='text-9xl'>{title}</h1>
+   <h1 className='text-displayLarge'>{title}</h1>
    <p>{paragraph1}</p>
+   <ProjectsMenu
+    projectItems={[...work.links, ...playground.links, ...archive.links]}
+    activeBreakpoint={breakpoint}
+   />
   </section>
  );
 }

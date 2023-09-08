@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
-import { projects, playground, archive } from '@/constants';
+import { work, playground, archive, breakpoints } from '@/constants';
 import { usePageContext } from '@/context';
 import { useMediaQuery } from '@/hooks';
 
@@ -21,9 +21,10 @@ export default function Home() {
  const pathname = usePathname();
  const { previousPage, updatePreviousPage } = usePageContext();
 
- const breakpoint = useMediaQuery(1200);
+ // Set breakpoint for mobile/desktop (values are in constants.ts)
+ const breakpoint = useMediaQuery(breakpoints.desktop);
 
- //  Toggle page scroll + page animation
+ //  Toggle scroll on main page + page animation
  useEffect(() => {
   if (pathname === '/') {
    document.documentElement.classList.remove('overflow-hidden');
@@ -44,14 +45,12 @@ export default function Home() {
     {breakpoint === 'desktop' && <HeroDesktop />}
    </GridDiv>
 
-   <div className='h-64'>
-    <SectionTitle title='Work' />
-   </div>
+   <SectionTitle title='Work' />
 
    {/* Work */}
    <section className='grid'>
     <ProjectsMenu
-     projectItems={[...projects.links, ...playground.links, ...archive.links]}
+     projectItems={[...work.links, ...playground.links, ...archive.links]}
      activeBreakpoint={breakpoint}
     />
    </section>

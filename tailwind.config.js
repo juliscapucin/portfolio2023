@@ -4,6 +4,9 @@ module.exports = {
    content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
    theme: {
       extend: {
+         maxWidth: {
+            desktop: '2000px',
+         },
          gridTemplateColumns: { fluid: 'repeat(auto-fit, minmax(15rem, 1fr))' },
          fontFamily: {
             headline: ['var(--font-primary) sans-serif'],

@@ -15,7 +15,7 @@ export default function Page({ params }: any) {
      />
     </div>
    </div>
-   <h1 className='text-7xl z-35'>{params.slug}</h1>
+   <h1 className='text-7xl'>{params.slug}</h1>
   </main>
  );
 }
