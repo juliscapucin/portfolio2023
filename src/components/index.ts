@@ -7,7 +7,7 @@ import Footer from './Footer';
 import GridDiv from './GridDiv';
 import GridElement from './GridElement';
 import Header from './header';
-import HeaderLink from './HeaderLink';
+import MenuLink from './MenuLink';
 import HeroDesktop from './HeroDesktop';
 import HeroMobile from './HeroMobile';
 import MenuDesktop from './MenuDesktop';
@@ -25,7 +25,7 @@ export {
    GridDiv,
    GridElement,
    Header,
-   HeaderLink,
+   MenuLink,
    HeroDesktop,
    HeroMobile,
    MenuDesktop,

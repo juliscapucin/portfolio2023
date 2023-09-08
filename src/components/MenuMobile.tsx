@@ -1,7 +1,9 @@
+import Link from 'next/link';
 import { useRef } from 'react';
 
 import { animateMobileMenu } from '@/animations';
 import { GridDiv } from '.';
+import ButtonClose from './buttons/ButtonClose';
 
 interface NavLinksProps {
  label: string;
@@ -23,6 +25,7 @@ export default function MenuMobile({ navLinks }: MenuProps) {
     left={true}
     divClass='absolute max-w-full h-16 mx-8 flex justify-between items-center'
    >
+    {/* Home Button */}
     <button
      className='w-1/2 h-16 right-8'
      onClick={(e) => {
@@ -31,6 +34,8 @@ export default function MenuMobile({ navLinks }: MenuProps) {
     >
      Home
     </button>
+
+    {/* Burger Button */}
     <button
      className='w-1/2 h-16 right-8'
      onClick={(e) => {
@@ -44,24 +49,40 @@ export default function MenuMobile({ navLinks }: MenuProps) {
     className='absolute top-0 w-full min-h-full p-8 bg-colorBlack transition-transform -translate-y-full'
     ref={mobileMenuRef}
    >
-    <button
-     onClick={(e) => {
+    {/* Close Button */}
+    <ButtonClose
+     action={(e) => {
       if (mobileMenuRef.current) {
        animateMobileMenu(mobileMenuRef.current);
       }
      }}
-    >
-     X
-    </button>
-    <nav className='flex flex-col h-full min-h-screen'>
+    />
+
+    {/* Nav Links */}
+    <nav className='flex flex-col border-solid border-b border-colorWhite mt-16'>
      {navLinks.map((link) => {
       return (
-       <a href={`/${link.slug}`} key={`${link.id}-mobile}`}>
-        {link.label}
-       </a>
+       <GridDiv
+        bottom={true}
+        divClass={`relative max-h-32 min-h-32 flex justify-start items-start`}
+        key={link.id}
+       >
+        <Link className='block' href={link.slug}>
+         <span className='font-headline text-displaySmall uppercase text-colorBlack dark:text-colorWhite'>
+          {link.label}
+         </span>
+        </Link>
+       </GridDiv>
       );
      })}
     </nav>
+    {/* Availability / Contact */}
+    <div className='flex flex-col items-start mt-32'>
+     <span className='text-headlineSmall'>Available November 2023</span>
+     <a href='mailto:hello@juliscapucin.com' className='text-displaySmall'>
+      Say Hi :)
+     </a>
+    </div>
    </aside>
   </div>
  );

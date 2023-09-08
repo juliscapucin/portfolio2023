@@ -6,7 +6,6 @@ export default function HeroMobile() {
    {/* Name */}
    <GridDiv
     divClass='col-span-6 row-span-1 text-headlineLarge overflow-hidden flex items-center uppercase'
-    top={true}
     right={true}
     left={true}
    >

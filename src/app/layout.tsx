@@ -43,7 +43,7 @@ export default function RootLayout(props: {
     >
      <Header />
      <PageContextProvider>
-      <main className={`mt-16 mx-8`}>
+      <main className={`mt-16 mx-8 overflow-x-hidden`}>
        {/* Transition Overlay */}
        <div className='transition-fullscreen w-screen h-screen top-0 left-0 fixed z-10 hidden pointer-events-none'></div>
        {props.children}

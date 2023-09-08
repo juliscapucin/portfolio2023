@@ -27,7 +27,6 @@ export default function Footer() {
         {item.links.map((link) => {
          return (
           <GridDiv
-           top={false}
            bottom={true}
            divClass={`relative max-h-32 min-h-32 flex justify-start items-start`}
            key={link.id}

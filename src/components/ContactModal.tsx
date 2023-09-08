@@ -2,29 +2,14 @@
 
 import { useModalContext } from '@/context';
 
-interface ModalProps {
- top?: boolean;
- right?: boolean;
- bottom?: boolean;
- left?: boolean;
- children: React.ReactNode;
- containerClass?: string;
-}
-
-export default function ContactModal({
- top,
- right,
- bottom,
- left,
- containerClass,
-}: ModalProps) {
+export default function ContactModal() {
  const { modalOpen, setModalOpen, updateModalOpen } = useModalContext();
 
  return (
   <aside
    className={`w-full max-w-desktop h-1/2 dark:bg-colorBlack border dark:border-colorWhite fixed top-full mx-8 p-8 z-20 transition-transform ${
     modalOpen ? '-translate-y-full' : ''
-   } ${containerClass}`}
+   }`}
   >
    <button className='absolute top-8 right-8' onClick={updateModalOpen}>
     X

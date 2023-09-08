@@ -1,6 +1,6 @@
 import { usePathname, useRouter } from 'next/navigation';
 
-import { GridDiv, HeaderLink } from '@/components';
+import { GridDiv, MenuLink } from '@/components';
 import { useModalContext } from '@/context';
 
 import {
@@ -26,9 +26,14 @@ export default function MenuDesktop({ navLinks }: MenuProps) {
  const router = useRouter();
 
  return (
-  <>
+  <GridDiv
+   divClass={'h-16 max-w-full mx-8 px-8 hidden lg:flex'}
+   right={true}
+   left={true}
+   bottom={true}
+  >
    {/* Back button */}
-   {/* Render if not in home page */}
+   {/* Only render if not in home page */}
    {pathname !== '/' && (
     <button
      onClick={() => {
@@ -53,10 +58,12 @@ export default function MenuDesktop({ navLinks }: MenuProps) {
      </GridDiv>
     </button>
    )}
+
+   {/* Menu links */}
    <nav className='w-full h-full hidden lg:flex justify-end items-center gap-8 mr-8'>
     {navLinks.map((link) => {
      return (
-      <HeaderLink
+      <MenuLink
        label={link.label}
        key={link.id}
        activeState={pathname === `/${link.slug}` ? true : false}
@@ -82,8 +89,10 @@ export default function MenuDesktop({ navLinks }: MenuProps) {
       />
      );
     })}
-    <HeaderLink label='Contact' action={updateModalOpen} />
+
+    {/* Contact button */}
+    <MenuLink label='Contact' action={updateModalOpen} />
    </nav>
-  </>
+  </GridDiv>
  );
 }

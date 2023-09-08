@@ -16,11 +16,7 @@ export default function HeroDesktop() {
    ref={heroRef}
   >
    {/* Status */}
-   <GridDiv
-    divClass='col-span-full row-span-1'
-    top={true}
-    left={true}
-   ></GridDiv>
+   <GridDiv divClass='col-span-full row-span-1' left={true}></GridDiv>
 
    {/* Description */}
    <GridDiv
