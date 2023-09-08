@@ -3,6 +3,8 @@ import { useRef } from 'react';
 
 import { animateMobileMenu } from '@/animations';
 import { GridDiv } from '.';
+
+import ButtonBurger from './buttons/ButtonBurger';
 import ButtonClose from './buttons/ButtonClose';
 
 interface NavLinksProps {
@@ -36,14 +38,13 @@ export default function MenuMobile({ navLinks }: MenuProps) {
     </button>
 
     {/* Burger Button */}
-    <button
-     className='w-1/2 h-16 right-8'
-     onClick={(e) => {
-      if (mobileMenuRef.current) animateMobileMenu(mobileMenuRef.current);
+    <ButtonBurger
+     action={(e) => {
+      if (mobileMenuRef.current) {
+       animateMobileMenu(mobileMenuRef.current);
+      }
      }}
-    >
-     MENU
-    </button>
+    />
    </GridDiv>
    <aside
     className='absolute top-0 w-full min-h-full p-8 bg-colorBlack transition-transform -translate-y-full'
