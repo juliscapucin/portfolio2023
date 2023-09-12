@@ -125,7 +125,10 @@ export const animateToRightTransition = (
    leaveElement: string,
    routerFunction: () => void
 ) => {
-   const animateToRightLeave = document.querySelector(`.${leaveElement}`);
+   const animateToRightLeave =
+      leaveElement === 'shallow-page'
+         ? document.querySelector('.shallow-page')
+         : document.querySelector(`.${leaveElement}`);
 
    if (!animateToRightLeave) return;
 

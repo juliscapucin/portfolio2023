@@ -1,9 +1,7 @@
 'use client';
 
-import { usePathname, useRouter } from 'next/navigation';
-import { useModalOpen } from '@/hooks';
+import { useRouter } from 'next/navigation';
 import { MouseEvent } from 'react';
-import Link from 'next/link';
 
 interface MenuLinkProps {
  label: string;
@@ -16,7 +14,6 @@ export default function MenuLink({
  label,
  action,
  activeState,
- slug,
 }: MenuLinkProps) {
  const router = useRouter();
 
@@ -24,7 +21,7 @@ export default function MenuLink({
   <div className='overflow-hidden max-h-8'>
    <button
     className={`flex flex-col justify-center items-center hover:-translate-y-1/2 transition ${
-     activeState ? 'opacity-50' : ''
+     activeState ? 'opacity-50 pointer-events-none' : ''
     }`}
     onClick={action}
    >

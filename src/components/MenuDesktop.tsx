@@ -39,6 +39,7 @@ export default function MenuDesktop({ navLinks }: MenuProps) {
     <button
      onClick={() => {
       const shallowPage = document.querySelector('.shallow-page');
+
       if (shallowPage)
        animateToRightTransition('shallow-page', () => router.back());
       else {
@@ -67,14 +68,22 @@ export default function MenuDesktop({ navLinks }: MenuProps) {
       <MenuLink
        label={link.label}
        key={link.id}
-       slug={link.slug}
-       activeState={pathname === `/${link.slug}` ? true : false}
+       activeState={pathname.includes(`/${link.slug}`) ? true : false}
        action={() => {
         const filteredPathname = pathname === '/' ? 'home' : pathname.slice(1);
 
         const actualPage = navLinks.filter(
          (element) => element.slug === pathname.slice(1)
         );
+
+        const shallowPage = document.querySelector('.shallow-page');
+
+        if (shallowPage) {
+         animateToRightTransition('shallow-page', () =>
+          router.push(`/${link.slug}`)
+         );
+         return;
+        }
 
         // Transition to left
         if ((actualPage && link.id > actualPage[0]?.id) || pathname === '/') {
