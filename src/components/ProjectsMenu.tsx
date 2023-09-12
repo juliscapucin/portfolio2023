@@ -1,12 +1,13 @@
 'use client';
 
 import Image from 'next/image';
-import { useLayoutEffect, useEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+
+import { animateProjectsMenu } from '@/animations';
+import { work, playground, archive } from '@/constants';
 
 import ProjectCard from './ProjectCard';
 import GridDiv from './GridDiv';
-
-import { animateProjectsMenu } from '@/animations';
 
 interface ProjectItems {
  label: string;
@@ -15,17 +16,28 @@ interface ProjectItems {
  coverImage: string;
 }
 
+interface ProjectsMenu {
+ links: ProjectItems[];
+}
+
 interface ProjectsMenuProps {
- projectItems: ProjectItems[];
  activeBreakpoint: string | undefined;
 }
 
-export default function ProjectsMenu({
- projectItems,
- activeBreakpoint,
-}: ProjectsMenuProps) {
+export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
+ const [projectItems, setProjectItems] = useState<ProjectItems[]>([
+  ...work.links,
+  ...playground.links,
+  ...archive.links,
+ ]);
+
  const projectsImgsRef = useRef(null);
  const projectsLinksRef = useRef(null);
+
+ const filterProjects = (filter: ProjectsMenu) => {
+  const filteredProjects = filter.links;
+  setProjectItems(filteredProjects);
+ };
 
  useLayoutEffect(() => {
   if (projectsImgsRef.current && projectsLinksRef.current)
@@ -35,11 +47,29 @@ export default function ProjectsMenu({
  return (
   <>
    <div className='flex justify-end gap-8 mt-16 mr-4 mb-4'>
-    <button>Recent</button>
+    <button
+     onClick={() => {
+      filterProjects(work);
+     }}
+    >
+     Recent
+    </button>
     <span>/</span>
-    <button>Playground</button>
+    <button
+     onClick={() => {
+      filterProjects(playground);
+     }}
+    >
+     Playground
+    </button>
     <span>/</span>
-    <button>Archive</button>
+    <button
+     onClick={() => {
+      filterProjects(archive);
+     }}
+    >
+     Archive
+    </button>
    </div>
    <GridDiv
     divClass='grid grid-cols-12 grid-rows-6 w-full'

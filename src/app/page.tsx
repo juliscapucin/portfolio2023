@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
-import { work, playground, archive, breakpoints } from '@/constants';
+import { breakpoints } from '@/constants';
 import { usePageContext } from '@/context';
 import { useMediaQuery } from '@/hooks';
 
@@ -49,10 +49,7 @@ export default function Home() {
 
    {/* Work */}
    <section className='grid'>
-    <ProjectsMenu
-     projectItems={[...work.links, ...playground.links, ...archive.links]}
-     activeBreakpoint={breakpoint}
-    />
+    <ProjectsMenu activeBreakpoint={breakpoint} />
    </section>
 
    <Footer />
