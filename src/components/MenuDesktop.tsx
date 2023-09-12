@@ -1,3 +1,5 @@
+'use client';
+
 import { usePathname, useRouter } from 'next/navigation';
 
 import { GridDiv, MenuLink } from '@/components';
@@ -65,6 +67,7 @@ export default function MenuDesktop({ navLinks }: MenuProps) {
       <MenuLink
        label={link.label}
        key={link.id}
+       slug={link.slug}
        activeState={pathname === `/${link.slug}` ? true : false}
        action={() => {
         const filteredPathname = pathname === '/' ? 'home' : pathname.slice(1);
@@ -75,14 +78,14 @@ export default function MenuDesktop({ navLinks }: MenuProps) {
 
         // Transition to left
         if ((actualPage && link.id > actualPage[0]?.id) || pathname === '/') {
-         animateToLeftTransition(`${filteredPathname}-page`, () =>
-          router.push(`/${link.slug}`)
-         );
+         animateToLeftTransition(`${filteredPathname}-page`, () => {
+          router.push(`/${link.slug}`);
+         });
         } else {
          // Transition to right
-         animateToRightTransition(`${filteredPathname}-page`, () =>
-          router.push(`/${link.slug}`)
-         );
+         animateToRightTransition(`${filteredPathname}-page`, () => {
+          router.push(`/${link.slug}`);
+         });
         }
        }}
       />

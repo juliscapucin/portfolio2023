@@ -25,6 +25,7 @@ export default function Page() {
  // Set breakpoint for mobile/desktop (values are in constants.ts)
  const breakpoint = useMediaQuery(breakpoints.desktop);
 
+ // Define page transition direction
  useEffect(() => {
   const actualPage = navLinks.filter(
    (element) => element.slug === pathname.slice(1)
@@ -34,6 +35,7 @@ export default function Page() {
    (element) => element.slug === previousPage
   ) || [{ id: 0 }];
 
+  // if actual page id is greater than previous page id, animate to left
   if (
    (actualPage &&
     previousPageId &&
@@ -49,8 +51,8 @@ export default function Page() {
  }, []);
 
  return (
-  <section className={`${slug}-page`}>
-   <h1 className='text-displayLarge'>{title}</h1>
+  <section className={`${slug}-page opacity-0`}>
+   <h1 className='displaySmall lg:text-displayLarge'>{title}</h1>
    <p>{paragraph1}</p>
    <ProjectsMenu
     projectItems={[...work.links, ...playground.links, ...archive.links]}

@@ -56,6 +56,7 @@ export const animateToFullScreen = (
    });
 };
 
+// animate to left
 export const animateToLeft = (enterElement: string) => {
    const animateToLeftEnter = document.querySelector(`.${enterElement}`);
 
@@ -64,16 +65,18 @@ export const animateToLeft = (enterElement: string) => {
    const timeline = gsap.timeline();
 
    timeline.set(animateToLeftEnter, {
+      opacity: 1,
       x: '100%',
    });
 
    timeline.to(animateToLeftEnter, {
-      duration: 0.3,
+      duration: 2,
       x: '0%',
       ease: 'power4.out',
    });
 };
 
+// animate to right
 export const animateToRight = (enterElement: string) => {
    const animateToRightEnter = document.querySelector(`.${enterElement}`);
 
@@ -82,16 +85,18 @@ export const animateToRight = (enterElement: string) => {
    const timeline = gsap.timeline();
 
    timeline.set(animateToRightEnter, {
+      opacity: 1,
       x: '-100%',
    });
 
    timeline.to(animateToRightEnter, {
-      duration: 0.3,
+      duration: 2,
       x: '0%',
       ease: 'power4.out',
    });
 };
 
+// animate to left + router
 export const animateToLeftTransition = (
    leaveElement: string,
    routerFunction: () => void
@@ -101,11 +106,7 @@ export const animateToLeftTransition = (
    if (!animateToLeftLeave) return;
 
    const timeline = gsap.timeline({
-      onComplete: () => {
-         if (routerFunction) {
-            routerFunction();
-         }
-      },
+      onComplete: routerFunction,
    });
 
    timeline.set(animateToLeftLeave, {
@@ -113,12 +114,13 @@ export const animateToLeftTransition = (
    });
 
    timeline.to(animateToLeftLeave, {
-      duration: 0.3,
+      duration: 2,
       x: '-100%',
       ease: 'power4.in',
    });
 };
 
+// animate to right + router
 export const animateToRightTransition = (
    leaveElement: string,
    routerFunction: () => void
@@ -128,9 +130,7 @@ export const animateToRightTransition = (
    if (!animateToRightLeave) return;
 
    const timeline = gsap.timeline({
-      onComplete: () => {
-         if (routerFunction) routerFunction();
-      },
+      onComplete: routerFunction,
    });
 
    timeline.set(animateToRightLeave, {
@@ -138,7 +138,7 @@ export const animateToRightTransition = (
    });
 
    timeline.to(animateToRightLeave, {
-      duration: 0.3,
+      duration: 2,
       x: '100%',
       ease: 'power4.inOut',
    });

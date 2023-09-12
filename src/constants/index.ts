@@ -4,7 +4,7 @@ export const breakpoints = {
 
 export const navLinks = [
    { label: 'Work', slug: 'work', id: 1 },
-   { label: 'About', slug: 'about', id: 4 },
+   { label: 'About', slug: 'about', id: 2 },
 ];
 
 export const work = {

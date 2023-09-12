@@ -21,6 +21,8 @@ export const animateProjectsMenu = (
       item.addEventListener('mouseenter', () => animation.play());
       item.addEventListener('mouseleave', () => animation.reverse());
 
+      console.log('animate');
+
       //   initialization
       animation.reverse();
    });
