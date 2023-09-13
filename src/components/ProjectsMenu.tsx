@@ -33,10 +33,10 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
 
  const projectsImgsRef = useRef(null);
  const projectsLinksRef = useRef(null);
+ const allProjects = [...work.links, ...playground.links, ...archive.links];
 
- const filterProjects = (filter: ProjectsMenu) => {
-  const filteredProjects = filter.links;
-  setProjectItems(filteredProjects);
+ const filterProjects = (filter: ProjectItems[]) => {
+  setProjectItems(filter);
  };
 
  useLayoutEffect(() => {
@@ -49,7 +49,15 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
    <div className='flex justify-end gap-8 mt-16 mr-4 mb-4'>
     <button
      onClick={() => {
-      filterProjects(work);
+      filterProjects(allProjects);
+     }}
+    >
+     All
+    </button>
+    <span>/</span>
+    <button
+     onClick={() => {
+      filterProjects(work.links);
      }}
     >
      Recent
@@ -57,7 +65,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
     <span>/</span>
     <button
      onClick={() => {
-      filterProjects(playground);
+      filterProjects(playground.links);
      }}
     >
      Playground
@@ -65,14 +73,14 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
     <span>/</span>
     <button
      onClick={() => {
-      filterProjects(archive);
+      filterProjects(archive.links);
      }}
     >
      Archive
     </button>
    </div>
    <GridDiv
-    divClass='grid grid-cols-12 grid-rows-6 w-full'
+    divClass='grid grid-cols-12 grid-rows-6 w-full transition-all duration-500 ease-in-out'
     top={true}
     bottom={true}
     left={true}
@@ -86,7 +94,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
          key={index}
          //   placeholder='blur'
          alt='photo'
-         className='object-cover ml-1'
+         className='object-cover ml-1 bg-red-500'
          sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
          fill
         />

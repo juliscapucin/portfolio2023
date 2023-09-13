@@ -133,6 +133,41 @@ export const playground = {
          id: 'playground5',
          coverImage: '/pool.avif',
       },
+      {
+         label: 'Playground6',
+         category: 'playground',
+         slug: 'playground/playground6',
+         id: 'playground6',
+         coverImage: '/pool.avif',
+      },
+      {
+         label: 'Playground7',
+         category: 'playground',
+         slug: 'playground/playground7',
+         id: 'playground7',
+         coverImage: '/pool.avif',
+      },
+      {
+         label: 'Playground8',
+         category: 'playground',
+         slug: 'playground/playground8',
+         id: 'playground8',
+         coverImage: '/pool.avif',
+      },
+      {
+         label: 'Playground9',
+         category: 'playground',
+         slug: 'playground/playground9',
+         id: 'playground9',
+         coverImage: '/pool.avif',
+      },
+      {
+         label: 'Playground10',
+         category: 'playground',
+         slug: 'playground/playground10',
+         id: 'playground10',
+         coverImage: '/pool.avif',
+      },
    ],
 };
 
