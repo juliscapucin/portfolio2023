@@ -23,6 +23,7 @@ export default function ProjectCard({
  const router = useRouter();
 
  return variant === 'image' ? (
+  // Image View
   <GridDiv
    right={true}
    bottom={true}
@@ -55,6 +56,7 @@ export default function ProjectCard({
    </button>
   </GridDiv>
  ) : (
+  // List View
   <GridDiv
    top={false}
    right={true}

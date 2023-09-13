@@ -9,7 +9,6 @@ import { useMediaQuery } from '@/hooks';
 
 import {
  GridDiv,
- SectionTitle,
  ProjectsMenu,
  HeroDesktop,
  HeroMobile,
@@ -45,12 +44,7 @@ export default function Home() {
     {breakpoint === 'desktop' && <HeroDesktop />}
    </GridDiv>
 
-   <SectionTitle title='Work' />
-
-   {/* Work */}
-   <section className='grid'>
-    <ProjectsMenu activeBreakpoint={breakpoint} />
-   </section>
+   <ProjectsMenu activeBreakpoint={breakpoint} />
 
    <Footer />
   </div>

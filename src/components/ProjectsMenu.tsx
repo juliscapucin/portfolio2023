@@ -5,9 +5,11 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 import { animateProjectsMenu } from '@/animations';
 import { work, playground, archive } from '@/constants';
+import { useWindowDimensions } from '@/hooks';
 
 import ProjectCard from './ProjectCard';
 import GridDiv from './GridDiv';
+import { SectionTitle } from '.';
 
 interface ProjectItems {
  label: string;
@@ -25,6 +27,7 @@ interface ProjectsMenuProps {
 }
 
 export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
+ const { width, height } = useWindowDimensions();
  const [variant, setVariant] = useState<string>('list');
  const [projectItems, setProjectItems] = useState<ProjectItems[]>([
   ...work.links,
@@ -47,14 +50,22 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
  useLayoutEffect(() => {
   if (projectsImgsRef.current && projectsLinksRef.current)
    animateProjectsMenu(projectsImgsRef.current, projectsLinksRef.current);
- }, [projectsImgsRef.current, projectsLinksRef.current]);
+ }, [
+  projectsImgsRef.current,
+  projectsLinksRef.current,
+  variant,
+  projectItems,
+  width,
+  height,
+ ]);
 
  return (
-  <>
+  <section className='grid h-screen min-h-screen'>
+   <SectionTitle title='Work' />
    {/* Filter Menu */}
    <div className='flex justify-between mt-16 mr-4 mb-4'>
     {/* View buttons */}
-    <div className='flex gap-8'>
+    <div className='hidden md:flex gap-8 align-bottom'>
      <button
       onClick={() => {
        toggleVariant();
@@ -72,7 +83,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
      </button>
     </div>
     {/* Filter buttons */}
-    <div className='flex gap-8'>
+    <div className='flex gap-8 align-bottom'>
      <button
       onClick={() => {
        filterProjects(allProjects);
@@ -111,14 +122,15 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
    {/* List View */}
    {variant === 'list' ? (
     <GridDiv
-     divClass='grid grid-cols-12 grid-rows-6 w-full'
+     divClass='grid grid-cols-12 w-full h-full overflow-hidden'
      top={true}
+     right={true}
      bottom={true}
      left={true}
     >
      {/* Render images only on desktop */}
      {activeBreakpoint === 'desktop' && (
-      <div className='col-span-4 row-span-4 relative' ref={projectsImgsRef}>
+      <div className='col-span-4 aspect-square relative' ref={projectsImgsRef}>
        {projectItems.map((img, index) => {
         return (
          <Image
@@ -180,6 +192,6 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
      })}
     </GridDiv>
    )}
-  </>
+  </section>
  );
 }
