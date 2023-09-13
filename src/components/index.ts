@@ -14,6 +14,7 @@ import MenuDesktop from './MenuDesktop';
 import MenuMobile from './MenuMobile';
 import ProjectCard from './ProjectCard';
 import ProjectsMenu from './ProjectsMenu';
+import ProjectTitle from './ProjectTitle';
 import SectionTitle from './SectionTitle';
 import ShallowPage from './shallowPage/ShallowPage';
 
@@ -32,6 +33,7 @@ export {
    MenuMobile,
    ProjectCard,
    ProjectsMenu,
+   ProjectTitle,
    SectionTitle,
    ShallowPage,
 };

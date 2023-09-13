@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { GridDiv, AnimationGridDiv } from '.';
+import { GridDiv, AnimationGridDiv, ProjectTitle } from '.';
 import { animateToFullScreen } from '@/animations/pageTransitions';
 
 interface ProjectCardProps {
@@ -23,16 +23,36 @@ export default function ProjectCard({
  const router = useRouter();
 
  return variant === 'image' ? (
-  <GridDiv>
-   <Image
-    src={coverImage}
-    key={id}
-    //   placeholder='blur'
-    alt='photo'
-    className='object-cover ml-1 bg-red-500'
-    sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-    fill
-   />
+  <GridDiv
+   right={true}
+   bottom={true}
+   divClass={`relative col-span-1 aspect-square`}
+  >
+   <button
+    className={`h-full w-full p-8 group flex justify-center items-center`}
+    onClick={() => {
+     animateToFullScreen(`.project-card-${id}`, () =>
+      router.push(`/${slug}`, { scroll: false })
+     );
+    }}
+   >
+    <ProjectTitle
+     title={title}
+     divClass={`absolute bottom-4 left-4`}
+     textSize='text-titleMedium'
+    />
+    <div className='relative w-3/4 h-3/4'>
+     <Image
+      src={coverImage}
+      key={id}
+      //   placeholder='blur'
+      alt='photo'
+      className='object-cover'
+      sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+      fill
+     />
+    </div>
+   </button>
   </GridDiv>
  ) : (
   <GridDiv
@@ -57,16 +77,7 @@ export default function ProjectCard({
      );
     }}
    >
-    <div className='h-11 overflow-hidden'>
-     <div className='flex flex-col justify-start items-start group-hover:-translate-y-1/2 transition'>
-      <span className='font-headline text-headlineSmall uppercase text-colorBlack dark:text-colorWhite'>
-       {title}
-      </span>
-      <span className='font-headline text-headlineSmall uppercase text-colorBlack dark:text-colorWhite'>
-       {title}
-      </span>
-     </div>
-    </div>
+    <ProjectTitle title={title} textSize='text-headlineSmall' />
    </button>
   </GridDiv>
  );

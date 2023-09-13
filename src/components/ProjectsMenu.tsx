@@ -25,7 +25,7 @@ interface ProjectsMenuProps {
 }
 
 export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
- const [variant, setVariant] = useState<string>('image');
+ const [variant, setVariant] = useState<string>('list');
  const [projectItems, setProjectItems] = useState<ProjectItems[]>([
   ...work.links,
   ...playground.links,
@@ -126,7 +126,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
           key={index}
           //   placeholder='blur'
           alt='photo'
-          className='object-cover ml-1 bg-red-500'
+          className='object-cover'
           sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
           fill
          />
@@ -158,7 +158,13 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
     </GridDiv>
    ) : (
     // Image View
-    <GridDiv divClass='flex no-wrap' top={true} bottom={true} left={true}>
+    <GridDiv
+     divClass='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full'
+     top={true}
+     right={true}
+     bottom={true}
+     left={true}
+    >
      {projectItems.map((link, index) => {
       return (
        <div key={index}>
