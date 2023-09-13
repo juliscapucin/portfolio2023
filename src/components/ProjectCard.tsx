@@ -10,6 +10,7 @@ interface ProjectCardProps {
  title: string;
  slug: string;
  coverImage: string;
+ variant?: string;
 }
 
 export default function ProjectCard({
@@ -17,10 +18,23 @@ export default function ProjectCard({
  id,
  slug,
  coverImage,
+ variant,
 }: ProjectCardProps) {
  const router = useRouter();
 
- return (
+ return variant === 'image' ? (
+  <GridDiv>
+   <Image
+    src={coverImage}
+    key={id}
+    //   placeholder='blur'
+    alt='photo'
+    className='object-cover ml-1 bg-red-500'
+    sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+    fill
+   />
+  </GridDiv>
+ ) : (
   <GridDiv
    top={false}
    right={true}
