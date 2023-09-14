@@ -10,6 +10,7 @@ import { useWindowDimensions } from '@/hooks';
 import ProjectCard from './ProjectCard';
 import GridDiv from './GridDiv';
 import { SectionTitle } from '.';
+import ProjectsFilter from './ProjectsFilter';
 
 interface ProjectItems {
  label: string;
@@ -60,63 +61,14 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
  ]);
 
  return (
-  <section className='grid h-screen min-h-screen'>
+  <section className='h-screen min-h-screen'>
    <SectionTitle title='Work' />
-   {/* Filter Menu */}
-   <div className='flex justify-between mt-16 mr-4 mb-4'>
-    {/* View buttons */}
-    <div className='hidden md:flex gap-8 align-bottom'>
-     <button
-      onClick={() => {
-       toggleVariant();
-      }}
-     >
-      List View
-     </button>
-     <span>/</span>
-     <button
-      onClick={() => {
-       toggleVariant();
-      }}
-     >
-      Image View
-     </button>
-    </div>
-    {/* Filter buttons */}
-    <div className='flex gap-8 align-bottom'>
-     <button
-      onClick={() => {
-       filterProjects(allProjects);
-      }}
-     >
-      All
-     </button>
-     <span>/</span>
-     <button
-      onClick={() => {
-       filterProjects(work.links);
-      }}
-     >
-      Recent
-     </button>
-     <span>/</span>
-     <button
-      onClick={() => {
-       filterProjects(playground.links);
-      }}
-     >
-      Playground
-     </button>
-     <span>/</span>
-     <button
-      onClick={() => {
-       filterProjects(archive.links);
-      }}
-     >
-      Archive
-     </button>
-    </div>
-   </div>
+   <ProjectsFilter
+    work={work}
+    playground={playground}
+    archive={archive}
+    {...{ filterProjects, toggleVariant, allProjects }}
+   />
 
    {/* Projects */}
    {/* List View */}

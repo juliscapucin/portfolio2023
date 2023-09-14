@@ -13,6 +13,7 @@ import HeroMobile from './HeroMobile';
 import MenuDesktop from './MenuDesktop';
 import MenuMobile from './MenuMobile';
 import ProjectCard from './ProjectCard';
+import ProjectsFilter from './ProjectsFilter';
 import ProjectsMenu from './ProjectsMenu';
 import ProjectTitle from './ProjectTitle';
 import SectionTitle from './SectionTitle';
@@ -32,6 +33,7 @@ export {
    MenuDesktop,
    MenuMobile,
    ProjectCard,
+   ProjectsFilter,
    ProjectsMenu,
    ProjectTitle,
    SectionTitle,
