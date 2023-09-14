@@ -33,7 +33,5 @@ export const useMediaQuery = (width: number) => {
   }
  }, []);
 
- console.log('targetReached', targetReached);
-
  if (targetReached !== null) return targetReached;
 };

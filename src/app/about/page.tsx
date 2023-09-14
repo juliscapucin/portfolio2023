@@ -35,7 +35,7 @@ export default function Page() {
  }, []);
 
  return (
-  <section className={`${slug}-page`}>
+  <section className={`${slug}-page opacity-0`}>
    <h1 className='text-9xl'>{title}</h1>
    <p>{paragraph1}</p>
   </section>

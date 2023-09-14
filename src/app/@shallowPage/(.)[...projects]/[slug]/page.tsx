@@ -99,17 +99,17 @@ export default function Page({ params }: any) {
       <article>
        <h2>Scroll-based Progress Indicators</h2>
        <p>
-        Use ScrollTrigger to create progress indicators that visualize the
-        user's progress on a page. Highlighting sections, updating navigation
-        menus, or triggering animations based on the scroll progress can all be
-        achieved with ease.
+        Use ScrollTrigger to create progress indicators that visualize the users
+        progress on a page. Highlighting sections, updating navigation menus, or
+        triggering animations based on the scroll progress can all be achieved
+        with ease.
        </p>
       </article>
       <article>
        <h2>Responsive and Adaptive Animations</h2>
        <p>
         ScrollTrigger seamlessly adapts to different screen sizes and
-        orientations. You can create animations that respond to the user's
+        orientations. You can create animations that respond to the users
         scrolling behavior while providing a consistent and optimized experience
         across devices.
        </p>
@@ -193,17 +193,17 @@ export default function Page({ params }: any) {
       <article>
        <h2>Scroll-based Progress Indicators</h2>
        <p>
-        Use ScrollTrigger to create progress indicators that visualize the
-        user's progress on a page. Highlighting sections, updating navigation
-        menus, or triggering animations based on the scroll progress can all be
-        achieved with ease.
+        Use ScrollTrigger to create progress indicators that visualize the users
+        progress on a page. Highlighting sections, updating navigation menus, or
+        triggering animations based on the scroll progress can all be achieved
+        with ease.
        </p>
       </article>
       <article>
        <h2>Responsive and Adaptive Animations</h2>
        <p>
         ScrollTrigger seamlessly adapts to different screen sizes and
-        orientations. You can create animations that respond to the user's
+        orientations. You can create animations that respond to the users
         scrolling behavior while providing a consistent and optimized experience
         across devices.
        </p>

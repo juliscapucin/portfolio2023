@@ -1,4 +1,5 @@
 import { useMediaQuery } from './useMediaQuery';
 import { useModalOpen } from './useModalOpen';
+import { useWindowDimensions } from './useWindowDimensions';
 
-export { useMediaQuery, useModalOpen };
+export { useMediaQuery, useModalOpen, useWindowDimensions };

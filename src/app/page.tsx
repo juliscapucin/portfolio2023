@@ -3,13 +3,12 @@
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
-import { work, playground, archive, breakpoints } from '@/constants';
+import { breakpoints } from '@/constants';
 import { usePageContext } from '@/context';
 import { useMediaQuery } from '@/hooks';
 
 import {
  GridDiv,
- SectionTitle,
  ProjectsMenu,
  HeroDesktop,
  HeroMobile,
@@ -45,15 +44,7 @@ export default function Home() {
     {breakpoint === 'desktop' && <HeroDesktop />}
    </GridDiv>
 
-   <SectionTitle title='Work' />
-
-   {/* Work */}
-   <section className='grid'>
-    <ProjectsMenu
-     projectItems={[...work.links, ...playground.links, ...archive.links]}
-     activeBreakpoint={breakpoint}
-    />
-   </section>
+   <ProjectsMenu activeBreakpoint={breakpoint} />
 
    <Footer />
   </div>

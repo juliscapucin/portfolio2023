@@ -1,3 +1,5 @@
+'use client';
+
 import { usePathname, useRouter } from 'next/navigation';
 
 import { GridDiv, MenuLink } from '@/components';
@@ -37,6 +39,7 @@ export default function MenuDesktop({ navLinks }: MenuProps) {
     <button
      onClick={() => {
       const shallowPage = document.querySelector('.shallow-page');
+
       if (shallowPage)
        animateToRightTransition('shallow-page', () => router.back());
       else {
@@ -65,7 +68,7 @@ export default function MenuDesktop({ navLinks }: MenuProps) {
       <MenuLink
        label={link.label}
        key={link.id}
-       activeState={pathname === `/${link.slug}` ? true : false}
+       activeState={pathname.includes(`/${link.slug}`) ? true : false}
        action={() => {
         const filteredPathname = pathname === '/' ? 'home' : pathname.slice(1);
 
@@ -73,16 +76,25 @@ export default function MenuDesktop({ navLinks }: MenuProps) {
          (element) => element.slug === pathname.slice(1)
         );
 
+        const shallowPage = document.querySelector('.shallow-page');
+
+        if (shallowPage) {
+         animateToRightTransition('shallow-page', () =>
+          router.push(`/${link.slug}`)
+         );
+         return;
+        }
+
         // Transition to left
         if ((actualPage && link.id > actualPage[0]?.id) || pathname === '/') {
-         animateToLeftTransition(`${filteredPathname}-page`, () =>
-          router.push(`/${link.slug}`)
-         );
+         animateToLeftTransition(`${filteredPathname}-page`, () => {
+          router.push(`/${link.slug}`);
+         });
         } else {
          // Transition to right
-         animateToRightTransition(`${filteredPathname}-page`, () =>
-          router.push(`/${link.slug}`)
-         );
+         animateToRightTransition(`${filteredPathname}-page`, () => {
+          router.push(`/${link.slug}`);
+         });
         }
        }}
       />
