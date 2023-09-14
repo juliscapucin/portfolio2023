@@ -1,6 +1,6 @@
 import localFont from 'next/font/local';
 
-import { Header, ContactModal } from '@/components';
+import { Header, ContactModal, Footer } from '@/components';
 import { ModalContextProvider, PageContextProvider } from '@/context';
 
 import '@/styles/styles.css';
@@ -52,6 +52,7 @@ export default function RootLayout(props: {
      </PageContextProvider>
 
      <ContactModal />
+     <Footer />
     </body>
    </ModalContextProvider>
   </html>
