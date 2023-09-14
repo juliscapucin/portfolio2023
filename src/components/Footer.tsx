@@ -10,7 +10,7 @@ export default function Footer() {
    right={true}
    bottom={true}
    left={true}
-   divClass={`px-8 py-16 lg:grid grid-cols-12`}
+   divClass={`px-8 py-16 mx-8 lg:grid grid-cols-12 max-w-desktop`}
   >
    {/* White Space */}
    <div className='col-span-1'></div>

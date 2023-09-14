@@ -18,6 +18,7 @@ import ProjectsMenu from './ProjectsMenu';
 import ProjectTitle from './ProjectTitle';
 import SectionTitle from './SectionTitle';
 import ShallowPage from './shallowPage/ShallowPage';
+import StoryblokProvider from './StoryblokProvider';
 
 export {
    AnimationGridDiv,
@@ -38,4 +39,5 @@ export {
    ProjectTitle,
    SectionTitle,
    ShallowPage,
+   StoryblokProvider,
 };

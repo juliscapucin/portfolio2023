@@ -1,14 +1,16 @@
 'use client';
 
 import Image from 'next/image';
-import { CustomImage, ShallowPage } from '@/components';
 import { createRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Page({ params }: any) {
+import { CustomImage, ShallowPage } from '@/components';
+import { work, playground, archive } from '@/constants';
+
+export default function Page({ params }: { params: { slug: string } }) {
  const title = createRef<HTMLHeadingElement>();
  const left = createRef<HTMLDivElement>();
  const right = createRef<HTMLDivElement>();
@@ -37,10 +39,12 @@ export default function Page({ params }: any) {
   });
  }, [left2, right2]);
 
+ const slug = params.slug;
+
  return (
   <ShallowPage>
    {/* Project header */}
-   <section className='relative w-screen h-screen'>
+   <section className='relative w-full h-screen'>
     <div className={`relative h-full w-full overflow-hidden`}>
      <Image
       src='/pool.avif'
@@ -53,7 +57,7 @@ export default function Page({ params }: any) {
     </div>
    </section>
    <section className='px-8 py-16 bg-colorWhite dark:bg-colorBlack'>
-    <h1 className='text-7xl'>{params.slug} intercepted</h1>
+    <h1 className='text-7xl'>{slug} intercepted</h1>
     <p>
      Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae impedit
      obcaecati temporibus cum. Laudantium ad voluptatem consequuntur. Omnis

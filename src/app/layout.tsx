@@ -1,7 +1,17 @@
 import localFont from 'next/font/local';
 
-import { Header, ContactModal, Footer } from '@/components';
+import { Header, ContactModal, Footer, StoryblokProvider } from '@/components';
 import { ModalContextProvider, PageContextProvider } from '@/context';
+
+import { storyblokInit, apiPlugin } from '@storyblok/react/rsc';
+
+storyblokInit({
+ accessToken: process.env.storyblokApiKey,
+ use: [apiPlugin],
+ apiOptions: {
+  region: 'eu',
+ },
+});
 
 import '@/styles/styles.css';
 
@@ -36,25 +46,27 @@ export default function RootLayout(props: {
  shallowPage: React.ReactNode;
 }) {
  return (
-  <html lang='en' className='dark'>
-   <ModalContextProvider>
-    <body
-     className={`${myFont.className} relative mt-0 max-w-desktop font-text font-extralight text-bodyLarge bg-colorWhite text-colorBlack dark:bg-colorBlack dark:text-colorWhite mx-auto overflow-x-hidden`}
-    >
-     <Header />
-     <PageContextProvider>
-      <main className={`mt-16 mx-8 overflow-x-hidden`}>
-       {/* Transition Overlay */}
-       <div className='transition-fullscreen w-screen h-screen top-0 left-0 fixed z-10 hidden pointer-events-none'></div>
-       {props.children}
-       {props.shallowPage}
-      </main>
-     </PageContextProvider>
+  <StoryblokProvider>
+   <html lang='en' className='dark'>
+    <ModalContextProvider>
+     <body
+      className={`${myFont.className} relative mt-0 max-w-desktop font-text font-extralight text-bodyLarge bg-colorWhite text-colorBlack dark:bg-colorBlack dark:text-colorWhite mx-auto overflow-x-hidden`}
+     >
+      <Header />
+      <PageContextProvider>
+       <main className={`mt-16 mx-8 overflow-x-hidden`}>
+        {/* Transition Overlay */}
+        <div className='transition-fullscreen w-screen h-screen top-0 left-0 fixed z-10 hidden pointer-events-none'></div>
+        {props.children}
+        {props.shallowPage}
+       </main>
+      </PageContextProvider>
 
-     <ContactModal />
-     <Footer />
-    </body>
-   </ModalContextProvider>
-  </html>
+      <ContactModal />
+      <Footer />
+     </body>
+    </ModalContextProvider>
+   </html>
+  </StoryblokProvider>
  );
 }
