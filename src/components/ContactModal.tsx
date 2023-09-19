@@ -14,14 +14,16 @@ export default function ContactModal() {
     modalOpen ? '-translate-y-full' : ''
    }`}
   >
-   <div className='grid grid-cols-12 border border-colorBlack dark:border-colorWhite h-full p-16 relative'>
+   <div className='block lg:grid grid-cols-12 items-center border border-colorBlack dark:border-colorWhite h-full p-16 relative'>
     <div className='absolute top-8 right-8' onClick={updateModalOpen}>
      <ButtonClose action={() => updateModalOpen} />
     </div>
-    <div className='col-span-4 overflow-hidden'>
+    <div className='col-span-2'></div>
+    <div className='mb-16 lg:mb-0 col-span-3 overflow-hidden'>
      <Availability />
     </div>
-    <div className='col-span-4 overflow-hidden'>
+    <div className='col-span-1'></div>
+    <div className='col-span-3'>
      <SocialLinks />
     </div>
    </div>
