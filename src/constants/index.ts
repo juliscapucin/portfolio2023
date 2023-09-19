@@ -243,49 +243,40 @@ export const playgroundPage = {
    paragraph1: 'Some recent commercial and personal projects',
 };
 
-export const footer = [
-   {
-      title: 'Explore',
-      id: 'explore',
-      links: [
-         { label: 'Home', url: '/', id: 'home' },
-         { label: 'Work', url: '/work', id: 'work' },
-         { label: 'About', url: '/about', id: 'about' },
-      ],
-   },
-   {
-      title: 'Social',
-      id: 'social',
-      links: [
-         { label: 'Instagram', url: '/', id: 'instagram' },
-         {
-            label: 'LinkedIn',
-            url: 'https://www.linkedin.com/in/juliscapucin/',
-            id: 'linkedin',
-         },
-         {
-            label: 'The Dots',
-            url: 'https://the-dots.com/users/juli-scapucin-1472123',
-            id: 'dots',
-         },
-         { label: 'GitHub', url: '/about', id: 'github' },
-         { label: 'CodePen', url: '/about', id: 'codepen' },
-      ],
-   },
-];
+export const footer = {
+   title: 'Explore',
+   id: 'explore',
+   links: [
+      { label: 'Home', url: '/', id: 'home' },
+      { label: 'Work', url: '/work', id: 'work' },
+      { label: 'About', url: '/about', id: 'about' },
+   ],
+};
 
-export const socials = [
-   { label: 'Instagram', url: '/', id: 'instagram' },
-   {
-      label: 'LinkedIn',
-      url: 'https://www.linkedin.com/in/juliscapucin/',
-      id: 'linkedin',
-   },
-   {
-      label: 'The Dots',
-      url: 'https://the-dots.com/users/juli-scapucin-1472123',
-      id: 'dots',
-   },
-   { label: 'GitHub', url: '/about', id: 'github' },
-   { label: 'CodePen', url: '/about', id: 'codepen' },
-];
+export const socials = {
+   title: 'Social',
+   id: 'social',
+   links: [
+      {
+         label: 'Instagram',
+         url: 'https://www.instagram.com/juli.scapucin/',
+         id: 'instagram',
+      },
+      {
+         label: 'LinkedIn',
+         url: 'https://www.linkedin.com/in/juliscapucin/',
+         id: 'linkedin',
+      },
+      {
+         label: 'The Dots',
+         url: 'https://the-dots.com/users/juli-scapucin-1472123',
+         id: 'dots',
+      },
+      { label: 'GitHub', url: 'https://github.com/juliscapucin', id: 'github' },
+      {
+         label: 'CodePen',
+         url: 'https://codepen.io/juliscapucin',
+         id: 'codepen',
+      },
+   ],
+};
