@@ -29,8 +29,14 @@ export default function ProjectCard({
    bottom={true}
    divClass={`relative col-span-1 aspect-square`}
   >
+   {/* Empty grid element for animation */}
+   <div className='absolute top-0 left-0 w-full h-full opacity-0 z-10 pointer-events-none'>
+    <AnimationGridDiv
+     divClass={`project-card-${id} overflow-hidden bg-colorWhite dark:bg-colorBlack pointer-events-none`}
+    />
+   </div>
    <button
-    className={`h-full w-full p-8 group flex justify-center items-center`}
+    className={`h-full w-full p-8 group flex justify-center items-center relative`}
     onClick={() => {
      animateToFullScreen(`.project-card-${id}`, () =>
       router.push(`/${slug}`, { scroll: false })
@@ -65,7 +71,7 @@ export default function ProjectCard({
    divClass={`relative h-32`}
   >
    {/* Empty grid element for animation */}
-   <div className='absolute -top-36 left-0-0 bottom-0 w-full h-full opacity-0'>
+   <div className='absolute -top-36 left-0 bottom-0 w-full h-full opacity-0'>
     <AnimationGridDiv
      divClass={`project-card-${id} overflow-hidden bg-colorWhite dark:bg-colorBlack pointer-events-none`}
     />

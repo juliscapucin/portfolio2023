@@ -13,11 +13,14 @@ import HeroMobile from './HeroMobile';
 import MenuDesktop from './MenuDesktop';
 import MenuMobile from './MenuMobile';
 import ProjectCard from './ProjectCard';
+import ProjectDisciplines from './ProjectDisciplines';
+import ProjectNext from './ProjectNext';
 import ProjectsFilter from './ProjectsFilter';
 import ProjectsMenu from './ProjectsMenu';
 import ProjectTitle from './ProjectTitle';
 import SectionTitle from './SectionTitle';
 import ShallowPage from './shallowPage/ShallowPage';
+import StoryblokProvider from './StoryblokProvider';
 
 export {
    AnimationGridDiv,
@@ -33,9 +36,12 @@ export {
    MenuDesktop,
    MenuMobile,
    ProjectCard,
+   ProjectDisciplines,
+   ProjectNext,
    ProjectsFilter,
    ProjectsMenu,
    ProjectTitle,
    SectionTitle,
    ShallowPage,
+   StoryblokProvider,
 };

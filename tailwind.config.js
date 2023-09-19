@@ -4,6 +4,9 @@ module.exports = {
    content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
    theme: {
       extend: {
+         animation: {
+            'fade-in': 'fadeIn 1s linear forwards',
+         },
          maxWidth: {
             desktop: '2000px',
          },

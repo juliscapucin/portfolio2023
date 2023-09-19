@@ -7,6 +7,7 @@ import {
  animateToLeft,
  animateToRightTransition,
 } from '@/animations/pageTransitions';
+import { Footer } from '@/components';
 
 export default function ShallowPage({
  children,
@@ -46,13 +47,17 @@ export default function ShallowPage({
 
  return (
   <div
-   className='shallow-page scroll-trigger fixed top-0 left-0 right-0 bottom-0 overflow-y-scroll overflow-x-hidden z-10'
+   className='shallow-page scroll-trigger fixed top-0 left-0 bottom-0 right-0 mx-auto pr-8 dark:bg-colorBlack max-w-desktop overflow-y-scroll overflow-x-hidden z-10'
    ref={overlay}
    onClick={onClick}
   >
-   <div className='wrapper max-w-desktop overflow-hidden m-auto' ref={wrapper}>
+   <div
+    className='wrapper max-w-desktop overflow-hidden m-auto p-16 pt-32'
+    ref={wrapper}
+   >
     {children}
    </div>
+   <Footer />
   </div>
  );
 }
