@@ -3,16 +3,17 @@
 import { useEffect } from 'react';
 import Image from 'next/image';
 
+import { usePathname } from 'next/navigation';
+
 import { animateToLeft, animateToRight } from '@/animations/pageTransitions';
 import { about, navLinks } from '@/constants';
 import { usePageContext } from '@/context';
-import { usePathname } from 'next/navigation';
-import { Footer } from '@/components';
+import { Footer, Experience } from '@/components';
 
 export default function Page() {
  const pathname = usePathname();
  const { previousPage, updatePreviousPage } = usePageContext();
- const { title, paragraph1, slug } = about;
+ const { title, paragraph1, slug, experience } = about;
 
  useEffect(() => {
   const actualPage = navLinks.filter(
@@ -82,6 +83,7 @@ export default function Page() {
     </div>
     <div className='col-span-1'></div>
    </div>
+   <Experience experience={experience} />
    <Footer />
   </div>
  );
