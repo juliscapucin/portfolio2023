@@ -79,6 +79,10 @@ p {
    font-weight: 300;
 }
 
+button {
+   cursor: pointer;
+}
+
 /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */
 
 .animation-grid-element {

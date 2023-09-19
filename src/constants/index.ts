@@ -17,7 +17,7 @@ export const work = {
          slug: 'work/amp',
          id: 'amp',
          coverImage: '/amp-ipad-1.jpg',
-         disciplines: ['web development', 'web design'],
+         disciplines: ['web development', 'web design', 'branding'],
          subtitle:
             'Celebrating creative fusion: crafting the online identity for ampamulherdopadre, where art, design, communication, and music collide',
          content:
