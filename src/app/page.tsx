@@ -7,7 +7,13 @@ import { breakpoints } from '@/constants';
 import { usePageContext } from '@/context';
 import { useMediaQuery } from '@/hooks';
 
-import { GridDiv, ProjectsMenu, HeroDesktop, HeroMobile } from '@/components';
+import {
+ GridDiv,
+ ProjectsMenu,
+ HeroDesktop,
+ HeroMobile,
+ Footer,
+} from '@/components';
 import { animateToRight } from '@/animations';
 
 export default function Home() {
@@ -39,6 +45,8 @@ export default function Home() {
    </GridDiv>
 
    <ProjectsMenu activeBreakpoint={breakpoint} />
+
+   <Footer />
   </div>
  );
 }

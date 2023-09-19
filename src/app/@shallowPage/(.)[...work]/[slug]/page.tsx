@@ -59,7 +59,9 @@ export default function Page({ params }: { params: { slug: string } }) {
   <ShallowPage>
    {/* Project header */}
    <section className='relative w-full mb-1'>
-    <h1 className='text-displayLarge'>{project?.title ? project.title : ''}</h1>
+    <h1 className='text-displaySmall md:text-displayMedium lg:text-displayLarge'>
+     {project?.title ? project.title : ''}
+    </h1>
     <div className='md:grid grid-cols-12 mb-16'>
      <p className='text-headlineSmall md:col-span-8 lg:col-span-6'>
       {project.subtitle}

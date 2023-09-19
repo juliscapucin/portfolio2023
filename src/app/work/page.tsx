@@ -14,7 +14,7 @@ import {
 
 import { usePageContext } from '@/context';
 import { useMediaQuery } from '@/hooks';
-import { ProjectsMenu } from '@/components';
+import { Footer, ProjectsMenu } from '@/components';
 import { animateToLeft, animateToRight } from '@/animations';
 
 export default function Page() {
@@ -51,13 +51,11 @@ export default function Page() {
  }, []);
 
  return (
-  <section className={`${slug}-page opacity-0`}>
-   <h1 className='displaySmall lg:text-displayLarge'>{title}</h1>
+  <div className={`${slug}-page opacity-0`}>
+   <h1 className='text-displaySmall lg:text-displayLarge'>{title}</h1>
    <p>{paragraph1}</p>
-   <ProjectsMenu
-    projectItems={[...work.links, ...playground.links, ...archive.links]}
-    activeBreakpoint={breakpoint}
-   />
-  </section>
+   <ProjectsMenu activeBreakpoint={breakpoint} />
+   <Footer />
+  </div>
  );
 }

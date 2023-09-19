@@ -1,6 +1,6 @@
 import localFont from 'next/font/local';
 
-import { Header, ContactModal, Footer, StoryblokProvider } from '@/components';
+import { Header, ContactModal, StoryblokProvider } from '@/components';
 import { ModalContextProvider, PageContextProvider } from '@/context';
 
 // import { storyblokInit, apiPlugin } from '@storyblok/react/rsc';
@@ -63,7 +63,6 @@ export default function RootLayout(props: {
       </PageContextProvider>
 
       <ContactModal />
-      <Footer />
      </body>
     </ModalContextProvider>
    </html>
