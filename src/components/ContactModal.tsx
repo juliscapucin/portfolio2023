@@ -1,20 +1,24 @@
 'use client';
 
 import { useModalContext } from '@/context';
+import { SocialLinks } from '.';
+import ButtonClose from '@buttons/ButtonClose';
 
 export default function ContactModal() {
  const { modalOpen, setModalOpen, updateModalOpen } = useModalContext();
 
  return (
   <aside
-   className={`w-full max-w-desktop h-1/2 dark:bg-colorBlack border dark:border-colorWhite fixed top-full mx-8 p-8 z-20 transition-transform ${
+   className={`w-full max-w-desktop h-1/2 bg-colorWhite dark:bg-colorBlack fixed top-full mx-auto px-8 z-20 transition-transform ${
     modalOpen ? '-translate-y-full' : ''
    }`}
   >
-   <button className='absolute top-8 right-8' onClick={updateModalOpen}>
-    X
-   </button>
-   <h2>Hello</h2>
+   <div className='border border-colorBlack dark:border-colorWhite h-full p-8 relative'>
+    <div className='absolute top-8 right-8' onClick={updateModalOpen}>
+     <ButtonClose action={() => updateModalOpen} />
+    </div>
+    <SocialLinks />
+   </div>
   </aside>
  );
 }

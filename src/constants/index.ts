@@ -273,3 +273,19 @@ export const footer = [
       ],
    },
 ];
+
+export const socials = [
+   { label: 'Instagram', url: '/', id: 'instagram' },
+   {
+      label: 'LinkedIn',
+      url: 'https://www.linkedin.com/in/juliscapucin/',
+      id: 'linkedin',
+   },
+   {
+      label: 'The Dots',
+      url: 'https://the-dots.com/users/juli-scapucin-1472123',
+      id: 'dots',
+   },
+   { label: 'GitHub', url: '/about', id: 'github' },
+   { label: 'CodePen', url: '/about', id: 'codepen' },
+];

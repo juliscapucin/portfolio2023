@@ -20,6 +20,7 @@ import ProjectsMenu from './ProjectsMenu';
 import ProjectTitle from './ProjectTitle';
 import SectionTitle from './SectionTitle';
 import ShallowPage from './shallowPage/ShallowPage';
+import SocialLinks from './SocialLinks';
 import StoryblokProvider from './StoryblokProvider';
 
 export {
@@ -43,5 +44,6 @@ export {
    ProjectTitle,
    SectionTitle,
    ShallowPage,
+   SocialLinks,
    StoryblokProvider,
 };
