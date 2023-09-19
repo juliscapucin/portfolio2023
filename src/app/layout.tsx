@@ -3,15 +3,15 @@ import localFont from 'next/font/local';
 import { Header, ContactModal, Footer, StoryblokProvider } from '@/components';
 import { ModalContextProvider, PageContextProvider } from '@/context';
 
-import { storyblokInit, apiPlugin } from '@storyblok/react/rsc';
+// import { storyblokInit, apiPlugin } from '@storyblok/react/rsc';
 
-storyblokInit({
- accessToken: process.env.storyblokApiKey,
- use: [apiPlugin],
- apiOptions: {
-  region: 'eu',
- },
-});
+// storyblokInit({
+//  accessToken: process.env.storyblokApiKey,
+//  use: [apiPlugin],
+//  apiOptions: {
+//   region: 'eu',
+//  },
+// });
 
 import '@/styles/styles.css';
 

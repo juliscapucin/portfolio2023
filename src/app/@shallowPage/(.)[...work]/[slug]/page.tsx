@@ -39,37 +39,34 @@ export default function Page({ params }: { params: { slug: string } }) {
   });
  }, [left2, right2]);
 
+ const allProjects = [...work.links, ...playground.links, ...archive.links];
  const slug = params.slug;
+
+ const project = allProjects.find((project) => project.slug.includes(slug));
+
+ if (!project) return <div>404</div>;
 
  return (
   <ShallowPage>
    {/* Project header */}
    <section className='relative w-full h-screen'>
+    <h1 className='text-displayLarge'>{project?.title ? project.title : ''}</h1>
+    <p className='text-headlineSmall'>{project.subtitle}</p>
     <div className={`relative h-full w-full overflow-hidden`}>
      <Image
-      src='/pool.avif'
+      src={project.coverImage}
       alt='photo'
-      className='object-cover '
+      className='object-cover'
       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
       fill
       priority
      />
     </div>
    </section>
+   {/* Project content */}
    <section className='px-8 py-16 bg-colorWhite dark:bg-colorBlack'>
-    <h1 className='text-7xl'>{slug} intercepted</h1>
-    <p>
-     Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae impedit
-     obcaecati temporibus cum. Laudantium ad voluptatem consequuntur. Omnis
-     quasi, accusamus optio ab aliquid deleniti ut. Ipsam excepturi nam vitae
-     sit.
-    </p>
-    <p>
-     Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae impedit
-     obcaecati temporibus cum. Laudantium ad voluptatem consequuntur. Omnis
-     quasi, accusamus optio ab aliquid deleniti ut. Ipsam excepturi nam vitae
-     sit.
-    </p>
+    <h1 className='text-displayLarge'>{project?.title ? project.title : ''}</h1>
+    <p>{project.content}</p>
    </section>
    {/* Split screen */}
    <section className='bg-colorWhite dark:bg-colorBlack'>
@@ -79,9 +76,9 @@ export default function Page({ params }: { params: { slug: string } }) {
       className='w-1/2 flex-1/2 [&>article]:h-screen [&>article>h2]:text-3xl [&>article>h2]:mb-8'
      >
       <div className='h-screen flex justify-start items-center'>
-       <h1 className='text-7xl' ref={title}>
+       <h2 className='text-displaySmall' ref={title}>
         GSAP ScrollTrigger
-       </h1>
+       </h2>
       </div>
       <article>
        <h2>Scroll-based Animations</h2>

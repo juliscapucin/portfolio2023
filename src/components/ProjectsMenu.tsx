@@ -13,7 +13,7 @@ import { SectionTitle } from '.';
 import ProjectsFilter from './ProjectsFilter';
 
 interface ProjectItems {
- label: string;
+ title: string;
  slug: string;
  id: string;
  coverImage: string;
@@ -109,7 +109,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
        return (
         <div key={index}>
          <ProjectCard
-          title={link.label}
+          title={link.title}
           slug={link.slug}
           id={link.id}
           coverImage={link.coverImage}
@@ -133,7 +133,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
       return (
        <div key={index}>
         <ProjectCard
-         title={link.label}
+         title={link.title}
          slug={link.slug}
          id={link.id}
          coverImage={link.coverImage}

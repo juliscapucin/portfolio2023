@@ -69,6 +69,7 @@ h4,
 h5,
 h6 {
    font-weight: 600;
+   line-height: 1;
 }
 
 span,
@@ -188,8 +189,22 @@ p {
    animation: gridLineAnimation var(--duration1) var(--delay2) forwards;
 }
 
+/* ANIMATIONS */
+
 @keyframes gridLineAnimation {
    to {
       transform: translate3d(0, 0, 0);
+   }
+}
+
+@keyframes fadeIn {
+   to {
+      opacity: 1;
+   }
+}
+
+@keyframes fadeOut {
+   to {
+      opacity: 0;
    }
 }

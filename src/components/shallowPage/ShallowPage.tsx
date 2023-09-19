@@ -51,7 +51,7 @@ export default function ShallowPage({
    onClick={onClick}
   >
    <div
-    className='wrapper max-w-desktop overflow-hidden m-auto p-32'
+    className='wrapper max-w-desktop overflow-hidden m-auto p-16 pt-32'
     ref={wrapper}
    >
     {children}
