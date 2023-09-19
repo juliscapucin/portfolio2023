@@ -1,4 +1,13 @@
+'use client';
+
+import { useRef } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+
 import { GridDiv } from '.';
+import {
+ animateToLeftTransition,
+ animateToRightTransition,
+} from '@/animations';
 
 interface Project {
  title: string;
@@ -15,19 +24,31 @@ export default function ProjectNext({
  allProjects,
  project,
 }: ProjectNextProps) {
+ const pathname = usePathname();
+ const router = useRouter();
+ const nextProjectTip = useRef<HTMLSpanElement>(null);
+ const previousProjectTip = useRef<HTMLSpanElement>(null);
+
  const actualProjectIndex = allProjects.findIndex(
   (item: Project, index: number) => item.slug === project.slug
  );
-
  const nextProject = allProjects[actualProjectIndex + 1];
  const previousProject = allProjects[actualProjectIndex - 1];
 
  const handleNextButton = () => {
-  console.log(allProjects[actualProjectIndex + 1]);
+  const editedSlug = nextProject.slug.split('/').pop();
+  animateToLeftTransition('shallow-page', () => router.push(nextProject.slug));
  };
  const handlePreviousButton = () => {
-  console.log(allProjects[actualProjectIndex - 1]);
+  const editedSlug = previousProject.slug.split('/').pop();
+  if (!editedSlug) return;
+  animateToRightTransition('shallow-page', () => router.push(editedSlug));
  };
+
+ const toggleOpacity = (div: HTMLElement) => {
+  div.classList.toggle('opacity-0');
+ };
+
  return (
   <GridDiv
    divClass={'flex justify-center items-center gap-32 py-32'}
@@ -36,20 +57,44 @@ export default function ProjectNext({
    bottom={true}
   >
    {previousProject && (
-    <button
-     className='text-displaySmall cursor-pointer'
-     onClick={handlePreviousButton}
-    >
-     Previous
-    </button>
+    <>
+     <button
+      className='text-displaySmall cursor-pointer'
+      onClick={handlePreviousButton}
+      onMouseEnter={() => {
+       if (previousProjectTip.current)
+        toggleOpacity(previousProjectTip.current);
+      }}
+      onMouseLeave={() => {
+       if (previousProjectTip.current)
+        toggleOpacity(previousProjectTip.current);
+      }}
+     >
+      Previous
+     </button>
+     <span ref={previousProjectTip} className='opacity-0'>
+      {previousProject.title}
+     </span>
+    </>
    )}
    {nextProject && (
-    <button
-     className='text-displaySmall cursor-pointer'
-     onClick={handleNextButton}
-    >
-     Next
-    </button>
+    <>
+     <button
+      className='text-displaySmall cursor-pointer'
+      onClick={handleNextButton}
+      onMouseEnter={() => {
+       if (nextProjectTip.current) toggleOpacity(nextProjectTip.current);
+      }}
+      onMouseLeave={() => {
+       if (nextProjectTip.current) toggleOpacity(nextProjectTip.current);
+      }}
+     >
+      Next
+     </button>
+     <span ref={nextProjectTip} className='opacity-0'>
+      {nextProject.title}
+     </span>
+    </>
    )}
   </GridDiv>
  );
