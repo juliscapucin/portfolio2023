@@ -49,36 +49,31 @@ export default function Page({ params }: { params: { slug: string } }) {
  return (
   <ShallowPage>
    {/* Project header */}
-   <section className='relative w-full h-screen'>
+   <section className='relative w-full'>
     <h1 className='text-displayLarge'>{project?.title ? project.title : ''}</h1>
-    <p className='text-headlineSmall'>{project.subtitle}</p>
-    <div className={`relative h-full w-full overflow-hidden`}>
+    <div className='grid grid-cols-12 mb-16'>
+     <p className='text-headlineSmall col-span-6'>{project.subtitle}</p>
+    </div>
+    <div className={`relative block h-screen w-full overflow-hidden`}>
      <Image
       src={project.coverImage}
       alt='photo'
-      className='object-cover'
+      className='h-full w-full object-cover'
       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
       fill
       priority
      />
     </div>
    </section>
-   {/* Project content */}
-   <section className='px-8 py-16 bg-colorWhite dark:bg-colorBlack'>
-    <h1 className='text-displayLarge'>{project?.title ? project.title : ''}</h1>
-    <p>{project.content}</p>
-   </section>
    {/* Split screen */}
    <section className='bg-colorWhite dark:bg-colorBlack'>
-    <section className='flex gap-32'>
+    <section className='grid grid-cols-12 w-full'>
      <div
       ref={left}
-      className='w-1/2 flex-1/2 [&>article]:h-screen [&>article>h2]:text-3xl [&>article>h2]:mb-8'
+      className='col-span-8 [&>article]:h-screen [&>article>h2]:text-3xl [&>article>h2]:mb-8'
      >
-      <div className='h-screen flex justify-start items-center'>
-       <h2 className='text-displaySmall' ref={title}>
-        GSAP ScrollTrigger
-       </h2>
+      <div className='grid grid-cols-12 mt-16 mb-16'>
+       <p className='col-span-6'>{project.content}</p>
       </div>
       <article>
        <h2>Scroll-based Animations</h2>
@@ -116,25 +111,24 @@ export default function Page({ params }: { params: { slug: string } }) {
        </p>
       </article>
      </div>
-     <div ref={right} className='w-1/2 flex-1/2'>
-      <div className='relative h-screen w-full'>
-       <CustomImage
-        src='/pool.avif'
-        alt='pool photo'
-        height='h-screen'
-        width='w-full'
-       />
-      </div>
+     <div ref={right} className='col-span-4 h-[500px]'>
+      <Image
+       src={project.coverImage}
+       alt='photo'
+       className='w-full object-cover'
+       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+       fill
+      />
      </div>
     </section>
-    <section className='flex gap-32'>
-     <div ref={left2} className='w-1/2 flex-1/2'>
-      <CustomImage
-       src='/pool.avif'
-       alt='pool photo'
-       height='h-screen'
-       width='w-full'
-       divClass='absolute top-0 left-0'
+    <section className='flex gap-32 w-full'>
+     <div ref={left2} className='w-1/4'>
+      <Image
+       src={project.coverImage}
+       alt='photo'
+       className='h-32 w-full object-cover'
+       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+       fill
       />
       <CustomImage
        src='/pool2.avif'
@@ -167,7 +161,7 @@ export default function Page({ params }: { params: { slug: string } }) {
      </div>
      <div
       ref={right2}
-      className='w-1/2 flex-1/2 [&>article]:h-screen [&>article>h2]:text-3xl [&>article>h2]:mb-8'
+      className='w-3/4 [&>article]:h-screen [&>article>h2]:text-3xl [&>article>h2]:mb-8'
      >
       <div className='h-screen flex justify-start items-center'>
        <h1 className='text-7xl' ref={title}>

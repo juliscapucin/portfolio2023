@@ -16,20 +16,21 @@ export const work = {
          category: 'latest',
          slug: 'work/amp',
          id: 'amp',
-         coverImage: '/pool.avif',
+         coverImage: '/amp-ipad-1.jpg',
          subtitle:
             'Celebrating creative fusion: crafting the online identity for ampamulherdopadre, where art, design, communication, and music collide',
          content:
             'Design and web development for independent apparel label ampamulherdopadre. The brand has an audience of young professionals in the arts, design, communication and music business. For the website my intention was to build an interface that would represent the brands personality. To achieve that I used low-res images taken from video material the client had developed over the years, and combined it with vector graphics, typography and photo collages. I also proposed a not too default navigation system, with horizontal scroll and sequential layers of content, so the user would be immersed in a virtual environment of experimentation and fun.',
       },
       {
-         title: 'Project2',
+         title: 'Folio 2022',
          category: 'latest',
-         slug: 'work/project2',
-         id: 'project2',
+         slug: 'work/folio2022',
+         id: 'folio2022',
          coverImage: '/parking.avif',
-         subtitle: '',
-         content: '',
+         subtitle: 'A showcase of my work as a web developer and designer',
+         content:
+            'This project serves as my portfolio, showcasing my work as a web developer and designer. Its built using Vanilla JavaScript for functionality, enhanced with smooth GSAP animations, and powered by the user-friendly Prismic CMS for content management. The goal of this portfolio is to provide a practical and engaging overview of my skills and projects. Youll find a combination of clean design and dynamic animations that aim to make the browsing experience enjoyable and informative. Its a simple yet effective way to explore my web development and design journey.',
       },
       {
          title: 'Project3',
