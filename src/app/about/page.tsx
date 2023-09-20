@@ -8,7 +8,7 @@ import { usePathname } from 'next/navigation';
 import { animateToLeft, animateToRight } from '@/animations/pageTransitions';
 import { about, navLinks } from '@/constants';
 import { usePageContext } from '@/context';
-import { Footer, Experience } from '@/components';
+import { Footer, Experience, Services } from '@/components';
 
 export default function Page() {
  const pathname = usePathname();
@@ -83,6 +83,7 @@ export default function Page() {
     </div>
     <div className='col-span-1'></div>
    </div>
+   <Services project={about} />
    <Experience experience={experience} />
    <Footer />
   </div>

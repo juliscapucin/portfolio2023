@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { GridDiv } from '.';
 
 interface ExperienceItemProps {
  title: string;
@@ -15,23 +16,21 @@ export default function ExperienceItem({
 
  useEffect(() => {
   if (!refParagraph.current) return;
-  console.log(refParagraph.current.getBoundingClientRect().height);
   setItemHeight(refParagraph.current.getBoundingClientRect().height + 35);
  }, [refParagraph]);
 
  return (
-  <article className='question'>
-   <header>
-    <button className='text-bodyLarge' onClick={() => setShowInfo(!showInfo)}>
-     {title}
-    </button>
-    <button className='btn-accordion' onClick={() => setShowInfo(!showInfo)}>
-     {`${showInfo ? 'Hide' : 'Show'}`}
-    </button>
-   </header>
+  <GridDiv divClass={'w-full px-2'} top={true} bottom={true}>
+   <button
+    className='text-bodyLarge w-full flex items-center justify-between h-32'
+    onClick={() => setShowInfo(!showInfo)}
+   >
+    <span>{title}</span>
+    <span>{`${showInfo ? 'Hide' : 'Show'}`}</span>
+   </button>
 
    <div
-    className={`transition-all overflow-hidden ${showInfo ? '' : ''}`}
+    className={`transition-all overflow-hidden`}
     style={
      showInfo
       ? {
@@ -44,6 +43,6 @@ export default function ExperienceItem({
    >
     <p ref={refParagraph}>{description}</p>
    </div>
-  </article>
+  </GridDiv>
  );
 }

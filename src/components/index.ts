@@ -15,11 +15,11 @@ import HeroMobile from './HeroMobile';
 import MenuDesktop from './MenuDesktop';
 import MenuMobile from './MenuMobile';
 import ProjectCard from './ProjectCard';
-import ProjectDisciplines from './ProjectDisciplines';
 import ProjectNext from './ProjectNext';
 import ProjectsFilter from './ProjectsFilter';
 import ProjectsMenu from './ProjectsMenu';
 import ProjectTitle from './ProjectTitle';
+import Services from './Services';
 import SectionTitle from './SectionTitle';
 import ShallowPage from './shallowPage/ShallowPage';
 import SocialLinks from './SocialLinks';
@@ -41,12 +41,12 @@ export {
    MenuDesktop,
    MenuMobile,
    ProjectCard,
-   ProjectDisciplines,
    ProjectNext,
    ProjectsFilter,
    ProjectsMenu,
    ProjectTitle,
    SectionTitle,
+   Services,
    ShallowPage,
    SocialLinks,
    StoryblokProvider,

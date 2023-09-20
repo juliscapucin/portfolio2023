@@ -7,12 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-import {
- CustomImage,
- ProjectDisciplines,
- ProjectNext,
- ShallowPage,
-} from '@/components';
+import { Services, ProjectNext, ShallowPage } from '@/components';
 import { work, playground, archive } from '@/constants';
 
 export default function Page({ params }: { params: { slug: string } }) {
@@ -133,7 +128,7 @@ export default function Page({ params }: { params: { slug: string } }) {
    </section>
 
    {/* Disciplines */}
-   <ProjectDisciplines project={project} />
+   <Services project={project} />
 
    <section className='grid grid-cols-12 w-full relative gap-1'>
     {/* Left 2 */}
