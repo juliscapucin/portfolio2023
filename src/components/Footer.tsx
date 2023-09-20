@@ -7,11 +7,11 @@ import Availability from './Availability';
 export default function Footer() {
  return (
   <GridDiv
-   top={false}
+   top={true}
    right={true}
    bottom={true}
    left={true}
-   divClass={`px-8 py-16 mx-8 lg:grid grid-cols-12 max-w-desktop`}
+   divClass={`px-8 py-16 lg:grid grid-cols-12 max-w-desktop`}
   >
    {/* White Space */}
    <div className='col-span-1'></div>

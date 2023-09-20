@@ -102,7 +102,7 @@ export default function MenuDesktop({ navLinks }: MenuProps) {
     })}
 
     {/* Contact button */}
-    <MenuLink label='Contact' action={updateModalOpen} />
+    <MenuLink label='Connect' action={updateModalOpen} />
    </nav>
   </GridDiv>
  );

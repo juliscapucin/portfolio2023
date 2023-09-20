@@ -7,12 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-import {
- CustomImage,
- ProjectDisciplines,
- ProjectNext,
- ShallowPage,
-} from '@/components';
+import { Services, ProjectNext, ShallowPage } from '@/components';
 import { work, playground, archive } from '@/constants';
 
 export default function Page({ params }: { params: { slug: string } }) {
@@ -59,7 +54,9 @@ export default function Page({ params }: { params: { slug: string } }) {
   <ShallowPage>
    {/* Project header */}
    <section className='relative w-full mb-1'>
-    <h1 className='text-displayLarge'>{project?.title ? project.title : ''}</h1>
+    <h1 className='text-displaySmall md:text-displayMedium lg:text-displayLarge'>
+     {project?.title ? project.title : ''}
+    </h1>
     <div className='md:grid grid-cols-12 mb-16'>
      <p className='text-headlineSmall md:col-span-8 lg:col-span-6'>
       {project.subtitle}
@@ -131,7 +128,7 @@ export default function Page({ params }: { params: { slug: string } }) {
    </section>
 
    {/* Disciplines */}
-   <ProjectDisciplines project={project} />
+   <Services project={project} />
 
    <section className='grid grid-cols-12 w-full relative gap-1'>
     {/* Left 2 */}
