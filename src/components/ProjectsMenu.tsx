@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useLayoutEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 import { animateProjectsMenu } from '@/animations';
 import { work, playground, archive } from '@/constants';
@@ -11,6 +12,7 @@ import ProjectCard from './ProjectCard';
 import GridDiv from './GridDiv';
 import { SectionTitle } from '.';
 import ProjectsFilter from './ProjectsFilter';
+import path from 'path';
 
 interface ProjectItems {
  title: string;
@@ -28,8 +30,11 @@ interface ProjectsMenuProps {
 }
 
 export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
+ const pathname = usePathname();
  const { width, height } = useWindowDimensions();
- const [variant, setVariant] = useState<string>('list');
+ const [variant, setVariant] = useState<string>(
+  pathname === '/' ? 'list' : 'image'
+ );
  const [projectItems, setProjectItems] = useState<ProjectItems[]>([
   ...work.links,
   ...playground.links,
@@ -62,7 +67,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
 
  return (
   <section className='h-screen min-h-screen'>
-   <SectionTitle title='Work' />
+   {pathname === '/' && <SectionTitle title='Work' />}
    <ProjectsFilter
     work={work}
     playground={playground}

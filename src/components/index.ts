@@ -4,6 +4,7 @@ import AnimationGridDiv from './AnimationGridDiv';
 import ContactModal from './ContactModal';
 import CustomImage from './CustomImage';
 import Experience from './Experience';
+import ExperienceItem from './ExperienceItem';
 import Footer from './Footer';
 import GridDiv from './GridDiv';
 import GridElement from './GridElement';
@@ -29,6 +30,7 @@ export {
    ContactModal,
    CustomImage,
    Experience,
+   ExperienceItem,
    Footer,
    GridDiv,
    GridElement,
