@@ -56,8 +56,10 @@ export const work = {
 export const about = {
    slug: 'about',
    title: 'About',
-   paragraph1:
-      'Thanks for dropping by. Just a quick heads up… most of my work is under NDA so my folio only shows personal or few pieces of commercial work.',
+   subtitle: '',
+   paragraph1: '',
+   paragraph2:
+      'Thanks for dropping by. Just a quick heads up… most of my recent work is under NDA so my folio only shows personal or few pieces of commercial work.',
    disciplines: [
       'creative development',
       'digital design',
