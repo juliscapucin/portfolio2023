@@ -12,13 +12,13 @@ import ProjectCard from './ProjectCard';
 import GridDiv from './GridDiv';
 import { SectionTitle } from '.';
 import ProjectsFilter from './ProjectsFilter';
-import path from 'path';
 
 interface ProjectItems {
- title: string;
- slug: string;
+ title?: string;
+ slug?: string;
  id: string;
- coverImage: string;
+ coverImage?: string;
+ thumbnailSize?: string;
 }
 
 interface ProjectsMenu {
@@ -66,7 +66,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
  ]);
 
  return (
-  <section className='h-screen min-h-screen'>
+  <section className='min-h-screen'>
    {pathname === '/' && <SectionTitle title='Work' />}
    <ProjectsFilter
     work={work}
@@ -89,6 +89,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
      {activeBreakpoint === 'desktop' && (
       <div className='col-span-4 aspect-square relative' ref={projectsImgsRef}>
        {projectItems.map((img, index) => {
+        if (!img.coverImage) return;
         return (
          <Image
           src={img.coverImage}
@@ -111,6 +112,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
       ref={projectsLinksRef}
      >
       {projectItems.map((link, index) => {
+       if (!link.coverImage) return;
        return (
         <div key={index}>
          <ProjectCard
@@ -127,23 +129,19 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
     </GridDiv>
    ) : (
     // Image View
-    <GridDiv
-     divClass='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full'
-     top={true}
-     right={true}
-     bottom={true}
-     left={true}
-    >
-     {projectItems.map((link, index) => {
+    <GridDiv divClass='grid lg:grid-cols-12 gap-1 w-full'>
+     {projectItems.map((link) => {
       return (
-       <div key={index}>
-        <ProjectCard
-         title={link.title}
-         slug={link.slug}
-         id={link.id}
-         coverImage={link.coverImage}
-         variant={variant}
-        />
+       <div className={`col-span-${link.thumbnailSize}`} key={link.id}>
+        {link.coverImage && (
+         <ProjectCard
+          title={link.title}
+          slug={link.slug}
+          id={link.id}
+          coverImage={link.coverImage}
+          variant={variant}
+         />
+        )}
        </div>
       );
      })}
