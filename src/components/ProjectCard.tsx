@@ -44,7 +44,7 @@ export default function ProjectCard({
      divClass={`absolute bottom-4 left-4 z-10`}
      textSize='text-titleMedium'
     />
-    <div className='relative w-full h-full'>
+    <div className='relative w-full h-full overflow-hidden'>
      <Image
       src={coverImage}
       key={id}
