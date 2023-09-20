@@ -3,6 +3,7 @@ import { ExperienceItem } from '.';
 interface ExperienceItem {
  id: number;
  title: string;
+ date: string;
  description: string;
 }
 

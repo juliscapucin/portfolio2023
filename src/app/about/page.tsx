@@ -40,7 +40,7 @@ export default function Page() {
 
  return (
   <div className={`${slug}-page opacity-0`}>
-   <div className='grid grid-cols-12 my-32'>
+   <div className='xl:grid grid-cols-12 my-32'>
     <div className='col-span-5 aspect-square overflow-hidden relative'>
      <Image
       src='/juli.avif'
@@ -48,16 +48,18 @@ export default function Page() {
       className='h-32 w-full object-cover'
       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
       fill
+      priority
      />
     </div>
     <div className='col-span-1'></div>
-    <div className='col-span-5 grid grid-cols-5'>
-     <h1 className='text-displaySmall lg:text-displayLarge col-span-5'>
+    <div className='col-span-5 md:grid grid-cols-5'>
+     {/* Title */}
+     <h1 className='text-displaySmall md:text-displayMedium lg:text-displayLarge col-span-5 whitespace-nowrap'>
       {title}
      </h1>
 
      {/* Subtitle */}
-     <p className='text-headlineSmall col-span-3'>
+     <p className='text-titleLarge md:text-headlineSmall col-span-3'>
       I’m a Front-End Developer with a broad background in Graphic and Digital
       Design. Since 2000 I've been designing meaningful, memorable, and
       communicative work for companies and professionals worldwide. Commitment

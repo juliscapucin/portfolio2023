@@ -1,13 +1,16 @@
 import { useState, useRef, useEffect } from 'react';
 import { GridDiv } from '.';
+import { ButtonPlus, ButtonMinus } from '@/components/buttons';
 
 interface ExperienceItemProps {
  title: string;
+ date: string;
  description: string;
 }
 
 export default function ExperienceItem({
  title,
+ date,
  description,
 }: ExperienceItemProps) {
  const [showInfo, setShowInfo] = useState(false);
@@ -25,8 +28,13 @@ export default function ExperienceItem({
     className='text-bodyLarge w-full flex items-center justify-between h-32'
     onClick={() => setShowInfo(!showInfo)}
    >
-    <span>{title}</span>
-    <span>{`${showInfo ? 'Hide' : 'Show'}`}</span>
+    <div className='flex flex-col items-start'>
+     <span className='block'>{title}</span>
+     <span>{date}</span>
+    </div>
+    <div className='h-full flex items-center justify-end'>
+     {showInfo ? <ButtonMinus /> : <ButtonPlus />}
+    </div>
    </button>
 
    <div

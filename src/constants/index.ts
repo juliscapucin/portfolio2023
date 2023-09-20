@@ -70,43 +70,50 @@ export const about = {
    experience: [
       {
          id: 7,
-         title: 'Designer & Frontend Developer Freelance (Sep 2023 – present)',
+         title: 'Designer & Frontend Developer Freelance',
+         date: '(Sep 2023 – present)',
          description:
             'Design and fullstack web development for brands and professionals with Next.js, TypeScript, Tailwind, GSAP, Figma and Adobe Creative Cloud',
       },
       {
          id: 6,
-         title: 'Frontend Developer @ Dept® (Sep 2022 – Aug 2023)',
+         title: 'Frontend Developer @ Dept®',
+         date: '(Sep 2022 – Aug 2023)',
          description:
             "As a part of Dept®'s development team, I was responsible for building websites and e-commerce platforms for clients such as Costes, Team Town Sports, Avans Hogeschool, Hyva, Amcoveba and Wij Techniek.",
       },
       {
          id: 5,
-         title: 'Designer & Frontend Developer Freelance (May 2021 – present)',
+         title: 'Designer & Frontend Developer Freelance',
+         date: '(May 2021 – present)',
          description:
             'Fullstack web development for brands and professionals. Headless CMS development using React / Next.js, JavaScript, Noje.js, animation libraries (Framer Motion, GSAP) and CSS.',
       },
       {
          id: 4,
-         title: 'Founder & Art Director @ Malgosia.co (Sep 2013 – Jul 2020)',
+         title: 'Founder & Art Director @ Malgosia.co',
+         date: '(Sep 2013 – Jul 2020)',
          description:
             'Handmade apparel & fashion brand. In 2019 it counted three physical sales points in Amsterdam and one e-commerce channel on Etsy. My main roles were: design and production, branding, photography,  e-commerce management, social media, web design, sales and customer service.',
       },
       {
          id: 3,
-         title: 'Art Editor / Graphic Designer @ Editora Abril (Apr 2008 – Mar 2012)',
+         title: 'Art Editor / Graphic Designer @ Editora Abril',
+         date: '(Apr 2008 – Mar 2012)',
          description:
             'Art edition, graphic design and illustration for Capricho and Manequim magazines. Editora Abril was the biggest publishing company in Latin America until 2017, and both magazines were audience leaders in their niches.',
       },
       {
          id: 2,
-         title: 'Designer & Web Developer Freelance (Mar 2004 – Mar 2008)',
+         title: 'Designer & Web Developer Freelance',
+         date: '(Mar 2004 – Mar 2008)',
          description:
             'Design (print and web), illustration, motion design and fullstack development for various companies in editorial, fashion and advertising business.',
       },
       {
          id: 1,
-         title: 'Web Designer & Frontend Developer @ Newcomm Bates (Apr 2002 – Feb 2004)',
+         title: 'Web Designer & Frontend Developer @ Newcomm Bates',
+         date: '(Apr 2002 – Feb 2004)',
          description:
             "Web, motion design and front-end development Newcomm Bates’ advertising agency. Clients were Kaiser Beer, Ballantine's and NewXM.",
       },

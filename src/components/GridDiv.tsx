@@ -1,3 +1,5 @@
+'use client';
+
 interface GridDivProps {
  top?: boolean;
  right?: boolean;
