@@ -112,7 +112,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
       ref={projectsLinksRef}
      >
       {projectItems.map((link, index) => {
-       if (!link.coverImage) return;
+       if (!link.coverImage || !link.title || !link.slug) return;
        return (
         <div key={index}>
          <ProjectCard
@@ -129,11 +129,11 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
     </GridDiv>
    ) : (
     // Image View
-    <GridDiv divClass='grid lg:grid-cols-12 gap-1 w-full'>
-     {projectItems.map((link) => {
+    <GridDiv divClass='grid lg:grid-cols-12 gap-32 w-full'>
+     {projectItems.map((link, index) => {
       return (
-       <div className={`col-span-${link.thumbnailSize}`} key={link.id}>
-        {link.coverImage && (
+       <div className={`col-span-${link.thumbnailSize}`} key={index}>
+        {link.coverImage && link.title && link.slug && (
          <ProjectCard
           title={link.title}
           slug={link.slug}

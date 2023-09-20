@@ -10,30 +10,27 @@ import {
 } from '@/animations';
 
 interface Project {
- title: string;
+ title?: string;
  slug: string;
- coverImage: string;
+ coverImage?: string;
 }
 
 interface ProjectNextProps {
- allProjects: Project[];
+ projects: Project[];
  project: Project;
 }
 
-export default function ProjectNext({
- allProjects,
- project,
-}: ProjectNextProps) {
+export default function ProjectNext({ projects, project }: ProjectNextProps) {
  const pathname = usePathname();
  const router = useRouter();
  const nextProjectTip = useRef<HTMLSpanElement>(null);
  const previousProjectTip = useRef<HTMLSpanElement>(null);
 
- const actualProjectIndex = allProjects.findIndex(
+ const actualProjectIndex = projects.findIndex(
   (item: Project, index: number) => item.slug === project.slug
  );
- const nextProject = allProjects[actualProjectIndex + 1];
- const previousProject = allProjects[actualProjectIndex - 1];
+ const nextProject = projects[actualProjectIndex + 1];
+ const previousProject = projects[actualProjectIndex - 1];
 
  const handleNextButton = () => {
   const editedSlug = nextProject.slug.split('/').pop();

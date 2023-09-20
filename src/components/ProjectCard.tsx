@@ -7,11 +7,10 @@ import { animateToFullScreen } from '@/animations/pageTransitions';
 
 interface ProjectCardProps {
  id: string;
- title?: string;
- slug?: string;
- coverImage?: string;
+ title: string;
+ slug: string;
+ coverImage: string;
  variant?: string;
- thumbnailSize?: string;
 }
 
 export default function ProjectCard({
@@ -25,15 +24,15 @@ export default function ProjectCard({
 
  return variant === 'image' ? (
   // Image View
-  <GridDiv divClass={`relative aspect-square`}>
+  <GridDiv divClass={`aspect-square`}>
    {/* Empty grid element for animation */}
-   <div className='absolute top-0 left-0 w-full h-full opacity-0 z-10 pointer-events-none'>
+   <div className='absolute bottom-[100%] left-0 w-full h-full pointer-events-none'>
     <AnimationGridDiv
      divClass={`project-card-${id} overflow-hidden bg-colorWhite dark:bg-colorBlack pointer-events-none`}
     />
    </div>
    <button
-    className={`h-full w-full group flex justify-center items-center relative`}
+    className={`h-full w-full group flex justify-center items-center absolute`}
     onClick={() => {
      animateToFullScreen(`.project-card-${id}`, () =>
       router.push(`/${slug}`, { scroll: false })
@@ -41,13 +40,13 @@ export default function ProjectCard({
     }}
    >
     <ProjectTitle
-     title={title || ''}
-     divClass={`absolute bottom-4 left-4`}
+     title={title}
+     divClass={`absolute bottom-4 left-4 z-10`}
      textSize='text-titleMedium'
     />
     <div className='relative w-full h-full'>
      <Image
-      src={coverImage || '/placeholder.jpg'}
+      src={coverImage}
       key={id}
       //   placeholder='blur'
       alt='photo'
@@ -82,7 +81,7 @@ export default function ProjectCard({
      );
     }}
    >
-    <ProjectTitle title={title || ''} textSize='text-headlineSmall' />
+    <ProjectTitle title={title} textSize='text-headlineSmall' />
    </button>
   </GridDiv>
  );

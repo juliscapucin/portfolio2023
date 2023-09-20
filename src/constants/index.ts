@@ -26,7 +26,7 @@ export const work = {
          content:
             'Design and web development for independent apparel label ampamulherdopadre. The brand has an audience of young professionals in the arts, design, communication and music business. For the website my intention was to build an interface that would represent the brands personality. To achieve that I used low-res images taken from video material the client had developed over the years, and combined it with vector graphics, typography and photo collages. I also proposed a not too default navigation system, with horizontal scroll and sequential layers of content, so the user would be immersed in a virtual environment of experimentation and fun.',
       },
-      { id: 'placeholder', thumbnailSize: '3' },
+      { id: 'placeholder-1', thumbnailSize: '3', slug: 'none' },
       {
          title: 'Folio 2022',
          category: 'latest',
@@ -47,20 +47,22 @@ export const work = {
          slug: 'work/pauldeheer',
          id: 'pauldeheer',
          coverImage: '/paul-1.jpg',
-         thumbnailSize: '4',
+         thumbnailSize: '5',
          featureImage1: '/amp-ipad-2.jpg',
          featureImage2: '/amp-ipad-2.jpg',
          disciplines: ['web development', 'web design'],
          subtitle: '',
          content: '',
       },
+      { id: 'placeholder-2', thumbnailSize: '7', slug: 'none' },
+      { id: 'placeholder-2', thumbnailSize: '5', slug: 'none' },
       {
          title: 'amp',
          category: 'latest',
          slug: 'work/amp',
          id: 'amp',
          coverImage: '/amp-ipad-1.jpg',
-         thumbnailSize: '4',
+         thumbnailSize: '3',
          featureImage1: '/amp-ipad-2.jpg',
          featureImage2: '/amp-ipad-2.jpg',
          disciplines: ['web development', 'web design', 'branding'],
@@ -69,6 +71,7 @@ export const work = {
          content:
             'Design and web development for independent apparel label ampamulherdopadre. The brand has an audience of young professionals in the arts, design, communication and music business. For the website my intention was to build an interface that would represent the brands personality. To achieve that I used low-res images taken from video material the client had developed over the years, and combined it with vector graphics, typography and photo collages. I also proposed a not too default navigation system, with horizontal scroll and sequential layers of content, so the user would be immersed in a virtual environment of experimentation and fun.',
       },
+      { id: 'placeholder-2', thumbnailSize: '8', slug: 'none' },
    ],
 };
 

@@ -89,13 +89,6 @@ button {
 
 /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */
 
-.animation-grid-element {
-   position: relative;
-   overflow: hidden;
-   width: 100%;
-   height: 100%;
-}
-
 .animation-grid-element .static-line {
    background-color: var(--color-white);
    position: absolute;
