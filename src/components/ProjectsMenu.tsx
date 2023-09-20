@@ -1,8 +1,10 @@
 'use client';
 
 import Image from 'next/image';
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
+
+import { gsap } from 'gsap';
 
 import { animateProjectsMenu } from '@/animations';
 import { work, playground, archive } from '@/constants';
@@ -49,9 +51,39 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
   setProjectItems(filter);
  };
 
- const toggleVariant = () => {
-  variant === 'list' ? setVariant('image') : setVariant('list');
+ const editVariant = () => {
+  if (variant === 'list') {
+   gsap.to('.list-view', {
+    opacity: 0,
+    duration: 0.5,
+    onComplete: () => {
+     setVariant('image');
+    },
+   });
+  } else {
+   gsap.to('.image-view', {
+    opacity: 0,
+    duration: 0.5,
+    onComplete: () => {
+     setVariant('list');
+    },
+   });
+  }
  };
+
+ useEffect(() => {
+  if (variant === 'list') {
+   gsap.to('.list-view', {
+    opacity: 1,
+    duration: 0.5,
+   });
+  } else {
+   gsap.to('.image-view', {
+    opacity: 1,
+    duration: 0.5,
+   });
+  }
+ }, [variant]);
 
  useLayoutEffect(() => {
   if (projectsImgsRef.current && projectsLinksRef.current)
@@ -69,17 +101,22 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
   <section className='min-h-screen'>
    {pathname === '/' && <SectionTitle title='Work' />}
    <ProjectsFilter
-    work={work}
-    playground={playground}
-    archive={archive}
-    {...{ filterProjects, toggleVariant, allProjects }}
+    {...{
+     filterProjects,
+     editVariant,
+     allProjects,
+     variant,
+     work,
+     playground,
+     archive,
+    }}
    />
 
    {/* Projects */}
    {/* List View */}
    {variant === 'list' ? (
     <GridDiv
-     divClass='grid grid-cols-12 w-full h-full overflow-hidden'
+     divClass='list-view grid grid-cols-12 w-full h-full overflow-hidden'
      top={true}
      right={true}
      bottom={true}
@@ -129,7 +166,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
     </GridDiv>
    ) : (
     // Image View
-    <GridDiv divClass='grid lg:grid-cols-12 gap-32 w-full'>
+    <GridDiv divClass='image-view grid lg:grid-cols-12 gap-32 w-full'>
      {projectItems.map((link, index) => {
       return (
        <div className={`col-span-${link.thumbnailSize}`} key={index}>

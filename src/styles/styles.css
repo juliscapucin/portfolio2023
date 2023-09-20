@@ -11,7 +11,7 @@
 
    --color-black: #060607;
    --color-white: #fcf9f8;
-   --color-grey: #9a9898;
+   --color-gray: #9a9898;
 
    --delay1: 0.7s;
    --delay2: 1s;
@@ -28,7 +28,7 @@
 }
 
 * > :focus-visible {
-   background-color: var(--color-grey);
+   background-color: var(--color-gray);
    outline: none;
 }
 

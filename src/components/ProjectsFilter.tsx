@@ -1,40 +1,51 @@
 interface ProjectsFilterProps {
  filterProjects: (filter: any) => void;
- toggleVariant: () => void;
+ editVariant: () => void;
  allProjects: any;
  work: any;
  playground: any;
  archive: any;
+ variant?: string;
 }
 
 export default function ProjectsFilter({
  filterProjects,
- toggleVariant,
+ editVariant,
  allProjects,
  work,
  playground,
  archive,
+ variant,
 }: ProjectsFilterProps) {
  return (
   <div className='flex justify-between items-end mt-16 mr-4 mb-4 h-32'>
    {/* View buttons */}
    <div className='hidden md:flex gap-8 align-bottom '>
-    <button
-     onClick={() => {
-      toggleVariant();
-     }}
-    >
-     List View
-    </button>
+    {variant === 'list' ? (
+     <span className='text-colorGray'>List View</span>
+    ) : (
+     <button
+      onClick={() => {
+       editVariant();
+      }}
+     >
+      List View
+     </button>
+    )}
     <span>/</span>
-    <button
-     onClick={() => {
-      toggleVariant();
-     }}
-    >
-     Image View
-    </button>
+    {variant === 'image' ? (
+     <span className='text-colorGray'>Image View</span>
+    ) : (
+     <button
+      onClick={() => {
+       editVariant();
+      }}
+     >
+      Image View
+     </button>
+    )}
    </div>
+
    {/* Filter buttons */}
    <div className='flex gap-8 align-bottom '>
     <button
