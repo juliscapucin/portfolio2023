@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { use, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 import { gsap } from 'gsap';
@@ -48,8 +48,21 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
  const allProjects = [...work.links, ...playground.links, ...archive.links];
 
  const filterProjects = (filter: ProjectItems[]) => {
-  setProjectItems(filter);
+  gsap.to('.filter-projects', {
+   opacity: 0,
+   duration: 0.5,
+   onComplete: () => {
+    setProjectItems(filter);
+   },
+  });
  };
+
+ useEffect(() => {
+  gsap.to('.filter-projects', {
+   opacity: 1,
+   duration: 0.5,
+  });
+ }, [projectItems]);
 
  const editVariant = () => {
   if (variant === 'list') {
@@ -116,7 +129,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
    {/* List View */}
    {variant === 'list' ? (
     <GridDiv
-     divClass='list-view grid grid-cols-12 w-full h-full overflow-hidden'
+     divClass='list-view filter-projects grid grid-cols-12 w-full h-full overflow-hidden'
      top={true}
      right={true}
      bottom={true}
@@ -166,7 +179,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
     </GridDiv>
    ) : (
     // Image View
-    <GridDiv divClass='image-view grid lg:grid-cols-12 gap-32 w-full'>
+    <GridDiv divClass='image-view filter-projects grid lg:grid-cols-12 gap-32 w-full'>
      {projectItems.map((link, index) => {
       return (
        <div className={`col-span-${link.thumbnailSize}`} key={index}>
