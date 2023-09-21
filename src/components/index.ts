@@ -2,6 +2,7 @@
 
 import AnimationGridDiv from './AnimationGridDiv';
 import ContactModal from './ContactModal';
+import CustomCursor from './CustomCursor';
 import CustomImage from './CustomImage';
 import Experience from './Experience';
 import ExperienceItem from './ExperienceItem';
@@ -28,6 +29,7 @@ import StoryblokProvider from './StoryblokProvider';
 export {
    AnimationGridDiv,
    ContactModal,
+   CustomCursor,
    CustomImage,
    Experience,
    ExperienceItem,

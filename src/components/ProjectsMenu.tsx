@@ -9,10 +9,10 @@ import { gsap } from 'gsap';
 import { animateProjectsMenu } from '@/animations';
 import { work, playground, archive } from '@/constants';
 import { useWindowDimensions } from '@/hooks';
+import { CustomCursor, SectionTitle } from '@/components';
 
 import ProjectCard from './ProjectCard';
 import GridDiv from './GridDiv';
-import { SectionTitle } from '.';
 import ProjectsFilter from './ProjectsFilter';
 
 interface ProjectItems {
@@ -34,20 +34,20 @@ interface ProjectsMenuProps {
 export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
  const pathname = usePathname();
  const { width, height } = useWindowDimensions();
+
+ const allProjects = [...work.links, ...playground.links, ...archive.links];
+ const [projectItems, setProjectItems] = useState<ProjectItems[]>(allProjects);
+
+ // View options
  const [variant, setVariant] = useState<string>(
   pathname === '/' ? 'list' : 'image'
  );
- const [projectItems, setProjectItems] = useState<ProjectItems[]>([
-  ...work.links,
-  ...playground.links,
-  ...archive.links,
- ]);
 
+ // List View Refs
  const projectsImgsRef = useRef(null);
  const projectsLinksRef = useRef(null);
- const allProjects = [...work.links, ...playground.links, ...archive.links];
 
- //  Animations
+ //  Transitions
  const filterProjects = (filter: ProjectItems[]) => {
   gsap.to('.filter-projects', {
    opacity: 0,
@@ -99,7 +99,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
   }
  }, [variant]);
 
- // Restart animation on resize, filter or variant change
+ // Restart list view animation on resize, filter or variant change
  useLayoutEffect(() => {
   if (projectsImgsRef.current && projectsLinksRef.current)
    animateProjectsMenu(projectsImgsRef.current, projectsLinksRef.current);
@@ -113,7 +113,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
  ]);
 
  return (
-  <section className='min-h-screen'>
+  <section className='customcursor__container min-h-screen'>
    {pathname === '/' && <SectionTitle title='Work' />}
    <ProjectsFilter
     {...{
@@ -174,6 +174,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
           id={link.id}
           coverImage={link.coverImage}
           variant={variant}
+          // setIsHovering={setIsHovering}
          />
         </div>
        );
@@ -200,6 +201,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
           id={link.id}
           coverImage={link.coverImage}
           variant={variant}
+          // setIsHovering={setIsHovering}
          />
         )}
        </div>

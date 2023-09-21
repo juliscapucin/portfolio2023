@@ -198,14 +198,15 @@ button {
    }
 }
 
-@keyframes fadeIn {
-   to {
-      opacity: 1;
-   }
-}
+/* CUSTOM CURSOR */
 
-@keyframes fadeOut {
-   to {
-      opacity: 0;
-   }
+.custom-cursor {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 50px;
+   height: 50px;
+   background-color: var(--color-white);
+   pointer-events: none;
+   z-index: 9999;
 }

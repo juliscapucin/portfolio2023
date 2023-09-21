@@ -1,20 +1,49 @@
 import { useEffect, useRef, useState } from 'react';
-import { useCustomCursor } from '@/hooks';
+import { gsap } from 'gsap';
+
+interface CustomCursorProps {
+ isHovering: boolean;
+}
 
 export default function CustomCursor() {
  const refCursor = useRef(null);
  const refFollower = useRef(null);
- const [isHovering, setIsHovering] = useState(false);
 
- useCustomCursor(refCursor, refFollower);
+ //  useCustomCursor(refCursor.current, refFollower.current);
+
+ useEffect(() => {
+  const cursorDiv = refCursor.current;
+  if (!cursorDiv) return;
+
+  gsap.set(cursorDiv, {
+   xPercent: -50,
+   yPercent: -50,
+  });
+
+  const moveCursor = (e: MouseEvent) => {
+   gsap.to(cursorDiv, {
+    x: e.clientX,
+    y: e.clientY,
+    duration: 0.3,
+   });
+  };
+
+  window.addEventListener('mousemove', moveCursor);
+  return () => {
+   window.removeEventListener('mousemove', moveCursor);
+  };
+ }, [refCursor.current]);
 
  return (
-  <div className='customcursor__cursor' ref={refCursor}>
+  <div className='custom-cursor' ref={refCursor}>
    <div className='customcursor__follower' ref={refFollower}>
     <div
-     className={`customcursor__follower__inner ${isHovering ? 'active' : ''}`}
+     className={`customcursor__follower__inner`}
+     //   className={`customcursor__follower__inner ${isHovering ? 'active' : ''}`}
     >
-     <h4>OPEN</h4>
+     <span className='text-labelLarge text-colorWhite dark:text-colorBlack'>
+      OPEN
+     </span>
     </div>
    </div>
   </div>
