@@ -1,5 +1,3 @@
-import { gsap } from 'gsap';
-
 export const animateProjectsMenu = (
    imagesDiv: HTMLElement,
    linksDiv: HTMLElement
@@ -7,21 +5,24 @@ export const animateProjectsMenu = (
    const links = linksDiv.querySelectorAll('button');
    const images = imagesDiv.querySelectorAll('img');
 
-   links.forEach((item, index) => {
-      gsap.set(images[index], { yPercent: -100 });
-      gsap.set(images[0], { yPercent: 0 });
+   links.forEach((link, index) => {
+      images[index].classList.add('transition-all');
 
-      //   image reveal animation
-      const animation = gsap.to(images[index], {
-         duration: 0.2,
-         yPercent: 0,
-         ease: 'ease-in-out',
+      if (index === 0) {
+         images[index].classList.add('translate-y-0');
+      } else {
+         images[index].classList.add('translate-y-full');
+      }
+
+      link.addEventListener('mouseenter', () => {
+         images.forEach((image) => {
+            if (image.classList.contains('translate-y-0'))
+               image.classList.remove('translate-y-0');
+            if (!image.classList.contains('translate-y-full'))
+               image.classList.add('translate-y-full');
+         });
+         images[index].classList.remove('translate-y-full');
+         images[index].classList.add('translate-y-0');
       });
-
-      item.addEventListener('mouseenter', () => animation.play());
-      item.addEventListener('mouseleave', () => animation.reverse());
-
-      //   initialization
-      animation.reverse();
    });
 };

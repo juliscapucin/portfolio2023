@@ -19,11 +19,7 @@ export default function HeroDesktop() {
    <GridDiv divClass='col-span-full row-span-1' left={true}></GridDiv>
 
    {/* Description */}
-   <GridDiv
-    divClass='col-span-full row-span-1'
-    top={true}
-    left={true}
-   ></GridDiv>
+   <GridDiv divClass='col-span-full row-span-1' top={true}></GridDiv>
 
    {/* Blank Space */}
    <GridDiv divClass='col-span-8 row-span-1' top={true} left={true}></GridDiv>
@@ -32,7 +28,6 @@ export default function HeroDesktop() {
    <GridDiv
     divClass='col-span-12 row-span-1 text-displayLarge overflow-hidden flex items-center'
     top={true}
-    left={true}
    >
     JULI
    </GridDiv>
@@ -41,7 +36,6 @@ export default function HeroDesktop() {
    <GridDiv
     divClass='col-span-3 row-span-3 text-huge overflow-hidden flex items-center'
     top={true}
-    left={true}
    >
     23
    </GridDiv>

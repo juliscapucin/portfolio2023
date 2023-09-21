@@ -11,7 +11,7 @@ import { Services, ProjectNext, ShallowPage } from '@/components';
 import { work, playground, archive } from '@/constants';
 
 export default function Page({ params }: { params: { slug: string } }) {
- const title = createRef<HTMLHeadingElement>();
+ const titleRef = createRef<HTMLHeadingElement>();
  const left = createRef<HTMLDivElement>();
  const right = createRef<HTMLDivElement>();
  const left2 = createRef<HTMLDivElement>();
@@ -44,17 +44,22 @@ export default function Page({ params }: { params: { slug: string } }) {
  }, [left2, right2]);
 
  const allProjects = [...work.links, ...playground.links, ...archive.links];
+ const realProjects = allProjects.filter((project) => project.coverImage);
+
  const slug = params.slug;
 
  const project = allProjects.find((project) => project.slug.includes(slug));
 
- if (!project) return <div>404</div>;
+ if (!project || !project.coverImage) return;
 
  return (
   <ShallowPage>
    {/* Project header */}
    <section className='relative w-full mb-1'>
-    <h1 className='text-displaySmall md:text-displayMedium lg:text-displayLarge'>
+    <h1
+     ref={titleRef}
+     className='text-displaySmall md:text-displayMedium lg:text-displayLarge'
+    >
      {project?.title ? project.title : ''}
     </h1>
     <div className='md:grid grid-cols-12 mb-16'>
@@ -83,7 +88,7 @@ export default function Page({ params }: { params: { slug: string } }) {
      className='col-span-6 lg:col-span-7 relative grid gap-1 overflow-hidden'
     >
      <p className='lg:h-[500px] pr-32 flex items-center'>{project.content}</p>
-     <div className='h-[50vw] lg:h-[650px] w-full overflow-hidden relative'>
+     <div className='h-[50vw] lg:h-[700px] w-full overflow-hidden relative'>
       <Image
        src={project.coverImage}
        alt='photo'
@@ -92,7 +97,7 @@ export default function Page({ params }: { params: { slug: string } }) {
        fill
       />
      </div>
-     <div className='h-[50vw] lg:h-[650px] w-full overflow-hidden relative'>
+     <div className='h-[50vw] lg:h-[700px] w-full overflow-hidden relative'>
       <Image
        src={project.coverImage}
        alt='photo'
@@ -101,7 +106,7 @@ export default function Page({ params }: { params: { slug: string } }) {
        fill
       />
      </div>
-     <div className='h-[50vw] lg:h-[650px] w-full overflow-hidden relative'>
+     <div className='h-[50vw] lg:h-[700px] w-full overflow-hidden relative'>
       <Image
        src={project.coverImage}
        alt='photo'
@@ -173,7 +178,10 @@ export default function Page({ params }: { params: { slug: string } }) {
      </div>
     </div>
    </section>
-   <ProjectNext allProjects={allProjects} project={project} />
+   {/* Next Project */}
+   {realProjects.length > 0 && (
+    <ProjectNext projects={realProjects} project={project} />
+   )}
   </ShallowPage>
  );
 }

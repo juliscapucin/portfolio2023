@@ -1,69 +1,106 @@
+import { MouseEvent, useRef } from 'react';
+
 interface ProjectsFilterProps {
  filterProjects: (filter: any) => void;
- toggleVariant: () => void;
+ editVariant: () => void;
  allProjects: any;
  work: any;
  playground: any;
  archive: any;
+ variant?: string;
 }
 
 export default function ProjectsFilter({
  filterProjects,
- toggleVariant,
+ editVariant,
  allProjects,
  work,
  playground,
  archive,
+ variant,
 }: ProjectsFilterProps) {
+ const filterButtonsRef = useRef(null);
+
+ const handleActiveButton = (e: MouseEvent) => {
+  const filterDiv = filterButtonsRef.current as HTMLElement | null;
+  if (!filterDiv) return;
+
+  const button = e.target as HTMLButtonElement;
+  const buttons = filterDiv.querySelectorAll('button');
+  buttons.forEach((btn) => {
+   btn.classList.remove('text-colorGray');
+  });
+  button.classList.add('text-colorGray');
+ };
+
  return (
   <div className='flex justify-between items-end mt-16 mr-4 mb-4 h-32'>
    {/* View buttons */}
    <div className='hidden md:flex gap-8 align-bottom '>
-    <button
-     onClick={() => {
-      toggleVariant();
-     }}
-    >
-     List View
-    </button>
+    {variant === 'list' ? (
+     <span className='text-colorGray'>List View</span>
+    ) : (
+     <button
+      className='hover:text-colorGray transition-colors duration-200'
+      onClick={() => {
+       editVariant();
+      }}
+     >
+      List View
+     </button>
+    )}
     <span>/</span>
-    <button
-     onClick={() => {
-      toggleVariant();
-     }}
-    >
-     Image View
-    </button>
+    {variant === 'image' ? (
+     <span className='text-colorGray'>Image View</span>
+    ) : (
+     <button
+      className='hover:text-colorGray transition-colors duration-200'
+      onClick={() => {
+       editVariant();
+      }}
+     >
+      Image View
+     </button>
+    )}
    </div>
+
    {/* Filter buttons */}
-   <div className='flex gap-8 align-bottom '>
+   <div ref={filterButtonsRef} className='flex gap-8 align-bottom '>
     <button
-     onClick={() => {
+     className='text-colorGray hover:text-colorGray duration-200'
+     onClick={(e) => {
       filterProjects(allProjects);
+      handleActiveButton(e);
      }}
     >
      All
     </button>
     <span>/</span>
     <button
-     onClick={() => {
+     className='hover:text-colorGray duration-200'
+     onClick={(e) => {
       filterProjects(work.links);
+      handleActiveButton(e);
      }}
     >
      Recent
     </button>
     <span>/</span>
     <button
-     onClick={() => {
+     className='hover:text-colorGray duration-200'
+     onClick={(e) => {
       filterProjects(playground.links);
+      handleActiveButton(e);
      }}
     >
      Playground
     </button>
     <span>/</span>
     <button
-     onClick={() => {
+     className='hover:text-colorGray duration-200'
+     onClick={(e) => {
       filterProjects(archive.links);
+      handleActiveButton(e);
      }}
     >
      Archive

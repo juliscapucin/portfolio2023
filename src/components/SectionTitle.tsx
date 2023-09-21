@@ -8,7 +8,7 @@ interface SectionTitleProps {
 
 export default function SectionTitle({ title }: SectionTitleProps) {
  return (
-  <GridDiv top={false} right={true} bottom={true} left={true}>
+  <GridDiv bottom={true}>
    <button
     className='h-full w-full flex justify-start items-center'
     onClick={(e) => console.log(e)}

@@ -1,8 +1,10 @@
 'use client';
 
 import Image from 'next/image';
-import { useLayoutEffect, useRef, useState } from 'react';
+import { use, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
+
+import { gsap } from 'gsap';
 
 import { animateProjectsMenu } from '@/animations';
 import { work, playground, archive } from '@/constants';
@@ -12,13 +14,13 @@ import ProjectCard from './ProjectCard';
 import GridDiv from './GridDiv';
 import { SectionTitle } from '.';
 import ProjectsFilter from './ProjectsFilter';
-import path from 'path';
 
 interface ProjectItems {
- title: string;
- slug: string;
+ title?: string;
+ slug?: string;
  id: string;
- coverImage: string;
+ coverImage?: string;
+ thumbnailSize?: string;
 }
 
 interface ProjectsMenu {
@@ -45,14 +47,59 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
  const projectsLinksRef = useRef(null);
  const allProjects = [...work.links, ...playground.links, ...archive.links];
 
+ //  Animations
  const filterProjects = (filter: ProjectItems[]) => {
-  setProjectItems(filter);
+  gsap.to('.filter-projects', {
+   opacity: 0,
+   duration: 0.5,
+   onComplete: () => {
+    setProjectItems(filter);
+   },
+  });
  };
 
- const toggleVariant = () => {
-  variant === 'list' ? setVariant('image') : setVariant('list');
+ useEffect(() => {
+  gsap.to('.filter-projects', {
+   opacity: 1,
+   duration: 0.5,
+  });
+ }, [projectItems]);
+
+ const editVariant = () => {
+  if (variant === 'list') {
+   gsap.to('.list-view', {
+    opacity: 0,
+    duration: 0.5,
+    onComplete: () => {
+     setVariant('image');
+    },
+   });
+  } else {
+   gsap.to('.image-view', {
+    opacity: 0,
+    duration: 0.5,
+    onComplete: () => {
+     setVariant('list');
+    },
+   });
+  }
  };
 
+ useEffect(() => {
+  if (variant === 'list') {
+   gsap.to('.list-view', {
+    opacity: 1,
+    duration: 0.5,
+   });
+  } else {
+   gsap.to('.image-view', {
+    opacity: 1,
+    duration: 0.5,
+   });
+  }
+ }, [variant]);
+
+ // Restart animation on resize, filter or variant change
  useLayoutEffect(() => {
   if (projectsImgsRef.current && projectsLinksRef.current)
    animateProjectsMenu(projectsImgsRef.current, projectsLinksRef.current);
@@ -66,29 +113,36 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
  ]);
 
  return (
-  <section className='h-screen min-h-screen'>
+  <section className='min-h-screen'>
    {pathname === '/' && <SectionTitle title='Work' />}
    <ProjectsFilter
-    work={work}
-    playground={playground}
-    archive={archive}
-    {...{ filterProjects, toggleVariant, allProjects }}
+    {...{
+     filterProjects,
+     editVariant,
+     allProjects,
+     variant,
+     work,
+     playground,
+     archive,
+    }}
    />
 
    {/* Projects */}
    {/* List View */}
    {variant === 'list' ? (
     <GridDiv
-     divClass='grid grid-cols-12 w-full h-full overflow-hidden'
+     divClass='list-view filter-projects grid grid-cols-12 w-full h-full overflow-hidden'
      top={true}
-     right={true}
      bottom={true}
-     left={true}
     >
      {/* Render images only on desktop */}
      {activeBreakpoint === 'desktop' && (
-      <div className='col-span-4 aspect-square relative' ref={projectsImgsRef}>
+      <div
+       className='col-span-4 aspect-square relative overflow-hidden'
+       ref={projectsImgsRef}
+      >
        {projectItems.map((img, index) => {
+        if (!img.coverImage) return;
         return (
          <Image
           src={img.coverImage}
@@ -111,6 +165,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
       ref={projectsLinksRef}
      >
       {projectItems.map((link, index) => {
+       if (!link.coverImage || !link.title || !link.slug) return;
        return (
         <div key={index}>
          <ProjectCard
@@ -127,23 +182,26 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
     </GridDiv>
    ) : (
     // Image View
-    <GridDiv
-     divClass='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full'
-     top={true}
-     right={true}
-     bottom={true}
-     left={true}
-    >
+    <GridDiv divClass='image-view filter-projects grid lg:grid-cols-12 gap-32 w-full'>
      {projectItems.map((link, index) => {
       return (
-       <div key={index}>
-        <ProjectCard
-         title={link.title}
-         slug={link.slug}
-         id={link.id}
-         coverImage={link.coverImage}
-         variant={variant}
-        />
+       <div
+        className={`w-3/4 lg:w-full ${
+         index % 2 === 0 ? 'ml-auto mr-0' : 'ml-0 mr-auto'
+        } lg:ml-auto lg:mr-auto ${
+         activeBreakpoint === 'desktop' ? `col-span-${link.thumbnailSize}` : ''
+        }`}
+        key={index}
+       >
+        {link.coverImage && link.title && link.slug && (
+         <ProjectCard
+          title={link.title}
+          slug={link.slug}
+          id={link.id}
+          coverImage={link.coverImage}
+          variant={variant}
+         />
+        )}
        </div>
       );
      })}

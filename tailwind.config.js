@@ -18,6 +18,7 @@ module.exports = {
          colors: {
             colorBlack: 'var(--color-black)',
             colorWhite: 'var(--color-white)',
+            colorGray: 'var(--color-gray)',
          },
          gridTemplateColumns: {
             20: 'repeat(20, 1fr)',

@@ -24,19 +24,15 @@ export default function ProjectCard({
 
  return variant === 'image' ? (
   // Image View
-  <GridDiv
-   right={true}
-   bottom={true}
-   divClass={`relative col-span-1 aspect-square`}
-  >
+  <GridDiv divClass={`aspect-square`}>
    {/* Empty grid element for animation */}
-   <div className='absolute top-0 left-0 w-full h-full opacity-0 z-10 pointer-events-none'>
+   <div className='absolute bottom-[100%] left-0 w-full h-full pointer-events-none'>
     <AnimationGridDiv
      divClass={`project-card-${id} overflow-hidden bg-colorWhite dark:bg-colorBlack pointer-events-none`}
     />
    </div>
    <button
-    className={`h-full w-full p-8 group flex justify-center items-center relative`}
+    className={`h-full w-full group flex justify-center items-center absolute`}
     onClick={() => {
      animateToFullScreen(`.project-card-${id}`, () =>
       router.push(`/${slug}`, { scroll: false })
@@ -45,14 +41,14 @@ export default function ProjectCard({
    >
     <ProjectTitle
      title={title}
-     divClass={`absolute bottom-4 left-4`}
+     divClass={`absolute bottom-4 left-4 z-10`}
      textSize='text-titleMedium'
     />
-    <div className='relative w-3/4 h-3/4'>
+    <div className='relative w-full h-full overflow-hidden'>
      <Image
       src={coverImage}
       key={id}
-      //   placeholder='blur'
+      // placeholder='blur'
       alt='photo'
       className='object-cover'
       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
@@ -63,13 +59,7 @@ export default function ProjectCard({
   </GridDiv>
  ) : (
   // List View
-  <GridDiv
-   top={false}
-   right={true}
-   bottom={true}
-   left={true}
-   divClass={`relative h-32`}
-  >
+  <GridDiv bottom={true} divClass={`relative h-32`}>
    {/* Empty grid element for animation */}
    <div className='absolute -top-36 left-0 bottom-0 w-full h-full opacity-0'>
     <AnimationGridDiv
