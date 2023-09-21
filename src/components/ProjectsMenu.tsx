@@ -47,6 +47,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
  const projectsLinksRef = useRef(null);
  const allProjects = [...work.links, ...playground.links, ...archive.links];
 
+ //  Animations
  const filterProjects = (filter: ProjectItems[]) => {
   gsap.to('.filter-projects', {
    opacity: 0,
@@ -98,6 +99,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
   }
  }, [variant]);
 
+ // Restart animation on resize, filter or variant change
  useLayoutEffect(() => {
   if (projectsImgsRef.current && projectsLinksRef.current)
    animateProjectsMenu(projectsImgsRef.current, projectsLinksRef.current);
@@ -137,7 +139,10 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
     >
      {/* Render images only on desktop */}
      {activeBreakpoint === 'desktop' && (
-      <div className='col-span-4 aspect-square relative' ref={projectsImgsRef}>
+      <div
+       className='col-span-4 aspect-square relative overflow-hidden'
+       ref={projectsImgsRef}
+      >
        {projectItems.map((img, index) => {
         if (!img.coverImage) return;
         return (
@@ -182,7 +187,12 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
     <GridDiv divClass='image-view filter-projects grid lg:grid-cols-12 gap-32 w-full'>
      {projectItems.map((link, index) => {
       return (
-       <div className={`col-span-${link.thumbnailSize}`} key={index}>
+       <div
+        className={`w-3/4 lg:w-full ${
+         index % 2 === 0 ? 'ml-auto mr-0' : 'ml-0 mr-auto'
+        } lg:m-auto lg:col-span-${link.thumbnailSize}`}
+        key={index}
+       >
         {link.coverImage && link.title && link.slug && (
          <ProjectCard
           title={link.title}

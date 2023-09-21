@@ -48,7 +48,7 @@ export default function ProjectCard({
      <Image
       src={coverImage}
       key={id}
-      //   placeholder='blur'
+      // placeholder='blur'
       alt='photo'
       className='object-cover'
       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
