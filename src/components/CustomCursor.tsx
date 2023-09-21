@@ -35,7 +35,10 @@ export default function CustomCursor() {
  }, [refCursor.current]);
 
  return (
-  <div className='custom-cursor' ref={refCursor}>
+  <div
+   className='fixed top-0 left-0 w-32 h-32 bg-colorWhite rounded-full flex items-center justify-center z-50 pointer-events-none'
+   ref={refCursor}
+  >
    <div className='customcursor__follower' ref={refFollower}>
     <div
      className={`customcursor__follower__inner`}

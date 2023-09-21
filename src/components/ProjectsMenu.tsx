@@ -9,7 +9,7 @@ import { gsap } from 'gsap';
 import { animateProjectsMenu } from '@/animations';
 import { work, playground, archive } from '@/constants';
 import { useWindowDimensions } from '@/hooks';
-import { CustomCursor, SectionTitle } from '@/components';
+import { SectionTitle } from '@/components';
 
 import ProjectCard from './ProjectCard';
 import GridDiv from './GridDiv';
@@ -113,7 +113,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
  ]);
 
  return (
-  <section className='customcursor__container min-h-screen'>
+  <section className='min-h-screen'>
    {pathname === '/' && <SectionTitle title='Work' />}
    <ProjectsFilter
     {...{

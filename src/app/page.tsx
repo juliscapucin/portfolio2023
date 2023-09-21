@@ -39,7 +39,7 @@ export default function Home() {
 
  return (
   <div className='home-page main-page overflow-hidden'>
-   <GridDiv divClass='overflow-hidden min-h-screen' right={true} bottom={true}>
+   <GridDiv divClass='overflow-hidden min-h-screen' bottom={true}>
     {breakpoint === 'mobile' && <HeroMobile />}
     {breakpoint === 'desktop' && <HeroDesktop />}
    </GridDiv>
