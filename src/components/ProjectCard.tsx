@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
+import { usePageContext } from '@/context';
+
 import { GridDiv, AnimationGridDiv, ProjectTitle } from '@/components';
 import { animateToFullScreen } from '@/animations/pageTransitions';
 
@@ -12,7 +14,6 @@ interface ProjectCardProps {
  slug: string;
  coverImage: string;
  variant?: string;
- setIsHovering?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function ProjectCard({
@@ -21,9 +22,9 @@ export default function ProjectCard({
  slug,
  coverImage,
  variant,
- setIsHovering,
 }: ProjectCardProps) {
  const router = useRouter();
+ const { updateIsHovering } = usePageContext();
 
  return variant === 'image' ? (
   // Image View
@@ -36,8 +37,8 @@ export default function ProjectCard({
    </div>
    <button
     className={`h-full w-full group flex justify-center items-center absolute`}
-    //  onMouseEnter={() => setIsHovering(true)}
-    //  onMouseLeave={() => setIsHovering(false)}
+    onMouseEnter={() => updateIsHovering(true)}
+    onMouseLeave={() => updateIsHovering(false)}
     onClick={() => {
      animateToFullScreen(`.project-card-${id}`, () =>
       router.push(`/${slug}`, { scroll: false })
@@ -74,8 +75,8 @@ export default function ProjectCard({
    {/* Button action */}
    <button
     className={`h-full w-full p-8 group`}
-    //  onMouseEnter={() => setIsHovering(true)}
-    //  onMouseLeave={() => setIsHovering(false)}
+    onMouseEnter={() => updateIsHovering(true)}
+    onMouseLeave={() => updateIsHovering(false)}
     onClick={() => {
      animateToFullScreen(`.project-card-${id}`, () =>
       router.push(`/${slug}`, { scroll: false })
