@@ -49,8 +49,6 @@ export default function ProjectNext({ projects, project }: ProjectNextProps) {
  return (
   <GridDiv
    divClass={'flex justify-center items-center gap-32 py-32'}
-   right={true}
-   left={true}
    bottom={true}
   >
    {previousProject && (

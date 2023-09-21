@@ -27,12 +27,7 @@ export default function MenuDesktop({ navLinks }: MenuProps) {
  const router = useRouter();
 
  return (
-  <GridDiv
-   divClass={'h-16 max-w-full mx-8 px-8 hidden lg:flex'}
-   right={true}
-   left={true}
-   bottom={true}
-  >
+  <GridDiv divClass={'h-16 max-w-full mx-8 px-8 hidden lg:flex'} bottom={true}>
    {/* Back button */}
    {/* Only render if not in home page */}
    {pathname !== '/' && (
@@ -49,13 +44,7 @@ export default function MenuDesktop({ navLinks }: MenuProps) {
       }
      }}
     >
-     <GridDiv
-      top={false}
-      right={true}
-      bottom={false}
-      left={false}
-      divClass='flex items-center justify-center'
-     >
+     <GridDiv divClass='flex items-center justify-center'>
       <span className='min-w-[4rem]'>&#5193;</span>
      </GridDiv>
     </button>

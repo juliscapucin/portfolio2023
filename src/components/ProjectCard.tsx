@@ -59,13 +59,7 @@ export default function ProjectCard({
   </GridDiv>
  ) : (
   // List View
-  <GridDiv
-   top={false}
-   right={true}
-   bottom={true}
-   left={true}
-   divClass={`relative h-32`}
-  >
+  <GridDiv bottom={true} divClass={`relative h-32`}>
    {/* Empty grid element for animation */}
    <div className='absolute -top-36 left-0 bottom-0 w-full h-full opacity-0'>
     <AnimationGridDiv

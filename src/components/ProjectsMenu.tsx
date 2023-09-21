@@ -133,9 +133,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
     <GridDiv
      divClass='list-view filter-projects grid grid-cols-12 w-full h-full overflow-hidden'
      top={true}
-     right={true}
      bottom={true}
-     left={true}
     >
      {/* Render images only on desktop */}
      {activeBreakpoint === 'desktop' && (
@@ -190,7 +188,9 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
        <div
         className={`w-3/4 lg:w-full ${
          index % 2 === 0 ? 'ml-auto mr-0' : 'ml-0 mr-auto'
-        } lg:m-auto lg:col-span-${link.thumbnailSize}`}
+        } lg:ml-auto lg:mr-auto ${
+         activeBreakpoint === 'desktop' ? `col-span-${link.thumbnailSize}` : ''
+        }`}
         key={index}
        >
         {link.coverImage && link.title && link.slug && (

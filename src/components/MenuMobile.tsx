@@ -30,11 +30,7 @@ export default function MenuMobile({ navLinks }: MenuProps) {
 
  return (
   <div className='block lg:hidden'>
-   <GridDiv
-    right={true}
-    left={true}
-    divClass='absolute max-w-full h-16 mx-8 flex justify-between items-center'
-   >
+   <GridDiv divClass='absolute max-w-full h-16 mx-8 flex justify-between items-center'>
     {/* Home Button */}
     <button
      className='w-1/2 h-16 right-8'

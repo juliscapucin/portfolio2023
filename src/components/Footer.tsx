@@ -8,9 +8,6 @@ export default function Footer() {
  return (
   <GridDiv
    top={true}
-   right={true}
-   bottom={true}
-   left={true}
    divClass={`px-8 py-16 lg:grid grid-cols-12 max-w-desktop`}
   >
    {/* White Space */}
