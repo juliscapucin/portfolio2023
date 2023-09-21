@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-import { GridDiv } from '@/components';
+import { GridDiv, Status } from '@/components';
 import { animatePanorama } from '@/animations';
 
 export default function HeroDesktop() {
@@ -16,7 +16,9 @@ export default function HeroDesktop() {
    ref={heroRef}
   >
    {/* Status */}
-   <GridDiv divClass='col-span-full row-span-1'></GridDiv>
+   <GridDiv divClass='col-span-full row-span-1 grid grid-cols-20'>
+    <Status />
+   </GridDiv>
 
    {/* Description */}
    <GridDiv divClass='col-span-full row-span-1' top={true}></GridDiv>

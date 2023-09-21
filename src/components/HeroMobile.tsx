@@ -1,4 +1,4 @@
-import { GridDiv } from '@/components';
+import { GridDiv, Status } from '@/components';
 
 export default function HeroMobile() {
  return (
@@ -12,13 +12,17 @@ export default function HeroMobile() {
     Juli Scapucin
    </GridDiv>
 
-   {/* Space */}
+   {/* Status */}
    <GridDiv
     divClass='col-span-full row-span-1 text-headlineLarge uppercase'
     top={true}
     right={true}
     left={true}
-   ></GridDiv>
+   >
+    <div className='col-span-full row-span-1 grid grid-cols-20'>
+     <Status />
+    </div>
+   </GridDiv>
 
    {/* Description */}
    <GridDiv
