@@ -16,13 +16,13 @@ export default function HeroDesktop() {
    ref={heroRef}
   >
    {/* Status */}
-   <GridDiv divClass='col-span-full row-span-1' left={true}></GridDiv>
+   <GridDiv divClass='col-span-full row-span-1'></GridDiv>
 
    {/* Description */}
    <GridDiv divClass='col-span-full row-span-1' top={true}></GridDiv>
 
    {/* Blank Space */}
-   <GridDiv divClass='col-span-8 row-span-1' top={true} left={true}></GridDiv>
+   <GridDiv divClass='col-span-8 row-span-1' top={true}></GridDiv>
 
    {/* Name */}
    <GridDiv
