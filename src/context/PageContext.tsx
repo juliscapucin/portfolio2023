@@ -11,7 +11,7 @@ interface ContextProps {
 }
 
 // CREATE CONTEXT
-const PageContext = createContext({} as ContextProps);
+const PageContext = createContext<ContextProps | null>(null);
 
 // CONTEXT PROVIDER
 export const PageContextProvider = ({
@@ -45,4 +45,9 @@ export const PageContextProvider = ({
 };
 
 // CONTEXT CUSTOM HOOK
-export const usePageContext = () => useContext(PageContext);
+export const usePageContext = () => {
+ const context = useContext(PageContext);
+ if (!context)
+  throw new Error('usePageContext must be used within PageContextProvider');
+ return context;
+};
