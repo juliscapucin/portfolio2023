@@ -13,7 +13,7 @@ interface ContextProps {
 const CustomCursorContext = createContext({} as ContextProps);
 
 // CONTEXT PROVIDER
-export const CustomCustomProvider = ({
+export const CustomCursorProvider = ({
  children,
 }: {
  children: React.ReactNode;
