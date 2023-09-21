@@ -1,6 +1,11 @@
 import localFont from 'next/font/local';
 
-import { Header, ContactModal, StoryblokProvider } from '@/components';
+import {
+ Header,
+ ContactModal,
+ StoryblokProvider,
+ CustomCursor,
+} from '@/components';
 import { ModalContextProvider, PageContextProvider } from '@/context';
 
 // import { storyblokInit, apiPlugin } from '@storyblok/react/rsc';
@@ -53,8 +58,12 @@ export default function RootLayout(props: {
       className={`${myFont.className} relative mt-0 max-w-desktop font-text font-extralight text-bodyLarge bg-colorWhite text-colorBlack dark:bg-colorBlack dark:text-colorWhite mx-auto overflow-x-hidden`}
      >
       <Header />
+
       <PageContextProvider>
        <main className={`mt-16 mx-8 overflow-x-hidden`}>
+        {/* Custom Cursor */}
+        <CustomCursor />
+
         {/* Transition Overlay */}
         <div className='transition-fullscreen w-screen h-screen top-0 left-0 fixed z-10 hidden pointer-events-none'></div>
         {props.children}
