@@ -26,6 +26,7 @@ import ShallowPage from './shallowPage/ShallowPage';
 import SocialLinks from './SocialLinks';
 import Status from './Status';
 import StoryblokProvider from './StoryblokProvider';
+import ThemeSwitcher from './ThemeSwitcher';
 
 export {
    AnimationGridDiv,
@@ -54,4 +55,5 @@ export {
    SocialLinks,
    Status,
    StoryblokProvider,
+   ThemeSwitcher,
 };

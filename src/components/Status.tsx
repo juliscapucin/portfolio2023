@@ -19,11 +19,11 @@ function Status() {
  return (
   <div className='flex flex-col text-titleMedium mt-2 ml-2'>
    <span>Amsterdam</span>
-   <span className='h-[1px] bg-colorBlack dark:bg-colorWhite'></span>
+   <span className='h-[1px] bg-secondary'></span>
    <span>{dayOfWeek}</span>
-   <span className='h-[1px] bg-colorBlack dark:bg-colorWhite'></span>
+   <span className='h-[1px] bg-secondary'></span>
    <span>{time}</span>
-   <span className='h-[1px] bg-colorBlack dark:bg-colorWhite'></span>
+   <span className='h-[1px] bg-secondary'></span>
   </div>
  );
 }

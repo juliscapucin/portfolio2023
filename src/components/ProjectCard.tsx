@@ -32,7 +32,7 @@ export default function ProjectCard({
    {/* Empty grid element for animation */}
    <div className='absolute bottom-[100%] left-0 w-full h-full pointer-events-none'>
     <AnimationGridDiv
-     divClass={`project-card-${id} overflow-hidden bg-colorWhite dark:bg-colorBlack pointer-events-none`}
+     divClass={`project-card-${id} overflow-hidden bg-primary pointer-events-none`}
     />
    </div>
    <button
@@ -69,7 +69,7 @@ export default function ProjectCard({
    {/* Empty grid element for animation */}
    <div className='absolute -top-36 left-0 bottom-0 w-full h-full opacity-0'>
     <AnimationGridDiv
-     divClass={`project-card-${id} overflow-hidden bg-colorWhite dark:bg-colorBlack pointer-events-none`}
+     divClass={`project-card-${id} overflow-hidden bg-primary pointer-events-none`}
     />
    </div>
    {/* Button action */}

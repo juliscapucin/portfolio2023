@@ -21,6 +21,20 @@
    --duration2: 1s;
 }
 
+@layer base {
+   :root {
+      --color-primary: 54 0 0;
+      --color-secondary: 220 20 60;
+      --color-faded: 128 0 32;
+      --crimson: 220 20 60;
+      --burgundy: 128 0 32;
+      --dark-burgundy: 54 0 0;
+      --black: 6 6 7;
+      --white: 252 249 248;
+      --grey: 154 152 152;
+   }
+}
+
 * {
    box-sizing: border-box;
    padding: 0;
@@ -89,11 +103,6 @@ button {
 
 /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */
 
-.animation-grid-element .static-line {
-   background-color: var(--color-white);
-   position: absolute;
-}
-
 .animation-grid-element .static-line:nth-child(1) {
    width: 100%;
    height: 1px;
@@ -123,18 +132,18 @@ button {
 }
 
 /* outline animation */
-.grid-element {
+/* .grid-element {
    position: relative;
    overflow: hidden;
-}
+} */
 
-.line,
+/* .line,
 .line-transparent {
    position: absolute;
    transform: translate3d(0, 0, 0);
-}
+} */
 
-.grid-element .line {
+/* .grid-element .line {
    background-color: var(--color-black);
 }
 
@@ -148,7 +157,7 @@ button {
 
 .dark .grid-element .line-transparent {
    background-color: var(--color-black);
-}
+} */
 
 /* top line */
 .grid-element .line:nth-child(1) {

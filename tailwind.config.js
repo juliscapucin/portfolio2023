@@ -19,6 +19,9 @@ module.exports = {
             colorBlack: 'var(--color-black)',
             colorWhite: 'var(--color-white)',
             colorGray: 'var(--color-gray)',
+            primary: 'rgb(var(--color-primary) / <alpha-value>)',
+            secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
+            colorFaded: 'rgb(var(--color-faded) / <alpha-value>)',
          },
          gridTemplateColumns: {
             20: 'repeat(20, 1fr)',

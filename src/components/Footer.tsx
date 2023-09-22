@@ -28,10 +28,10 @@ export default function Footer() {
          <Link className='block h-11 group overflow-hidden' href={link.url}>
           {/* Animated Label */}
           <div className='flex flex-col justify-start items-start group-hover:-translate-y-1/2 transition'>
-           <span className='font-headline text-headlineSmall uppercase text-colorBlack dark:text-colorWhite'>
+           <span className='font-headline text-headlineSmall uppercase text-secondary'>
             {link.label}
            </span>
-           <span className='font-headline text-headlineSmall uppercase text-colorBlack dark:text-colorWhite'>
+           <span className='font-headline text-headlineSmall uppercase text-secondary'>
             {link.label}
            </span>
           </div>

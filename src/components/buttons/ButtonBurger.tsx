@@ -7,8 +7,8 @@ interface ButtonBurgerProps {
 export default function ButtonBurger({ action }: ButtonBurgerProps) {
  return (
   <button onClick={action} className='h-16 w-16 relative mr-8'>
-   <div className='absolute h-[1px] w-full bg-colorBlack dark:bg-colorWhite'></div>
-   <div className='absolute h-[1px] w-full bg-colorBlack dark:bg-colorWhite mt-4'></div>
+   <div className='absolute h-[1px] w-full bg-secondary'></div>
+   <div className='absolute h-[1px] w-full bg-secondary mt-4'></div>
   </button>
  );
 }

@@ -10,11 +10,11 @@ export default function ContactModal() {
 
  return (
   <aside
-   className={`w-full max-w-desktop h-1/2 bg-colorWhite dark:bg-colorBlack fixed top-full mx-auto px-8 z-20 transition-transform ${
+   className={`w-full max-w-desktop h-1/2 bg-primary fixed top-full mx-auto px-8 z-20 transition-transform ${
     modalOpen ? '-translate-y-full' : ''
    }`}
   >
-   <div className='block lg:grid grid-cols-12 items-center border border-colorBlack dark:border-colorWhite h-full p-16 relative'>
+   <div className='block lg:grid grid-cols-12 items-center border border-secondary h-full p-16 relative'>
     <div className='absolute top-8 right-8' onClick={updateModalOpen}>
      <ButtonClose action={() => updateModalOpen} />
     </div>

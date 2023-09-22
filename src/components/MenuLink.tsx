@@ -25,12 +25,8 @@ export default function MenuLink({
     }`}
     onClick={action}
    >
-    <span className='text-titleMedium uppercase text-colorBlack dark:text-colorWhite'>
-     {label}
-    </span>
-    <span className='text-titleMedium uppercase text-colorBlack dark:text-colorWhite'>
-     {label}
-    </span>
+    <span className='text-titleMedium uppercase text-secondary'>{label}</span>
+    <span className='text-titleMedium uppercase text-secondary'>{label}</span>
    </button>
   </div>
  );

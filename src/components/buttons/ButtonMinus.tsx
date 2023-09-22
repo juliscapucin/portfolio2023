@@ -7,7 +7,7 @@ interface ButtonMinusProps {
 export default function ButtonMinus({ action }: ButtonMinusProps) {
  return (
   <div className='h-16 w-16 flex justify-center items-center relative'>
-   <div className='absolute h-[1px] w-3/4 bg-colorBlack dark:bg-colorWhite'></div>
+   <div className='absolute h-[1px] w-3/4 bg-secondary'></div>
   </div>
  );
 }

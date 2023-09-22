@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-import { GridDiv, Status } from '@/components';
+import { GridDiv, Status, ThemeSwitcher } from '@/components';
 import { animatePanorama } from '@/animations';
 
 export default function HeroDesktop() {
@@ -43,13 +43,20 @@ export default function HeroDesktop() {
    </GridDiv>
 
    {/* Theme */}
-   <GridDiv divClass='col-span-1 row-span-3' top={true} left={true}></GridDiv>
+   <GridDiv
+    divClass='col-span-1 row-span-3'
+    top={true}
+    right={true}
+    left={true}
+   >
+    <ThemeSwitcher />
+   </GridDiv>
 
    {/* Blank Space */}
-   <GridDiv divClass='col-span-2 row-span-3' top={true} left={true}></GridDiv>
+   <GridDiv divClass='col-span-2 row-span-3' top={true} right={true}></GridDiv>
 
    {/* Blank Space */}
-   <GridDiv divClass='col-span-4 row-span-1' top={true} left={true}></GridDiv>
+   <GridDiv divClass='col-span-4 row-span-1' top={true}></GridDiv>
 
    {/* Surname */}
    <GridDiv
