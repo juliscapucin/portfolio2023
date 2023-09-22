@@ -2,7 +2,7 @@
 
 import { useModalContext } from '@/context';
 import { SocialLinks } from '.';
-import ButtonClose from '@buttons/ButtonClose';
+import { ButtonClose } from '@buttons/.';
 import Availability from './Availability';
 
 export default function ContactModal() {

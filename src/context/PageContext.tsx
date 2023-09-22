@@ -25,6 +25,8 @@ export const PageContextProvider = ({
  const [isHovering, setIsHovering] = useState(false);
  const [theme, setTheme] = useState('dark');
 
+ console.log('theme', theme);
+
  const updatePreviousPage = (page: string) => {
   setPreviousPage(page);
  };
