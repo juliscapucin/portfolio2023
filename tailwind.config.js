@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-   darkMode: 'class',
    content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
    theme: {
       extend: {
@@ -18,6 +17,7 @@ module.exports = {
          colors: {
             colorBlack: 'var(--color-black)',
             colorWhite: 'var(--color-white)',
+            colorBurgundy: 'var(--color-burgundy)',
             colorGray: 'var(--color-gray)',
             primary: 'rgb(var(--color-primary) / <alpha-value>)',
             secondary: 'rgb(var(--color-secondary) / <alpha-value>)',

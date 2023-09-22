@@ -55,7 +55,7 @@ export default function RootLayout(props: {
  return (
   <StoryblokProvider>
    <PageContextProvider>
-    <html lang='en' className='dark'>
+    <html lang='en' data-theme='dark'>
      <ModalContextProvider>
       <body
        className={`${myFont.className} relative mt-0 max-w-desktop font-text font-extralight text-bodyLarge bg-primary text-secondary mx-auto overflow-x-hidden`}
