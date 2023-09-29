@@ -2,10 +2,12 @@ import localFont from 'next/font/local';
 
 import {
  Header,
+ HtmlWrapper,
  ContactModal,
  StoryblokProvider,
  CustomCursor,
 } from '@/components';
+
 import { ModalContextProvider, PageContextProvider } from '@/context';
 
 // import { storyblokInit, apiPlugin } from '@storyblok/react/rsc';
@@ -52,14 +54,14 @@ export default function RootLayout(props: {
 }) {
  return (
   <StoryblokProvider>
-   <html lang='en' className='dark'>
-    <ModalContextProvider>
-     <body
-      className={`${myFont.className} relative mt-0 max-w-desktop font-text font-extralight text-bodyLarge bg-colorWhite text-colorBlack dark:bg-colorBlack dark:text-colorWhite mx-auto overflow-x-hidden`}
-     >
-      <Header />
+   <PageContextProvider>
+    <HtmlWrapper>
+     <ModalContextProvider>
+      <body
+       className={`${myFont.className} relative mt-0 max-w-desktop font-text font-extralight text-bodyLarge bg-primary text-secondary mx-auto overflow-x-hidden`}
+      >
+       <Header />
 
-      <PageContextProvider>
        <main className={`mt-16 mx-8 overflow-x-hidden`}>
         {/* Custom Cursor */}
         <CustomCursor />
@@ -69,12 +71,12 @@ export default function RootLayout(props: {
         {props.children}
         {props.shallowPage}
        </main>
-      </PageContextProvider>
 
-      <ContactModal />
-     </body>
-    </ModalContextProvider>
-   </html>
+       <ContactModal />
+      </body>
+     </ModalContextProvider>
+    </HtmlWrapper>
+   </PageContextProvider>
   </StoryblokProvider>
  );
 }

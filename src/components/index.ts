@@ -10,6 +10,7 @@ import Footer from './Footer';
 import GridDiv from './GridDiv';
 import GridElement from './GridElement';
 import Header from './header';
+import HtmlWrapper from './HtmlWrapper';
 import MenuLink from './MenuLink';
 import HeroDesktop from './HeroDesktop';
 import HeroMobile from './HeroMobile';
@@ -26,6 +27,7 @@ import ShallowPage from './shallowPage/ShallowPage';
 import SocialLinks from './SocialLinks';
 import Status from './Status';
 import StoryblokProvider from './StoryblokProvider';
+import ThemeSwitcher from './ThemeSwitcher';
 
 export {
    AnimationGridDiv,
@@ -38,6 +40,7 @@ export {
    GridDiv,
    GridElement,
    Header,
+   HtmlWrapper,
    MenuLink,
    HeroDesktop,
    HeroMobile,
@@ -54,4 +57,5 @@ export {
    SocialLinks,
    Status,
    StoryblokProvider,
+   ThemeSwitcher,
 };

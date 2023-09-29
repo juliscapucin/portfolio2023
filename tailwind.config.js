@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-   darkMode: 'class',
    content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
    theme: {
       extend: {
@@ -16,9 +15,12 @@ module.exports = {
             text: ['var(--font-secondary)'],
          },
          colors: {
-            colorBlack: 'var(--color-black)',
-            colorWhite: 'var(--color-white)',
-            colorGray: 'var(--color-gray)',
+            colorBlack: 'rgb(var(--color-black) / <alpha-value>)',
+            colorWhite: 'rgb(var(--color-white) / <alpha-value>)',
+            colorGreen: 'rgb(var(--color-green) / <alpha-value>)',
+            primary: 'rgb(var(--color-primary) / <alpha-value>)',
+            secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
+            colorFaded: 'rgb(var(--color-faded) / <alpha-value>)',
          },
          gridTemplateColumns: {
             20: 'repeat(20, 1fr)',

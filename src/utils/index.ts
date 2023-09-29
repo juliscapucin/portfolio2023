@@ -1,3 +1,3 @@
-export const toggleModal = (element: HTMLElement) => {
-   console.log('hi');
-};
+import { updateTheme, getTheme } from './themeStorage';
+
+export { updateTheme, getTheme };

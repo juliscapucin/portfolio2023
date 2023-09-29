@@ -1,4 +1,4 @@
-import { GridDiv, Status } from '@/components';
+import { GridDiv, Status, ThemeSwitcher } from '@/components';
 
 export default function HeroMobile() {
  return (
@@ -38,10 +38,8 @@ export default function HeroMobile() {
    <GridDiv
     divClass='col-span-full row-span-1 flex justify-end text-titleSmall uppercase'
     top={true}
-    right={true}
-    left={true}
    >
-    Theme
+    <ThemeSwitcher />
    </GridDiv>
 
    {/* Number */}

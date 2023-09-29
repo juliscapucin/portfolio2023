@@ -30,6 +30,8 @@ export const PageContextProvider = ({
   setIsHovering(state);
  };
 
+ console.log(previousPage);
+
  return (
   <PageContext.Provider
    value={{

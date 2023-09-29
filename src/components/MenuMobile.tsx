@@ -86,7 +86,7 @@ export default function MenuMobile({ navLinks }: MenuProps) {
         key={link.id}
        >
         <Link className='block' href={link.slug}>
-         <span className='font-headline text-displaySmall uppercase text-colorBlack dark:text-colorWhite'>
+         <span className='font-headline text-displaySmall uppercase text-secondary'>
           {link.label}
          </span>
         </Link>

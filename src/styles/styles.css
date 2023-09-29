@@ -9,9 +9,19 @@
    --border-radius: 12px;
    --font-secondary: 'ff-real-text-pro', sans-serif;
 
-   --color-black: #060607;
+   /* --color-black: #060607;
    --color-white: #fcf9f8;
    --color-gray: #9a9898;
+   --color-green: rgb(0, 255, 0);
+   --color-burgundy: #800020; */
+
+   /* --color-crimson: 220 20 60;
+   --color-burgundy: 128 0 32;
+   --dark-burgundy: 54 0 0;
+   --color-black: 6 6 7;
+   --color-white: 252 249 248;
+   --color-gray: 154 152 152;
+   --color-green: 0 128 0; */
 
    --delay1: 0.7s;
    --delay2: 1s;
@@ -19,6 +29,37 @@
 
    --duration1: 0.5s;
    --duration2: 1s;
+}
+
+@layer base {
+   :root {
+      --color-crimson: 220 20 60;
+      --color-burgundy: 128 0 32;
+      --dark-burgundy: 54 0 0;
+      --color-black: 6 6 7;
+      --color-white: 252 249 248;
+      --color-green: 0 128 0;
+   }
+   :root[data-theme='dark'] {
+      --color-primary: 6 6 7;
+      --color-secondary: 252 249 248;
+      --color-faded: 154 152 152;
+   }
+   :root[data-theme='light'] {
+      --color-primary: 252 249 248;
+      --color-secondary: 6 6 7;
+      --color-faded: 154 152 152;
+   }
+   :root[data-theme='green'] {
+      --color-primary: 0 40 0;
+      --color-secondary: 0 255 0;
+      --color-faded: 0 100 0;
+   }
+   :root[data-theme='burgundy'] {
+      --color-primary: 54 0 0;
+      --color-secondary: 240 20 60;
+      --color-faded: 130 40 60;
+   }
 }
 
 * {
@@ -89,11 +130,6 @@ button {
 
 /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */
 
-.animation-grid-element .static-line {
-   background-color: var(--color-white);
-   position: absolute;
-}
-
 .animation-grid-element .static-line:nth-child(1) {
    width: 100%;
    height: 1px;
@@ -123,18 +159,18 @@ button {
 }
 
 /* outline animation */
-.grid-element {
+/* .grid-element {
    position: relative;
    overflow: hidden;
-}
+} */
 
-.line,
+/* .line,
 .line-transparent {
    position: absolute;
    transform: translate3d(0, 0, 0);
-}
+} */
 
-.grid-element .line {
+/* .grid-element .line {
    background-color: var(--color-black);
 }
 
@@ -148,7 +184,7 @@ button {
 
 .dark .grid-element .line-transparent {
    background-color: var(--color-black);
-}
+} */
 
 /* top line */
 .grid-element .line:nth-child(1) {

@@ -28,9 +28,9 @@ export default function ProjectsFilter({
   const button = e.target as HTMLButtonElement;
   const buttons = filterDiv.querySelectorAll('button');
   buttons.forEach((btn) => {
-   btn.classList.remove('text-colorGray');
+   btn.classList.remove('text-colorFaded');
   });
-  button.classList.add('text-colorGray');
+  button.classList.add('text-colorFaded');
  };
 
  return (
@@ -38,10 +38,10 @@ export default function ProjectsFilter({
    {/* View buttons */}
    <div className='hidden md:flex gap-8 align-bottom '>
     {variant === 'list' ? (
-     <span className='text-colorGray'>List View</span>
+     <span className='text-colorFaded'>List View</span>
     ) : (
      <button
-      className='hover:text-colorGray transition-colors duration-200'
+      className='hover:text-colorFaded transition-colors duration-200'
       onClick={() => {
        editVariant();
       }}
@@ -51,10 +51,10 @@ export default function ProjectsFilter({
     )}
     <span>/</span>
     {variant === 'image' ? (
-     <span className='text-colorGray'>Image View</span>
+     <span className='text-colorFaded'>Image View</span>
     ) : (
      <button
-      className='hover:text-colorGray transition-colors duration-200'
+      className='hover:text-colorFaded transition-colors duration-200'
       onClick={() => {
        editVariant();
       }}
@@ -67,7 +67,7 @@ export default function ProjectsFilter({
    {/* Filter buttons */}
    <div ref={filterButtonsRef} className='flex gap-8 align-bottom '>
     <button
-     className='text-colorGray hover:text-colorGray duration-200'
+     className='text-colorFaded hover:text-colorFaded duration-200'
      onClick={(e) => {
       filterProjects(allProjects);
       handleActiveButton(e);
@@ -77,7 +77,7 @@ export default function ProjectsFilter({
     </button>
     <span>/</span>
     <button
-     className='hover:text-colorGray duration-200'
+     className='hover:text-colorFaded duration-200'
      onClick={(e) => {
       filterProjects(work.links);
       handleActiveButton(e);
@@ -87,7 +87,7 @@ export default function ProjectsFilter({
     </button>
     <span>/</span>
     <button
-     className='hover:text-colorGray duration-200'
+     className='hover:text-colorFaded duration-200'
      onClick={(e) => {
       filterProjects(playground.links);
       handleActiveButton(e);
@@ -97,7 +97,7 @@ export default function ProjectsFilter({
     </button>
     <span>/</span>
     <button
-     className='hover:text-colorGray duration-200'
+     className='hover:text-colorFaded duration-200'
      onClick={(e) => {
       filterProjects(archive.links);
       handleActiveButton(e);

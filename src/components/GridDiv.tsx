@@ -18,26 +18,26 @@ export default function GridDiv({
  divClass,
 }: GridDivProps) {
  return (
-  <div className={`grid-element ${divClass}`}>
+  <div className={`grid-element relative overflow-hidden ${divClass}`}>
    {top ? (
-    <div className='line'></div>
+    <div className='line absolute translate-x-0 translate-y-0 bg-secondary'></div>
    ) : (
-    <div className='line-transparent'></div>
+    <div className='line-transparent absolute translate-x-0 translate-y-0 bg-primary'></div>
    )}
    {right ? (
-    <div className='line'></div>
+    <div className='line absolute translate-x-0 translate-y-0 bg-secondary'></div>
    ) : (
-    <div className='line-transparent'></div>
+    <div className='line-transparent absolute translate-x-0 translate-y-0 bg-primary'></div>
    )}
    {bottom ? (
-    <div className='line'></div>
+    <div className='line absolute translate-x-0 translate-y-0 bg-secondary'></div>
    ) : (
-    <div className='line-transparent'></div>
+    <div className='line-transparent absolute translate-x-0 translate-y-0 bg-primary'></div>
    )}
    {left ? (
-    <div className='line'></div>
+    <div className='line absolute translate-x-0 translate-y-0 bg-secondary'></div>
    ) : (
-    <div className='line-transparent'></div>
+    <div className='line-transparent absolute translate-x-0 translate-y-0 bg-primary'></div>
    )}
    {children}
   </div>
