@@ -1,6 +1,8 @@
 import Image from 'next/image';
 
-export default function Page({ params }: any) {
+export default function Page({ params }: { params: { slug: string } }) {
+ console.log(params.slug);
+
  return (
   <main className='relative'>
    <div className='transition-fullscreen w-screen h-screen top-0 left-0'>
