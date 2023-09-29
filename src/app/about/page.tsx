@@ -60,8 +60,8 @@ export default function Page() {
 
      {/* Subtitle */}
      <p className='text-titleLarge md:text-headlineSmall col-span-3'>
-      I’m a Front-End Developer with a broad background in Graphic and Digital
-      Design. Since 2000 I've been designing meaningful, memorable, and
+      Im a Front-End Developer with a broad background in Graphic and Digital
+      Design. Since 2000 Ive been designing meaningful, memorable, and
       communicative work for companies and professionals worldwide. Commitment
       to visual excellence and engineering performance is part of my DNA.
      </p>
@@ -82,10 +82,10 @@ export default function Page() {
        are an enhancement of our lives, not a distraction from it.
       </p>
       <p>
-       As a member of a team, I like to actively get involved in it's work and
+       As a member of a team, I like to actively get involved in its work and
        mission. The same as I build long-lasting products for your clients, I
        believe in building long-lasting partnerships with my job providers.
-      </p>{' '}
+      </p>
       <p>
        I’m currently freelancing full-time, so if you would like to discuss a
        specific project or simply want to say hi, drop me a line.

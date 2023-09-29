@@ -8,8 +8,6 @@ interface ContextProps {
  updatePreviousPage: (page: string) => void;
  isHovering: boolean;
  updateIsHovering: (arg: boolean) => void;
- theme: string;
- updateTheme: (theme: string) => void;
 }
 
 // CREATE CONTEXT
@@ -23,9 +21,6 @@ export const PageContextProvider = ({
 }) => {
  const [previousPage, setPreviousPage] = useState('home');
  const [isHovering, setIsHovering] = useState(false);
- const [theme, setTheme] = useState('dark');
-
- console.log('theme', theme);
 
  const updatePreviousPage = (page: string) => {
   setPreviousPage(page);
@@ -35,9 +30,7 @@ export const PageContextProvider = ({
   setIsHovering(state);
  };
 
- const updateTheme = (theme: string) => {
-  setTheme(theme);
- };
+ console.log(previousPage);
 
  return (
   <PageContext.Provider
@@ -46,8 +39,6 @@ export const PageContextProvider = ({
     updatePreviousPage,
     isHovering,
     updateIsHovering,
-    theme,
-    updateTheme,
    }}
   >
    {children}

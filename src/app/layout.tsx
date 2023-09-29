@@ -2,13 +2,13 @@ import localFont from 'next/font/local';
 
 import {
  Header,
+ HtmlWrapper,
  ContactModal,
  StoryblokProvider,
  CustomCursor,
 } from '@/components';
-import { ModalContextProvider, PageContextProvider } from '@/context';
 
-import { usePageContext } from '@/context';
+import { ModalContextProvider, PageContextProvider } from '@/context';
 
 // import { storyblokInit, apiPlugin } from '@storyblok/react/rsc';
 
@@ -55,7 +55,7 @@ export default function RootLayout(props: {
  return (
   <StoryblokProvider>
    <PageContextProvider>
-    <html lang='en' data-theme='dark'>
+    <HtmlWrapper>
      <ModalContextProvider>
       <body
        className={`${myFont.className} relative mt-0 max-w-desktop font-text font-extralight text-bodyLarge bg-primary text-secondary mx-auto overflow-x-hidden`}
@@ -75,7 +75,7 @@ export default function RootLayout(props: {
        <ContactModal />
       </body>
      </ModalContextProvider>
-    </html>
+    </HtmlWrapper>
    </PageContextProvider>
   </StoryblokProvider>
  );
