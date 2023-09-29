@@ -5,7 +5,6 @@ import { useThemeStorage } from '@/hooks';
 export default function HtmlWrapper(props: { children: React.ReactNode }) {
  const { theme } = useThemeStorage();
 
- //  useEffect(() => {}, []);
  return (
   <html lang='en' data-theme={theme}>
    {props.children}
