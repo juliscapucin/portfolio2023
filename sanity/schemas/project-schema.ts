@@ -7,7 +7,6 @@ const projectSchema = {
          name: 'title',
          title: 'Title',
          type: 'string',
-         // validation: (Rule) => Rule.required(),
       },
       {
          name: 'slug',
@@ -17,7 +16,6 @@ const projectSchema = {
             source: 'title',
             maxLength: 96,
          },
-         // validation: (Rule) => Rule.required(),
       },
       {
          name: 'description',

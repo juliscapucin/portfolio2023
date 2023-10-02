@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
-import { getProjects } from '@sanity/sanity-utils';
+import { getWorkPage } from '@sanity/sanity-utils';
 
 export async function GET() {
-   const projects = await getProjects();
+   const res = await getWorkPage();
 
-   return NextResponse.json(projects, { status: 200 });
+   return NextResponse.json(res, { status: 200 });
 }

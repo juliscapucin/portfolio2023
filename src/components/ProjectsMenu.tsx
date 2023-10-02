@@ -35,11 +35,23 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
  const pathname = usePathname();
  const { width, height } = useWindowDimensions();
 
- const allProjects = useFetch('/api/work');
- //  const allProjects = [...work.links, ...playground.links, ...archive.links];
+ const [data, setData] = useState(null);
+
+ const allProjects = [...work.links, ...playground.links, ...archive.links];
  const [projectItems, setProjectItems] = useState<ProjectItems[]>(
   allProjects || []
  );
+
+ // Fetch data
+ useEffect(() => {
+  const fetchData = async () => {
+   const response = await fetch('/api/work');
+   const data = await response.json();
+   setData(data);
+  };
+
+  fetchData();
+ }, []);
 
  // View options
  const [variant, setVariant] = useState<string>(

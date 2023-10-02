@@ -1,8 +1,6 @@
 import { createClient, groq } from 'next-sanity';
 import clientConfig from './config/client-config';
 
-import { Project } from '@/types';
-
 export async function getProjects() {
    const client = createClient(clientConfig);
 
@@ -37,5 +35,16 @@ export async function getProject(slug: string) {
       content
    }`,
       { slug }
+   );
+}
+
+export async function getWorkPage() {
+   const client = createClient(clientConfig);
+
+   return client.fetch(
+      groq`*[_type == "workPage"][0] {
+      title,
+      description,
+   }`
    );
 }
