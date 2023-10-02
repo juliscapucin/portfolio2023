@@ -1,14 +1,14 @@
 'use client';
 
 import Image from 'next/image';
-import { use, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 import { gsap } from 'gsap';
 
 import { animateProjectsMenu } from '@/animations';
 import { work, playground, archive } from '@/constants';
-import { useWindowDimensions } from '@/hooks';
+import { useFetch, useWindowDimensions } from '@/hooks';
 import { SectionTitle } from '@/components';
 
 import ProjectCard from './ProjectCard';
@@ -35,8 +35,11 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
  const pathname = usePathname();
  const { width, height } = useWindowDimensions();
 
- const allProjects = [...work.links, ...playground.links, ...archive.links];
- const [projectItems, setProjectItems] = useState<ProjectItems[]>(allProjects);
+ const allProjects = useFetch('/api/work');
+ //  const allProjects = [...work.links, ...playground.links, ...archive.links];
+ const [projectItems, setProjectItems] = useState<ProjectItems[]>(
+  allProjects || []
+ );
 
  // View options
  const [variant, setVariant] = useState<string>(
@@ -141,20 +144,21 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
        className='col-span-4 aspect-square relative overflow-hidden'
        ref={projectsImgsRef}
       >
-       {projectItems.map((img, index) => {
-        if (!img.coverImage) return;
-        return (
-         <Image
-          src={img.coverImage}
-          key={index}
-          //   placeholder='blur'
-          alt='photo'
-          className='object-cover'
-          sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-          fill
-         />
-        );
-       })}
+       {projectItems &&
+        projectItems.map((img, index) => {
+         if (!img.coverImage) return;
+         return (
+          <Image
+           src={img.coverImage}
+           key={index}
+           //   placeholder='blur'
+           alt='photo'
+           className='object-cover'
+           sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+           fill
+          />
+         );
+        })}
       </div>
      )}
      <div
@@ -164,21 +168,22 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
       className={`col-span-${activeBreakpoint === 'mobile' ? 9 : 6} row-span-6`}
       ref={projectsLinksRef}
      >
-      {projectItems.map((link, index) => {
-       if (!link.coverImage || !link.title || !link.slug) return;
-       return (
-        <div key={index}>
-         <ProjectCard
-          title={link.title}
-          slug={link.slug}
-          id={link.id}
-          coverImage={link.coverImage}
-          variant={variant}
-          // setIsHovering={setIsHovering}
-         />
-        </div>
-       );
-      })}
+      {projectItems &&
+       projectItems.map((link, index) => {
+        if (!link.coverImage || !link.title || !link.slug) return;
+        return (
+         <div key={index}>
+          <ProjectCard
+           title={link.title}
+           slug={link.slug}
+           id={link.id}
+           coverImage={link.coverImage}
+           variant={variant}
+           // setIsHovering={setIsHovering}
+          />
+         </div>
+        );
+       })}
      </div>
     </GridDiv>
    ) : (
