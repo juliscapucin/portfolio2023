@@ -80,3 +80,13 @@ export async function getAboutPage() {
    }`
    );
 }
+
+export async function getSocialLinks() {
+   const client = createClient(clientConfig);
+
+   return client.fetch(
+      groq`*[_type == "navigation"][0] {
+      items[]
+   }`
+   );
+}
