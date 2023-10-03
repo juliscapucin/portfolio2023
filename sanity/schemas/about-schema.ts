@@ -1,6 +1,6 @@
-const projectSchema = {
-   name: 'project',
-   title: 'Projects',
+const aboutSchema = {
+   name: 'aboutPage',
+   title: 'About Page',
    type: 'document',
    fields: [
       {
@@ -35,29 +35,15 @@ const projectSchema = {
          ],
       },
       { name: 'url', title: 'URL', type: 'url' },
-      { name: 'gridSize', title: 'Grid Size', type: 'number' },
-      { name: 'thumbnailSize', title: 'Thumbnail Size', type: 'number' },
       {
-         name: 'images',
-         title: 'Images',
+         name: 'content1',
+         title: 'Content 1',
          type: 'array',
-         of: [{ type: 'image' }],
-         options: {
-            hotspot: true,
-         },
+         of: [{ type: 'block' }],
       },
       {
-         name: 'category',
-         title: 'Category',
-         type: 'array',
-         of: [{ type: 'string' }],
-         options: {
-            layout: 'tags',
-         },
-      },
-      {
-         name: 'content',
-         title: 'Content',
+         name: 'content2',
+         title: 'Content 2',
          type: 'array',
          of: [{ type: 'block' }],
       },
@@ -79,4 +65,4 @@ const projectSchema = {
    },
 };
 
-export default projectSchema;
+export default aboutSchema;
