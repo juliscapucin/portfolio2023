@@ -14,6 +14,7 @@ interface ProjectCardProps {
  slug: string;
  coverImage: string;
  variant?: string;
+ thumbnailSize?: number;
 }
 
 export default function ProjectCard({
@@ -22,13 +23,14 @@ export default function ProjectCard({
  slug,
  coverImage,
  variant,
+ thumbnailSize,
 }: ProjectCardProps) {
  const router = useRouter();
  const { updateIsHovering } = usePageContext();
 
  return variant === 'image' ? (
   // Image View
-  <GridDiv divClass={`aspect-square`}>
+  <GridDiv divClass={`aspect-square col-span-${thumbnailSize}`}>
    {/* Empty grid element for animation */}
    <div className='absolute bottom-[100%] left-0 w-full h-full pointer-events-none'>
     <AnimationGridDiv

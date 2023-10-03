@@ -16,6 +16,7 @@ export async function getProjects() {
            url
          }
        },
+       gridSize,
       thumbnailSize,
       url,
       images,
@@ -40,6 +41,7 @@ export async function getProject(slug: string) {
            url
          }
        },
+         gridSize,
       thumbnailSize,
       url,
       images,

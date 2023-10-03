@@ -39,6 +39,7 @@ const projectSchema = {
          ],
       },
       { name: 'url', title: 'URL', type: 'url' },
+      { name: 'gridSize', title: 'Grid Size', type: 'number' },
       { name: 'thumbnailSize', title: 'Thumbnail Size', type: 'number' },
       {
          name: 'images',

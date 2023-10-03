@@ -16,12 +16,13 @@ import {
 } from '@/components';
 
 interface ProjectItems {
- title?: string;
- slug?: string;
+ title: string;
+ slug: string;
  category: string;
  _id: string;
- coverImage?: { asset: { url: string } };
- thumbnailSize?: number;
+ coverImage: { asset: { url: string } };
+ gridSize: number;
+ thumbnailSize: number;
 }
 
 interface ProjectsMenuProps {
@@ -209,17 +210,20 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
          className={`w-3/4 lg:w-full ${
           index % 2 === 0 ? 'ml-auto mr-0' : 'ml-0 mr-auto'
          } lg:ml-auto lg:mr-auto ${
-          activeBreakpoint === 'desktop' ? `col-span-${link.thumbnailSize}` : ''
+          activeBreakpoint === 'desktop'
+           ? `col-span-${link.gridSize} grid grid-cols-${link.gridSize}`
+           : ''
          }`}
-         key={index}
+         key={link._id}
         >
-         {link.coverImage && link.title && link.slug && (
+         {link.coverImage && link.title && link.slug && link.thumbnailSize && (
           <ProjectCard
            title={link.title}
            slug={link.slug}
            id={link._id}
            coverImage={link.coverImage.asset.url}
            variant={variant}
+           thumbnailSize={link.thumbnailSize}
            // setIsHovering={setIsHovering}
           />
          )}
