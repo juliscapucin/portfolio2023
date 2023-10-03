@@ -65,6 +65,15 @@ const projectSchema = {
          type: 'array',
          of: [{ type: 'block' }],
       },
+      {
+         name: 'services',
+         title: 'Services',
+         type: 'array',
+         of: [{ type: 'string' }],
+         options: {
+            layout: 'tags',
+         },
+      },
    ],
    preview: {
       select: {

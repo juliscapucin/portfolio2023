@@ -9,11 +9,7 @@ import {
  animateToRightTransition,
 } from '@/animations';
 
-interface Project {
- title?: string;
- slug: string;
- coverImage?: string;
-}
+import { Project } from '@/types';
 
 interface ProjectNextProps {
  projects: Project[];

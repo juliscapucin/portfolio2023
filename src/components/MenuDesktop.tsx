@@ -3,7 +3,7 @@
 import { usePathname, useRouter } from 'next/navigation';
 
 import { GridDiv, MenuLink } from '@/components';
-import { useModalContext } from '@/context';
+import { useModalContext, usePageContext } from '@/context';
 
 import {
  animateToLeftTransition,
@@ -22,6 +22,7 @@ interface MenuProps {
 
 export default function MenuDesktop({ navLinks }: MenuProps) {
  const { modalOpen, updateModalOpen } = useModalContext();
+ const { previousPage } = usePageContext();
 
  const pathname = usePathname();
  const router = useRouter();
@@ -35,13 +36,14 @@ export default function MenuDesktop({ navLinks }: MenuProps) {
      onClick={() => {
       const shallowPage = document.querySelector('.shallow-page');
 
-      if (shallowPage)
+      if (shallowPage && previousPage === 'home')
        animateToRightTransition('shallow-page', () => router.back());
-      else {
+      else if (shallowPage && previousPage !== 'home')
+       animateToRightTransition('shallow-page', () => router.push('/'));
+      else
        animateToRightTransition(`${pathname.slice(1)}-page`, () =>
         router.push('/')
        );
-      }
      }}
     >
      <GridDiv divClass='flex items-center justify-center'>

@@ -15,15 +15,7 @@ import {
  ProjectsFilter,
 } from '@/components';
 
-interface ProjectItems {
- title: string;
- slug: string;
- category: string;
- _id: string;
- coverImage: { asset: { url: string } };
- gridSize: number;
- thumbnailSize: number;
-}
+import { Project } from '@/types';
 
 interface ProjectsMenuProps {
  activeBreakpoint: string | undefined;
@@ -33,9 +25,9 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
  const pathname = usePathname();
  const { width, height } = useWindowDimensions();
 
- const [allProjects, setAllProjects] = useState<ProjectItems[] | null>(null);
+ const [allProjects, setAllProjects] = useState<Project[] | null>(null);
 
- const [projectItems, setProjectItems] = useState<ProjectItems[] | null>(null);
+ const [projectItems, setProjectItems] = useState<Project[] | null>(null);
 
  // Fetch data
  useEffect(() => {
@@ -65,7 +57,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
   const filteredProjects =
    filterString === 'all'
     ? allProjects
-    : allProjects.filter((project: ProjectItems) => {
+    : allProjects.filter((project: Project) => {
        return project.category.includes(filterString);
       });
 

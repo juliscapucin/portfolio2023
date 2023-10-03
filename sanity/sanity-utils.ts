@@ -21,7 +21,8 @@ export async function getProjects() {
       url,
       images,
       category,
-      content
+      content,
+      services
    }`
    );
 }
@@ -46,7 +47,8 @@ export async function getProject(slug: string) {
       url,
       images,
       category,
-      content
+      content,
+      services
    }`,
       { slug }
    );

@@ -43,7 +43,7 @@ export default function ProjectCard({
     onMouseLeave={() => updateIsHovering(false)}
     onClick={() => {
      animateToFullScreen(`.project-card-${id}`, () =>
-      router.push(`/${slug}`, { scroll: false })
+      router.push(`/work/${slug}`, { scroll: false })
      );
     }}
    >
@@ -81,7 +81,7 @@ export default function ProjectCard({
     onMouseLeave={() => updateIsHovering(false)}
     onClick={() => {
      animateToFullScreen(`.project-card-${id}`, () =>
-      router.push(`/${slug}`, { scroll: false })
+      router.push(`/work/${slug}`, { scroll: false })
      );
     }}
    >

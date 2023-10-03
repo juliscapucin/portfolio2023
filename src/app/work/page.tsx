@@ -1,12 +1,12 @@
 'use client';
 
-import { use, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 import { navLinks, breakpoints } from '@/constants';
 
 import { usePageContext } from '@/context';
-import { useMediaQuery, useFetch } from '@/hooks';
+import { useMediaQuery } from '@/hooks';
 import { Footer, ProjectsMenu } from '@/components';
 import { animateToLeft, animateToRight } from '@/animations';
 

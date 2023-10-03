@@ -99,7 +99,7 @@ span,
 button,
 a {
    font-family: var(--font-primary) sans-serif;
-   text-transform: uppercase;
+   /* text-transform: uppercase; */
    overflow-wrap: break-word;
 }
 
