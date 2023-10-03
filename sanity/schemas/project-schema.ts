@@ -39,6 +39,7 @@ const projectSchema = {
          ],
       },
       { name: 'url', title: 'URL', type: 'url' },
+      { name: 'thumbnailSize', title: 'Thumbnail Size', type: 'number' },
       {
          name: 'images',
          title: 'Images',
@@ -49,8 +50,8 @@ const projectSchema = {
          },
       },
       {
-         name: 'categories',
-         title: 'Categories',
+         name: 'category',
+         title: 'Category',
          type: 'array',
          of: [{ type: 'string' }],
          options: {

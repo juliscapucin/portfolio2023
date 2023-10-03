@@ -10,10 +10,16 @@ export async function getProjects() {
       title,
       "slug": slug.current,
       description,
-      coverImage,
+      coverImage{
+         alt,
+         asset->{
+           url
+         }
+       },
+      thumbnailSize,
       url,
       images,
-      categories,
+      category,
       content
    }`
    );
@@ -28,10 +34,16 @@ export async function getProject(slug: string) {
       title,
       "slug": slug.current,
       description,
-      coverImage,
+      coverImage{
+         alt,
+         asset->{
+           url
+         }
+       },
+      thumbnailSize,
       url,
       images,
-      categories,
+      category,
       content
    }`,
       { slug }

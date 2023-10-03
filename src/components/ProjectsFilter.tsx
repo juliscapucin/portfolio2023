@@ -3,20 +3,12 @@ import { MouseEvent, useRef } from 'react';
 interface ProjectsFilterProps {
  filterProjects: (filter: any) => void;
  editVariant: () => void;
- allProjects: any;
- work: any;
- playground: any;
- archive: any;
  variant?: string;
 }
 
 export default function ProjectsFilter({
  filterProjects,
  editVariant,
- allProjects,
- work,
- playground,
- archive,
  variant,
 }: ProjectsFilterProps) {
  const filterButtonsRef = useRef(null);
@@ -69,7 +61,7 @@ export default function ProjectsFilter({
     <button
      className='text-colorFaded hover:text-colorFaded duration-200'
      onClick={(e) => {
-      filterProjects(allProjects);
+      filterProjects('all');
       handleActiveButton(e);
      }}
     >
@@ -79,7 +71,7 @@ export default function ProjectsFilter({
     <button
      className='hover:text-colorFaded duration-200'
      onClick={(e) => {
-      filterProjects(work.links);
+      filterProjects('latest');
       handleActiveButton(e);
      }}
     >
@@ -89,7 +81,7 @@ export default function ProjectsFilter({
     <button
      className='hover:text-colorFaded duration-200'
      onClick={(e) => {
-      filterProjects(playground.links);
+      filterProjects('playground');
       handleActiveButton(e);
      }}
     >
@@ -99,7 +91,7 @@ export default function ProjectsFilter({
     <button
      className='hover:text-colorFaded duration-200'
      onClick={(e) => {
-      filterProjects(archive.links);
+      filterProjects('archive');
       handleActiveButton(e);
      }}
     >

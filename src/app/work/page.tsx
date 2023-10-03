@@ -3,14 +3,7 @@
 import { use, useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
-import {
- workPage,
- navLinks,
- work,
- playground,
- archive,
- breakpoints,
-} from '@/constants';
+import { navLinks, breakpoints } from '@/constants';
 
 import { usePageContext } from '@/context';
 import { useMediaQuery, useFetch } from '@/hooks';
@@ -37,10 +30,6 @@ export default function Page() {
 
   fetchData();
  }, []);
-
- useEffect(() => {
-  console.log(data);
- }, [data]);
 
  // Set breakpoint for mobile/desktop (values are in constants.ts)
  const breakpoint = useMediaQuery(breakpoints.desktop);
