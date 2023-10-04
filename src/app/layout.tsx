@@ -1,24 +1,8 @@
 import localFont from 'next/font/local';
 
-import {
- Header,
- HtmlWrapper,
- ContactModal,
- StoryblokProvider,
- CustomCursor,
-} from '@/components';
+import { Header, HtmlWrapper, ContactModal, CustomCursor } from '@/components';
 
 import { ModalContextProvider, PageContextProvider } from '@/context';
-
-// import { storyblokInit, apiPlugin } from '@storyblok/react/rsc';
-
-// storyblokInit({
-//  accessToken: process.env.storyblokApiKey,
-//  use: [apiPlugin],
-//  apiOptions: {
-//   region: 'eu',
-//  },
-// });
 
 import '@/styles/styles.css';
 
@@ -53,30 +37,28 @@ export default function RootLayout(props: {
  shallowPage: React.ReactNode;
 }) {
  return (
-  <StoryblokProvider>
-   <PageContextProvider>
-    <HtmlWrapper>
-     <ModalContextProvider>
-      <body
-       className={`${myFont.className} relative mt-0 max-w-desktop font-text font-extralight text-bodyLarge bg-primary text-secondary mx-auto overflow-x-hidden`}
-      >
-       <Header />
+  <PageContextProvider>
+   <HtmlWrapper>
+    <ModalContextProvider>
+     <body
+      className={`${myFont.className} relative mt-0 max-w-desktop font-text font-extralight text-bodyLarge bg-primary text-secondary mx-auto overflow-x-hidden`}
+     >
+      <Header />
 
-       <main className={`mt-16 mx-8 overflow-x-hidden`}>
-        {/* Custom Cursor */}
-        <CustomCursor />
+      <main className={`mt-16 mx-8 overflow-x-hidden`}>
+       {/* Custom Cursor */}
+       <CustomCursor />
 
-        {/* Transition Overlay */}
-        <div className='transition-fullscreen w-screen h-screen top-0 left-0 fixed z-10 hidden pointer-events-none'></div>
-        {props.children}
-        {props.shallowPage}
-       </main>
+       {/* Transition Overlay */}
+       <div className='transition-fullscreen w-screen h-screen top-0 left-0 fixed z-10 hidden pointer-events-none'></div>
+       {props.children}
+       {props.shallowPage}
+      </main>
 
-       <ContactModal />
-      </body>
-     </ModalContextProvider>
-    </HtmlWrapper>
-   </PageContextProvider>
-  </StoryblokProvider>
+      <ContactModal />
+     </body>
+    </ModalContextProvider>
+   </HtmlWrapper>
+  </PageContextProvider>
  );
 }

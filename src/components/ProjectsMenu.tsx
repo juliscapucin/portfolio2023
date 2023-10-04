@@ -1,31 +1,21 @@
 'use client';
 
 import Image from 'next/image';
-import { use, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 import { gsap } from 'gsap';
 
 import { animateProjectsMenu } from '@/animations';
-import { work, playground, archive } from '@/constants';
 import { useWindowDimensions } from '@/hooks';
-import { SectionTitle } from '@/components';
+import {
+ SectionTitle,
+ ProjectCard,
+ GridDiv,
+ ProjectsFilter,
+} from '@/components';
 
-import ProjectCard from './ProjectCard';
-import GridDiv from './GridDiv';
-import ProjectsFilter from './ProjectsFilter';
-
-interface ProjectItems {
- title?: string;
- slug?: string;
- id: string;
- coverImage?: string;
- thumbnailSize?: string;
-}
-
-interface ProjectsMenu {
- links: ProjectItems[];
-}
+import { Project } from '@/types';
 
 interface ProjectsMenuProps {
  activeBreakpoint: string | undefined;
@@ -35,8 +25,21 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
  const pathname = usePathname();
  const { width, height } = useWindowDimensions();
 
- const allProjects = [...work.links, ...playground.links, ...archive.links];
- const [projectItems, setProjectItems] = useState<ProjectItems[]>(allProjects);
+ const [allProjects, setAllProjects] = useState<Project[] | null>(null);
+
+ const [projectItems, setProjectItems] = useState<Project[] | null>(null);
+
+ // Fetch data
+ useEffect(() => {
+  const fetchAllProjects = async () => {
+   const response = await fetch('/api/projects');
+   const data = await response.json();
+   setAllProjects(data);
+   setProjectItems(data);
+  };
+
+  fetchAllProjects();
+ }, []);
 
  // View options
  const [variant, setVariant] = useState<string>(
@@ -47,13 +50,22 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
  const projectsImgsRef = useRef(null);
  const projectsLinksRef = useRef(null);
 
- //  Transitions
- const filterProjects = (filter: ProjectItems[]) => {
+ //  Filter Projects + Transitions
+ const filterProjects = (filterString: string) => {
+  if (!allProjects) return;
+
+  const filteredProjects =
+   filterString === 'all'
+    ? allProjects
+    : allProjects.filter((project: Project) => {
+       return project.category.includes(filterString);
+      });
+
   gsap.to('.filter-projects', {
    opacity: 0,
    duration: 0.5,
    onComplete: () => {
-    setProjectItems(filter);
+    setProjectItems(filteredProjects);
    },
   });
  };
@@ -65,6 +77,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
   });
  }, [projectItems]);
 
+ //  Change view
  const editVariant = () => {
   if (variant === 'list') {
    gsap.to('.list-view', {
@@ -119,11 +132,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
     {...{
      filterProjects,
      editVariant,
-     allProjects,
      variant,
-     work,
-     playground,
-     archive,
     }}
    />
 
@@ -135,26 +144,27 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
      top={true}
      bottom={true}
     >
-     {/* Render images only on desktop */}
+     {/* Render left side images only on desktop */}
      {activeBreakpoint === 'desktop' && (
       <div
        className='col-span-4 aspect-square relative overflow-hidden'
        ref={projectsImgsRef}
       >
-       {projectItems.map((img, index) => {
-        if (!img.coverImage) return;
-        return (
-         <Image
-          src={img.coverImage}
-          key={index}
-          //   placeholder='blur'
-          alt='photo'
-          className='object-cover'
-          sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-          fill
-         />
-        );
-       })}
+       {projectItems &&
+        projectItems.map((img, index) => {
+         if (!img.coverImage) return;
+         return (
+          <Image
+           src={img.coverImage.asset.url}
+           key={index}
+           //   placeholder='blur'
+           alt='photo'
+           className='object-cover'
+           sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+           fill
+          />
+         );
+        })}
       </div>
      )}
      <div
@@ -164,49 +174,54 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
       className={`col-span-${activeBreakpoint === 'mobile' ? 9 : 6} row-span-6`}
       ref={projectsLinksRef}
      >
-      {projectItems.map((link, index) => {
-       if (!link.coverImage || !link.title || !link.slug) return;
-       return (
-        <div key={index}>
-         <ProjectCard
-          title={link.title}
-          slug={link.slug}
-          id={link.id}
-          coverImage={link.coverImage}
-          variant={variant}
-          // setIsHovering={setIsHovering}
-         />
-        </div>
-       );
-      })}
+      {projectItems &&
+       projectItems.map((link, index) => {
+        if (!link.coverImage || !link.title || !link.slug) return;
+        return (
+         <div key={index}>
+          <ProjectCard
+           title={link.title}
+           slug={link.slug}
+           id={link._id}
+           coverImage={link.coverImage.asset.url}
+           variant={variant}
+           // setIsHovering={setIsHovering}
+          />
+         </div>
+        );
+       })}
      </div>
     </GridDiv>
    ) : (
     // Image View
     <GridDiv divClass='image-view filter-projects grid lg:grid-cols-12 gap-32 w-full'>
-     {projectItems.map((link, index) => {
-      return (
-       <div
-        className={`w-3/4 lg:w-full ${
-         index % 2 === 0 ? 'ml-auto mr-0' : 'ml-0 mr-auto'
-        } lg:ml-auto lg:mr-auto ${
-         activeBreakpoint === 'desktop' ? `col-span-${link.thumbnailSize}` : ''
-        }`}
-        key={index}
-       >
-        {link.coverImage && link.title && link.slug && (
-         <ProjectCard
-          title={link.title}
-          slug={link.slug}
-          id={link.id}
-          coverImage={link.coverImage}
-          variant={variant}
-          // setIsHovering={setIsHovering}
-         />
-        )}
-       </div>
-      );
-     })}
+     {projectItems &&
+      projectItems.map((link, index) => {
+       return (
+        <div
+         className={`w-3/4 lg:w-full ${
+          index % 2 === 0 ? 'ml-auto mr-0' : 'ml-0 mr-auto'
+         } lg:ml-auto lg:mr-auto ${
+          activeBreakpoint === 'desktop'
+           ? `col-span-${link.gridSize} grid grid-cols-${link.gridSize}`
+           : ''
+         }`}
+         key={link._id}
+        >
+         {link.coverImage && link.title && link.slug && link.thumbnailSize && (
+          <ProjectCard
+           title={link.title}
+           slug={link.slug}
+           id={link._id}
+           coverImage={link.coverImage.asset.url}
+           variant={variant}
+           thumbnailSize={link.thumbnailSize}
+           // setIsHovering={setIsHovering}
+          />
+         )}
+        </div>
+       );
+      })}
     </GridDiv>
    )}
   </section>

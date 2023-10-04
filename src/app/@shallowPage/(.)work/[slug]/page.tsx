@@ -1,16 +1,18 @@
 'use client';
 
 import Image from 'next/image';
-import { createRef, useEffect } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { createRef, useEffect, useState } from 'react';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
 import { Services, ProjectNext, ShallowPage } from '@/components';
-import { work, playground, archive } from '@/constants';
+import { Project } from '@/types';
 
 export default function Page({ params }: { params: { slug: string } }) {
+ const [allProjects, setAllProjects] = useState<Project[] | null>(null);
+ const [project, setProject] = useState<Project | null>(null);
  const titleRef = createRef<HTMLHeadingElement>();
  const left = createRef<HTMLDivElement>();
  const right = createRef<HTMLDivElement>();
@@ -20,6 +22,9 @@ export default function Page({ params }: { params: { slug: string } }) {
  useEffect(() => {
   const featuredImageHeight = right.current?.clientHeight;
 
+  console.log('project', project);
+  if (!project) return;
+
   ScrollTrigger.create({
    scroller: '.scroll-trigger',
    trigger: left.current,
@@ -28,9 +33,11 @@ export default function Page({ params }: { params: { slug: string } }) {
    scrub: true,
    pin: right.current,
   });
- }, [left, right]);
+ }, [left, right, project]);
 
  useEffect(() => {
+  if (!project) return;
+
   const featuredImageHeight = left2.current?.clientHeight;
 
   ScrollTrigger.create({
@@ -41,18 +48,30 @@ export default function Page({ params }: { params: { slug: string } }) {
    scrub: true,
    pin: left2.current,
   });
- }, [left2, right2]);
+ }, [left2, right2, project]);
 
- const allProjects = [...work.links, ...playground.links, ...archive.links];
- const realProjects = allProjects.filter((project) => project.coverImage);
+ useEffect(() => {
+  const slug = params.slug;
 
- const slug = params.slug;
+  console.log('slug', slug);
 
- const project = allProjects.find((project) => project.slug.includes(slug));
+  const fetchProjectData = async () => {
+   const response = await fetch(`/api/work/${slug}`);
+   const data = await response.json();
+   setProject(data);
+  };
 
- if (!project || !project.coverImage) return;
+  //   const fetchAllProjectsData = async () => {
+  //    const response = await fetch(`/api/projects`);
+  //    const data = await response.json();
+  //    setAllProjects(data);
+  //   };
 
- return (
+  fetchProjectData();
+  //   fetchAllProjectsData();
+ }, []);
+
+ return project ? (
   <ShallowPage>
    {/* Project header */}
    <section className='relative w-full mb-1'>
@@ -64,14 +83,14 @@ export default function Page({ params }: { params: { slug: string } }) {
     </h1>
     <div className='md:grid grid-cols-12 mb-16'>
      <p className='text-headlineSmall md:col-span-8 lg:col-span-6'>
-      {project.subtitle}
+      {project.description}
      </p>
     </div>
     <div
      className={`relative block h-[100vw] lg:h-screen w-full overflow-hidden`}
     >
      <Image
-      src={project.coverImage}
+      src={project.coverImage.asset.url}
       alt='photo'
       className='h-full w-full object-cover'
       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
@@ -90,7 +109,7 @@ export default function Page({ params }: { params: { slug: string } }) {
      <p className='lg:h-[500px] pr-32 flex items-center'>{project.content}</p>
      <div className='h-[50vw] lg:h-[700px] w-full overflow-hidden relative'>
       <Image
-       src={project.coverImage}
+       src={project.coverImage.asset.url}
        alt='photo'
        className='w-full object-cover'
        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
@@ -99,7 +118,7 @@ export default function Page({ params }: { params: { slug: string } }) {
      </div>
      <div className='h-[50vw] lg:h-[700px] w-full overflow-hidden relative'>
       <Image
-       src={project.coverImage}
+       src={project.coverImage.asset.url}
        alt='photo'
        className='w-full object-cover'
        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
@@ -108,7 +127,7 @@ export default function Page({ params }: { params: { slug: string } }) {
      </div>
      <div className='h-[50vw] lg:h-[700px] w-full overflow-hidden relative'>
       <Image
-       src={project.coverImage}
+       src={project.coverImage.asset.url}
        alt='photo'
        className='w-full object-cover'
        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
@@ -123,7 +142,7 @@ export default function Page({ params }: { params: { slug: string } }) {
      className='col-span-6 lg:col-span-5 h-[50vw] lg:h-[500px] relative'
     >
      <Image
-      src={project.featureImage1}
+      src={project.coverImage.asset.url}
       alt='photo'
       className='w-full object-cover'
       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
@@ -133,13 +152,13 @@ export default function Page({ params }: { params: { slug: string } }) {
    </section>
 
    {/* Disciplines */}
-   <Services project={project} />
+   <Services services={project.services} />
 
    <section className='grid grid-cols-12 w-full relative gap-1'>
     {/* Left 2 */}
     <div ref={left2} className='col-span-5 h-[500px]'>
      <Image
-      src={project.coverImage}
+      src={project.coverImage.asset.url}
       alt='photo'
       className='w-full object-cover'
       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
@@ -151,7 +170,7 @@ export default function Page({ params }: { params: { slug: string } }) {
     <div ref={right2} className='col-span-7 relative grid gap-1'>
      <div className='h-[600px] w-full overflow-hidden relative'>
       <Image
-       src={project.coverImage}
+       src={project.coverImage.asset.url}
        alt='photo'
        className='w-full object-cover'
        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
@@ -160,7 +179,7 @@ export default function Page({ params }: { params: { slug: string } }) {
      </div>
      <div className='h-[600px] w-full overflow-hidden relative'>
       <Image
-       src={project.coverImage}
+       src={project.coverImage.asset.url}
        alt='photo'
        className='h-32 w-full object-cover'
        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
@@ -169,7 +188,7 @@ export default function Page({ params }: { params: { slug: string } }) {
      </div>
      <div className='h-[600px] w-full overflow-hidden relative'>
       <Image
-       src={project.coverImage}
+       src={project.coverImage.asset.url}
        alt='photo'
        className='h-32 w-full object-cover'
        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
@@ -179,9 +198,9 @@ export default function Page({ params }: { params: { slug: string } }) {
     </div>
    </section>
    {/* Next Project */}
-   {realProjects.length > 0 && (
-    <ProjectNext projects={realProjects} project={project} />
-   )}
+   {allProjects && <ProjectNext projects={allProjects} project={project} />}
   </ShallowPage>
+ ) : (
+  <h1>Loading...</h1>
  );
 }

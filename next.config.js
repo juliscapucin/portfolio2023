@@ -4,7 +4,9 @@ const nextConfig = {
       storyblokApiKey: 'MHr8pmVwfFCDOOCemTyGpgtt',
    },
    images: {
-      domains: ['images.dog.ceo'],
+      remotePatterns: [
+         { protocol: 'https', hostname: 'cdn.sanity.io', port: '' },
+      ],
    },
 };
 

@@ -1,26 +1,35 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
-import {
- workPage,
- navLinks,
- work,
- playground,
- archive,
- breakpoints,
-} from '@/constants';
+import { navLinks, breakpoints } from '@/constants';
 
 import { usePageContext } from '@/context';
 import { useMediaQuery } from '@/hooks';
 import { Footer, ProjectsMenu } from '@/components';
 import { animateToLeft, animateToRight } from '@/animations';
 
+type WorkData = {
+ title: string;
+ description: string;
+};
+
 export default function Page() {
  const pathname = usePathname();
  const { previousPage, updatePreviousPage } = usePageContext();
- const { title, paragraph1, slug } = workPage;
+
+ const [data, setData] = useState<WorkData | null>(null);
+
+ useEffect(() => {
+  const fetchData = async () => {
+   const response = await fetch('/api/work');
+   const data = await response.json();
+   setData(data);
+  };
+
+  fetchData();
+ }, []);
 
  // Set breakpoint for mobile/desktop (values are in constants.ts)
  const breakpoint = useMediaQuery(breakpoints.desktop);
@@ -42,20 +51,26 @@ export default function Page() {
     actualPage[0]?.id > previousPageId[0]?.id) ||
    previousPage === 'home'
   ) {
-   animateToLeft(`${slug}-page`);
+   animateToLeft(`work-page`);
   } else {
-   animateToRight(`${slug}-page`);
+   animateToRight(`work-page`);
   }
 
   updatePreviousPage(pathname.slice(1));
  }, []);
 
  return (
-  <div className={`${slug}-page opacity-0`}>
-   <h1 className='text-displaySmall lg:text-displayLarge'>{title}</h1>
-   <p>{paragraph1}</p>
-   <ProjectsMenu activeBreakpoint={breakpoint} />
-   <Footer />
-  </div>
+  <>
+   {data ? (
+    <div className={`work-page`}>
+     <h1 className='text-displaySmall lg:text-displayLarge'>{data.title}</h1>
+     <p>{data.description}</p>
+     <ProjectsMenu activeBreakpoint={breakpoint} />
+     <Footer />
+    </div>
+   ) : (
+    <h1>Loading...</h1>
+   )}
+  </>
  );
 }
