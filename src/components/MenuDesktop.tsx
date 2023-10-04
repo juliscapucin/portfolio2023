@@ -10,17 +10,15 @@ import {
  animateToRightTransition,
 } from '@/animations';
 
-interface NavLinksProps {
- label: string;
- slug: string;
- _id: string;
-}
+type NavLinksProps = {
+ navLinks: {
+  title: string;
+  slug: string;
+  _key: string;
+ }[];
+};
 
-interface MenuProps {
- navLinks: NavLinksProps[];
-}
-
-export default function MenuDesktop({ navLinks }: MenuProps) {
+export default function MenuDesktop({ navLinks }: NavLinksProps) {
  const { modalOpen, updateModalOpen } = useModalContext();
  const { previousPage } = usePageContext();
 
@@ -62,8 +60,8 @@ export default function MenuDesktop({ navLinks }: MenuProps) {
       {navLinks.map((link) => {
        return (
         <MenuLink
-         label={link.label}
-         key={link._id}
+         label={link.title}
+         key={link._key}
          activeState={pathname.includes(`/${link.slug}`) ? true : false}
          action={() => {
           const filteredPathname =
@@ -84,7 +82,7 @@ export default function MenuDesktop({ navLinks }: MenuProps) {
 
           // Transition to left
           if (
-           (actualPage && link._id > actualPage[0]?._id) ||
+           (actualPage && link._key > actualPage[0]?._key) ||
            pathname === '/'
           ) {
            animateToLeftTransition(`${filteredPathname}-page`, () => {

@@ -2,16 +2,16 @@ import { useEffect, useState } from 'react';
 import { MenuDesktop, MenuMobile } from '.';
 
 type NavbarData = {
- items: [{ title: string; url: string; _id: string }];
+ items: { title: string; slug: string; _key: string }[];
 };
 
 export default function Header() {
  const [data, setData] = useState<NavbarData | null>(null);
 
- //  Fetch data from api Route Handler (api/socials)
+ //  Fetch data from api Route Handler (api/navbar)
  useEffect(() => {
   const fetchData = async () => {
-   const response = await fetch('/api/socials');
+   const response = await fetch('/api/navbar');
    const data = await response.json();
    setData(data);
   };

@@ -14,6 +14,11 @@ const navbarSchema = {
          type: 'url',
       },
       {
+         name: 'slug',
+         title: 'Slug',
+         type: 'slug',
+      },
+      {
          name: 'items',
          type: 'array',
          title: 'Navigation items',

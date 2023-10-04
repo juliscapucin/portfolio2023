@@ -13,7 +13,13 @@ import { GridDiv } from '.';
 import ButtonBurger from '@buttons/ButtonBurger';
 import ButtonClose from '@buttons/ButtonClose';
 
-type NavLinksProps = { title: string; label: string; _key: string }[];
+type NavLinksProps = {
+ navLinks: {
+  title: string;
+  slug: string;
+  _key: string;
+ }[];
+};
 
 export default function MenuMobile({ navLinks }: NavLinksProps) {
  const mobileMenuRef = useRef(null);
@@ -77,9 +83,9 @@ export default function MenuMobile({ navLinks }: NavLinksProps) {
          <GridDiv
           bottom={true}
           divClass={`relative max-h-32 min-h-32 flex justify-start items-start`}
-          key={link._id}
+          key={link._key}
          >
-          <Link className='block' href={link.url}>
+          <Link className='block' href={link.slug}>
            <span className='font-headline text-displaySmall uppercase text-secondary'>
             {link.title}
            </span>
