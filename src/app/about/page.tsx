@@ -24,6 +24,7 @@ export default function Page() {
  const { previousPage, updatePreviousPage } = usePageContext();
  const [data, setData] = useState<AboutData | null>(null);
 
+ //  Fetch data from api Route Handler (api/about)
  useEffect(() => {
   const fetchData = async () => {
    const response = await fetch('/api/about');
@@ -34,6 +35,7 @@ export default function Page() {
   fetchData();
  }, []);
 
+ //  Define the page transition direction based on the previous page + navLinks order
  useEffect(() => {
   const actualPage = navLinks.filter(
    (element) => element.slug === pathname.slice(1)

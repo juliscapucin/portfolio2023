@@ -1,6 +1,6 @@
-const socialsSchema = {
+const navbarSchema = {
    name: 'navigation',
-   title: 'Navigation',
+   title: 'Navigation Links',
    type: 'document',
    fields: [
       {
@@ -22,4 +22,4 @@ const socialsSchema = {
    ],
 };
 
-export default socialsSchema;
+export default navbarSchema;

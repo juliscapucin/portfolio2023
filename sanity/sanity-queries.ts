@@ -85,8 +85,19 @@ export async function getSocialLinks() {
    const client = createClient(clientConfig);
 
    return client.fetch(
-      groq`*[_type == "navigation"][0] {
-      items[]
+      groq`*[_type == "navigation" && title == "Socials"][0] {
+         title,
+      items
+   }`
+   );
+}
+
+export async function getNavbarLinks() {
+   const client = createClient(clientConfig);
+
+   return client.fetch(
+      groq`*[_type == "navigation" && title == "Navbar"][0] {
+      items
    }`
    );
 }
