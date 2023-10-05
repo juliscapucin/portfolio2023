@@ -10,12 +10,10 @@ import {
  animateToRightTransition,
 } from '@/animations';
 
+type NavLink = { title: string; slug: string; _key: string };
+
 type NavLinksProps = {
- navLinks: {
-  title: string;
-  slug: string;
-  _key: string;
- }[];
+ navLinks: NavLink[];
 };
 
 export default function MenuDesktop({ navLinks }: NavLinksProps) {
@@ -24,6 +22,36 @@ export default function MenuDesktop({ navLinks }: NavLinksProps) {
 
  const pathname = usePathname();
  const router = useRouter();
+
+ const buttonAction = (link: NavLink) => {
+  const filteredPathname =
+   pathname === '/' ? 'home' : pathname.match(/\/([^/]+)$/)?.[1];
+
+  console.log(filteredPathname);
+
+  const actualPage = navLinks.filter(
+   (element) => element.slug === pathname.slice(1)
+  );
+
+  const shallowPage = document.querySelector('.shallow-page');
+
+  if (shallowPage) {
+   animateToRightTransition('shallow-page', () => router.push(`/${link.slug}`));
+   return;
+  }
+
+  // Transition to left
+  if ((actualPage && link._key > actualPage[0]?._key) || pathname === '/') {
+   animateToLeftTransition(`${filteredPathname}-page`, () => {
+    router.push(`/${link.slug}`);
+   });
+  } else {
+   // Transition to right
+   animateToRightTransition(`${filteredPathname}-page`, () => {
+    router.push(`/${link.slug}`);
+   });
+  }
+ };
 
  return (
   <>
@@ -58,44 +86,28 @@ export default function MenuDesktop({ navLinks }: NavLinksProps) {
      {/* Menu links */}
      <nav className='w-full h-full hidden lg:flex justify-end items-center gap-8 mr-8'>
       {navLinks.map((link) => {
-       return (
+       // Render all links if not in home page
+       return pathname !== '/' ? (
         <MenuLink
          label={link.title}
          key={link._key}
          activeState={pathname.includes(`/${link.slug}`) ? true : false}
          action={() => {
-          const filteredPathname =
-           pathname === '/' ? 'home' : pathname.slice(1);
-
-          const actualPage = navLinks.filter(
-           (element) => element.slug === pathname.slice(1)
-          );
-
-          const shallowPage = document.querySelector('.shallow-page');
-
-          if (shallowPage) {
-           animateToRightTransition('shallow-page', () =>
-            router.push(`/${link.slug}`)
-           );
-           return;
-          }
-
-          // Transition to left
-          if (
-           (actualPage && link._key > actualPage[0]?._key) ||
-           pathname === '/'
-          ) {
-           animateToLeftTransition(`${filteredPathname}-page`, () => {
-            router.push(`/${link.slug}`);
-           });
-          } else {
-           // Transition to right
-           animateToRightTransition(`${filteredPathname}-page`, () => {
-            router.push(`/${link.slug}`);
-           });
-          }
+          buttonAction(link);
          }}
         />
+       ) : (
+        // If in home page, render all links except home link
+        link.slug !== '/' && (
+         <MenuLink
+          label={link.title}
+          key={link._key}
+          activeState={pathname.includes(`/${link.slug}`) ? true : false}
+          action={() => {
+           buttonAction(link);
+          }}
+         />
+        )
        );
       })}
 
@@ -104,7 +116,7 @@ export default function MenuDesktop({ navLinks }: NavLinksProps) {
      </nav>
     </GridDiv>
    ) : (
-    <h1>Loading...</h1>
+    <span>Loading...</span>
    )}
   </>
  );

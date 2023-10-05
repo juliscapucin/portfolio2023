@@ -1,4 +1,3 @@
-import { type } from 'os';
 import { useEffect, useState, useCallback } from 'react';
 
 type BreakpointState = string | null;

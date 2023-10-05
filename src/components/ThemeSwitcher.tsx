@@ -1,4 +1,6 @@
-import { useEffect, useState, MouseEvent } from 'react';
+'use client';
+
+import { useEffect, MouseEvent } from 'react';
 
 import { ButtonArrow } from '@buttons/.';
 import { useThemeStorage } from '@/hooks';

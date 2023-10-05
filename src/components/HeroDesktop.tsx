@@ -6,40 +6,49 @@ import { animatePanorama } from '@/animations';
 export default function HeroDesktop() {
  const heroRef = useRef(null);
 
- useEffect(() => {
-  if (heroRef && heroRef.current) animatePanorama(heroRef.current);
- }, [heroRef]);
+ //  useEffect(() => {
+ //   if (heroRef && heroRef.current) animatePanorama(heroRef.current);
+ //  }, [heroRef]);
 
  return (
   <div
-   className='hero__desktop grid grid-cols-20 grid-rows-6 h-screen max-h-screen min-w-[160vw]'
+   className='hero__desktop grid grid-cols-12 grid-rows-6 h-screen max-h-screen w-full'
    ref={heroRef}
   >
    {/* Status */}
-   <GridDiv divClass='col-span-full row-span-1 grid grid-cols-20'>
+   <GridDiv divClass='col-span-full row-span-1 grid grid-cols-12'>
     <Status />
    </GridDiv>
 
-   {/* Description */}
-   <GridDiv divClass='col-span-full row-span-1' top={true}></GridDiv>
-
    {/* Blank Space */}
-   <GridDiv divClass='col-span-8 row-span-1' top={true}></GridDiv>
+   <GridDiv divClass='col-span-5 row-span-1' top={true}></GridDiv>
 
    {/* Name */}
    <GridDiv
-    divClass='col-span-12 row-span-1 text-displayLarge overflow-hidden flex items-center'
+    divClass='col-span-7 row-span-1 overflow-hidden flex items-center justify-start'
     top={true}
    >
-    JULI
+    <h1 className='text-displaySmall xl:text-displayMedium'>Juli Scapucin</h1>
+   </GridDiv>
+
+   {/* Blank Space */}
+   <GridDiv divClass='col-span-5 row-span-1' top={true}></GridDiv>
+
+   {/* Description */}
+   <GridDiv
+    divClass='col-span-7 row-span-1 flex flex-col items-start justify-center'
+    top={true}
+   >
+    <h2 className='text-headlineLarge xl:text-displaySmall'>Design & Web</h2>
+    <h2 className='text-headlineLarge xl:text-displaySmall'>Development</h2>
    </GridDiv>
 
    {/* Number */}
    <GridDiv
-    divClass='col-span-3 row-span-3 text-huge overflow-hidden flex items-center'
+    divClass='col-span-4 row-span-3 overflow-hidden flex items-center'
     top={true}
    >
-    23
+    <span className='text-huge tracking-tighter'>23</span>
    </GridDiv>
 
    {/* Theme */}
@@ -52,26 +61,12 @@ export default function HeroDesktop() {
     <ThemeSwitcher />
    </GridDiv>
 
-   {/* Blank Space */}
-   <GridDiv divClass='col-span-2 row-span-3' top={true} right={true}></GridDiv>
-
-   {/* Blank Space */}
-   <GridDiv divClass='col-span-4 row-span-1' top={true}></GridDiv>
-
-   {/* Surname */}
-   <GridDiv
-    divClass='col-span-9 row-span-1 text-displayLarge overflow-hidden flex items-center'
-    top={true}
-    left={true}
-   >
-    SCAPUCIN
-   </GridDiv>
    {/* Arrow */}
-   <GridDiv divClass='col-span-2 row-span-1' top={true} left={true}></GridDiv>
+   {/* <GridDiv divClass='col-span-2 row-span-1' top={true} left={true}></GridDiv> */}
    {/* Snackbar */}
-   <GridDiv divClass='col-span-9 row-span-1' top={true} left={true}></GridDiv>
+   {/* <GridDiv divClass='col-span-9 row-span-1' top={true} left={true}></GridDiv> */}
    {/* Blank Space */}
-   <GridDiv divClass='col-span-11 row-span-1' top={true} left={true}></GridDiv>
+   <GridDiv divClass='col-span-7 row-span-3' top={true}></GridDiv>
   </div>
  );
 }

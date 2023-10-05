@@ -5,7 +5,7 @@ import { GridDiv } from '.';
 
 type SocialsData = {
  title: string;
- items: [{ title: string; url: string; _id: string }];
+ items: [{ title: string; url: string; _key: string }];
 };
 
 export default function SocialLinks() {
@@ -32,7 +32,7 @@ export default function SocialLinks() {
        <GridDiv
         bottom={true}
         divClass={`relative max-h-32 min-h-32 flex justify-start items-start`}
-        key={link._id}
+        key={link._key}
        >
         <Link
          className='block h-11 group overflow-hidden'

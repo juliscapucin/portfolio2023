@@ -27,7 +27,7 @@ export default function Header() {
      <MenuMobile navLinks={data.items} />
     </header>
    ) : (
-    <h1>Loading...</h1>
+    <span>Loading...</span>
    )}
   </>
  );

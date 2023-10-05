@@ -105,3 +105,13 @@ export async function getNavbarLinks() {
    }`
    );
 }
+
+export async function getServices() {
+   const client = createClient(clientConfig);
+
+   return client.fetch(
+      groq`*[_type == "services"][0] {
+         services[]
+   }`
+   );
+}
