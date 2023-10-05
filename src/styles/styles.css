@@ -98,6 +98,7 @@ h6,
 span,
 button,
 a {
+   text-transform: uppercase;
    font-family: var(--font-primary) sans-serif;
    overflow-wrap: break-word;
 }
@@ -108,7 +109,6 @@ h3,
 h4,
 h5,
 h6 {
-   text-transform: uppercase;
    font-weight: 600;
    line-height: 1;
 }

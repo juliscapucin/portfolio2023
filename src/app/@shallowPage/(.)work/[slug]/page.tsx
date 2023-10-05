@@ -22,7 +22,6 @@ export default function Page({ params }: { params: { slug: string } }) {
  useEffect(() => {
   const featuredImageHeight = right.current?.clientHeight;
 
-  console.log('project', project);
   if (!project) return;
 
   ScrollTrigger.create({
