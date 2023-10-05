@@ -70,7 +70,7 @@ export const animateToLeft = (enterElement: string) => {
    });
 
    timeline.to(animateToLeftEnter, {
-      duration: 2,
+      duration: 1,
       x: '0%',
       ease: 'power4.out',
    });
@@ -90,7 +90,7 @@ export const animateToRight = (enterElement: string) => {
    });
 
    timeline.to(animateToRightEnter, {
-      duration: 2,
+      duration: 1,
       x: '0%',
       ease: 'power4.out',
    });
@@ -114,7 +114,7 @@ export const animateToLeftTransition = (
    });
 
    timeline.to(animateToLeftLeave, {
-      duration: 2,
+      duration: 1,
       x: '-100%',
       ease: 'power4.in',
    });
@@ -141,7 +141,7 @@ export const animateToRightTransition = (
    });
 
    timeline.to(animateToRightLeave, {
-      duration: 2,
+      duration: 1,
       x: '100%',
       ease: 'power4.inOut',
    });

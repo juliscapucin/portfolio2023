@@ -24,7 +24,10 @@ export default function MenuDesktop({ navLinks }: NavLinksProps) {
  const router = useRouter();
 
  const buttonAction = (link: NavLink) => {
-  const filteredPathname = pathname === '/' ? 'home' : pathname.slice(1);
+  const filteredPathname =
+   pathname === '/' ? 'home' : pathname.match(/\/([^/]+)$/)?.[1];
+
+  console.log(filteredPathname);
 
   const actualPage = navLinks.filter(
    (element) => element.slug === pathname.slice(1)

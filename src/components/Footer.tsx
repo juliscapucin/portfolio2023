@@ -28,7 +28,10 @@ export default function Footer() {
    divClass={`px-8 py-16 lg:grid grid-cols-12 max-w-desktop`}
   >
    {/* White Space */}
-   <div className='col-span-1'></div>
+   <div className='col-span-2 flex flex-col'>
+    <span>Juli Scapucin</span>
+    <span>©2023</span>
+   </div>
    <nav className='lg:grid grid-cols-7 col-span-7'>
     {/* Nav Column */}
     <div className='col-span-3 lg:grid grid-cols-3'>
@@ -64,9 +67,6 @@ export default function Footer() {
     <div className={`col-span-2 flex flex-col mt-16 lg:mt-0`}>
      <SocialLinks />
     </div>
-
-    {/* White Space */}
-    <div className='col-span-1'></div>
    </nav>
 
    {/* Availability / Contact */}

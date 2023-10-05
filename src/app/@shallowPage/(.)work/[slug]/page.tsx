@@ -7,7 +7,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-import { Services, ProjectNext, ShallowPage } from '@/components';
+import { ProjectDisciplines, ProjectNext, ShallowPage } from '@/components';
 import { Project } from '@/types';
 
 export default function Page({ params }: { params: { slug: string } }) {
@@ -19,6 +19,7 @@ export default function Page({ params }: { params: { slug: string } }) {
  const left2 = createRef<HTMLDivElement>();
  const right2 = createRef<HTMLDivElement>();
 
+ // Create ScrollTrigger for first section
  useEffect(() => {
   const featuredImageHeight = right.current?.clientHeight;
 
@@ -34,6 +35,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   });
  }, [left, right, project]);
 
+ // Create ScrollTrigger for second section
  useEffect(() => {
   if (!project) return;
 
@@ -49,10 +51,9 @@ export default function Page({ params }: { params: { slug: string } }) {
   });
  }, [left2, right2, project]);
 
+ // Fetch project + all projects data
  useEffect(() => {
   const slug = params.slug;
-
-  console.log('slug', slug);
 
   const fetchProjectData = async () => {
    const response = await fetch(`/api/work/${slug}`);
@@ -60,26 +61,27 @@ export default function Page({ params }: { params: { slug: string } }) {
    setProject(data);
   };
 
-  //   const fetchAllProjectsData = async () => {
-  //    const response = await fetch(`/api/projects`);
-  //    const data = await response.json();
-  //    setAllProjects(data);
-  //   };
+  const fetchAllProjectsData = async () => {
+   const response = await fetch(`/api/projects`);
+   const data = await response.json();
+   setAllProjects(data);
+  };
 
   fetchProjectData();
-  //   fetchAllProjectsData();
+  fetchAllProjectsData();
  }, []);
 
  return project ? (
   <ShallowPage>
    {/* Project header */}
-   <section className='relative w-full mb-1'>
+   <section className='relative w-full mt-32 mb-1'>
     <h1
      ref={titleRef}
      className='text-displaySmall md:text-displayMedium lg:text-displayLarge'
     >
      {project?.title ? project.title : ''}
     </h1>
+    <ProjectDisciplines />
     <div className='md:grid grid-cols-12 mb-16'>
      <p className='text-headlineSmall md:col-span-8 lg:col-span-6'>
       {project.description}
@@ -150,9 +152,6 @@ export default function Page({ params }: { params: { slug: string } }) {
     </div>
    </section>
 
-   {/* Disciplines */}
-   <Services services={project.services} />
-
    <section className='grid grid-cols-12 w-full relative gap-1'>
     {/* Left 2 */}
     <div ref={left2} className='col-span-5 h-[500px]'>
@@ -200,6 +199,6 @@ export default function Page({ params }: { params: { slug: string } }) {
    {allProjects && <ProjectNext projects={allProjects} project={project} />}
   </ShallowPage>
  ) : (
-  <h1>Loading...</h1>
+  <span>Loading...</span>
  );
 }

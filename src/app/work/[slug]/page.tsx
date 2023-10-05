@@ -4,7 +4,7 @@ export default function Page({ params }: { params: { slug: string } }) {
  console.log(params.slug);
 
  return (
-  <main className='relative'>
+  <main className={`relative ${params.slug}-page`}>
    <div className='transition-fullscreen w-screen h-screen top-0 left-0'>
     <div className={`relative h-full w-full overflow-hidden`}>
      <Image

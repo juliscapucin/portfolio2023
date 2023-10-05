@@ -13,7 +13,7 @@ export default function SectionTitle({ title }: SectionTitleProps) {
     className='h-full w-full flex justify-start items-center'
     onClick={(e) => console.log(e)}
    >
-    <h2 className='font-headline uppercase text-9xl ml-8'>{title}</h2>
+    <h2 className='text-displayLarge ml-4'>{title}</h2>
    </button>
   </GridDiv>
  );

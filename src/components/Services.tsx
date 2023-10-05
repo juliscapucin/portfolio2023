@@ -33,16 +33,14 @@ export default function Services({ services }: ServicesProps) {
 
   const xDisplace =
    servicesRef.current.clientWidth > window.innerWidth
-    ? servicesRef.current.clientWidth - window.innerWidth
+    ? servicesRef.current.clientWidth - window.innerWidth + 100
     : 0;
-
-  console.log('xDisplace', xDisplace);
 
   const tl = gsap.timeline({
    scrollTrigger: {
     trigger: servicesRef.current,
-    start: 'bottom 90%', // when the bottom of the trigger hits 90% of the viewport
-    end: 'bottom 30%',
+    start: 'center 100%-=150px', // when the center of the trigger hits 100% - 150px of the viewport
+    end: 'center 0%+=150px',
     scrub: 0.3, // smooth scrubbing, takes .3 second to "catch up" to the scrollbar
    },
   });
@@ -53,7 +51,7 @@ export default function Services({ services }: ServicesProps) {
  }, [servicesRef]);
 
  return (
-  <section className='w-full py-96 flex flex-nowrap gap-8 justify-start items-center'>
+  <section className='w-full min-h-screen flex flex-nowrap gap-8 justify-start items-center'>
    <div ref={servicesRef}>
     {services &&
      services.map((discipline, index) => {

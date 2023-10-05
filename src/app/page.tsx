@@ -60,6 +60,13 @@ export default function Home() {
     {breakpoint === 'desktop' && <HeroDesktop />}
    </GridDiv>
 
+   <p className='mt-16 mx-4 text-headlineMedium'>
+    I’m a Front-End Developer with a broad background in Graphic and Digital
+    Design. Since 2000 I've been designing meaningful, memorable, and
+    communicative work for companies and professionals worldwide. Commitment to
+    visual excellence and engineering performance is part of my DNA.
+   </p>
+
    {servicesData && <Services services={servicesData.services} />}
 
    <ProjectsMenu activeBreakpoint={breakpoint} />

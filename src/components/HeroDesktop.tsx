@@ -28,7 +28,7 @@ export default function HeroDesktop() {
     divClass='col-span-7 row-span-1 overflow-hidden flex items-center justify-start'
     top={true}
    >
-    <h1 className='text-displayMedium'>Juli Scapucin</h1>
+    <h1 className='text-displaySmall xl:text-displayMedium'>Juli Scapucin</h1>
    </GridDiv>
 
    {/* Blank Space */}
@@ -39,8 +39,8 @@ export default function HeroDesktop() {
     divClass='col-span-7 row-span-1 flex flex-col items-start justify-center'
     top={true}
    >
-    <h2 className='text-displaySmall'>Design & Web</h2>
-    <h2 className='text-displaySmall'>Development</h2>
+    <h2 className='text-headlineLarge xl:text-displaySmall'>Design & Web</h2>
+    <h2 className='text-headlineLarge xl:text-displaySmall'>Development</h2>
    </GridDiv>
 
    {/* Number */}
@@ -48,7 +48,7 @@ export default function HeroDesktop() {
     divClass='col-span-4 row-span-3 overflow-hidden flex items-center'
     top={true}
    >
-    <span className='text-huge'>23</span>
+    <span className='text-huge tracking-tighter'>23</span>
    </GridDiv>
 
    {/* Theme */}
