@@ -43,7 +43,7 @@ export default function Services({ services }: ServicesProps) {
     trigger: servicesRef.current,
     start: 'bottom 90%', // when the bottom of the trigger hits 90% of the viewport
     end: 'bottom 30%',
-    scrub: 0.5, // smooth scrubbing, takes .5 second to "catch up" to the scrollbar
+    scrub: 0.3, // smooth scrubbing, takes .3 second to "catch up" to the scrollbar
    },
   });
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { useModalContext } from '@/context';
-import { SocialLinks } from '.';
+import { GridDiv, SocialLinks } from '.';
 import { ButtonClose } from '@buttons/.';
 import Availability from './Availability';
 
@@ -14,7 +14,10 @@ export default function ContactModal() {
     modalOpen ? '-translate-y-full' : ''
    }`}
   >
-   <div className='block lg:grid grid-cols-12 items-center border border-secondary h-full p-16 relative'>
+   <GridDiv
+    divClass='block lg:grid grid-cols-12 items-center h-full p-16 relative'
+    top={true}
+   >
     <div className='absolute top-8 right-8' onClick={updateModalOpen}>
      <ButtonClose action={() => updateModalOpen} />
     </div>
@@ -26,7 +29,7 @@ export default function ContactModal() {
     <div className='col-span-3'>
      <SocialLinks />
     </div>
-   </div>
+   </GridDiv>
   </aside>
  );
 }
