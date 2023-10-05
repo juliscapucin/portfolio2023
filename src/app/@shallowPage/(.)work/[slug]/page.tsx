@@ -77,17 +77,34 @@ export default function Page({ params }: { params: { slug: string } }) {
    <section className='relative w-full mt-32 mb-1'>
     <h1
      ref={titleRef}
-     className='text-displaySmall md:text-displayMedium lg:text-displayLarge'
+     className='text-displaySmall md:text-displayMedium lg:text-displayLarge mb-16'
     >
      {project?.title ? project.title : ''}
     </h1>
-    <ProjectDisciplines />
-    <div className='md:grid grid-cols-12 mb-16'>
-     <p className='text-headlineSmall md:col-span-8 lg:col-span-6'>
-      {project.description}
-     </p>
+    <div className='grid grid-cols-12'>
+     {/* Cover Image */}
+     <div className={`col-span-5 relative block overflow-hidden aspect-square`}>
+      <Image
+       src={project.coverImage.asset.url}
+       alt='photo'
+       className='h-full w-full object-cover'
+       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+       fill
+       priority
+      />
+     </div>
+     {/* Blank space */}
+     <div className='col-span-1'></div>
+     <div className='md:col-span-8 lg:col-span-6'>
+      {/* Description */}
+      <div className='mb-16'>
+       <p className='text-headlineSmall'>{project.description}</p>
+      </div>
+      {/* Project Info */}
+      <ProjectDisciplines disciplines={project.disciplines} />
+     </div>
     </div>
-    <div
+    {/* <div
      className={`relative block h-[100vw] lg:h-screen w-full overflow-hidden`}
     >
      <Image
@@ -98,7 +115,7 @@ export default function Page({ params }: { params: { slug: string } }) {
       fill
       priority
      />
-    </div>
+    </div> */}
    </section>
    {/* Split screen */}
    <section className='grid grid-cols-12 w-full gap-1'>

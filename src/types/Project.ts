@@ -8,5 +8,5 @@ export type Project = {
    gridSize: number;
    thumbnailSize: number;
    content: string;
-   services: string[];
+   disciplines: { tech: string; scope: string; link: string };
 };

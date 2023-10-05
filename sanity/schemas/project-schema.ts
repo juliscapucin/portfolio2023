@@ -62,13 +62,31 @@ const projectSchema = {
          of: [{ type: 'block' }],
       },
       {
-         name: 'services',
-         title: 'Services',
+         name: 'disciplines',
+         title: 'disciplines',
          type: 'array',
-         of: [{ type: 'string' }],
-         options: {
-            layout: 'tags',
-         },
+         of: [
+            {
+               type: 'document',
+               fields: [
+                  {
+                     name: 'scope',
+                     type: 'string',
+                     title: 'Scope',
+                  },
+                  {
+                     name: 'tech',
+                     type: 'string',
+                     title: 'Technology',
+                  },
+                  {
+                     name: 'link',
+                     type: 'string',
+                     title: 'Link',
+                  },
+               ],
+            },
+         ],
       },
    ],
    preview: {

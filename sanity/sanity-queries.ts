@@ -46,7 +46,11 @@ export async function getProject(slug: string) {
       images,
       category,
       content,
-      services
+      disciplines[0]{
+         tech,
+         scope,
+         link
+      }
    }`,
       { slug }
    );
