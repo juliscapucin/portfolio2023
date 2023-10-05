@@ -9,4 +9,5 @@ export type Project = {
    thumbnailSize: number;
    content: string;
    disciplines: { tech: string; scope: string; link: string };
+   textContent: { children: { text: string; _key: string } }[];
 };

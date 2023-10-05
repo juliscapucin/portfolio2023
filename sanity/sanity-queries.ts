@@ -45,7 +45,12 @@ export async function getProject(slug: string) {
       url,
       images,
       category,
-      content,
+      "textContent": content[]{
+         children[0]{
+           text,
+           _key
+         }
+       },
       disciplines[0]{
          tech,
          scope,

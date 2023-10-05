@@ -118,7 +118,7 @@ export default function Page({ params }: { params: { slug: string } }) {
     </div> */}
    </section>
    {/* Split screen */}
-   <section className='grid grid-cols-12 w-full gap-1'>
+   <section className='grid grid-cols-12 w-full gap-1 mb-32'>
     {/* Left */}
     <div
      ref={left}
@@ -167,6 +167,12 @@ export default function Page({ params }: { params: { slug: string } }) {
       fill
      />
     </div>
+   </section>
+
+   <section>
+    {project.textContent.map((text) => {
+     return <p key={text.children._key}>{text.children.text}</p>;
+    })}
    </section>
 
    <section className='grid grid-cols-12 w-full relative gap-1'>
