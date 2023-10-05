@@ -11,6 +11,7 @@ export const metadata = {
  description: 'Front-End Developer based in Amsterdam',
 };
 
+// Load custom font //
 const myFont = localFont({
  variable: '--font-primary',
  src: [

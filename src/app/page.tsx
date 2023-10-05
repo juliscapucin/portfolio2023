@@ -44,7 +44,8 @@ export default function Home() {
   if (pathname === '/') {
    document.documentElement.classList.remove('overflow-hidden');
 
-   if (previousPage !== 'shallow-page') animateToRight(`home-page`);
+   if (previousPage == 'work' || previousPage == 'about')
+    animateToRight(`home-page`);
   }
  }, [pathname]);
 

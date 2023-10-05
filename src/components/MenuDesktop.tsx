@@ -27,8 +27,6 @@ export default function MenuDesktop({ navLinks }: NavLinksProps) {
   const filteredPathname =
    pathname === '/' ? 'home' : pathname.match(/\/([^/]+)$/)?.[1];
 
-  console.log(filteredPathname);
-
   const actualPage = navLinks.filter(
    (element) => element.slug === pathname.slice(1)
   );
@@ -37,7 +35,6 @@ export default function MenuDesktop({ navLinks }: NavLinksProps) {
 
   if (shallowPage) {
    animateToRightTransition('shallow-page', () => router.push(`/${link.slug}`));
-   return;
   }
 
   // Transition to left
@@ -60,29 +57,6 @@ export default function MenuDesktop({ navLinks }: NavLinksProps) {
      divClass={'h-16 max-w-full mx-8 px-8 hidden lg:flex'}
      bottom={true}
     >
-     {/* Back button */}
-     {/* Only render if not in home page */}
-     {pathname !== '/' && (
-      <button
-       onClick={() => {
-        const shallowPage = document.querySelector('.shallow-page');
-
-        if (shallowPage && previousPage === 'home')
-         animateToRightTransition('shallow-page', () => router.back());
-        else if (shallowPage && previousPage !== 'home')
-         animateToRightTransition('shallow-page', () => router.push('/'));
-        else
-         animateToRightTransition(`${pathname.slice(1)}-page`, () =>
-          router.push('/')
-         );
-       }}
-      >
-       <GridDiv divClass='flex items-center justify-center'>
-        <span className='min-w-[4rem]'>&#5193;</span>
-       </GridDiv>
-      </button>
-     )}
-
      {/* Menu links */}
      <nav className='w-full h-full hidden lg:flex justify-end items-center gap-8 mr-8'>
       {navLinks.map((link) => {

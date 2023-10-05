@@ -2,12 +2,12 @@
 
 import { useCallback, useRef, MouseEventHandler, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { usePageContext } from '@/context';
+
 import {
  animateToLeft,
  animateToRightTransition,
 } from '@/animations/pageTransitions';
-import { Footer } from '@/components';
+import { Footer, GridDiv } from '@/components';
 
 export default function ShallowPage({
  children,
@@ -17,7 +17,6 @@ export default function ShallowPage({
  const overlay = useRef(null);
  const wrapper = useRef(null);
  const router = useRouter();
- const { previousPage, updatePreviousPage } = usePageContext();
 
  const onDismiss = useCallback(() => {
   animateToRightTransition('shallow-page', () => {
@@ -41,10 +40,6 @@ export default function ShallowPage({
   [onDismiss]
  );
 
- useEffect(() => {
-  updatePreviousPage('shallow-page');
- }, []);
-
  return (
   <div
    className='shallow-page scroll-trigger fixed top-0 left-0 bottom-0 right-0 mx-auto lg:px-8 bg-primary max-w-desktop overflow-y-scroll overflow-x-hidden z-10'
@@ -55,6 +50,11 @@ export default function ShallowPage({
     className='wrapper max-w-desktop overflow-hidden m-auto pt-32'
     ref={wrapper}
    >
+    <button onClick={onDismiss}>
+     <GridDiv divClass='flex items-center justify-center'>
+      <span className='min-w-[4rem]'>&#5193;</span>
+     </GridDiv>
+    </button>
     {children}
    </div>
    <Footer />

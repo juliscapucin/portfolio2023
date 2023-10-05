@@ -45,12 +45,6 @@ export default function MenuMobile({ navLinks }: NavLinksProps) {
         }
        }}
       >
-       {/* <button
-     className='w-1/2 h-16 right-8'
-     onClick={(e) => {
-      console.log('home');
-     }}
-    > */}
        Home
       </button>
 
