@@ -74,7 +74,9 @@ export default function ProjectCard({
    {/* Empty grid element for animation */}
    <div className='absolute -top-36 left-0 bottom-0 w-full h-full opacity-0'>
     <AnimationGridDiv
-     divClass={`project-card-${id} overflow-hidden bg-primary pointer-events-none bg-red-500`}
+     divClass={`project-card-${id} overflow-hidden bg-primary pointer-events-none`}
+     top={true}
+     bottom={true}
     />
    </div>
    {/* Button action */}

@@ -64,7 +64,7 @@ export default function Page() {
  return (
   <>
    {data ? (
-    <div className={`about-page`}>
+    <div className={`page about-page`}>
      <div className='xl:grid grid-cols-12 my-32'>
       <div className='col-span-5 aspect-square overflow-hidden relative'>
        <Image

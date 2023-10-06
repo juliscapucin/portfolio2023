@@ -1,4 +1,5 @@
 import {
+   animateHorizontal,
    animateToFullScreen,
    animateToLeft,
    animateToLeftTransition,
@@ -11,6 +12,7 @@ import { animatePanorama } from './panorama';
 import { animateProjectsMenu } from './projectsMenu';
 
 export {
+   animateHorizontal,
    animateMobileMenu,
    animatePanorama,
    animateProjectsMenu,

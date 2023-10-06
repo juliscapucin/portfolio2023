@@ -6,7 +6,10 @@ import { GridDiv, MenuLink } from '@/components';
 import { useModalContext, usePageContext } from '@/context';
 
 import {
+ animateHorizontal,
+ animateToLeft,
  animateToLeftTransition,
+ animateToRight,
  animateToRightTransition,
 } from '@/animations';
 
@@ -17,34 +20,56 @@ type NavLinksProps = {
 };
 
 export default function MenuDesktop({ navLinks }: NavLinksProps) {
- const { modalOpen, updateModalOpen } = useModalContext();
- const { previousPage } = usePageContext();
+ const { updateModalOpen } = useModalContext();
 
  const pathname = usePathname();
  const router = useRouter();
 
  const buttonAction = (link: NavLink) => {
-  const filteredPathname =
-   pathname === '/' ? 'home' : pathname.match(/\/([^/]+)$/)?.[1];
-
-  const actualPage = navLinks.filter(
-   (element) => element.slug === pathname.slice(1)
-  );
-
   const shallowPage = document.querySelector('.shallow-page');
 
-  if (shallowPage) {
-   animateToRightTransition('shallow-page', () => router.push(`/${link.slug}`));
-  }
+  const actualPage = shallowPage
+   ? navLinks.filter((element) => element.slug === 'work')
+   : navLinks.filter((element) => element.slug === pathname.slice(1));
 
   // Transition to left
   if ((actualPage && link._key > actualPage[0]?._key) || pathname === '/') {
-   animateToLeftTransition(`${filteredPathname}-page`, () => {
+   // Close shallow-page if open
+   if (shallowPage) {
+    //  Restore scroll on html div
+    if (document.documentElement.classList.contains('overflow-hidden'))
+     document.documentElement.classList.remove('overflow-hidden');
+
+    animateHorizontal('shallow-page', 0, -100);
+
+    animateToLeftTransition('page', () => {
+     router.push(`/${link.slug}`);
+    });
+
+    return;
+   }
+
+   animateToLeftTransition('page', () => {
     router.push(`/${link.slug}`);
    });
   } else {
    // Transition to right
-   animateToRightTransition(`${filteredPathname}-page`, () => {
+
+   // Close shallow-page if open
+   if (shallowPage) {
+    //  Restore scroll on html div
+    if (document.documentElement.classList.contains('overflow-hidden'))
+     document.documentElement.classList.remove('overflow-hidden');
+
+    animateHorizontal('shallow-page', 0, 100);
+
+    animateToRightTransition('page', () => {
+     router.push(`/${link.slug}`);
+    });
+
+    return;
+   }
+   animateToRightTransition('page', () => {
     router.push(`/${link.slug}`);
    });
   }

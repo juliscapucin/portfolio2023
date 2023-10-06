@@ -74,6 +74,31 @@ export const animateToLeft = (enterElement: string) => {
    });
 };
 
+// animate to left
+// used to start pages after transitions
+export const animateHorizontal = (
+   enterElement: string,
+   startPos: number,
+   endPos: number
+) => {
+   const animateToLeftEnter = document.querySelector(`.${enterElement}`);
+
+   if (!animateToLeftEnter) return;
+
+   const timeline = gsap.timeline();
+
+   timeline.set(animateToLeftEnter, {
+      opacity: 1,
+      xPercent: startPos,
+   });
+
+   timeline.to(animateToLeftEnter, {
+      duration: 1,
+      xPercent: endPos,
+      ease: 'power4.out',
+   });
+};
+
 // animate to right
 // used to start pages after transitions
 export const animateToRight = (enterElement: string) => {

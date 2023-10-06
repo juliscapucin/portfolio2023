@@ -64,7 +64,7 @@ export default function Page() {
  return (
   <>
    {data ? (
-    <div className={`work-page`}>
+    <div className={`page work-page`}>
      <h1 className='text-displaySmall lg:text-displayLarge'>{data.title}</h1>
      <p>{data.description}</p>
      <ProjectsMenu activeBreakpoint={breakpoint} />
