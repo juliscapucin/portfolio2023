@@ -14,6 +14,7 @@ import {
  HeroMobile,
  Footer,
  Services,
+ SectionTitle,
 } from '@/components';
 import { animateToRight } from '@/animations';
 
@@ -68,6 +69,7 @@ export default function Home() {
 
    {servicesData && <Services services={servicesData.services} />}
 
+   <SectionTitle title='Work' />
    <ProjectsMenu activeBreakpoint={breakpoint} />
 
    <Footer />

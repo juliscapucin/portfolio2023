@@ -10,11 +10,14 @@ export const animateToFullScreen = (
 ) => {
    const animationStart = document.querySelector(transitionStart);
    const animationStartParent = animationStart?.parentNode;
-   const animationEnd = document.querySelector('.transition-fullscreen');
+   const animationEnd = document.querySelector(
+      '.transition-fullscreen'
+   ) as HTMLDivElement;
 
    if (!animationStart || !animationEnd || !animationStartParent) return;
 
    // reset animationEnd div
+   animationEnd.style.opacity = '1';
    animationEnd.innerHTML = '';
 
    // clone animationStart div so that it remains in place
@@ -34,7 +37,7 @@ export const animateToFullScreen = (
    document.documentElement.classList.add('overflow-hidden');
 
    Flip.from(state, {
-      duration: 0.4,
+      duration: 1,
       absolute: true,
       ease: 'power4.inOut',
       onComplete: () => {
@@ -43,6 +46,7 @@ export const animateToFullScreen = (
          timeline.to('.transition-fullscreen', {
             duration: 0.5,
             ease: 'power1.inOut',
+            opacity: 0,
             delay: 0.5,
             onComplete: () => {
                animationEnd.innerHTML = '';

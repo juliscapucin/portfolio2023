@@ -1,12 +1,14 @@
 'use client';
 
-import Image from 'next/image';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 import { usePageContext } from '@/context';
 
 import { GridDiv, AnimationGridDiv, ProjectTitle } from '@/components';
 import { animateToFullScreen } from '@/animations/pageTransitions';
+import { set } from 'sanity';
 
 interface ProjectCardProps {
  id: string;
@@ -29,6 +31,7 @@ export default function ProjectCard({
 }: ProjectCardProps) {
  const router = useRouter();
  const { updateIsHovering } = usePageContext();
+ const [clickedProjectTitle, setClickedProjectTitle] = useState<string>('');
 
  return variant === 'image' ? (
   // Image View
@@ -77,7 +80,11 @@ export default function ProjectCard({
      divClass={`project-card-${id} overflow-hidden bg-primary pointer-events-none`}
      top={true}
      bottom={true}
-    />
+    >
+     <span className='block text-displaySmall md:text-displayMedium lg:text-displayLarge mt-96 ml-8'>
+      {clickedProjectTitle}
+     </span>
+    </AnimationGridDiv>
    </div>
    {/* Button action */}
    <button
@@ -85,6 +92,7 @@ export default function ProjectCard({
     onMouseEnter={() => updateIsHovering(true)}
     onMouseLeave={() => updateIsHovering(false)}
     onClick={() => {
+     setClickedProjectTitle(title);
      animateToFullScreen(`.project-card-${id}`, () =>
       router.push(`/work/${slug}`, { scroll: false })
      );
