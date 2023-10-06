@@ -37,6 +37,8 @@ export default function Page() {
 
  //  Define the page transition direction based on the previous page + navLinks order
  useEffect(() => {
+  if (!data) return;
+
   const actualPage = navLinks.filter(
    (element) => element.slug === pathname.slice(1)
   );
@@ -57,7 +59,7 @@ export default function Page() {
   }
 
   updatePreviousPage(pathname.slice(1));
- }, []);
+ }, [data]);
 
  return (
   <>
