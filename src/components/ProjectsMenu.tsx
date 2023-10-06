@@ -181,6 +181,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
          <div key={index}>
           <ProjectCard
            title={link.title}
+           scope={link.disciplines.scope}
            slug={link.slug}
            id={link._id}
            coverImage={link.coverImage.asset.url}
@@ -211,6 +212,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
          {link.coverImage && link.title && link.slug && link.thumbnailSize && (
           <ProjectCard
            title={link.title}
+           scope={link.disciplines.scope}
            slug={link.slug}
            id={link._id}
            coverImage={link.coverImage.asset.url}

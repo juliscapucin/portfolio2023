@@ -11,6 +11,7 @@ import { animateToFullScreen } from '@/animations/pageTransitions';
 interface ProjectCardProps {
  id: string;
  title: string;
+ scope: string;
  slug: string;
  coverImage: string;
  variant?: string;
@@ -19,6 +20,7 @@ interface ProjectCardProps {
 
 export default function ProjectCard({
  title,
+ scope,
  id,
  slug,
  coverImage,
@@ -49,6 +51,7 @@ export default function ProjectCard({
    >
     <ProjectTitle
      title={title}
+     scope={scope}
      divClass={`absolute bottom-4 left-4 z-10`}
      textSize='text-titleMedium'
     />
@@ -85,7 +88,7 @@ export default function ProjectCard({
      );
     }}
    >
-    <ProjectTitle title={title} textSize='text-headlineSmall' />
+    <ProjectTitle title={title} scope={scope} textSize='text-headlineSmall' />
    </button>
   </GridDiv>
  );

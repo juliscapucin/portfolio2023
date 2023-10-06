@@ -22,7 +22,10 @@ export async function getProjects() {
       images,
       category,
       content,
-      services
+      services,
+      disciplines[0]{
+         scope,
+      }
    }`
    );
 }
