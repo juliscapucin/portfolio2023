@@ -127,7 +127,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
 
  return (
   <section className='min-h-screen'>
-   {pathname === '/' && <SectionTitle title='Work' />}
+   {pathname !== '/work' && <SectionTitle title='Work' />}
    <ProjectsFilter
     {...{
      filterProjects,
