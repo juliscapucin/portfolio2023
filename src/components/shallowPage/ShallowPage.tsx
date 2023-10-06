@@ -3,10 +3,7 @@
 import { useCallback, useRef, MouseEventHandler, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
-import {
- animateToLeft,
- animateToRightTransition,
-} from '@/animations/pageTransitions';
+import { animateToRightTransition } from '@/animations/pageTransitions';
 import { Footer, GridDiv } from '@/components';
 
 export default function ShallowPage({
@@ -19,6 +16,9 @@ export default function ShallowPage({
  const router = useRouter();
 
  const onDismiss = useCallback(() => {
+  //  Toggle scroll on html div
+  document.documentElement.classList.remove('overflow-hidden');
+
   animateToRightTransition('shallow-page', () => {
    router.back();
   });
@@ -50,6 +50,7 @@ export default function ShallowPage({
     className='wrapper max-w-desktop overflow-hidden m-auto pt-32'
     ref={wrapper}
    >
+    {/* Back button */}
     <button onClick={onDismiss}>
      <GridDiv divClass='flex items-center justify-center'>
       <span className='min-w-[4rem]'>&#5193;</span>

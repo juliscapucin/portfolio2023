@@ -14,26 +14,23 @@ export const animateToFullScreen = (
 
    if (!animationStart || !animationEnd || !animationStartParent) return;
 
-   gsap.set('.transition-fullscreen', {
-      opacity: 1,
-   });
-
+   // reset animationEnd div
    animationEnd.innerHTML = '';
+
+   // clone animationStart div so that it remains in place
    const animationStartClone = animationStart.cloneNode(true) as HTMLDivElement;
 
+   // append clone to animationStart parent div
    animationStartParent.appendChild(animationStartClone);
 
    const state = Flip.getState(animationStartClone);
 
    animationEnd.classList.remove('hidden');
-   animationStartClone.classList.remove('opacity-0');
-   animationStartClone.classList.add('opacity-100');
-   animationStartClone.classList.remove('h-0');
-   animationStartClone.classList.add('h-full');
-   animationStartClone.classList.remove('-top-36');
-   animationStartClone.classList.add('top-0');
+   animationStartClone.classList.remove('-top-36', 'opacity-0', 'h-0');
+   animationStartClone.classList.add('top-0', 'opacity-100', 'h-full');
    animationEnd.appendChild(animationStartClone);
 
+   //  Toggle scroll on html div
    document.documentElement.classList.add('overflow-hidden');
 
    Flip.from(state, {
@@ -45,11 +42,11 @@ export const animateToFullScreen = (
          const timeline = gsap.timeline();
          timeline.to('.transition-fullscreen', {
             duration: 0.5,
-            opacity: 0,
             ease: 'power1.inOut',
             delay: 0.5,
             onComplete: () => {
                animationEnd.innerHTML = '';
+               animationEnd.classList.add('hidden');
             },
          });
       },
@@ -57,6 +54,7 @@ export const animateToFullScreen = (
 };
 
 // animate to left
+// used to start pages after transitions
 export const animateToLeft = (enterElement: string) => {
    const animateToLeftEnter = document.querySelector(`.${enterElement}`);
 
@@ -77,6 +75,7 @@ export const animateToLeft = (enterElement: string) => {
 };
 
 // animate to right
+// used to start pages after transitions
 export const animateToRight = (enterElement: string) => {
    const animateToRightEnter = document.querySelector(`.${enterElement}`);
 
@@ -177,17 +176,4 @@ export const animateToShallowPage = (
          },
          0
       );
-};
-
-const animateToTransparent = () => {
-   const animateOpacity = gsap.utils.toArray(
-      '.animate-opacity'
-   ) as HTMLElement[];
-
-   if (animateOpacity.length === 0) return;
-   animateOpacity.forEach((element) => {
-      gsap.set(element, {
-         opacity: 0,
-      });
-   });
 };

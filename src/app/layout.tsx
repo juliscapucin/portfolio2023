@@ -51,7 +51,7 @@ export default function RootLayout(props: {
        <CustomCursor />
 
        {/* Transition Overlay */}
-       <div className='transition-fullscreen w-screen h-screen top-0 left-0 fixed z-10 pointer-events-none bg-yellow-500'></div>
+       <div className='transition-fullscreen hidden w-screen h-screen top-0 left-0 fixed z-10 pointer-events-none'></div>
        {props.children}
        {props.shallowPage}
       </main>

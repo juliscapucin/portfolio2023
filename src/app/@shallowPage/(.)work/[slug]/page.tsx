@@ -55,12 +55,14 @@ export default function Page({ params }: { params: { slug: string } }) {
  useEffect(() => {
   const slug = params.slug;
 
+  // Fetch project data
   const fetchProjectData = async () => {
    const response = await fetch(`/api/work/${slug}`);
    const data = await response.json();
    setProject(data);
   };
 
+  // Fetch all projects data for next project component
   const fetchAllProjectsData = async () => {
    const response = await fetch(`/api/projects`);
    const data = await response.json();

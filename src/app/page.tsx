@@ -39,11 +39,9 @@ export default function Home() {
   fetchData();
  }, []);
 
- //  Toggle scroll on main page + page animation
+ //  Enter page animation
  useEffect(() => {
   if (pathname === '/') {
-   document.documentElement.classList.remove('overflow-hidden');
-
    if (previousPage == 'work' || previousPage == 'about')
     animateToRight(`home-page`);
   }
