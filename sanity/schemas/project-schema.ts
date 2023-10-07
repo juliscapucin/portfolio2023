@@ -62,8 +62,8 @@ const projectSchema = {
          of: [{ type: 'block' }],
       },
       {
-         name: 'disciplines',
-         title: 'disciplines',
+         name: 'info',
+         title: 'Info',
          type: 'array',
          of: [
             {

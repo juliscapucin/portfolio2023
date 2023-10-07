@@ -81,8 +81,8 @@ export default function ProjectCard({
      top={true}
      bottom={true}
     >
-     <span className='block text-displaySmall md:text-displayMedium lg:text-displayLarge mt-96 ml-8'>
-      {clickedProjectTitle}
+     <span className='block text-displaySmall md:text-displayMedium lg:text-displayLarge font-normal mt-80 ml-8'>
+      amp
      </span>
     </AnimationGridDiv>
    </div>

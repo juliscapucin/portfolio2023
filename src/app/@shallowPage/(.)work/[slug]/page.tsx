@@ -7,17 +7,30 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-import { ProjectDisciplines, ProjectNext, ShallowPage } from '@/components';
+import { ProjectInfo, ProjectNext, ShallowPage } from '@/components';
 import { Project } from '@/types';
 
 export default function Page({ params }: { params: { slug: string } }) {
  const [allProjects, setAllProjects] = useState<Project[] | null>(null);
  const [project, setProject] = useState<Project | null>(null);
+ const headerRef = createRef<HTMLHeadingElement>();
  const titleRef = createRef<HTMLHeadingElement>();
  const left = createRef<HTMLDivElement>();
  const right = createRef<HTMLDivElement>();
  const left2 = createRef<HTMLDivElement>();
  const right2 = createRef<HTMLDivElement>();
+
+ // Animate header on mount
+ useEffect(() => {
+  if (!project) return;
+
+  gsap.set(headerRef.current, { opacity: 0 });
+
+  gsap.to(headerRef.current, {
+   opacity: 1,
+   duration: 1,
+  });
+ }, [headerRef, project]);
 
  // Create ScrollTrigger for first section
  useEffect(() => {
@@ -76,14 +89,14 @@ export default function Page({ params }: { params: { slug: string } }) {
  return project ? (
   <ShallowPage>
    {/* Project header */}
-   <section className='relative w-full mt-32 mb-1'>
+   <section className='relative w-full mt-32'>
     <h1
      ref={titleRef}
      className='text-displaySmall md:text-displayMedium lg:text-displayLarge mb-16'
     >
      {project?.title ? project.title : ''}
     </h1>
-    <div className='grid grid-cols-12'>
+    <div ref={headerRef} className='grid grid-cols-12 opacity-0'>
      {/* Cover Image */}
      <div className={`col-span-5 relative block overflow-hidden aspect-square`}>
       <Image
@@ -103,23 +116,12 @@ export default function Page({ params }: { params: { slug: string } }) {
        <p className='text-headlineSmall'>{project.description}</p>
       </div>
       {/* Project Info */}
-      <ProjectDisciplines disciplines={project.disciplines} />
+      <ProjectInfo info={project.info} />
      </div>
     </div>
-    {/* <div
-     className={`relative block h-[100vw] lg:h-screen w-full overflow-hidden`}
-    >
-     <Image
-      src={project.coverImage.asset.url}
-      alt='photo'
-      className='h-full w-full object-cover'
-      sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-      fill
-      priority
-     />
-    </div> */}
    </section>
-   {/* Split screen */}
+
+   {/* Split screen 1 */}
    <section className='grid grid-cols-12 w-full gap-1 mb-32'>
     {/* Left */}
     <div

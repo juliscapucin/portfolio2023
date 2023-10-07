@@ -8,6 +8,6 @@ export type Project = {
    gridSize: number;
    thumbnailSize: number;
    content: string;
-   disciplines: { tech: string; scope: string; link: string };
+   info: { tech: string; scope: string; link: string };
    textContent: { children: { text: string; _key: string } }[];
 };

@@ -20,7 +20,7 @@ export const animateToFullScreen = (
    animationEnd.style.opacity = '1';
    animationEnd.innerHTML = '';
 
-   // clone animationStart div so that it remains in place
+   // clone animationStart div so that original remains in place
    const animationStartClone = animationStart.cloneNode(true) as HTMLDivElement;
 
    // append clone to animationStart parent div
@@ -33,20 +33,17 @@ export const animateToFullScreen = (
    animationStartClone.classList.add('top-0', 'opacity-100', 'h-full');
    animationEnd.appendChild(animationStartClone);
 
-   //  Toggle scroll on html div
-   document.documentElement.classList.add('overflow-hidden');
-
    Flip.from(state, {
       duration: 1,
       absolute: true,
       ease: 'power4.inOut',
       onComplete: () => {
+         // Remove scrollbar from html div
+         document.documentElement.classList.add('overflow-hidden');
+         // Change route
          routerFunction();
          const timeline = gsap.timeline();
          timeline.to('.transition-fullscreen', {
-            duration: 0.5,
-            ease: 'power1.inOut',
-            opacity: 0,
             delay: 0.5,
             onComplete: () => {
                animationEnd.innerHTML = '';

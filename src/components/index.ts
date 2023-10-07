@@ -17,7 +17,7 @@ import HeroMobile from './HeroMobile';
 import MenuDesktop from './MenuDesktop';
 import MenuMobile from './MenuMobile';
 import ProjectCard from './ProjectCard';
-import ProjectDisciplines from './ProjectDisciplines';
+import ProjectInfo from './ProjectInfo';
 import ProjectNext from './ProjectNext';
 import ProjectsFilter from './ProjectsFilter';
 import ProjectsMenu from './ProjectsMenu';
@@ -47,7 +47,7 @@ export {
    MenuDesktop,
    MenuMobile,
    ProjectCard,
-   ProjectDisciplines,
+   ProjectInfo,
    ProjectNext,
    ProjectsFilter,
    ProjectsMenu,

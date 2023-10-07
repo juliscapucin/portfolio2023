@@ -9,7 +9,6 @@ export async function getProjects() {
       _id,
       title,
       "slug": slug.current,
-      description,
       coverImage{
          alt,
          asset->{
@@ -19,11 +18,9 @@ export async function getProjects() {
        gridSize,
       thumbnailSize,
       url,
-      images,
       category,
-      content,
       services,
-      disciplines[0]{
+      info[0]{
          scope,
       }
    }`
@@ -54,7 +51,7 @@ export async function getProject(slug: string) {
            _key
          }
        },
-      disciplines[0]{
+      info[0]{
          tech,
          scope,
          link
