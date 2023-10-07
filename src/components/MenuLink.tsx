@@ -1,7 +1,7 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { MouseEvent } from 'react';
+import { MouseEvent, useEffect, useRef } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 
 interface MenuLinkProps {
  label: string;
@@ -15,12 +15,20 @@ export default function MenuLink({
  action,
  activeState,
 }: MenuLinkProps) {
- const router = useRouter();
+ const linkRef = useRef<HTMLButtonElement | null>(null);
+ const pathname = usePathname();
+
+ useEffect(() => {
+  const link = linkRef.current;
+  link?.classList.remove('translate-y-full');
+  link?.classList.add('translate-y-0');
+ }, [linkRef.current, pathname]);
 
  return (
   <div className='overflow-hidden max-h-8'>
    <button
-    className={`flex flex-col justify-center items-center hover:-translate-y-1/2 transition ${
+    ref={linkRef}
+    className={`flex flex-col justify-center items-center translate-y-full hover:-translate-y-1/2 transition ${
      activeState ? 'opacity-50 pointer-events-none' : ''
     }`}
     onClick={action}
