@@ -34,7 +34,7 @@ export const animateToFullScreen = (
    animationEnd.appendChild(animationStartClone);
 
    Flip.from(state, {
-      duration: 1,
+      duration: 2,
       absolute: true,
       ease: 'power4.inOut',
       onComplete: () => {

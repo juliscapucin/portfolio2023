@@ -185,7 +185,6 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
            id={link._id}
            coverImage={link.coverImage.asset.url}
            variant={variant}
-           // setIsHovering={setIsHovering}
           />
          </div>
         );

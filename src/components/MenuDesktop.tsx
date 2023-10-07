@@ -79,7 +79,7 @@ export default function MenuDesktop({ navLinks }: NavLinksProps) {
   <>
    {navLinks ? (
     <GridDiv
-     divClass={'h-16 max-w-full mx-8 px-8 hidden lg:flex'}
+     divClass={'h-16 max-w-full mx-8 px-8 hidden lg:flex bg-primary'}
      bottom={true}
     >
      {/* Menu links */}

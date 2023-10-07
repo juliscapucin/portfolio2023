@@ -28,7 +28,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 
   gsap.to(headerRef.current, {
    opacity: 1,
-   duration: 1,
+   duration: 2,
   });
  }, [headerRef, project]);
 

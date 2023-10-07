@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
@@ -31,10 +30,9 @@ export default function ProjectCard({
 }: ProjectCardProps) {
  const router = useRouter();
  const { updateIsHovering } = usePageContext();
- const [clickedProjectTitle, setClickedProjectTitle] = useState<string>('');
 
  return variant === 'image' ? (
-  // Image View
+  ////----- IMAGE VIEW -----////
   <GridDiv divClass={`aspect-square col-span-${thumbnailSize}`}>
    {/* Empty grid element for animation */}
    <div className='absolute bottom-[100%] left-0 w-full h-full pointer-events-none'>
@@ -72,7 +70,7 @@ export default function ProjectCard({
    </button>
   </GridDiv>
  ) : (
-  // List View
+  ////----- LIST VIEW -----////
   <GridDiv bottom={true} divClass={`relative h-32`}>
    {/* Empty grid element for animation */}
    <div className='absolute -top-36 left-0 bottom-0 w-full h-full opacity-0'>
@@ -81,8 +79,8 @@ export default function ProjectCard({
      top={true}
      bottom={true}
     >
-     <span className='block text-displaySmall md:text-displayMedium lg:text-displayLarge font-normal mt-80 ml-8'>
-      amp
+     <span className='block text-displaySmall md:text-displayMedium lg:text-displayLarge font-normal mt-72 ml-8'>
+      {title}
      </span>
     </AnimationGridDiv>
    </div>
@@ -92,7 +90,6 @@ export default function ProjectCard({
     onMouseEnter={() => updateIsHovering(true)}
     onMouseLeave={() => updateIsHovering(false)}
     onClick={() => {
-     setClickedProjectTitle(title);
      animateToFullScreen(`.project-card-${id}`, () =>
       router.push(`/work/${slug}`, { scroll: false })
      );

@@ -56,7 +56,7 @@ export default function ShallowPage({
      {/* Back button */}
      <button onClick={onDismiss}>
       <GridDiv divClass='h-32 flex items-center justify-center'>
-       <span className='min-w-[4rem]'>&#5193;</span>
+       <span className='min-w-[4rem]'>&#5193; back</span>
       </GridDiv>
      </button>
      {children}
