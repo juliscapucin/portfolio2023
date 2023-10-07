@@ -1,3 +1,4 @@
+import IconArrow from './IconArrow';
 import IconArrowBack from './IconArrowBack';
 
-export { IconArrowBack };
+export { IconArrow, IconArrowBack };

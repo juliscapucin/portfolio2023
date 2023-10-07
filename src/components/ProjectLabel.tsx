@@ -1,3 +1,5 @@
+import { IconArrow } from '@icons/.';
+
 interface ProjectLabelProps {
  title: string;
  scope: string;
@@ -17,8 +19,11 @@ export default function ProjectLabel({
     <span className={`${textSize} uppercase text-secondary`}>{title}</span>
     <div className='flex justify-between items-center w-full'>
      <span className={`${textSize} uppercase text-secondary`}>{title}</span>
-     <div className='h-full flex items-center text-labelLarge'>
-      {`>`} {scope}
+     <div className='h-full flex gap-8 items-center text-labelLarge '>
+      <span className='-translate-x-1/2 group-hover:-translate-x-0 transition duration-500'>
+       <IconArrow />
+      </span>
+      <span>{scope}</span>
      </div>
     </div>
    </div>
