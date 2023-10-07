@@ -1,79 +1,20 @@
 'use client';
 
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 import { GridDiv, MenuLink } from '@/components';
-import { useModalContext, usePageContext } from '@/context';
-
-import {
- animateHorizontal,
- animateToLeft,
- animateToLeftTransition,
- animateToRight,
- animateToRightTransition,
-} from '@/animations';
+import { useModalContext } from '@/context';
 
 type NavLink = { title: string; slug: string; _key: string };
 
 type NavLinksProps = {
  navLinks: NavLink[];
+ buttonAction: (link: NavLink) => void;
 };
 
-export default function MenuDesktop({ navLinks }: NavLinksProps) {
+export default function MenuDesktop({ navLinks, buttonAction }: NavLinksProps) {
  const { updateModalOpen } = useModalContext();
-
  const pathname = usePathname();
- const router = useRouter();
-
- const buttonAction = (link: NavLink) => {
-  const shallowPage = document.querySelector('.shallow-page');
-
-  const actualPage = shallowPage
-   ? navLinks.filter((element) => element.slug === 'work')
-   : navLinks.filter((element) => element.slug === pathname.slice(1));
-
-  // Transition to left
-  if ((actualPage && link._key > actualPage[0]?._key) || pathname === '/') {
-   // Close shallow-page if open
-   if (shallowPage) {
-    //  Restore scroll on html div
-    if (document.documentElement.classList.contains('overflow-hidden'))
-     document.documentElement.classList.remove('overflow-hidden');
-
-    animateHorizontal('shallow-page', 0, -100);
-
-    animateToLeftTransition('page', () => {
-     router.push(`/${link.slug}`);
-    });
-
-    return;
-   }
-
-   animateToLeftTransition('page', () => {
-    router.push(`/${link.slug}`);
-   });
-  } else {
-   // Transition to right
-
-   // Close shallow-page if open
-   if (shallowPage) {
-    //  Restore scroll on html div
-    if (document.documentElement.classList.contains('overflow-hidden'))
-     document.documentElement.classList.remove('overflow-hidden');
-
-    animateHorizontal('shallow-page', 0, 100);
-
-    animateToRightTransition('page', () => {
-     router.push(`/${link.slug}`);
-    });
-
-    return;
-   }
-   animateToRightTransition('page', () => {
-    router.push(`/${link.slug}`);
-   });
-  }
- };
 
  return (
   <>

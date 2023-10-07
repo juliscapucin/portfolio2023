@@ -34,11 +34,16 @@ export default function ProjectCard({
   ////----- IMAGE VIEW -----////
   <GridDiv divClass={`aspect-square col-span-${thumbnailSize}`}>
    {/* Empty grid element for animation */}
-   <div className='absolute bottom-[100%] left-0 w-full h-full pointer-events-none'>
-    <AnimationGridDiv
-     divClass={`project-card-${id} overflow-hidden bg-primary pointer-events-none`}
-    />
-   </div>
+   <AnimationGridDiv
+    divClass={`project-card-${id} overflow-hidden bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-full opacity-0`}
+    top={true}
+    bottom={true}
+   >
+    <span className='block text-displaySmall md:text-displayMedium lg:text-displayLarge font-normal mt-64 ml-8'>
+     {title}
+    </span>
+   </AnimationGridDiv>
+
    <button
     className={`h-full w-full group flex justify-center items-center absolute`}
     onMouseEnter={() => updateIsHovering(true)}
@@ -81,6 +86,7 @@ export default function ProjectCard({
      {title}
     </span>
    </AnimationGridDiv>
+
    {/* Button action */}
    <button
     className={`h-full w-full p-8 group`}

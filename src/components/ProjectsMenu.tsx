@@ -7,13 +7,7 @@ import { usePathname } from 'next/navigation';
 import { gsap } from 'gsap';
 
 import { animateProjectsMenu } from '@/animations';
-import { useWindowDimensions } from '@/hooks';
-import {
- SectionTitle,
- ProjectCard,
- GridDiv,
- ProjectsFilter,
-} from '@/components';
+import { ProjectCard, GridDiv, ProjectsFilter } from '@/components';
 
 import { Project } from '@/types';
 
@@ -23,10 +17,8 @@ interface ProjectsMenuProps {
 
 export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
  const pathname = usePathname();
- const { width, height } = useWindowDimensions();
 
  const [allProjects, setAllProjects] = useState<Project[] | null>(null);
-
  const [projectItems, setProjectItems] = useState<Project[] | null>(null);
 
  // Fetch data
@@ -43,7 +35,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
 
  // View options
  const [variant, setVariant] = useState<string>(
-  pathname === '/' ? 'list' : 'image'
+  pathname === '/' && activeBreakpoint === 'desktop' ? 'list' : 'image'
  );
 
  // List View Refs
@@ -116,14 +108,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
  useLayoutEffect(() => {
   if (projectsImgsRef.current && projectsLinksRef.current)
    animateProjectsMenu(projectsImgsRef.current, projectsLinksRef.current);
- }, [
-  projectsImgsRef.current,
-  projectsLinksRef.current,
-  variant,
-  projectItems,
-  width,
-  height,
- ]);
+ }, [projectsImgsRef.current, projectsLinksRef.current, variant, projectItems]);
 
  return (
   <section className='min-h-screen'>
