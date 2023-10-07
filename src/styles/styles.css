@@ -84,7 +84,7 @@ h6,
 span,
 button,
 a {
-   /* text-transform: uppercase; */
+   text-transform: uppercase;
    font-family: var(--font-primary) sans-serif;
    overflow-wrap: break-word;
 }

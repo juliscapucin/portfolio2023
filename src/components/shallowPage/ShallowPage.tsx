@@ -5,6 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 
 import { animateToRightTransition } from '@/animations/pageTransitions';
 import { Footer, GridDiv } from '@/components';
+import ButtonBack from '../buttons/ButtonBack';
 
 export default function ShallowPage({
  children,
@@ -54,11 +55,8 @@ export default function ShallowPage({
      ref={wrapper}
     >
      {/* Back button */}
-     <button onClick={onDismiss}>
-      <GridDiv divClass='h-32 flex items-center justify-center'>
-       <span className='min-w-[4rem]'>&#5193; back</span>
-      </GridDiv>
-     </button>
+     <ButtonBack action={onDismiss} />
+
      {children}
     </div>
     <Footer />
