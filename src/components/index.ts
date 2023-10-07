@@ -18,10 +18,10 @@ import MenuDesktop from './MenuDesktop';
 import MenuMobile from './MenuMobile';
 import ProjectCard from './ProjectCard';
 import ProjectInfo from './ProjectInfo';
+import ProjectLabel from './ProjectLabel';
 import ProjectNext from './ProjectNext';
 import ProjectsFilter from './ProjectsFilter';
 import ProjectsMenu from './ProjectsMenu';
-import ProjectTitle from './ProjectTitle';
 import Services from './Services';
 import SectionTitle from './SectionTitle';
 import ShallowPage from './shallowPage/ShallowPage';
@@ -48,10 +48,10 @@ export {
    MenuMobile,
    ProjectCard,
    ProjectInfo,
+   ProjectLabel,
    ProjectNext,
    ProjectsFilter,
    ProjectsMenu,
-   ProjectTitle,
    SectionTitle,
    Services,
    ShallowPage,

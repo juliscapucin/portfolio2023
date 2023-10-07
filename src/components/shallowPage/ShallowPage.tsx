@@ -3,8 +3,8 @@
 import { useCallback, useRef, MouseEventHandler, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
-import { animateToRightTransition } from '@/animations/pageTransitions';
-import { Footer, GridDiv } from '@/components';
+import { animateToLeftTransition } from '@/animations/pageTransitions';
+import { Footer } from '@/components';
 import ButtonBack from '../buttons/ButtonBack';
 
 export default function ShallowPage({
@@ -12,17 +12,27 @@ export default function ShallowPage({
 }: {
  children: React.ReactNode;
 }) {
- const overlay = useRef(null);
- const wrapper = useRef(null);
+ const overlay = useRef<HTMLDivElement | null>(null);
+ const wrapper = useRef<HTMLDivElement | null>(null);
+
  const router = useRouter();
  const pathname = usePathname();
+
+ // this is used as a workaround to prevent the intercepted route of showing in all pages
+ // Next 13 bug
  const shouldShowShallowPage = pathname.includes('/work/');
 
  const onDismiss = useCallback(() => {
-  //  Toggle scroll on html div
+  //  Remove scroll from wrapper div
+  if (overlay.current) {
+   overlay.current.classList.remove('overflow-y-scroll');
+   overlay.current.classList.add('overflow-hidden');
+  }
+
+  //  Add scroll on html div
   document.documentElement.classList.remove('overflow-hidden');
 
-  animateToRightTransition('shallow-page', () => {
+  animateToLeftTransition('shallow-page', () => {
    router.back();
   });
  }, [router]);

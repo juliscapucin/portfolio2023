@@ -29,8 +29,8 @@ export const animateToFullScreen = (
    const state = Flip.getState(animationStartClone);
 
    animationEnd.classList.remove('hidden');
-   animationStartClone.classList.remove('-top-36', 'opacity-0', 'h-0');
-   animationStartClone.classList.add('top-0', 'opacity-100', 'h-full');
+   animationStartClone.classList.remove('opacity-0');
+   animationStartClone.classList.add('opacity-100');
    animationEnd.appendChild(animationStartClone);
 
    Flip.from(state, {

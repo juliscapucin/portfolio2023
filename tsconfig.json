@@ -22,6 +22,7 @@
       "paths": {
          "@/*": ["./src/*"],
          "@buttons/*": ["./src/components/buttons/*"],
+         "@icons/*": ["./src/components/icons/*"],
          "@sanity/*": ["./sanity/*"]
       }
    },

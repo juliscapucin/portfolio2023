@@ -5,9 +5,8 @@ import Image from 'next/image';
 
 import { usePageContext } from '@/context';
 
-import { GridDiv, AnimationGridDiv, ProjectTitle } from '@/components';
+import { GridDiv, AnimationGridDiv, ProjectLabel } from '@/components';
 import { animateToFullScreen } from '@/animations/pageTransitions';
-import { set } from 'sanity';
 
 interface ProjectCardProps {
  id: string;
@@ -50,7 +49,7 @@ export default function ProjectCard({
      );
     }}
    >
-    <ProjectTitle
+    <ProjectLabel
      title={title}
      scope={scope}
      divClass={`absolute bottom-4 left-4 z-10`}
@@ -73,17 +72,15 @@ export default function ProjectCard({
   ////----- LIST VIEW -----////
   <GridDiv bottom={true} divClass={`relative h-32`}>
    {/* Empty grid element for animation */}
-   <div className='absolute -top-36 left-0 bottom-0 w-full h-full opacity-0'>
-    <AnimationGridDiv
-     divClass={`project-card-${id} overflow-hidden bg-primary pointer-events-none`}
-     top={true}
-     bottom={true}
-    >
-     <span className='block text-displaySmall md:text-displayMedium lg:text-displayLarge font-normal mt-72 ml-8'>
-      {title}
-     </span>
-    </AnimationGridDiv>
-   </div>
+   <AnimationGridDiv
+    divClass={`project-card-${id} overflow-hidden bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-full opacity-0`}
+    top={true}
+    bottom={true}
+   >
+    <span className='block text-displaySmall md:text-displayMedium lg:text-displayLarge font-normal mt-64 ml-8'>
+     {title}
+    </span>
+   </AnimationGridDiv>
    {/* Button action */}
    <button
     className={`h-full w-full p-8 group`}
@@ -95,7 +92,7 @@ export default function ProjectCard({
      );
     }}
    >
-    <ProjectTitle title={title} scope={scope} textSize='text-headlineSmall' />
+    <ProjectLabel title={title} scope={scope} textSize='text-headlineSmall' />
    </button>
   </GridDiv>
  );
