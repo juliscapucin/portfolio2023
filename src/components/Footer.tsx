@@ -28,7 +28,7 @@ export default function Footer() {
    divClass={`px-8 py-16 lg:grid grid-cols-12 max-w-desktop`}
   >
    {/* White Space */}
-   <div className='col-span-2 flex flex-col'>
+   <div className='col-span-2 flex flex-col mb-16 lg:mb-0'>
     <span>Juli Scapucin</span>
     <span>©2023</span>
    </div>

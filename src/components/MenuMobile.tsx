@@ -21,7 +21,7 @@ export default function MenuMobile({ navLinks, buttonAction }: NavLinksProps) {
   <>
    {navLinks ? (
     <div className='block lg:hidden'>
-     <GridDiv divClass='absolute max-w-full h-16 mx-8 flex justify-between items-center'>
+     <GridDiv divClass='absolute max-w-full h-16 mx-8 flex justify-end items-center'>
       {/* Burger Button */}
       <ButtonBurger
        action={(e) => {
@@ -32,7 +32,7 @@ export default function MenuMobile({ navLinks, buttonAction }: NavLinksProps) {
       />
      </GridDiv>
      <aside
-      className='absolute top-0 w-full min-h-full p-8 bg-colorBlack transition-transform -translate-y-full'
+      className='absolute top-0 w-full min-h-screen p-8 bg-colorBlack transition-transform -translate-y-full'
       ref={mobileMenuRef}
      >
       {/* Close Button */}
@@ -45,7 +45,7 @@ export default function MenuMobile({ navLinks, buttonAction }: NavLinksProps) {
       />
 
       {/* Nav Links */}
-      <nav className='flex flex-col border-solid border-b border-colorWhite mt-16'>
+      <nav className='flex flex-col border-solid border-b border-colorWhite mt-16 h-full'>
        {navLinks.map((link) => {
         return (
          <GridDiv

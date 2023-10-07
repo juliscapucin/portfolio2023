@@ -28,8 +28,10 @@ import ShallowPage from './shallowPage/ShallowPage';
 import SocialLinks from './SocialLinks';
 import Status from './Status';
 import ThemeSwitcher from './ThemeSwitcher';
+import AboutText from './AboutText';
 
 export {
+   AboutText,
    AnimationGridDiv,
    ContactModal,
    CustomCursor,

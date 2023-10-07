@@ -15,9 +15,9 @@ export default function ProjectLabel({
 }: ProjectLabelProps) {
  return (
   <div className={`h-11 overflow-hidden ${divClass}`}>
-   <div className='flex flex-col justify-start items-start group-hover:-translate-y-1/2 transition'>
+   <div className='flex flex-col justify-start items-start md:group-hover:-translate-y-1/2 transition'>
     <span className={`${textSize} uppercase text-secondary`}>{title}</span>
-    <div className='flex justify-between items-center w-full'>
+    <div className='hidden md:flex justify-between items-center w-full'>
      <span className={`${textSize} uppercase text-secondary`}>{title}</span>
      <div className='h-full flex gap-8 items-center text-labelLarge '>
       <span className='-translate-x-1/2 group-hover:-translate-x-0 transition duration-500'>

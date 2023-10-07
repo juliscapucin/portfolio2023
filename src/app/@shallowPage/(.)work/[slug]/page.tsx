@@ -113,7 +113,9 @@ export default function Page({ params }: { params: { slug: string } }) {
      <div className='md:col-span-8 lg:col-span-6'>
       {/* Description */}
       <div className='mb-16'>
-       <p className='text-headlineSmall'>{project.description}</p>
+       <p className='text-headlineSmall md:text-headlineMedium'>
+        {project.description}
+       </p>
       </div>
       {/* Project Info */}
       <ProjectInfo info={project.info} />

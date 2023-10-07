@@ -4,10 +4,8 @@ export default function HeroMobile() {
  return (
   <div className='hero__mobile grid grid-cols-6 grid-rows-6 h-screen max-h-screen'>
    {/* Status */}
-   <GridDiv divClass='col-span-full row-span-1' top={true}>
-    <div className='col-span-full row-span-1 grid grid-cols-20'>
-     <Status />
-    </div>
+   <GridDiv divClass='col-span-3 sm:col-span-2 md:col-span-1 row-span-1'>
+    <Status />
    </GridDiv>
 
    {/* Name */}

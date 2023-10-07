@@ -65,7 +65,7 @@ export default function Page() {
   <>
    {data ? (
     <div className={`page about-page`}>
-     <div className='xl:grid grid-cols-12 my-32'>
+     <div className='md:grid grid-cols-12 my-32'>
       <div className='col-span-5 aspect-square overflow-hidden relative'>
        <Image
         src='/juli.avif'

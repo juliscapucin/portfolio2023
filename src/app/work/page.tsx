@@ -65,8 +65,12 @@ export default function Page() {
   <>
    {data ? (
     <div className={`page work-page`}>
-     <h1 className='text-displaySmall lg:text-displayLarge'>{data.title}</h1>
-     <p>{data.description}</p>
+     <h1 className='text-displaySmall md:text-displayMedium lg:text-displayLarge mt-32'>
+      {data.title}
+     </h1>
+     <p className='text-headlineSmall md:text-headlineMedium'>
+      {data.description}
+     </p>
      <ProjectsMenu activeBreakpoint={breakpoint} />
      <Footer />
     </div>
