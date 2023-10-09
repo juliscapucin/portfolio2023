@@ -35,7 +35,7 @@ export default function ProjectCard({
   <GridDiv divClass={`aspect-square col-span-${thumbnailSize}`}>
    {/* Empty grid element for animation */}
    <AnimationGridDiv
-    divClass={`project-card-${id} overflow-hidden bg-primary pointer-events-none absolute md:top-[-5px] left-0 bottom-0 w-full opacity-0`}
+    divClass={`project-card-${id} overflow-hidden bg-primary pointer-events-none absolute top-[-5px] left-0 bottom-0 w-full opacity-0`}
     top={true}
     bottom={true}
    >
@@ -80,13 +80,15 @@ export default function ProjectCard({
   <GridDiv bottom={true} divClass={`relative h-32`}>
    {/* Empty grid element for animation */}
    <AnimationGridDiv
-    divClass={`project-card-${id} overflow-hidden bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-full opacity-0`}
+    divClass={`project-card-${id} overflow-hidden bg-primary pointer-events-none absolute top-[-5px] left-0 bottom-0 w-full opacity-0`}
     top={true}
     bottom={true}
    >
-    <span className='block text-displaySmall md:text-displayMedium lg:text-displayLarge font-normal mt-64 ml-8'>
-     {title}
-    </span>
+    <div className='m-auto mt-0 pt-44 md:pt-32'>
+     <span className='text-displaySmall md:text-displayMedium lg:text-displayLarge font-normal'>
+      {title}
+     </span>
+    </div>
    </AnimationGridDiv>
 
    {/* Button action */}

@@ -19,15 +19,13 @@ export default function Page({ params }: { params: { slug: string } }) {
  const titleRef = useRef<HTMLHeadingElement | null>(null);
  const left = useRef<HTMLDivElement | null>(null);
  const right = useRef<HTMLDivElement | null>(null);
- const left2 = useRef<HTMLDivElement | null>(null);
- const right2 = useRef<HTMLDivElement | null>(null);
 
  // Set breakpoint for mobile/desktop (values are in constants.ts)
  const breakpoint = useMediaQuery(breakpoints.desktop);
 
  // Animate header on mount
  useEffect(() => {
-  if (!project) return;
+  if (!project || !headerRef.current) return;
 
   gsap.set(headerRef.current, { opacity: 0 });
 
@@ -53,22 +51,6 @@ export default function Page({ params }: { params: { slug: string } }) {
    pin: right.current,
   });
  }, [left, right, project]);
-
- // Create ScrollTrigger for second section
- useEffect(() => {
-  if (breakpoint !== 'desktop' || !project) return;
-
-  const featuredImageHeight = left2.current?.clientHeight;
-
-  ScrollTrigger.create({
-   scroller: '.scroll-trigger',
-   trigger: right2.current,
-   start: 'top top',
-   end: `bottom ${featuredImageHeight}`,
-   scrub: true,
-   pin: left2.current,
-  });
- }, [left2, right2, project]);
 
  // Fetch project + all projects data
  useEffect(() => {

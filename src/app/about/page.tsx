@@ -66,7 +66,7 @@ export default function Page() {
    {data ? (
     <div className={`page about-page`}>
      <div className='md:grid grid-cols-12 my-32'>
-      <div className='col-span-5 aspect-square overflow-hidden relative'>
+      <div className='col-span-5 aspect-square overflow-hidden relative mb-8 lg:mb-0'>
        <Image
         src='/juli.avif'
         alt='photo'
@@ -84,7 +84,7 @@ export default function Page() {
        </h1>
 
        {/* Subtitle */}
-       <p className='text-titleLarge md:text-headlineSmall col-span-3'>
+       <p className='text-titleLarge md:text-headlineSmall col-span-3 mt-4 lg:mt-0'>
         {data.description}
        </p>
        <div className='col-span-2'></div>
