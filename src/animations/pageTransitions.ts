@@ -38,7 +38,6 @@ export const animateToFullScreen = (
       absolute: true,
       ease: 'power4.inOut',
       onComplete: () => {
-         // Remove scrollbar from html div
          document.documentElement.classList.add('overflow-hidden');
          // Change route
          routerFunction();

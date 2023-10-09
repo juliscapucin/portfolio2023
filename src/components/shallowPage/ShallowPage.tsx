@@ -5,7 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 
 import { animateToLeftTransition } from '@/animations/pageTransitions';
 import { Footer } from '@/components';
-import ButtonBack from '../buttons/ButtonBack';
+import { ButtonBack } from '@buttons/.';
 
 export default function ShallowPage({
  children,
@@ -61,7 +61,7 @@ export default function ShallowPage({
     onClick={onClick}
    >
     <div
-     className='wrapper max-w-desktop overflow-hidden m-auto pt-32'
+     className='wrapper max-w-desktop overflow-hidden m-auto mt-0 pt-32'
      ref={wrapper}
     >
      {/* Back button */}

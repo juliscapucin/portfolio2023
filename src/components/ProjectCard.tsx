@@ -39,9 +39,11 @@ export default function ProjectCard({
     top={true}
     bottom={true}
    >
-    <span className='block text-displaySmall md:text-displayMedium lg:text-displayLarge font-normal mt-64 ml-8'>
-     {title}
-    </span>
+    <div className='m-auto mt-0 pt-32'>
+     <span className='text-displaySmall md:text-displayMedium lg:text-displayLarge font-normal'>
+      {title}
+     </span>
+    </div>
    </AnimationGridDiv>
 
    <button
