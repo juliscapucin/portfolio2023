@@ -56,7 +56,7 @@ export default function ShallowPage({
  return (
   shouldShowShallowPage && (
    <div
-    className='shallow-page scroll-trigger fixed top-0 left-0 bottom-0 right-0 mx-auto lg:px-8 bg-primary max-w-desktop overflow-y-scroll overflow-x-hidden z-10'
+    className='shallow-page scroll-trigger fixed top-0 left-0 bottom-0 right-0 mx-auto px-8 bg-primary max-w-desktop overflow-y-scroll overflow-x-hidden z-10'
     ref={overlay}
     onClick={onClick}
    >

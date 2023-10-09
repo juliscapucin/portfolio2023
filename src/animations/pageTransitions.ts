@@ -38,13 +38,18 @@ export const animateToFullScreen = (
       absolute: true,
       ease: 'power4.inOut',
       onComplete: () => {
+         // Remove scrollbar from html div
          document.documentElement.classList.add('overflow-hidden');
          // Change route
          routerFunction();
+         // Fade out + empty animationEnd div
          const timeline = gsap.timeline();
          timeline.to('.transition-fullscreen', {
+            opacity: 0,
+            duration: 0.5,
             delay: 0.5,
             onComplete: () => {
+               console.log('complete');
                animationEnd.innerHTML = '';
                animationEnd.classList.add('hidden');
             },

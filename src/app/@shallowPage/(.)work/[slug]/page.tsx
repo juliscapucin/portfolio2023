@@ -96,9 +96,9 @@ export default function Page({ params }: { params: { slug: string } }) {
     >
      {project?.title ? project.title : ''}
     </h1>
-    <div ref={headerRef} className='grid grid-cols-12 opacity-0'>
+    <div ref={headerRef} className='md:grid grid-cols-12 opacity-0'>
      {/* Cover Image */}
-     <div className={`col-span-5 relative block overflow-hidden aspect-square`}>
+     <div className={`col-span-6 relative block overflow-hidden aspect-square`}>
       <Image
        src={project.coverImage.asset.url}
        alt='photo'
@@ -110,7 +110,7 @@ export default function Page({ params }: { params: { slug: string } }) {
      </div>
      {/* Blank space */}
      <div className='col-span-1'></div>
-     <div className='md:col-span-8 lg:col-span-6'>
+     <div className='md:col-span-5'>
       {/* Description */}
       <div className='mb-16'>
        <p className='text-titleLarge md:text-headlineSmall'>
