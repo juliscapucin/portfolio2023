@@ -111,7 +111,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
  }, [projectsImgsRef.current, projectsLinksRef.current, variant, projectItems]);
 
  return (
-  <section className='min-h-screen'>
+  <section className='min-h-screen mb-32'>
    <ProjectsFilter
     {...{
      filterProjects,
@@ -126,7 +126,6 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
     <GridDiv
      divClass='list-view filter-projects grid grid-cols-12 w-full h-full overflow-hidden'
      top={true}
-     bottom={true}
     >
      {/* Render left side images only on desktop */}
      {activeBreakpoint === 'desktop' && (

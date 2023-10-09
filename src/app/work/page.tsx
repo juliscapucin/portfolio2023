@@ -68,9 +68,7 @@ export default function Page() {
      <h1 className='text-displaySmall md:text-displayMedium lg:text-displayLarge mt-32'>
       {data.title}
      </h1>
-     <p className='text-headlineSmall md:text-headlineMedium'>
-      {data.description}
-     </p>
+     <p className='text-titleLarge md:text-headlineSmall'>{data.description}</p>
      <ProjectsMenu activeBreakpoint={breakpoint} />
      <Footer />
     </div>
