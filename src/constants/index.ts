@@ -1,5 +1,5 @@
 export const breakpoints = {
-   desktop: 1024,
+   desktop: 768,
 };
 
 export const navLinks = [

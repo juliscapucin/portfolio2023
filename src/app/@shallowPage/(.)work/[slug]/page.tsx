@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { createRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
@@ -9,16 +9,21 @@ gsap.registerPlugin(ScrollTrigger);
 
 import { ProjectInfo, ProjectNext, ShallowPage } from '@/components';
 import { Project } from '@/types';
+import { breakpoints } from '@/constants';
+import { useMediaQuery } from '@/hooks';
 
 export default function Page({ params }: { params: { slug: string } }) {
  const [allProjects, setAllProjects] = useState<Project[] | null>(null);
  const [project, setProject] = useState<Project | null>(null);
- const headerRef = createRef<HTMLHeadingElement>();
- const titleRef = createRef<HTMLHeadingElement>();
- const left = createRef<HTMLDivElement>();
- const right = createRef<HTMLDivElement>();
- const left2 = createRef<HTMLDivElement>();
- const right2 = createRef<HTMLDivElement>();
+ const headerRef = useRef<HTMLHeadingElement | null>(null);
+ const titleRef = useRef<HTMLHeadingElement | null>(null);
+ const left = useRef<HTMLDivElement | null>(null);
+ const right = useRef<HTMLDivElement | null>(null);
+ const left2 = useRef<HTMLDivElement | null>(null);
+ const right2 = useRef<HTMLDivElement | null>(null);
+
+ // Set breakpoint for mobile/desktop (values are in constants.ts)
+ const breakpoint = useMediaQuery(breakpoints.desktop);
 
  // Animate header on mount
  useEffect(() => {
@@ -34,6 +39,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 
  // Create ScrollTrigger for first section
  useEffect(() => {
+  if (breakpoint !== 'desktop') return;
   const featuredImageHeight = right.current?.clientHeight;
 
   if (!project) return;
@@ -50,7 +56,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 
  // Create ScrollTrigger for second section
  useEffect(() => {
-  if (!project) return;
+  if (breakpoint !== 'desktop' || !project) return;
 
   const featuredImageHeight = left2.current?.clientHeight;
 
@@ -113,7 +119,7 @@ export default function Page({ params }: { params: { slug: string } }) {
      <div className='md:col-span-5'>
       {/* Description */}
       <div className='mb-16'>
-       <p className='text-titleLarge md:text-headlineSmall'>
+       <p className='text-titleLarge md:text-headlineSmall mt-16 md:mt-0'>
         {project.description}
        </p>
       </div>
@@ -128,10 +134,14 @@ export default function Page({ params }: { params: { slug: string } }) {
     {/* Left */}
     <div
      ref={left}
-     className='col-span-6 lg:col-span-7 relative grid gap-1 overflow-hidden'
+     className='grid col-span-12 lg:col-span-7 relative gap-8 lg:gap-1 overflow-hidden'
     >
-     <p className='lg:h-[500px] pr-32 flex items-center'>{project.content}</p>
-     <div className='h-[50vw] lg:h-[700px] w-full overflow-hidden relative'>
+     <div className='w-full lg:aspect-square lg:pr-32'>
+      {project.textContent.map((text) => {
+       return <p key={text.children._key}>{text.children.text}</p>;
+      })}
+     </div>
+     <div className='w-full aspect-square overflow-hidden relative'>
       <Image
        src={project.coverImage.asset.url}
        alt='photo'
@@ -140,7 +150,7 @@ export default function Page({ params }: { params: { slug: string } }) {
        fill
       />
      </div>
-     <div className='h-[50vw] lg:h-[700px] w-full overflow-hidden relative'>
+     <div className='w-full aspect-square overflow-hidden relative'>
       <Image
        src={project.coverImage.asset.url}
        alt='photo'
@@ -149,7 +159,7 @@ export default function Page({ params }: { params: { slug: string } }) {
        fill
       />
      </div>
-     <div className='h-[50vw] lg:h-[700px] w-full overflow-hidden relative'>
+     <div className='w-full aspect-square overflow-hidden relative'>
       <Image
        src={project.coverImage.asset.url}
        alt='photo'
@@ -163,7 +173,7 @@ export default function Page({ params }: { params: { slug: string } }) {
     {/* Right */}
     <div
      ref={right}
-     className='col-span-6 lg:col-span-5 h-[50vw] lg:h-[500px] relative'
+     className='hidden lg:block col-span-12 lg:col-span-5 h-[50vw] lg:h-[500px] relative'
     >
      <Image
       src={project.coverImage.asset.url}
@@ -180,52 +190,8 @@ export default function Page({ params }: { params: { slug: string } }) {
      return <p key={text.children._key}>{text.children.text}</p>;
     })}
    </section>
-
-   <section className='grid grid-cols-12 w-full relative gap-1'>
-    {/* Left 2 */}
-    <div ref={left2} className='col-span-5 h-[500px]'>
-     <Image
-      src={project.coverImage.asset.url}
-      alt='photo'
-      className='w-full object-cover'
-      sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-      fill
-     />
-    </div>
-
-    {/* Right 2 */}
-    <div ref={right2} className='col-span-7 relative grid gap-1'>
-     <div className='h-[600px] w-full overflow-hidden relative'>
-      <Image
-       src={project.coverImage.asset.url}
-       alt='photo'
-       className='w-full object-cover'
-       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-       fill
-      />
-     </div>
-     <div className='h-[600px] w-full overflow-hidden relative'>
-      <Image
-       src={project.coverImage.asset.url}
-       alt='photo'
-       className='h-32 w-full object-cover'
-       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-       fill
-      />
-     </div>
-     <div className='h-[600px] w-full overflow-hidden relative'>
-      <Image
-       src={project.coverImage.asset.url}
-       alt='photo'
-       className='h-32 w-full object-cover'
-       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-       fill
-      />
-     </div>
-    </div>
-   </section>
    {/* Next Project */}
-   {allProjects && <ProjectNext projects={allProjects} project={project} />}
+   {/* {allProjects && <ProjectNext projects={allProjects} project={project} />} */}
   </ShallowPage>
  ) : (
   <span>Loading...</span>

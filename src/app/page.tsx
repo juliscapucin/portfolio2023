@@ -63,7 +63,7 @@ export default function Home() {
 
    <AboutText />
 
-   {servicesData && <Services services={servicesData.services} />}
+   {/* {servicesData && <Services services={servicesData.services} />} */}
 
    <SectionTitle title='Work' />
    <ProjectsMenu activeBreakpoint={breakpoint} />

@@ -44,13 +44,13 @@ export default function ProjectNext({ projects, project }: ProjectNextProps) {
 
  return (
   <GridDiv
-   divClass={'mt-32 flex justify-center items-center gap-32 py-32'}
+   divClass={'flex justify-center items-center gap-16 lg:gap-32 py-32 w-full'}
    top={true}
   >
    {previousProject && (
     <>
      <button
-      className='text-displaySmall cursor-pointer'
+      className='relative cursor-pointer'
       onClick={handlePreviousButton}
       onMouseEnter={() => {
        if (previousProjectTip.current)
@@ -61,17 +61,20 @@ export default function ProjectNext({ projects, project }: ProjectNextProps) {
         toggleOpacity(previousProjectTip.current);
       }}
      >
-      Previous
+      <span
+       ref={previousProjectTip}
+       className='absolute left-0 translate-x-full block px-8 bg-secondary text-primary opacity-0 transition-opacity duration-300'
+      >
+       {previousProject.title}
+      </span>
+      <span className='text-titleLarge lg:text-displaySmall'>Previous</span>
      </button>
-     <span ref={previousProjectTip} className='opacity-0'>
-      {previousProject.title}
-     </span>
     </>
    )}
    {nextProject && (
     <>
      <button
-      className='text-displaySmall cursor-pointer'
+      className='relative cursor-pointer'
       onClick={handleNextButton}
       onMouseEnter={() => {
        if (nextProjectTip.current) toggleOpacity(nextProjectTip.current);
@@ -80,11 +83,14 @@ export default function ProjectNext({ projects, project }: ProjectNextProps) {
        if (nextProjectTip.current) toggleOpacity(nextProjectTip.current);
       }}
      >
-      Next
+      <span
+       ref={nextProjectTip}
+       className='absolute right-0 translate-x-full block px-8 bg-secondary text-primary opacity-0 transition-opacity duration-300'
+      >
+       {nextProject.title}
+      </span>
+      <span className='text-titleLarge lg:text-displaySmall'>Next</span>
      </button>
-     <span ref={nextProjectTip} className='opacity-0'>
-      {nextProject.title}
-     </span>
     </>
    )}
   </GridDiv>

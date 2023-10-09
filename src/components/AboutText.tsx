@@ -33,7 +33,7 @@ export default function AboutText() {
  });
 
  return (
-  <p ref={textRef} className='mt-16 mx-4 text-titleLarge md:text-headlineSmall'>
+  <p ref={textRef} className='my-32 mx-4 text-titleLarge md:text-headlineSmall'>
    I'm a Front-End Developer with a broad background in Graphic and Digital
    Design. Since 2000 I've been designing meaningful, memorable, and
    communicative work for companies and professionals worldwide. Commitment to
