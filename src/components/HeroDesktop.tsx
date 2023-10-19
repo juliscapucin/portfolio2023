@@ -6,10 +6,6 @@ import { animatePanorama } from '@/animations';
 export default function HeroDesktop() {
  const heroRef = useRef(null);
 
- //  useEffect(() => {
- //   if (heroRef && heroRef.current) animatePanorama(heroRef.current);
- //  }, [heroRef]);
-
  return (
   <div
    className='hero__desktop grid grid-cols-12 grid-rows-6 h-screen max-h-screen w-full'

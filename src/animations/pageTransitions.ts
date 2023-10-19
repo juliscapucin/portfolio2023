@@ -10,17 +10,20 @@ export const animateToFullScreen = (
 ) => {
    const animationStart = document.querySelector(transitionStart);
    const animationStartParent = animationStart?.parentNode;
-   const animationEnd = document.querySelector('.transition-fullscreen');
+   const animationEnd = document.querySelector(
+      '.transition-fullscreen'
+   ) as HTMLDivElement;
 
    if (!animationStart || !animationEnd || !animationStartParent) return;
 
-   gsap.set('.transition-fullscreen', {
-      opacity: 1,
-   });
-
+   // reset animationEnd div
+   animationEnd.style.opacity = '1';
    animationEnd.innerHTML = '';
+
+   // clone animationStart div so that original remains in place
    const animationStartClone = animationStart.cloneNode(true) as HTMLDivElement;
 
+   // append clone to animationStart parent div
    animationStartParent.appendChild(animationStartClone);
 
    const state = Flip.getState(animationStartClone);
@@ -28,28 +31,27 @@ export const animateToFullScreen = (
    animationEnd.classList.remove('hidden');
    animationStartClone.classList.remove('opacity-0');
    animationStartClone.classList.add('opacity-100');
-   animationStartClone.classList.remove('h-0');
-   animationStartClone.classList.add('h-full');
-   animationStartClone.classList.remove('-top-36');
-   animationStartClone.classList.add('top-0');
    animationEnd.appendChild(animationStartClone);
 
-   document.documentElement.classList.add('overflow-hidden');
-
    Flip.from(state, {
-      duration: 0.4,
+      duration: 2,
       absolute: true,
       ease: 'power4.inOut',
       onComplete: () => {
+         // Remove scrollbar from html div
+         document.documentElement.classList.add('overflow-hidden');
+         // Change route
          routerFunction();
+         // Fade out + empty animationEnd div
          const timeline = gsap.timeline();
          timeline.to('.transition-fullscreen', {
-            duration: 0.5,
             opacity: 0,
-            ease: 'power1.inOut',
+            duration: 0.5,
             delay: 0.5,
             onComplete: () => {
+               console.log('complete');
                animationEnd.innerHTML = '';
+               animationEnd.classList.add('hidden');
             },
          });
       },
@@ -57,6 +59,7 @@ export const animateToFullScreen = (
 };
 
 // animate to left
+// used to start pages after transitions
 export const animateToLeft = (enterElement: string) => {
    const animateToLeftEnter = document.querySelector(`.${enterElement}`);
 
@@ -76,7 +79,33 @@ export const animateToLeft = (enterElement: string) => {
    });
 };
 
+// animate to left
+// used to start pages after transitions
+export const animateHorizontal = (
+   enterElement: string,
+   startPos: number,
+   endPos: number
+) => {
+   const animateToLeftEnter = document.querySelector(`.${enterElement}`);
+
+   if (!animateToLeftEnter) return;
+
+   const timeline = gsap.timeline();
+
+   timeline.set(animateToLeftEnter, {
+      opacity: 1,
+      xPercent: startPos,
+   });
+
+   timeline.to(animateToLeftEnter, {
+      duration: 1,
+      xPercent: endPos,
+      ease: 'power4.out',
+   });
+};
+
 // animate to right
+// used to start pages after transitions
 export const animateToRight = (enterElement: string) => {
    const animateToRightEnter = document.querySelector(`.${enterElement}`);
 
@@ -177,17 +206,4 @@ export const animateToShallowPage = (
          },
          0
       );
-};
-
-const animateToTransparent = () => {
-   const animateOpacity = gsap.utils.toArray(
-      '.animate-opacity'
-   ) as HTMLElement[];
-
-   if (animateOpacity.length === 0) return;
-   animateOpacity.forEach((element) => {
-      gsap.set(element, {
-         opacity: 0,
-      });
-   });
 };

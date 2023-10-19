@@ -17,7 +17,7 @@ function Status() {
  const time = currentDate.toLocaleTimeString('en-US');
 
  return (
-  <div className='flex flex-col text-titleMedium mt-2 ml-2'>
+  <div className='flex flex-col text-titleMedium mt-2 ml-2 col-span-2 xlg:col-span-1'>
    <span>Amsterdam</span>
    <span className='h-[1px] bg-secondary'></span>
    <span>{dayOfWeek}</span>

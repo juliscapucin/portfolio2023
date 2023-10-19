@@ -11,6 +11,7 @@ export const metadata = {
  description: 'Front-End Developer based in Amsterdam',
 };
 
+// Load custom font //
 const myFont = localFont({
  variable: '--font-primary',
  src: [
@@ -50,7 +51,7 @@ export default function RootLayout(props: {
        <CustomCursor />
 
        {/* Transition Overlay */}
-       <div className='transition-fullscreen w-screen h-screen top-0 left-0 fixed z-10 hidden pointer-events-none'></div>
+       <div className='transition-fullscreen hidden h-screen top-16 left-8 right-8 fixed z-20 overflow-hidden pointer-events-none'></div>
        {props.children}
        {props.shallowPage}
       </main>

@@ -1,26 +1,43 @@
 'use client';
 
 import Image from 'next/image';
-import { createRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-import { ProjectDisciplines, ProjectNext, ShallowPage } from '@/components';
+import { ProjectInfo, ProjectNext, ShallowPage } from '@/components';
 import { Project } from '@/types';
+import { breakpoints } from '@/constants';
+import { useMediaQuery } from '@/hooks';
 
 export default function Page({ params }: { params: { slug: string } }) {
  const [allProjects, setAllProjects] = useState<Project[] | null>(null);
  const [project, setProject] = useState<Project | null>(null);
- const titleRef = createRef<HTMLHeadingElement>();
- const left = createRef<HTMLDivElement>();
- const right = createRef<HTMLDivElement>();
- const left2 = createRef<HTMLDivElement>();
- const right2 = createRef<HTMLDivElement>();
+ const headerRef = useRef<HTMLHeadingElement | null>(null);
+ const titleRef = useRef<HTMLHeadingElement | null>(null);
+ const left = useRef<HTMLDivElement | null>(null);
+ const right = useRef<HTMLDivElement | null>(null);
+
+ // Set breakpoint for mobile/desktop (values are in constants.ts)
+ const breakpoint = useMediaQuery(breakpoints.desktop);
+
+ // Animate header on mount
+ useEffect(() => {
+  if (!project || !headerRef.current) return;
+
+  gsap.set(headerRef.current, { opacity: 0 });
+
+  gsap.to(headerRef.current, {
+   opacity: 1,
+   duration: 2,
+  });
+ }, [headerRef, project]);
 
  // Create ScrollTrigger for first section
  useEffect(() => {
+  if (breakpoint !== 'desktop') return;
   const featuredImageHeight = right.current?.clientHeight;
 
   if (!project) return;
@@ -35,32 +52,18 @@ export default function Page({ params }: { params: { slug: string } }) {
   });
  }, [left, right, project]);
 
- // Create ScrollTrigger for second section
- useEffect(() => {
-  if (!project) return;
-
-  const featuredImageHeight = left2.current?.clientHeight;
-
-  ScrollTrigger.create({
-   scroller: '.scroll-trigger',
-   trigger: right2.current,
-   start: 'top top',
-   end: `bottom ${featuredImageHeight}`,
-   scrub: true,
-   pin: left2.current,
-  });
- }, [left2, right2, project]);
-
  // Fetch project + all projects data
  useEffect(() => {
   const slug = params.slug;
 
+  // Fetch project data
   const fetchProjectData = async () => {
    const response = await fetch(`/api/work/${slug}`);
    const data = await response.json();
    setProject(data);
   };
 
+  // Fetch all projects data for next project component
   const fetchAllProjectsData = async () => {
    const response = await fetch(`/api/projects`);
    const data = await response.json();
@@ -74,41 +77,53 @@ export default function Page({ params }: { params: { slug: string } }) {
  return project ? (
   <ShallowPage>
    {/* Project header */}
-   <section className='relative w-full mt-32 mb-1'>
+   <section className='relative w-full mt-32'>
     <h1
      ref={titleRef}
-     className='text-displaySmall md:text-displayMedium lg:text-displayLarge'
+     className='text-displaySmall md:text-displayMedium lg:text-displayLarge mb-16'
     >
      {project?.title ? project.title : ''}
     </h1>
-    <ProjectDisciplines />
-    <div className='md:grid grid-cols-12 mb-16'>
-     <p className='text-headlineSmall md:col-span-8 lg:col-span-6'>
-      {project.description}
-     </p>
-    </div>
-    <div
-     className={`relative block h-[100vw] lg:h-screen w-full overflow-hidden`}
-    >
-     <Image
-      src={project.coverImage.asset.url}
-      alt='photo'
-      className='h-full w-full object-cover'
-      sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-      fill
-      priority
-     />
+    <div ref={headerRef} className='md:grid grid-cols-12 opacity-0'>
+     {/* Cover Image */}
+     <div className={`col-span-6 relative block overflow-hidden aspect-square`}>
+      <Image
+       src={project.coverImage.asset.url}
+       alt='photo'
+       className='h-full w-full object-cover'
+       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+       fill
+       priority
+      />
+     </div>
+     {/* Blank space */}
+     <div className='col-span-1'></div>
+     <div className='md:col-span-5'>
+      {/* Description */}
+      <div className='mb-16'>
+       <p className='text-titleLarge md:text-headlineSmall mt-16 md:mt-0'>
+        {project.description}
+       </p>
+      </div>
+      {/* Project Info */}
+      <ProjectInfo info={project.info} />
+     </div>
     </div>
    </section>
-   {/* Split screen */}
-   <section className='grid grid-cols-12 w-full gap-1'>
+
+   {/* Split screen 1 */}
+   <section className='grid grid-cols-12 w-full gap-1 mb-32'>
     {/* Left */}
     <div
      ref={left}
-     className='col-span-6 lg:col-span-7 relative grid gap-1 overflow-hidden'
+     className='grid col-span-12 lg:col-span-7 relative gap-8 lg:gap-1 overflow-hidden'
     >
-     <p className='lg:h-[500px] pr-32 flex items-center'>{project.content}</p>
-     <div className='h-[50vw] lg:h-[700px] w-full overflow-hidden relative'>
+     <div className='w-full lg:aspect-square lg:pr-32'>
+      {project.textContent.map((text) => {
+       return <p key={text.children._key}>{text.children.text}</p>;
+      })}
+     </div>
+     <div className='w-full aspect-square overflow-hidden relative'>
       <Image
        src={project.coverImage.asset.url}
        alt='photo'
@@ -117,7 +132,7 @@ export default function Page({ params }: { params: { slug: string } }) {
        fill
       />
      </div>
-     <div className='h-[50vw] lg:h-[700px] w-full overflow-hidden relative'>
+     <div className='w-full aspect-square overflow-hidden relative'>
       <Image
        src={project.coverImage.asset.url}
        alt='photo'
@@ -126,7 +141,7 @@ export default function Page({ params }: { params: { slug: string } }) {
        fill
       />
      </div>
-     <div className='h-[50vw] lg:h-[700px] w-full overflow-hidden relative'>
+     <div className='w-full aspect-square overflow-hidden relative'>
       <Image
        src={project.coverImage.asset.url}
        alt='photo'
@@ -140,7 +155,7 @@ export default function Page({ params }: { params: { slug: string } }) {
     {/* Right */}
     <div
      ref={right}
-     className='col-span-6 lg:col-span-5 h-[50vw] lg:h-[500px] relative'
+     className='hidden lg:block col-span-12 lg:col-span-5 h-[50vw] lg:h-[500px] relative'
     >
      <Image
       src={project.coverImage.asset.url}
@@ -152,51 +167,13 @@ export default function Page({ params }: { params: { slug: string } }) {
     </div>
    </section>
 
-   <section className='grid grid-cols-12 w-full relative gap-1'>
-    {/* Left 2 */}
-    <div ref={left2} className='col-span-5 h-[500px]'>
-     <Image
-      src={project.coverImage.asset.url}
-      alt='photo'
-      className='w-full object-cover'
-      sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-      fill
-     />
-    </div>
-
-    {/* Right 2 */}
-    <div ref={right2} className='col-span-7 relative grid gap-1'>
-     <div className='h-[600px] w-full overflow-hidden relative'>
-      <Image
-       src={project.coverImage.asset.url}
-       alt='photo'
-       className='w-full object-cover'
-       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-       fill
-      />
-     </div>
-     <div className='h-[600px] w-full overflow-hidden relative'>
-      <Image
-       src={project.coverImage.asset.url}
-       alt='photo'
-       className='h-32 w-full object-cover'
-       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-       fill
-      />
-     </div>
-     <div className='h-[600px] w-full overflow-hidden relative'>
-      <Image
-       src={project.coverImage.asset.url}
-       alt='photo'
-       className='h-32 w-full object-cover'
-       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-       fill
-      />
-     </div>
-    </div>
+   <section>
+    {project.textContent.map((text) => {
+     return <p key={text.children._key}>{text.children.text}</p>;
+    })}
    </section>
    {/* Next Project */}
-   {allProjects && <ProjectNext projects={allProjects} project={project} />}
+   {/* {allProjects && <ProjectNext projects={allProjects} project={project} />} */}
   </ShallowPage>
  ) : (
   <span>Loading...</span>

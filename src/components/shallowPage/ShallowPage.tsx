@@ -1,26 +1,38 @@
 'use client';
 
 import { useCallback, useRef, MouseEventHandler, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { usePageContext } from '@/context';
-import {
- animateToLeft,
- animateToRightTransition,
-} from '@/animations/pageTransitions';
+import { usePathname, useRouter } from 'next/navigation';
+
+import { animateToLeftTransition } from '@/animations/pageTransitions';
 import { Footer } from '@/components';
+import { ButtonBack } from '@buttons/.';
 
 export default function ShallowPage({
  children,
 }: {
  children: React.ReactNode;
 }) {
- const overlay = useRef(null);
- const wrapper = useRef(null);
+ const overlay = useRef<HTMLDivElement | null>(null);
+ const wrapper = useRef<HTMLDivElement | null>(null);
+
  const router = useRouter();
- const { previousPage, updatePreviousPage } = usePageContext();
+ const pathname = usePathname();
+
+ // this is used as a workaround to prevent the intercepted route of showing in all pages
+ // Next 13 bug
+ const shouldShowShallowPage = pathname.includes('/work/');
 
  const onDismiss = useCallback(() => {
-  animateToRightTransition('shallow-page', () => {
+  //  Remove scroll from wrapper div
+  if (overlay.current) {
+   overlay.current.classList.remove('overflow-y-scroll');
+   overlay.current.classList.add('overflow-hidden');
+  }
+
+  //  Add scroll on html div
+  document.documentElement.classList.remove('overflow-hidden');
+
+  animateToLeftTransition('shallow-page', () => {
    router.back();
   });
  }, [router]);
@@ -41,23 +53,24 @@ export default function ShallowPage({
   [onDismiss]
  );
 
- useEffect(() => {
-  updatePreviousPage('shallow-page');
- }, []);
-
  return (
-  <div
-   className='shallow-page scroll-trigger fixed top-0 left-0 bottom-0 right-0 mx-auto lg:px-8 bg-primary max-w-desktop overflow-y-scroll overflow-x-hidden z-10'
-   ref={overlay}
-   onClick={onClick}
-  >
+  shouldShowShallowPage && (
    <div
-    className='wrapper max-w-desktop overflow-hidden m-auto pt-32'
-    ref={wrapper}
+    className='shallow-page scroll-trigger fixed top-0 left-0 bottom-0 right-0 mx-auto px-8 bg-primary max-w-desktop overflow-y-scroll overflow-x-hidden z-10'
+    ref={overlay}
+    onClick={onClick}
    >
-    {children}
+    <div
+     className='wrapper max-w-desktop overflow-hidden m-auto mt-0 pt-32'
+     ref={wrapper}
+    >
+     {/* Back button */}
+     <ButtonBack action={onDismiss} />
+
+     {children}
+    </div>
+    <Footer />
    </div>
-   <Footer />
-  </div>
+  )
  );
 }

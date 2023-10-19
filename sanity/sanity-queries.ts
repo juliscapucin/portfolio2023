@@ -9,7 +9,6 @@ export async function getProjects() {
       _id,
       title,
       "slug": slug.current,
-      description,
       coverImage{
          alt,
          asset->{
@@ -19,10 +18,11 @@ export async function getProjects() {
        gridSize,
       thumbnailSize,
       url,
-      images,
       category,
-      content,
-      services
+      services,
+      info[0]{
+         scope,
+      }
    }`
    );
 }
@@ -45,8 +45,17 @@ export async function getProject(slug: string) {
       url,
       images,
       category,
-      content,
-      services
+      "textContent": content[]{
+         children[0]{
+           text,
+           _key
+         }
+       },
+      info[0]{
+         tech,
+         scope,
+         link
+      }
    }`,
       { slug }
    );

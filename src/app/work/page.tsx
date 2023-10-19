@@ -36,6 +36,8 @@ export default function Page() {
 
  // Define page transition direction
  useEffect(() => {
+  if (!data) return;
+
   const actualPage = navLinks.filter(
    (element) => element.slug === pathname.slice(1)
   );
@@ -57,14 +59,18 @@ export default function Page() {
   }
 
   updatePreviousPage(pathname.slice(1));
- }, []);
+ }, [data]);
 
  return (
   <>
    {data ? (
-    <div className={`work-page`}>
-     <h1 className='text-displaySmall lg:text-displayLarge'>{data.title}</h1>
-     <p>{data.description}</p>
+    <div className='page work-page'>
+     <h1 className='text-displaySmall md:text-displayMedium lg:text-displayLarge mt-32'>
+      {data.title}
+     </h1>
+     <p className='text-titleLarge md:text-headlineSmall mt-4 lg:mt-0 lg:w-4/6'>
+      {data.description}
+     </p>
      <ProjectsMenu activeBreakpoint={breakpoint} />
      <Footer />
     </div>

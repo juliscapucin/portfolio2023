@@ -37,6 +37,8 @@ export default function Page() {
 
  //  Define the page transition direction based on the previous page + navLinks order
  useEffect(() => {
+  if (!data) return;
+
   const actualPage = navLinks.filter(
    (element) => element.slug === pathname.slice(1)
   );
@@ -57,14 +59,14 @@ export default function Page() {
   }
 
   updatePreviousPage(pathname.slice(1));
- }, []);
+ }, [data]);
 
  return (
   <>
    {data ? (
-    <div className={`about-page`}>
-     <div className='xl:grid grid-cols-12 my-32'>
-      <div className='col-span-5 aspect-square overflow-hidden relative'>
+    <div className={`page about-page`}>
+     <div className='md:grid grid-cols-12 my-32'>
+      <div className='col-span-5 aspect-square overflow-hidden relative mb-8 lg:mb-0'>
        <Image
         src='/juli.avif'
         alt='photo'
@@ -82,7 +84,7 @@ export default function Page() {
        </h1>
 
        {/* Subtitle */}
-       <p className='text-titleLarge md:text-headlineSmall col-span-3'>
+       <p className='text-titleLarge md:text-headlineSmall col-span-3 mt-4 lg:mt-0'>
         {data.description}
        </p>
        <div className='col-span-2'></div>

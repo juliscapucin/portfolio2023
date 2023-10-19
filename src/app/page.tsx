@@ -8,12 +8,14 @@ import { usePageContext } from '@/context';
 import { useMediaQuery } from '@/hooks';
 
 import {
+ AboutText,
  GridDiv,
  ProjectsMenu,
  HeroDesktop,
  HeroMobile,
  Footer,
  Services,
+ SectionTitle,
 } from '@/components';
 import { animateToRight } from '@/animations';
 
@@ -39,12 +41,11 @@ export default function Home() {
   fetchData();
  }, []);
 
- //  Toggle scroll on main page + page animation
+ //  Enter page animation
  useEffect(() => {
   if (pathname === '/') {
-   document.documentElement.classList.remove('overflow-hidden');
-
-   if (previousPage !== 'shallow-page') animateToRight(`home-page`);
+   if (previousPage == 'work' || previousPage == 'about')
+    animateToRight(`home-page`);
   }
  }, [pathname]);
 
@@ -54,21 +55,17 @@ export default function Home() {
  }, []);
 
  return (
-  <div className='home-page main-page overflow-hidden'>
+  <div className='page home-page main-page overflow-hidden'>
    <GridDiv divClass='overflow-hidden min-h-screen' bottom={true}>
     {breakpoint === 'mobile' && <HeroMobile />}
     {breakpoint === 'desktop' && <HeroDesktop />}
    </GridDiv>
 
-   <p className='mt-16 mx-4 text-headlineMedium'>
-    I’m a Front-End Developer with a broad background in Graphic and Digital
-    Design. Since 2000 I've been designing meaningful, memorable, and
-    communicative work for companies and professionals worldwide. Commitment to
-    visual excellence and engineering performance is part of my DNA.
-   </p>
+   <AboutText />
 
-   {servicesData && <Services services={servicesData.services} />}
+   {/* {servicesData && <Services services={servicesData.services} />} */}
 
+   <SectionTitle title='Work' />
    <ProjectsMenu activeBreakpoint={breakpoint} />
 
    <Footer />

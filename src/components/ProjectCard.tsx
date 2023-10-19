@@ -1,16 +1,17 @@
 'use client';
 
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 import { usePageContext } from '@/context';
 
-import { GridDiv, AnimationGridDiv, ProjectTitle } from '@/components';
+import { GridDiv, AnimationGridDiv, ProjectLabel } from '@/components';
 import { animateToFullScreen } from '@/animations/pageTransitions';
 
 interface ProjectCardProps {
  id: string;
  title: string;
+ scope: string;
  slug: string;
  coverImage: string;
  variant?: string;
@@ -19,6 +20,7 @@ interface ProjectCardProps {
 
 export default function ProjectCard({
  title,
+ scope,
  id,
  slug,
  coverImage,
@@ -29,14 +31,21 @@ export default function ProjectCard({
  const { updateIsHovering } = usePageContext();
 
  return variant === 'image' ? (
-  // Image View
+  ////----- IMAGE VIEW -----////
   <GridDiv divClass={`aspect-square col-span-${thumbnailSize}`}>
    {/* Empty grid element for animation */}
-   <div className='absolute bottom-[100%] left-0 w-full h-full pointer-events-none'>
-    <AnimationGridDiv
-     divClass={`project-card-${id} overflow-hidden bg-primary pointer-events-none`}
-    />
-   </div>
+   <AnimationGridDiv
+    divClass={`project-card-${id} overflow-hidden bg-primary pointer-events-none absolute top-[-5px] left-0 bottom-0 w-full opacity-0`}
+    top={true}
+    bottom={true}
+   >
+    <div className='m-auto mt-0 pt-44 md:pt-32'>
+     <span className='text-displaySmall md:text-displayMedium lg:text-displayLarge font-normal'>
+      {title}
+     </span>
+    </div>
+   </AnimationGridDiv>
+
    <button
     className={`h-full w-full group flex justify-center items-center absolute`}
     onMouseEnter={() => updateIsHovering(true)}
@@ -47,8 +56,9 @@ export default function ProjectCard({
      );
     }}
    >
-    <ProjectTitle
+    <ProjectLabel
      title={title}
+     scope={scope}
      divClass={`absolute bottom-4 left-4 z-10`}
      textSize='text-titleMedium'
     />
@@ -66,14 +76,21 @@ export default function ProjectCard({
    </button>
   </GridDiv>
  ) : (
-  // List View
+  ////----- LIST VIEW -----////
   <GridDiv bottom={true} divClass={`relative h-32`}>
    {/* Empty grid element for animation */}
-   <div className='absolute -top-36 left-0 bottom-0 w-full h-full opacity-0'>
-    <AnimationGridDiv
-     divClass={`project-card-${id} overflow-hidden bg-primary pointer-events-none`}
-    />
-   </div>
+   <AnimationGridDiv
+    divClass={`project-card-${id} overflow-hidden bg-primary pointer-events-none absolute top-[-5px] left-0 bottom-0 w-full opacity-0`}
+    top={true}
+    bottom={true}
+   >
+    <div className='m-auto mt-0 pt-44 md:pt-32'>
+     <span className='text-displaySmall md:text-displayMedium lg:text-displayLarge font-normal'>
+      {title}
+     </span>
+    </div>
+   </AnimationGridDiv>
+
    {/* Button action */}
    <button
     className={`h-full w-full p-8 group`}
@@ -85,7 +102,7 @@ export default function ProjectCard({
      );
     }}
    >
-    <ProjectTitle title={title} textSize='text-headlineSmall' />
+    <ProjectLabel title={title} scope={scope} textSize='text-headlineSmall' />
    </button>
   </GridDiv>
  );
