@@ -1,8 +1,8 @@
 'use client';
 
-import Image from 'next/image';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
+import { CldImage } from 'next-cloudinary';
 
 import { gsap } from 'gsap';
 
@@ -137,10 +137,10 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
         projectItems.map((img, index) => {
          if (!img.coverImage) return;
          return (
-          <Image
-           src={img.coverImage.asset.url}
+          <CldImage
+           src={img.coverImage.fileName}
            key={index}
-           alt='photo'
+           alt={img.coverImage.alt}
            className='object-cover'
            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
            fill
@@ -166,7 +166,8 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
            scope={link.info.scope}
            slug={link.slug}
            id={link._id}
-           coverImage={link.coverImage.asset.url}
+           coverImage={link.coverImage.fileName}
+           alt={link.coverImage.alt}
            variant={variant}
           />
          </div>
@@ -196,7 +197,8 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
            scope={link.info.scope}
            slug={link.slug}
            id={link._id}
-           coverImage={link.coverImage.asset.url}
+           coverImage={link.coverImage.fileName}
+           alt={link.coverImage.alt}
            variant={variant}
            thumbnailSize={link.thumbnailSize}
            // setIsHovering={setIsHovering}

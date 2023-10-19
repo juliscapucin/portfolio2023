@@ -10,10 +10,8 @@ export async function getProjects() {
       title,
       "slug": slug.current,
       coverImage{
+         fileName,
          alt,
-         asset->{
-           url
-         }
        },
        gridSize,
       thumbnailSize,
@@ -35,10 +33,8 @@ export async function getProject(slug: string) {
       "slug": slug.current,
       description,
       coverImage{
+         fileName,
          alt,
-         asset->{
-           url
-         }
        },
          gridSize,
       thumbnailSize,
