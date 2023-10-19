@@ -30,7 +30,7 @@ export default function AboutText() {
    { opacity: 0, y: 50 },
    { opacity: 1, y: 0, stagger: 0.1 }
   );
- });
+ }, []);
 
  return (
   <p ref={textRef} className='my-32 mx-4 text-titleLarge md:text-headlineSmall'>

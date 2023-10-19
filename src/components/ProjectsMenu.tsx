@@ -140,7 +140,6 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
           <Image
            src={img.coverImage.asset.url}
            key={index}
-           //   placeholder='blur'
            alt='photo'
            className='object-cover'
            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
