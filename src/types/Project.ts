@@ -4,7 +4,7 @@ export type Project = {
    category: string;
    description: string;
    _id: string;
-   coverImage: { asset: { url: string } };
+   coverImage: { fileName: string; alt: string };
    gridSize: number;
    thumbnailSize: number;
    content: string;

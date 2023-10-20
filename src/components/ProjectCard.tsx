@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
+import { CldImage } from 'next-cloudinary';
 
 import { usePageContext } from '@/context';
 
@@ -14,6 +14,7 @@ interface ProjectCardProps {
  scope: string;
  slug: string;
  coverImage: string;
+ alt: string;
  variant?: string;
  thumbnailSize?: number;
 }
@@ -24,6 +25,7 @@ export default function ProjectCard({
  id,
  slug,
  coverImage,
+ alt,
  variant,
  thumbnailSize,
 }: ProjectCardProps) {
@@ -63,12 +65,10 @@ export default function ProjectCard({
      textSize='text-titleMedium'
     />
     <div className='relative w-full h-full overflow-hidden'>
-     <Image
-      src={coverImage}
+     <CldImage
+      src={`portfolio2023/${coverImage}`}
       key={id}
-      // placeholder='blur'
-      alt='photo'
-      className='object-cover'
+      alt={alt}
       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
       fill
      />

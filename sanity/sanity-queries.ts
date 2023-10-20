@@ -10,10 +10,8 @@ export async function getProjects() {
       title,
       "slug": slug.current,
       coverImage{
+         fileName,
          alt,
-         asset->{
-           url
-         }
        },
        gridSize,
       thumbnailSize,
@@ -35,10 +33,8 @@ export async function getProject(slug: string) {
       "slug": slug.current,
       description,
       coverImage{
+         fileName,
          alt,
-         asset->{
-           url
-         }
        },
          gridSize,
       thumbnailSize,
@@ -71,8 +67,6 @@ export async function getWorkPage() {
 }
 
 export async function getAboutPage() {
-   const client = createClient(clientConfig);
-
    return client.fetch(
       groq`*[_type == "aboutPage"][0] {
       title,
@@ -91,8 +85,6 @@ export async function getAboutPage() {
 }
 
 export async function getSocialLinks() {
-   const client = createClient(clientConfig);
-
    return client.fetch(
       groq`*[_type == "navigation" && title == "Socials"][0] {
          title,
@@ -102,8 +94,6 @@ export async function getSocialLinks() {
 }
 
 export async function getNavbarLinks() {
-   const client = createClient(clientConfig);
-
    return client.fetch(
       groq`*[_type == "navigation" && title == "Navbar"][0] {
          items[] {
@@ -116,8 +106,6 @@ export async function getNavbarLinks() {
 }
 
 export async function getServices() {
-   const client = createClient(clientConfig);
-
    return client.fetch(
       groq`*[_type == "services"][0] {
          services[]

@@ -21,16 +21,17 @@ const projectSchema = {
       {
          name: 'coverImage',
          title: 'Cover Image',
-         type: 'image',
-         options: {
-            hotspot: true,
-         },
+         type: 'document',
          fields: [
+            {
+               name: 'fileName',
+               type: 'string',
+               title: 'File Name',
+            },
             {
                name: 'alt',
                type: 'string',
-               title: 'Alternative text',
-               description: 'Important for SEO and accessiblity.',
+               title: 'Alt text',
             },
          ],
       },

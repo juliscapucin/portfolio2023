@@ -2,10 +2,10 @@
 
 import Image from 'next/image';
 import { useRef, useEffect, useState } from 'react';
+import { CldImage } from 'next-cloudinary';
+
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 import { ProjectInfo, ProjectNext, ShallowPage } from '@/components';
 import { Project } from '@/types';
@@ -38,6 +38,8 @@ export default function Page({ params }: { params: { slug: string } }) {
  // Create ScrollTrigger for first section
  useEffect(() => {
   if (breakpoint !== 'desktop') return;
+  gsap.registerPlugin(ScrollTrigger);
+
   const featuredImageHeight = right.current?.clientHeight;
 
   if (!project) return;
@@ -87,10 +89,9 @@ export default function Page({ params }: { params: { slug: string } }) {
     <div ref={headerRef} className='md:grid grid-cols-12 opacity-0'>
      {/* Cover Image */}
      <div className={`col-span-6 relative block overflow-hidden aspect-square`}>
-      <Image
-       src={project.coverImage.asset.url}
+      <CldImage
+       src={project.coverImage.fileName}
        alt='photo'
-       className='h-full w-full object-cover'
        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
        fill
        priority
@@ -124,8 +125,8 @@ export default function Page({ params }: { params: { slug: string } }) {
       })}
      </div>
      <div className='w-full aspect-square overflow-hidden relative'>
-      <Image
-       src={project.coverImage.asset.url}
+      <CldImage
+       src={project.coverImage.fileName}
        alt='photo'
        className='w-full object-cover'
        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
@@ -133,8 +134,8 @@ export default function Page({ params }: { params: { slug: string } }) {
       />
      </div>
      <div className='w-full aspect-square overflow-hidden relative'>
-      <Image
-       src={project.coverImage.asset.url}
+      <CldImage
+       src={project.coverImage.fileName}
        alt='photo'
        className='w-full object-cover'
        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
@@ -142,8 +143,8 @@ export default function Page({ params }: { params: { slug: string } }) {
       />
      </div>
      <div className='w-full aspect-square overflow-hidden relative'>
-      <Image
-       src={project.coverImage.asset.url}
+      <CldImage
+       src={project.coverImage.fileName}
        alt='photo'
        className='w-full object-cover'
        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
@@ -157,8 +158,8 @@ export default function Page({ params }: { params: { slug: string } }) {
      ref={right}
      className='hidden lg:block col-span-12 lg:col-span-5 h-[50vw] lg:h-[500px] relative'
     >
-     <Image
-      src={project.coverImage.asset.url}
+     <CldImage
+      src={project.coverImage.fileName}
       alt='photo'
       className='w-full object-cover'
       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
