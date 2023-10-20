@@ -138,10 +138,9 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
          if (!img.coverImage) return;
          return (
           <CldImage
-           src={img.coverImage.fileName}
+           src={`portfolio2023/${img.coverImage.fileName}`}
            key={index}
            alt={img.coverImage.alt}
-           className='object-cover'
            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
            fill
           />
