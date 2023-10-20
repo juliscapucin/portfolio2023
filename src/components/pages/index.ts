@@ -1,3 +1,5 @@
+import AboutPage from './about';
+import ProjectPage from './project';
 import WorkPage from './work';
 
-export { WorkPage };
+export { AboutPage, ProjectPage, WorkPage };

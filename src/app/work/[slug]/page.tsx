@@ -1,21 +1,54 @@
-import Image from 'next/image';
+import { Suspense } from 'react';
+import { notFound } from 'next/navigation';
 
-export default function Page({ params }: { params: { slug: string } }) {
+import { Project } from '@/types';
+
+import { getProject, getProjects } from '@/lib';
+import { ProjectPage } from '@/components/pages';
+
+type Params = {
+ params: {
+  slug: string;
+ };
+};
+
+export async function generateMetadata({ params: { slug } }: Params) {
+ const projectData = getProject(slug);
+ const project = await projectData;
+
+ if (!project) {
+  return { title: 'User Not Found', description: 'User not found' };
+ }
+
+ return {
+  title: project.title,
+  description: `${project.category} – ${project.title}`,
+ };
+}
+
+export default async function Page({ params }: { params: { slug: string } }) {
+ const { slug } = params;
+ const projectData: Promise<Project> = getProject(slug);
+
+ const project = await projectData;
+
+ if (!project) return notFound();
+
  return (
-  <main className={`relative ${params.slug}-page`}>
-   <div className='transition-fullscreen w-screen h-screen top-0 left-0'>
-    <div className={`relative h-full w-full overflow-hidden`}>
-     <Image
-      src='/bus.avif'
-      alt='photo'
-      className='object-cover '
-      sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-      fill
-      priority
-     />
-    </div>
-   </div>
-   <h1 className='text-7xl'>{params.slug}</h1>
-  </main>
+  <Suspense fallback={<h2>Loading...</h2>}>
+   <ProjectPage project={project} />;
+  </Suspense>
  );
+}
+
+// SSG – Static Site Generation
+export async function generateStaticParams() {
+ const projectData = getProjects();
+ const projects: Project[] = await projectData;
+
+ return projects.map((project) => {
+  return {
+   projectSlug: project.slug,
+  };
+ });
 }

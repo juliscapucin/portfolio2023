@@ -1,4 +1,4 @@
+import { CustomButtonProps } from './CustomButton';
 import { Project } from './Project';
-import { CustomButtonProps } from './CustomButtons';
 
-export type { Project, CustomButtonProps };
+export type { CustomButtonProps, Project };
