@@ -13,13 +13,14 @@ import { Project } from '@/types';
 
 type Props = {
  project: Project;
+ allProjects: Project[];
 };
 
-export default function ProjectPage({ project }: Props) {
+export default function ProjectPage({ project, allProjects }: Props) {
  const headerRef = useRef<HTMLHeadingElement | null>(null);
  const titleRef = useRef<HTMLHeadingElement | null>(null);
- const left = useRef<HTMLDivElement | null>(null);
- const right = useRef<HTMLDivElement | null>(null);
+ const leftColumnRef = useRef<HTMLDivElement | null>(null);
+ const rightColumnRef = useRef<HTMLDivElement | null>(null);
 
  // Set breakpoint for mobile/desktop (values are in constants.ts)
  const breakpoint = useMediaQuery(breakpoints.desktop);
@@ -34,26 +35,25 @@ export default function ProjectPage({ project }: Props) {
    opacity: 1,
    duration: 2,
   });
- }, [headerRef, project]);
+ }, [headerRef]);
 
  // Create ScrollTrigger for first section
  useEffect(() => {
-  if (breakpoint !== 'desktop') return;
+  if (breakpoint !== 'desktop' || !leftColumnRef || !rightColumnRef) return;
+
   gsap.registerPlugin(ScrollTrigger);
 
-  const featuredImageHeight = right.current?.clientHeight;
-
-  if (!project) return;
+  const featuredImageHeight = rightColumnRef.current?.clientHeight;
 
   ScrollTrigger.create({
    scroller: '.scroll-trigger',
-   trigger: left.current,
+   trigger: leftColumnRef.current,
    start: 'top top',
    end: `bottom ${featuredImageHeight}`,
    scrub: true,
-   pin: right.current,
+   pin: rightColumnRef.current,
   });
- }, [left, right, project]);
+ }, [leftColumnRef, rightColumnRef, breakpoint]);
 
  return project ? (
   <ShallowPage>
@@ -95,14 +95,16 @@ export default function ProjectPage({ project }: Props) {
    <section className='grid grid-cols-12 w-full gap-1 mb-32'>
     {/* Left */}
     <div
-     ref={left}
+     ref={leftColumnRef}
      className='grid col-span-12 lg:col-span-7 relative gap-8 lg:gap-1 overflow-hidden'
     >
-     <div className='w-full lg:aspect-square lg:pr-32'>
+     {/* Project text */}
+     <div className='w-full my-64 lg:pr-32'>
       {project.textContent.map((text) => {
        return <p key={text.children._key}>{text.children.text}</p>;
       })}
      </div>
+     {/* Left Column Images */}
      <div className='w-full aspect-square overflow-hidden relative'>
       <CldImage
        src={`portfolio2023/work/bg-ipad-landscape`}
@@ -134,7 +136,7 @@ export default function ProjectPage({ project }: Props) {
 
     {/* Right */}
     <div
-     ref={right}
+     ref={rightColumnRef}
      className='hidden lg:block col-span-12 lg:col-span-5 h-[50vw] lg:h-[500px] relative'
     >
      <CldImage
@@ -147,13 +149,16 @@ export default function ProjectPage({ project }: Props) {
     </div>
    </section>
 
-   <section>
-    {project.textContent.map((text) => {
-     return <p key={text.children._key}>{text.children.text}</p>;
-    })}
+   {/* Text Content */}
+   <section className='grid grid-cols-12 my-64'>
+    <div className='col-start-7 col-span-6'>
+     {project.textContent.map((text) => {
+      return <p key={text.children._key}>{text.children.text}</p>;
+     })}
+    </div>
    </section>
    {/* Next Project */}
-   {/* {allProjects && <ProjectNext projects={allProjects} project={project} />} */}
+   {allProjects && <ProjectNext projects={allProjects} project={project} />}
   </ShallowPage>
  ) : (
   <span>Loading...</span>

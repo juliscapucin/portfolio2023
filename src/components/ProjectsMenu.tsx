@@ -177,31 +177,33 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
     // Image View
     <GridDiv divClass='image-view filter-projects grid lg:grid-cols-12 gap-32 w-full'>
      {projectItems &&
-      projectItems.map((link, index) => {
+      projectItems.map((project, index) => {
        return (
         <div
          className={`w-3/4 lg:w-full ${
-          index % 2 === 0 ? 'ml-auto mr-0' : 'ml-0 mr-auto'
-         } lg:ml-auto lg:mr-auto ${
           activeBreakpoint === 'desktop'
-           ? `col-span-${link.gridSize} grid grid-cols-${link.gridSize}`
+           ? `col-span-${project.gridSize} grid grid-cols-${project.gridSize}`
            : ''
          }`}
-         key={link._id}
+         key={project._id}
         >
-         {link.coverImage && link.title && link.slug && link.thumbnailSize && (
-          <ProjectCard
-           title={link.title}
-           scope={link.info.scope}
-           slug={link.slug}
-           id={link._id}
-           coverImage={link.coverImage.fileName}
-           alt={link.coverImage.alt}
-           variant={variant}
-           thumbnailSize={link.thumbnailSize}
-           // setIsHovering={setIsHovering}
-          />
-         )}
+         {project.coverImage &&
+          project.title &&
+          project.slug &&
+          project.imageSize &&
+          project.imageStart && (
+           <ProjectCard
+            title={project.title}
+            scope={project.info.scope}
+            slug={project.slug}
+            id={project._id}
+            coverImage={`portfolio2023/work/${project.slug}/${project.coverImage.fileName}`}
+            alt={project.coverImage.alt}
+            variant={variant}
+            imageSize={project.imageSize}
+            imageStart={project.imageStart}
+           />
+          )}
         </div>
        );
       })}

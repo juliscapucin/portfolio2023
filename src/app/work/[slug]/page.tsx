@@ -28,15 +28,19 @@ export async function generateMetadata({ params: { slug } }: Params) {
 
 export default async function Page({ params }: { params: { slug: string } }) {
  const { slug } = params;
- const projectData: Promise<Project> = getProject(slug);
+ const projectData = getProject(slug);
+ const allProjectsData = getProjects();
 
- const project = await projectData;
+ const [project, allProjects] = await Promise.all([
+  projectData,
+  allProjectsData,
+ ]);
 
  if (!project) return notFound();
 
  return (
   <Suspense fallback={<h2>Loading...</h2>}>
-   <ProjectPage project={project} />;
+   <ProjectPage project={project} allProjects={allProjects} />;
   </Suspense>
  );
 }

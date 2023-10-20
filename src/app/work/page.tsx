@@ -11,8 +11,8 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
- const pageData = getWorkPage();
- const data = await pageData;
+ const projectData = getWorkPage();
+ const data = await projectData;
 
  if (!data) return notFound();
 

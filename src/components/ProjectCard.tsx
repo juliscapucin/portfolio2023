@@ -16,7 +16,8 @@ interface ProjectCardProps {
  coverImage: string;
  alt: string;
  variant?: string;
- thumbnailSize?: number;
+ imageSize?: number;
+ imageStart?: number;
 }
 
 export default function ProjectCard({
@@ -27,14 +28,19 @@ export default function ProjectCard({
  coverImage,
  alt,
  variant,
- thumbnailSize,
+ imageSize,
+ imageStart,
 }: ProjectCardProps) {
  const router = useRouter();
  const { updateIsHovering } = usePageContext();
 
+ console.log(coverImage);
+
  return variant === 'image' ? (
   ////----- IMAGE VIEW -----////
-  <GridDiv divClass={`aspect-square col-span-${thumbnailSize}`}>
+  <GridDiv
+   divClass={`aspect-square col-start-${imageStart} col-span-${imageSize}`}
+  >
    {/* Empty grid element for animation */}
    <AnimationGridDiv
     divClass={`project-card-${id} overflow-hidden bg-primary pointer-events-none absolute top-[-5px] left-0 bottom-0 w-full opacity-0`}
@@ -66,7 +72,7 @@ export default function ProjectCard({
     />
     <div className='relative w-full h-full overflow-hidden'>
      <CldImage
-      src={`portfolio2023/${coverImage}`}
+      src={coverImage}
       key={id}
       alt={alt}
       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
