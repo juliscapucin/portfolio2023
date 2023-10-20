@@ -8,9 +8,9 @@ import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
 import { ProjectInfo, ProjectNext, ShallowPage } from '@/components';
-import { Project } from '@/types';
 import { breakpoints } from '@/constants';
 import { useMediaQuery } from '@/hooks';
+import { Project } from '../../../../../types';
 
 export default function Page({ params }: { params: { slug: string } }) {
  const [allProjects, setAllProjects] = useState<Project[] | null>(null);
