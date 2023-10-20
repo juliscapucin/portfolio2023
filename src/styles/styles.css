@@ -219,3 +219,37 @@ button {
       transform: translate3d(0, 0, 0);
    }
 }
+
+/* WORKAROUND FOR COL-START BUG */
+
+.custom-col-start-1 {
+   grid-column-start: 1;
+}
+
+.custom-col-start-2 {
+   grid-column-start: 2;
+}
+
+.custom-col-start-3 {
+   grid-column-start: 3;
+}
+
+.custom-col-start-4 {
+   grid-column-start: 4;
+}
+
+.custom-col-start-5 {
+   grid-column-start: 5;
+}
+
+.custom-col-start-6 {
+   grid-column-start: 6;
+}
+
+.custom-col-start-7 {
+   grid-column-start: 7;
+}
+
+.custom-col-start-8 {
+   grid-column-start: 8;
+}

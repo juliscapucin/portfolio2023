@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 
 import { WorkPage } from '@/components/pages';
 
-import { getWorkPage } from '@/lib';
+import { getProjects, getWorkPage } from '@/lib';
 
 export const metadata: Metadata = {
  title: 'Work',
@@ -11,10 +11,12 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
- const projectData = getWorkPage();
- const data = await projectData;
+ const workPageData = getWorkPage();
+ const allProjectsData = getProjects();
 
- if (!data) return notFound();
+ const [data, allProjects] = await Promise.all([workPageData, allProjectsData]);
 
- return <WorkPage data={data} />;
+ if (!data || !allProjects) return notFound();
+
+ return <WorkPage data={data} allProjects={allProjects} />;
 }

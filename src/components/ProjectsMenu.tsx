@@ -12,25 +12,16 @@ import { Project } from '@/types';
 
 interface ProjectsMenuProps {
  activeBreakpoint: string | undefined;
+ allProjects: Project[];
 }
 
-export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
+export default function ProjectsMenu({
+ activeBreakpoint,
+ allProjects,
+}: ProjectsMenuProps) {
  const pathname = usePathname();
 
- const [allProjects, setAllProjects] = useState<Project[] | null>(null);
- const [projectItems, setProjectItems] = useState<Project[] | null>(null);
-
- // Fetch data
- useEffect(() => {
-  const fetchAllProjects = async () => {
-   const response = await fetch('/api/projects');
-   const data = await response.json();
-   setAllProjects(data);
-   setProjectItems(data);
-  };
-
-  fetchAllProjects();
- }, []);
+ const [projectItems, setProjectItems] = useState(allProjects);
 
  // View options
  const [variant, setVariant] = useState<string>(
@@ -133,13 +124,13 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
        ref={projectsImgsRef}
       >
        {projectItems &&
-        projectItems.map((img, index) => {
-         if (!img.coverImage) return;
+        projectItems.map((project, index) => {
+         if (!project.coverImage.fileName) return;
          return (
           <CldImage
-           src={`portfolio2023/${img.coverImage.fileName}`}
+           src={`portfolio2023/work/${project.slug}/${project.coverImage.fileName}`}
            key={index}
-           alt={img.coverImage.alt}
+           alt={project.coverImage.alt}
            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
            fill
           />
@@ -175,24 +166,18 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
     </GridDiv>
    ) : (
     // Image View
-    <GridDiv divClass='image-view filter-projects grid lg:grid-cols-12 gap-32 w-full'>
+    <GridDiv divClass='image-view filter-projects w-full'>
      {projectItems &&
       projectItems.map((project, index) => {
        return (
-        <div
-         className={`w-3/4 lg:w-full ${
-          activeBreakpoint === 'desktop'
-           ? `col-span-${project.gridSize} grid grid-cols-${project.gridSize}`
-           : ''
-         }`}
-         key={project._id}
-        >
+        <div className='lg:grid grid-cols-12 mb-64' key={project._id}>
          {project.coverImage &&
           project.title &&
           project.slug &&
           project.imageSize &&
           project.imageStart && (
            <ProjectCard
+            index={index}
             title={project.title}
             scope={project.info.scope}
             slug={project.slug}

@@ -9,6 +9,7 @@ import { GridDiv, AnimationGridDiv, ProjectLabel } from '@/components';
 import { animateToFullScreen } from '@/animations/pageTransitions';
 
 interface ProjectCardProps {
+ index?: number;
  id: string;
  title: string;
  scope: string;
@@ -21,6 +22,7 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({
+ index,
  title,
  scope,
  id,
@@ -34,12 +36,10 @@ export default function ProjectCard({
  const router = useRouter();
  const { updateIsHovering } = usePageContext();
 
- console.log(coverImage);
-
  return variant === 'image' ? (
   ////----- IMAGE VIEW -----////
-  <GridDiv
-   divClass={`aspect-square col-start-${imageStart} col-span-${imageSize}`}
+  <div
+   className={`custom-col-start-${imageStart} col-span-5 aspect-square relative`}
   >
    {/* Empty grid element for animation */}
    <AnimationGridDiv
@@ -71,16 +71,27 @@ export default function ProjectCard({
      textSize='text-titleMedium'
     />
     <div className='relative w-full h-full overflow-hidden'>
-     <CldImage
-      src={coverImage}
-      key={id}
-      alt={alt}
-      sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-      fill
-     />
+     {index === 1 ? (
+      <CldImage
+       src={coverImage}
+       key={id}
+       alt={alt}
+       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+       fill
+       priority
+      />
+     ) : (
+      <CldImage
+       src={coverImage}
+       key={id}
+       alt={alt}
+       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+       fill
+      />
+     )}
     </div>
    </button>
-  </GridDiv>
+  </div>
  ) : (
   ////----- LIST VIEW -----////
   <GridDiv bottom={true} divClass={`relative h-32`}>

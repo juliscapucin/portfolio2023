@@ -49,7 +49,6 @@ export const animateToFullScreen = (
             duration: 0.5,
             delay: 0.5,
             onComplete: () => {
-               console.log('complete');
                animationEnd.innerHTML = '';
                animationEnd.classList.add('hidden');
             },

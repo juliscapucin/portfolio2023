@@ -10,12 +10,14 @@ import { useMediaQuery } from '@/hooks';
 import { Footer, ProjectsMenu } from '@/components';
 import { animateToLeft, animateToRight } from '@/animations';
 
-type WorkData = {
- title: string;
- description: string;
+import { Project } from '@/types';
+
+type Props = {
+ data: { title: string; description: string };
+ allProjects: Project[];
 };
 
-export default function WorkPage({ data }: { data: WorkData }) {
+export default function WorkPage({ data, allProjects }: Props) {
  const pathname = usePathname();
  const { previousPage, updatePreviousPage } = usePageContext();
 
@@ -59,7 +61,7 @@ export default function WorkPage({ data }: { data: WorkData }) {
      <p className='text-titleLarge md:text-headlineSmall mt-4 lg:mt-0 lg:w-4/6'>
       {data.description}
      </p>
-     <ProjectsMenu activeBreakpoint={breakpoint} />
+     <ProjectsMenu activeBreakpoint={breakpoint} allProjects={allProjects} />
      <Footer />
     </div>
    ) : (

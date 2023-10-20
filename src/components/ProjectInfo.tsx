@@ -12,7 +12,7 @@ export default function ProjectInfo({ info }: ProjectInfoProps) {
    <span className='mx-2'>Tech_ {info.tech}</span>
    <span className='h-[1px] bg-secondary'></span>
    {/* If link data starts with http, it's a link. If not, it's a span */}
-   {info.link.toLowerCase().startsWith('http') ? (
+   {info.link?.toLowerCase().startsWith('http') ? (
     <Link className='mx-2' href={info.link}>
      Link_ {info.link}
     </Link>
