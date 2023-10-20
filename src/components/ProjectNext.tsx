@@ -8,7 +8,7 @@ import {
  animateToLeftTransition,
  animateToRightTransition,
 } from '@/animations';
-import { Project } from '../../types';
+import { Project } from '@/types';
 
 interface ProjectNextProps {
  projects: Project[];

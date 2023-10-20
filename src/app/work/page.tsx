@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
 import { WorkPage } from '@/components/pages';
 
@@ -12,6 +13,8 @@ export const metadata: Metadata = {
 export default async function Page() {
  const pageData = getWorkPage();
  const data = await pageData;
+
+ if (!data) return notFound();
 
  return <WorkPage data={data} />;
 }

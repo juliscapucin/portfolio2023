@@ -8,7 +8,7 @@ import { gsap } from 'gsap';
 
 import { animateProjectsMenu } from '@/animations';
 import { ProjectCard, GridDiv, ProjectsFilter } from '@/components';
-import { Project } from '../../types';
+import { Project } from '@/types';
 
 interface ProjectsMenuProps {
  activeBreakpoint: string | undefined;

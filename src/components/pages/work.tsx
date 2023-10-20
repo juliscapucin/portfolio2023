@@ -19,8 +19,6 @@ export default function WorkPage({ data }: { data: WorkData }) {
  const pathname = usePathname();
  const { previousPage, updatePreviousPage } = usePageContext();
 
- console.log(data);
-
  // Set breakpoint for mobile/desktop (values are in constants.ts)
  const breakpoint = useMediaQuery(breakpoints.desktop);
 

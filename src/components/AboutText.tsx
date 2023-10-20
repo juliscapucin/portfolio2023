@@ -34,8 +34,8 @@ export default function AboutText() {
 
  return (
   <p ref={textRef} className='my-32 mx-4 text-titleLarge md:text-headlineSmall'>
-   I'm a Front-End Developer with a broad background in Graphic and Digital
-   Design. Since 2000 I've been designing meaningful, memorable, and
+   I&apos;m a Front-End Developer with a broad background in Graphic and Digital
+   Design. Since 2000 I&apos;ve been designing meaningful, memorable, and
    communicative work for companies and professionals worldwide. Commitment to
    visual excellence and engineering performance is part of my DNA.
   </p>
