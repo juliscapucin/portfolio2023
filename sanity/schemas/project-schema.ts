@@ -63,8 +63,14 @@ const projectSchema = {
          },
       },
       {
-         name: 'content',
-         title: 'Content',
+         name: 'content1',
+         title: 'Content 1',
+         type: 'array',
+         of: [{ type: 'block' }],
+      },
+      {
+         name: 'content2',
+         title: 'Content 2',
          type: 'array',
          of: [{ type: 'block' }],
       },

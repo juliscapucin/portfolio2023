@@ -42,7 +42,13 @@ export async function getProject(slug: string) {
       url,
       images,
       category,
-      "textContent": content[]{
+      "textContent1": content1[]{
+         children[0]{
+           text,
+           _key
+         }
+       },
+       "textContent2": content2[]{
          children[0]{
            text,
            _key

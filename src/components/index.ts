@@ -22,6 +22,7 @@ import ProjectLabel from './ProjectLabel';
 import ProjectNext from './ProjectNext';
 import ProjectsFilter from './ProjectsFilter';
 import ProjectsMenu from './ProjectsMenu';
+import ProjectSplitScreen from './ProjectSplitScreen';
 import Services from './Services';
 import SectionTitle from './SectionTitle';
 import ShallowPage from './shallowPage/ShallowPage';
@@ -54,6 +55,7 @@ export {
    ProjectNext,
    ProjectsFilter,
    ProjectsMenu,
+   ProjectSplitScreen,
    SectionTitle,
    Services,
    ShallowPage,

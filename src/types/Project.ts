@@ -8,7 +8,7 @@ export type Project = {
    gridSize: number;
    imageSize: number;
    imageStart: number;
-   content: string;
    info: { tech: string; scope: string; link: string };
-   textContent: { children: { text: string; _key: string } }[];
+   textContent1?: { children: { text: string; _key: string } }[];
+   textContent2?: { children: { text: string; _key: string } }[];
 };
