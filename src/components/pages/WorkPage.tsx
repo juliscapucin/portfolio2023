@@ -26,8 +26,6 @@ export default function WorkPage({ data, allProjects }: Props) {
 
  // Define page transition direction
  useEffect(() => {
-  if (!data) return;
-
   const actualPage = navLinks.filter(
    (element) => element.slug === pathname.slice(1)
   );
@@ -49,24 +47,18 @@ export default function WorkPage({ data, allProjects }: Props) {
   }
 
   updatePreviousPage(pathname.slice(1));
- }, [data]);
+ }, []);
 
  return (
-  <>
-   {data ? (
-    <div className='page work-page'>
-     <h1 className='text-displaySmall md:text-displayMedium lg:text-displayLarge mt-32'>
-      {data.title}
-     </h1>
-     <p className='text-titleLarge md:text-headlineSmall mt-4 lg:mt-0 lg:w-4/6'>
-      {data.description}
-     </p>
-     <ProjectsMenu activeBreakpoint={breakpoint} allProjects={allProjects} />
-     <Footer />
-    </div>
-   ) : (
-    <h1>Loading...</h1>
-   )}
-  </>
+  <div className='page work-page'>
+   <h1 className='text-displaySmall md:text-displayMedium lg:text-displayLarge mt-32'>
+    {data.title}
+   </h1>
+   <p className='text-titleLarge md:text-headlineSmall mt-4 lg:mt-0 lg:w-4/6'>
+    {data.description}
+   </p>
+   <ProjectsMenu activeBreakpoint={breakpoint} allProjects={allProjects} />
+   <Footer />
+  </div>
  );
 }

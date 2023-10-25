@@ -1,8 +1,9 @@
 import { gsap } from 'gsap';
-import { GSDevTools } from 'gsap/GSDevTools';
 import { Flip } from 'gsap/Flip';
+import { CustomEase } from 'gsap/CustomEase';
 
-gsap.registerPlugin(GSDevTools, Flip);
+gsap.registerPlugin(CustomEase);
+gsap.registerPlugin(Flip);
 
 export const animateToFullScreen = (
    transitionStart: string,
@@ -16,6 +17,11 @@ export const animateToFullScreen = (
 
    if (!animationStart || !animationEnd || !animationStartParent) return;
 
+   CustomEase.create(
+      'customEase',
+      'M0,0,C0.126,0.382,0.282,0.674,0.44,0.822,0.632,1.002,0.818,1.001,1,1'
+   );
+
    // reset animationEnd div
    animationEnd.style.opacity = '1';
    animationEnd.innerHTML = '';
@@ -26,33 +32,42 @@ export const animateToFullScreen = (
    // append clone to animationStart parent div
    animationStartParent.appendChild(animationStartClone);
 
-   const state = Flip.getState(animationStartClone);
+   // the Flip animation
+   const flipAnimation = () => {
+      const state = Flip.getState(animationStartClone);
 
-   animationEnd.classList.remove('hidden');
-   animationStartClone.classList.remove('opacity-0');
-   animationStartClone.classList.add('opacity-100');
-   animationEnd.appendChild(animationStartClone);
+      animationEnd.classList.remove('hidden');
+      animationEnd.appendChild(animationStartClone);
 
-   Flip.from(state, {
-      duration: 2,
-      absolute: true,
-      ease: 'power4.inOut',
+      Flip.from(state, {
+         duration: 0.3,
+         absolute: true,
+         ease: 'expo.out',
+         onComplete: () => {
+            // Remove scrollbar from html div
+            document.documentElement.classList.add('overflow-hidden');
+            // Change route
+            routerFunction();
+            // Fade out + empty animationEnd div
+            gsap.to('.transition-fullscreen', {
+               opacity: 0,
+               duration: 0.5,
+               delay: 0.5,
+               onComplete: () => {
+                  animationEnd.innerHTML = '';
+                  animationEnd.classList.add('hidden');
+               },
+            });
+         },
+      });
+   };
+
+   gsap.to(animationStartClone, {
+      translateX: 0,
+      duration: 0.3,
+      ease: 'expo.in',
       onComplete: () => {
-         // Remove scrollbar from html div
-         document.documentElement.classList.add('overflow-hidden');
-         // Change route
-         routerFunction();
-         // Fade out + empty animationEnd div
-         const timeline = gsap.timeline();
-         timeline.to('.transition-fullscreen', {
-            opacity: 0,
-            duration: 0.5,
-            delay: 0.5,
-            onComplete: () => {
-               animationEnd.innerHTML = '';
-               animationEnd.classList.add('hidden');
-            },
-         });
+         flipAnimation();
       },
    });
 };

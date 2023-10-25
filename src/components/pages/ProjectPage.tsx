@@ -31,7 +31,7 @@ export default function ProjectPage({ project, allProjects }: Props) {
 
   gsap.to(headerRef.current, {
    opacity: 1,
-   duration: 2,
+   duration: 0.5,
   });
  }, [headerRef]);
 

@@ -20,7 +20,6 @@ export default function ProjectsMenu({
  allProjects,
 }: ProjectsMenuProps) {
  const pathname = usePathname();
-
  const [projectItems, setProjectItems] = useState(allProjects);
 
  // View options
@@ -155,7 +154,6 @@ export default function ProjectsMenu({
            scope={link.info.scope}
            slug={link.slug}
            id={link._id}
-           coverImage={link.coverImage.fileName}
            alt={link.coverImage.alt}
            variant={variant}
           />
@@ -171,8 +169,7 @@ export default function ProjectsMenu({
       projectItems.map((project, index) => {
        return (
         <div className='lg:grid grid-cols-12 mb-64' key={project._id}>
-         {project.coverImage &&
-          project.title &&
+         {project.title &&
           project.slug &&
           project.imageSize &&
           project.imageStart && (
@@ -182,7 +179,6 @@ export default function ProjectsMenu({
             scope={project.info.scope}
             slug={project.slug}
             id={project._id}
-            coverImage={`portfolio2023/work/${project.slug}/${project.coverImage.fileName}`}
             alt={project.coverImage.alt}
             variant={variant}
             imageSize={project.imageSize}

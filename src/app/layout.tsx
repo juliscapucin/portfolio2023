@@ -1,6 +1,6 @@
 import localFont from 'next/font/local';
 
-import { Header, HtmlWrapper, ContactModal, CustomCursor } from '@/components';
+import { Header, RootLayout, ContactModal, CustomCursor } from '@/components';
 
 import { ModalContextProvider, PageContextProvider } from '@/context';
 
@@ -33,13 +33,13 @@ const myFont = localFont({
  ],
 });
 
-export default function RootLayout(props: {
+export default function Layout(props: {
  children: React.ReactNode;
  shallowPage: React.ReactNode;
 }) {
  return (
   <PageContextProvider>
-   <HtmlWrapper>
+   <RootLayout>
     <ModalContextProvider>
      <body
       className={`${myFont.className} relative mt-0 max-w-desktop font-text font-extralight text-bodyLarge bg-primary text-secondary mx-auto overflow-x-hidden`}
@@ -49,7 +49,6 @@ export default function RootLayout(props: {
       <main className={`mt-16 mx-8 overflow-x-hidden`}>
        {/* Custom Cursor */}
        <CustomCursor />
-
        {/* Transition Overlay */}
        <div className='transition-fullscreen hidden h-screen top-16 left-8 right-8 fixed z-20 overflow-hidden pointer-events-none'></div>
        {props.children}
@@ -59,7 +58,7 @@ export default function RootLayout(props: {
       <ContactModal />
      </body>
     </ModalContextProvider>
-   </HtmlWrapper>
+   </RootLayout>
   </PageContextProvider>
  );
 }

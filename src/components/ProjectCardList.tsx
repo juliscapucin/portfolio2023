@@ -14,18 +14,20 @@ interface ProjectCardProps {
  title: string;
  scope: string;
  slug: string;
+ coverImage: string;
  alt: string;
  variant?: string;
  imageSize?: number;
  imageStart?: number;
 }
 
-export default function ProjectCard({
+export default function ProjectCardImage({
  index,
  title,
  scope,
  id,
  slug,
+ coverImage,
  alt,
  variant,
  imageSize,
@@ -37,17 +39,20 @@ export default function ProjectCard({
  return variant === 'image' ? (
   ////----- IMAGE VIEW -----////
   <div
-   className={`custom-col-start-${imageStart} col-span-5 aspect-square relative overflow-hidden`}
+   className={`custom-col-start-${imageStart} col-span-5 aspect-square relative`}
   >
-   <div
-    className={`project-card-${id} overflow-hidden bg-primary pointer-events-none absolute top-[-5px] left-0 bottom-0 w-full z-10 translate-x-full`}
+   {/* Empty grid element for animation */}
+   <AnimationGridDiv
+    divClass={`project-card-${id} overflow-hidden bg-primary pointer-events-none absolute top-[-5px] left-0 bottom-0 w-full opacity-0`}
+    top={true}
+    bottom={true}
    >
     <div className='m-auto mt-0 pt-44 md:pt-32'>
-     <span className='text-displaySmall md:text-displayMedium lg:text-displayLarge font-normal whitespace-nowrap'>
+     <span className='text-displaySmall md:text-displayMedium lg:text-displayLarge font-normal'>
       {title}
      </span>
     </div>
-   </div>
+   </AnimationGridDiv>
 
    <button
     className={`h-full w-full group flex justify-center items-center absolute`}
@@ -68,7 +73,7 @@ export default function ProjectCard({
     <div className='relative w-full h-full overflow-hidden'>
      {index === 1 ? (
       <CldImage
-       src={`portfolio2023/work/${slug}/01`}
+       src={coverImage}
        key={id}
        alt={alt}
        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
@@ -77,7 +82,7 @@ export default function ProjectCard({
       />
      ) : (
       <CldImage
-       src={`portfolio2023/work/${slug}/01`}
+       src={coverImage}
        key={id}
        alt={alt}
        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
