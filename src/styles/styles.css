@@ -114,11 +114,11 @@ button {
    cursor: pointer;
 }
 
-input,
+/* input,
 textarea {
    font-family: var(--font-secondary);
    color: var(--color-primary);
-   /* background-color: var(--color-secondary); */
+   background-color: var(--color-secondary);
    border-bottom: 1px solid var(--color-secondary);
    outline: none;
 }
@@ -127,7 +127,7 @@ input:focus,
 textarea:focus {
    background-color: var(--color-faded);
    border-bottom: 1px solid var(--color-faded);
-}
+} */
 
 textarea {
    resize: none;
