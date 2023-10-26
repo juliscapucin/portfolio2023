@@ -31,6 +31,7 @@ export default function ProjectCard(props: ProjectCardProps) {
   <div
    className={`custom-col-start-${imageStart} col-span-5 aspect-square relative overflow-hidden`}
   >
+   {/* Div for animation */}
    <div
     className={`project-card-${id} overflow-hidden bg-primary pointer-events-none absolute top-[-5px] left-0 bottom-0 w-full z-10 translate-x-full`}
    >
@@ -82,14 +83,14 @@ export default function ProjectCard(props: ProjectCardProps) {
  ) : (
   ////----- LIST VIEW -----////
   <GridDiv bottom={true} divClass={`relative h-32`}>
-   {/* Empty grid element for animation */}
+   {/* Div for animation */}
    <AnimationGridDiv
-    divClass={`project-card-${id} overflow-hidden bg-primary pointer-events-none absolute top-[-5px] left-0 bottom-0 w-full opacity-0`}
+    divClass={`project-card-${id} overflow-hidden bg-primary pointer-events-none absolute top-[-5px] left-0 bottom-0 w-full z-10 translate-x-full`}
     top={true}
     bottom={true}
    >
     <div className='m-auto mt-0 pt-44 md:pt-32'>
-     <span className='text-displaySmall md:text-displayMedium lg:text-displayLarge font-normal'>
+     <span className='text-displaySmall md:text-displayMedium lg:text-displayLarge font-normal whitespace-nowrap'>
       {title}
      </span>
     </div>
