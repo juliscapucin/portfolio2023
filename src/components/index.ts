@@ -6,6 +6,7 @@ import CustomCursor from './CustomCursor';
 import CustomImage from './CustomImage';
 import Experience from './Experience';
 import ExperienceItem from './ExperienceItem';
+import FeedbackForm from './FeedbackForm';
 import Footer from './Footer';
 import GridDiv from './GridDiv';
 import GridElement from './GridElement';
@@ -39,6 +40,7 @@ export {
    CustomImage,
    Experience,
    ExperienceItem,
+   FeedbackForm,
    Footer,
    GridDiv,
    GridElement,
