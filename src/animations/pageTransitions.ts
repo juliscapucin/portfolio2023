@@ -82,39 +82,37 @@ export const animateToLeft = (enterElement: string) => {
    const timeline = gsap.timeline();
 
    timeline.set(animateToLeftEnter, {
-      opacity: 1,
       x: '100%',
    });
 
    timeline.to(animateToLeftEnter, {
       duration: 1,
       x: '0%',
-      ease: 'power4.out',
+      ease: 'expo.inOut',
    });
 };
 
-// animate to left
+// animate horizontal
 // used to start pages after transitions
 export const animateHorizontal = (
    enterElement: string,
    startPos: number,
    endPos: number
 ) => {
-   const animateToLeftEnter = document.querySelector(`.${enterElement}`);
+   const animateHorizontalEnter = document.querySelector(`.${enterElement}`);
 
-   if (!animateToLeftEnter) return;
+   if (!animateHorizontalEnter) return;
 
    const timeline = gsap.timeline();
 
-   timeline.set(animateToLeftEnter, {
-      opacity: 1,
+   timeline.set(animateHorizontalEnter, {
       xPercent: startPos,
    });
 
-   timeline.to(animateToLeftEnter, {
+   timeline.to(animateHorizontalEnter, {
       duration: 1,
       xPercent: endPos,
-      ease: 'power4.out',
+      ease: 'expo.inOut',
    });
 };
 
@@ -128,14 +126,13 @@ export const animateToRight = (enterElement: string) => {
    const timeline = gsap.timeline();
 
    timeline.set(animateToRightEnter, {
-      opacity: 1,
       x: '-100%',
    });
 
    timeline.to(animateToRightEnter, {
       duration: 1,
       x: '0%',
-      ease: 'power4.out',
+      ease: 'expo.inOut',
    });
 };
 
@@ -159,7 +156,7 @@ export const animateToLeftTransition = (
    timeline.to(animateToLeftLeave, {
       duration: 1,
       x: '-100%',
-      ease: 'power4.in',
+      ease: 'expo.out',
    });
 };
 
@@ -186,38 +183,6 @@ export const animateToRightTransition = (
    timeline.to(animateToRightLeave, {
       duration: 1,
       x: '100%',
-      ease: 'power4.inOut',
+      ease: 'expo.out',
    });
-};
-
-export const animateToShallowPage = (
-   element: string,
-   routerFunction: () => void
-) => {
-   const elementToSelect = document.querySelector(`.${element}`);
-   const elementToAnimate = elementToSelect?.parentElement;
-
-   const timeline = gsap.timeline();
-
-   if (!elementToAnimate) return;
-   timeline
-      .to(
-         elementToAnimate,
-         {
-            duration: 1,
-            scaleY: 10,
-            zIndex: 100,
-            ease: 'power4.inOut',
-         },
-         0
-      )
-      .to(
-         elementToSelect,
-         {
-            duration: 1,
-            scaleY: 0.1,
-            ease: 'power4.inOut',
-         },
-         0
-      );
 };

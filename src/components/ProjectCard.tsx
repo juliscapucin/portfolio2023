@@ -20,19 +20,11 @@ interface ProjectCardProps {
  imageStart?: number;
 }
 
-export default function ProjectCard({
- index,
- title,
- scope,
- id,
- slug,
- alt,
- variant,
- imageSize,
- imageStart,
-}: ProjectCardProps) {
+export default function ProjectCard(props: ProjectCardProps) {
  const router = useRouter();
  const { updateIsHovering } = usePageContext();
+ const { index, title, scope, id, slug, alt, variant, imageSize, imageStart } =
+  props;
 
  return variant === 'image' ? (
   ////----- IMAGE VIEW -----////

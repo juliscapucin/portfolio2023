@@ -20,7 +20,7 @@ import ProjectInfo from './ProjectInfo';
 import ProjectLabel from './ProjectLabel';
 import ProjectNext from './ProjectNext';
 import ProjectsFilter from './ProjectsFilter';
-import ProjectsMenu from './ProjectsMenu';
+import ProjectsMenu from './ProjectsMenu.1';
 import ProjectSplitScreen from './ProjectSplitScreen';
 import RootLayout from './RootLayout';
 import Services from './Services';
