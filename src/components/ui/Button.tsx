@@ -3,39 +3,29 @@
 import { MouseEvent, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 
-interface MenuLinkProps {
+interface ButtonProps {
  label: string;
  action?: (e: MouseEvent<HTMLButtonElement>) => void | (() => void);
  activeState?: boolean;
  slug?: string;
 }
 
-export default function MenuLink({
- label,
- action,
- activeState,
-}: MenuLinkProps) {
+export default function Button({ label, action, activeState }: ButtonProps) {
  const linkRef = useRef<HTMLButtonElement | null>(null);
  const pathname = usePathname();
 
  useEffect(() => {
   const link = linkRef.current;
-
-  if (label === 'Home' && pathname === '/') {
-   link?.classList.add('translate-y-full');
-   link?.classList.add('pointer-events-none');
-  } else {
-   link?.classList.remove('translate-y-full');
-   link?.classList.remove('pointer-events-none');
-  }
+  link?.classList.remove('translate-y-full');
+  link?.classList.add('translate-y-0');
  }, [linkRef.current, pathname]);
 
  return (
   <div className='overflow-hidden max-h-8'>
    <button
     ref={linkRef}
-    className={`flex flex-col justify-center items-center hover:-translate-y-1/2 transition-transform ${
-     activeState && 'opacity-50 pointer-events-none'
+    className={`flex flex-col justify-center items-center translate-y-full hover:-translate-y-1/2 transition ${
+     activeState ? 'opacity-50 pointer-events-none' : ''
     }`}
     onClick={action}
    >

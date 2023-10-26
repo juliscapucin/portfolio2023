@@ -26,8 +26,7 @@ export default function MenuDesktop({ navLinks, buttonAction }: NavLinksProps) {
      {/* Menu links */}
      <nav className='w-full h-full hidden lg:flex justify-end items-center gap-8 mr-8'>
       {navLinks.map((link) => {
-       // Render all links if not in home page
-       return pathname !== '/' ? (
+       return (
         <MenuLink
          label={link.title}
          key={link._key}
@@ -36,18 +35,6 @@ export default function MenuDesktop({ navLinks, buttonAction }: NavLinksProps) {
           buttonAction(link);
          }}
         />
-       ) : (
-        // If in home page, render all links except home link
-        link.slug !== '/' && (
-         <MenuLink
-          label={link.title}
-          key={link._key}
-          activeState={pathname.includes(`/${link.slug}`) ? true : false}
-          action={() => {
-           buttonAction(link);
-          }}
-         />
-        )
        );
       })}
 
