@@ -9,6 +9,7 @@ import { animateToLeft, animateToRight } from '@/animations/pageTransitions';
 import { navLinks } from '@/constants';
 import { usePageContext } from '@/context';
 import { Footer, Experience, Services } from '@/components';
+import { Title } from '@/components/ui';
 
 type AboutData = {
  title: string;
@@ -67,9 +68,7 @@ export default function AboutPage({ data }: { data: AboutData }) {
       <div className='col-span-1'></div>
       <div className='col-span-5 md:grid grid-cols-5'>
        {/* Title */}
-       <h1 className='text-displaySmall md:text-displayMedium lg:text-displayLarge col-span-5 whitespace-nowrap'>
-        {data.title}
-       </h1>
+       <Title title={data.title} />
 
        {/* Subtitle */}
        <p className='text-titleLarge md:text-headlineSmall col-span-3 mt-4 lg:mt-0'>
