@@ -8,6 +8,7 @@ import { navLinks, breakpoints } from '@/constants';
 import { usePageContext } from '@/context';
 import { useMediaQuery } from '@/hooks';
 import { Footer, ProjectsMenu } from '@/components';
+import { Title } from '@/components/ui';
 import { animateToLeft, animateToRight } from '@/animations';
 
 import { Project } from '@/types';
@@ -51,9 +52,7 @@ export default function WorkPage({ data, allProjects }: Props) {
 
  return (
   <div className='page work-page'>
-   <h1 className='text-displaySmall md:text-displayMedium lg:text-displayLarge mt-32'>
-    {data.title}
-   </h1>
+   <Title title={data.title} margin={true} />
    <p className='text-titleLarge md:text-headlineSmall mt-4 lg:mt-0 lg:w-4/6'>
     {data.description}
    </p>

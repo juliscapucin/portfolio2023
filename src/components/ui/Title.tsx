@@ -3,11 +3,10 @@ import { useEffect, useRef } from 'react';
 
 type TitleProps = {
  title: string;
- pause?: boolean;
- play?: boolean;
+ margin?: boolean;
 };
 
-export default function Title({ title }: TitleProps) {
+export default function Title({ title, margin }: TitleProps) {
  const titleRef = useRef(null);
 
  useEffect(() => {
@@ -20,7 +19,9 @@ export default function Title({ title }: TitleProps) {
   <div className='overflow-hidden col-span-5'>
    <h1
     ref={titleRef}
-    className='text-displaySmall md:text-displayMedium lg:text-displayLarge whitespace-nowrap'
+    className={`${
+     margin && 'mt-64'
+    } text-displaySmall md:text-displayMedium lg:text-displayLarge whitespace-nowrap`}
    >
     {title}
    </h1>

@@ -183,9 +183,9 @@ export const animateToLeftTransition = (
    });
 
    timeline.to(animateToLeftLeave, {
-      duration: 1,
+      duration: 0.3,
       x: '-100%',
-      ease: 'expo.out',
+      ease: 'power1.in',
    });
 };
 
@@ -210,8 +210,8 @@ export const animateToRightTransition = (
    });
 
    timeline.to(animateToRightLeave, {
-      duration: 1,
+      duration: 0.3,
       x: '100%',
-      ease: 'expo.out',
+      ease: 'power1.in',
    });
 };
