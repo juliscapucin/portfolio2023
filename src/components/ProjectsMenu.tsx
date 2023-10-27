@@ -13,11 +13,13 @@ import { Project } from '@/types';
 interface ProjectsMenuProps {
  activeBreakpoint: string | undefined;
  allProjects: Project[];
+ isThumbView?: boolean;
 }
 
 export default function ProjectsMenu({
  activeBreakpoint,
  allProjects,
+ isThumbView,
 }: ProjectsMenuProps) {
  const pathname = usePathname();
  const [projectItems, setProjectItems] = useState(allProjects);
@@ -68,7 +70,7 @@ export default function ProjectsMenu({
      setVariant('image');
     },
    });
-  } else {
+  } else if (variant === 'image') {
    gsap.to('.image-view', {
     opacity: 0,
     duration: 0.5,
@@ -100,18 +102,19 @@ export default function ProjectsMenu({
  }, [projectsImgsRef.current, projectsLinksRef.current, variant, projectItems]);
 
  return (
-  <section className='min-h-screen mb-32'>
-   <ProjectsFilter
-    {...{
-     filterProjects,
-     editVariant,
-     variant,
-    }}
-   />
+  <section className={`min-h-screen ${!isThumbView}`}>
+   {!isThumbView && (
+    <ProjectsFilter
+     {...{
+      filterProjects,
+      editVariant,
+      variant,
+     }}
+    />
+   )}
 
-   {/* Projects */}
    {/* List View */}
-   {variant === 'list' ? (
+   {!isThumbView && variant === 'list' && (
     <GridDiv
      divClass='list-view filter-projects grid grid-cols-12 w-full h-full overflow-hidden'
      top={true}
@@ -162,13 +165,47 @@ export default function ProjectsMenu({
        })}
      </div>
     </GridDiv>
-   ) : (
-    // Image View
+   )}
+
+   {/* Image View */}
+   {!isThumbView && variant === 'image' && (
     <GridDiv divClass='image-view filter-projects w-full'>
      {projectItems &&
       projectItems.map((project, index) => {
        return (
         <div className='lg:grid grid-cols-12 mb-64' key={project._id}>
+         {project.title &&
+          project.slug &&
+          project.imageSize &&
+          project.imageStart && (
+           <ProjectCard
+            index={index}
+            title={project.title}
+            scope={project.info.scope}
+            slug={project.slug}
+            id={project._id}
+            alt={project.coverImage.alt}
+            variant={variant}
+            imageSize={project.imageSize}
+            imageStart={project.imageStart}
+           />
+          )}
+        </div>
+       );
+      })}
+    </GridDiv>
+   )}
+
+   {/* Thumb View */}
+   {isThumbView && (
+    <GridDiv
+     divClass='thumb-view filter-projects flex flex-col gap-8 p-8 pt-24'
+     left={true}
+    >
+     {projectItems &&
+      projectItems.map((project, index) => {
+       return (
+        <div className='w-48 h-48' key={project._id}>
          {project.title &&
           project.slug &&
           project.imageSize &&

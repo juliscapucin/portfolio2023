@@ -5,10 +5,14 @@ import { useRef, useEffect } from 'react';
 import { CldImage } from 'next-cloudinary';
 import gsap from 'gsap';
 
+import { breakpoints } from '@/constants';
+import { useMediaQuery } from '@/hooks';
+
 import {
  ProjectInfo,
  ProjectNext,
  ProjectSplitScreen,
+ ProjectsMenu,
  ShallowPage,
 } from '@/components';
 
@@ -22,6 +26,9 @@ type Props = {
 export default function ProjectPage({ project, allProjects }: Props) {
  const headerRef = useRef<HTMLHeadingElement | null>(null);
 
+ // Set breakpoint for mobile/desktop (values are in constants.ts)
+ const breakpoint = useMediaQuery(breakpoints.desktop);
+
  // Animate header children on mount
  useEffect(() => {
   if (!headerRef.current) return;
@@ -34,10 +41,17 @@ export default function ProjectPage({ project, allProjects }: Props) {
    duration: 0.2,
    delay: 0.3,
   });
- }, [headerRef.current]);
+ }, [headerRef]);
 
  return project ? (
   <ShallowPage>
+   <div className='fixed top-0 right-8 bg-primary h-screen overflow-y-scroll z-50'>
+    <ProjectsMenu
+     allProjects={allProjects}
+     activeBreakpoint={breakpoint}
+     isThumbView={true}
+    />
+   </div>
    {/* Project header */}
    <section className='relative w-full mt-32'>
     {/* Title */}
@@ -82,8 +96,6 @@ export default function ProjectPage({ project, allProjects }: Props) {
      })}
     </div>
    </section>
-   {/* Next Project */}
-   {allProjects && <ProjectNext projects={allProjects} project={project} />}
   </ShallowPage>
  ) : (
   <span>Loading...</span>

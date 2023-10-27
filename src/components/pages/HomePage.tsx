@@ -46,6 +46,7 @@ export default function HomePage({ allProjects }: { allProjects: Project[] }) {
  useEffect(() => {
   if (pathname === '/') {
    if (previousPage.includes('work' || 'about')) animateToRight(`home-page`);
+   updatePreviousPage('home');
   }
  }, [pathname]);
 
