@@ -6,7 +6,8 @@ import { CldImage } from 'next-cloudinary';
 import { usePageContext } from '@/context';
 
 import { GridDiv, AnimationGridDiv, ProjectLabel } from '@/components';
-import { animateToFullScreen } from '@/animations/pageTransitions';
+import { animateToFullScreen, animateSplitText } from '@/animations';
+import { useRef } from 'react';
 
 interface ProjectCardProps {
  index?: number;
@@ -35,8 +36,8 @@ export default function ProjectCard(props: ProjectCardProps) {
    <div
     className={`project-card-${id} overflow-hidden bg-primary pointer-events-none absolute top-[-5px] left-0 bottom-0 w-full z-10 translate-x-full`}
    >
-    <div className='m-auto mt-0 pt-44 md:pt-32'>
-     <span className='text-displaySmall md:text-displayMedium lg:text-displayLarge font-normal whitespace-nowrap'>
+    <div className='m-auto mt-0 pt-44 md:pt-32 overflow-hidden'>
+     <span className='text-displaySmall md:text-displayMedium lg:text-displayLarge col-span-5 whitespace-nowrap font-normal'>
       {title}
      </span>
     </div>

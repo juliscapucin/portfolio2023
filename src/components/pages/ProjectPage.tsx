@@ -11,6 +11,7 @@ import {
  ProjectSplitScreen,
  ShallowPage,
 } from '@/components';
+import { Title } from '@/components/ui';
 
 import { Project } from '@/types';
 
@@ -21,33 +22,33 @@ type Props = {
 
 export default function ProjectPage({ project, allProjects }: Props) {
  const headerRef = useRef<HTMLHeadingElement | null>(null);
- const titleRef = useRef<HTMLHeadingElement | null>(null);
 
- // Animate header on mount
+ // Animate header children on mount
  useEffect(() => {
-  if (!project || !headerRef.current) return;
-
-  gsap.set(headerRef.current, { opacity: 0 });
-
-  gsap.to(headerRef.current, {
-   opacity: 1,
-   duration: 0.5,
+  if (!headerRef.current) return;
+  const children = headerRef.current.children;
+  gsap.from(children, {
+   opacity: 0,
+   yPercent: 30,
+   stagger: 0.05,
+   ease: 'expo.out',
+   duration: 0.2,
+   delay: 0.3,
   });
- }, [headerRef]);
+ }, [headerRef.current]);
 
  return project ? (
   <ShallowPage>
    {/* Project header */}
    <section className='relative w-full mt-32'>
-    <h1
-     ref={titleRef}
-     className='text-displaySmall md:text-displayMedium lg:text-displayLarge mb-16'
-    >
-     {project?.title ? project.title : ''}
+    {/* Title */}
+    <h1 className='text-displaySmall md:text-displayMedium lg:text-displayLarge whitespace-nowrap'>
+     {project.title}
     </h1>
-    <div ref={headerRef} className='md:grid grid-cols-12 opacity-0'>
+
+    <div ref={headerRef} className='md:grid grid-cols-12'>
      {/* Cover Image */}
-     <div className={`col-span-6 relative block overflow-hidden aspect-square`}>
+     <div className={`col-span-6 block overflow-hidden aspect-square`}>
       <CldImage
        src={`portfolio2023/work/${project.slug}/${project.coverImage.fileName}`}
        alt={project.coverImage.alt}

@@ -9,6 +9,7 @@ import {
 
 import { animateMobileMenu } from './mobileMenu';
 import { animateProjectsMenu } from './projectsMenu';
+import { animateSplitText } from './animateSplitText';
 
 export {
    animateHorizontal,
@@ -19,4 +20,5 @@ export {
    animateToLeftTransition,
    animateToRight,
    animateToRightTransition,
+   animateSplitText,
 };

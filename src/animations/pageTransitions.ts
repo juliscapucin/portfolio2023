@@ -1,6 +1,8 @@
 import { gsap } from 'gsap';
 import { Flip } from 'gsap/Flip';
+import { SplitText } from 'gsap/SplitText';
 
+gsap.registerPlugin(SplitText);
 gsap.registerPlugin(Flip);
 
 export const animateToFullScreen = (
@@ -25,14 +27,52 @@ export const animateToFullScreen = (
    // append clone to animationStart parent div
    animationStartParent.appendChild(animationStartClone);
 
-   // the Flip animation
+   const titleAnimation = () => {
+      const titleSpan = animationStartClone.querySelector('span');
+
+      return gsap.to(titleSpan, {
+         yPercent: -200,
+         duration: 0.3,
+         ease: 'expo.out',
+         onComplete: () => {
+            animationEnd.innerHTML = '';
+            animationEnd.classList.add('hidden');
+         },
+      });
+
+      // const split = new SplitText(titleSpan, { type: 'chars' });
+
+      // return gsap.to(split.chars, {
+      //    duration: 0.2,
+      //    opacity: 0,
+      //    y: -20,
+      //    stagger: 0.1,
+      //    ease: 'expo.out',
+      //    onComplete: () => {
+      //       animationEnd.innerHTML = '';
+      //       animationEnd.classList.add('hidden');
+      //    },
+      // });
+   };
+
+   const translateXAnimation = () => {
+      return gsap.to(animationStartClone, {
+         translateX: 0,
+         duration: 0.3,
+         ease: 'expo.in',
+         onComplete: () => {
+            flipAnimation();
+         },
+      });
+   };
+
    const flipAnimation = () => {
       const state = Flip.getState(animationStartClone);
 
       animationEnd.classList.remove('hidden');
       animationEnd.appendChild(animationStartClone);
 
-      Flip.from(state, {
+      return Flip.from(state, {
          duration: 0.3,
          absolute: true,
          ease: 'expo.out',
@@ -41,6 +81,7 @@ export const animateToFullScreen = (
             document.documentElement.classList.add('overflow-hidden');
             // Change route
             routerFunction();
+            // titleAnimation();
             // Fade out + empty animationEnd div
             gsap.to('.transition-fullscreen', {
                opacity: 0,
@@ -55,14 +96,9 @@ export const animateToFullScreen = (
       });
    };
 
-   gsap.to(animationStartClone, {
-      translateX: 0,
-      duration: 0.3,
-      ease: 'expo.in',
-      onComplete: () => {
-         flipAnimation();
-      },
-   });
+   const tl = gsap.timeline();
+
+   tl.add(translateXAnimation());
 };
 
 // animate to left
