@@ -3,6 +3,8 @@
 import { useCallback, useRef, MouseEventHandler, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
+import { usePageContext } from '@/context';
+
 import { animateToLeftTransition } from '@/animations/pageTransitions';
 import { Footer } from '@/components';
 import { ButtonBack } from '@buttons/.';
@@ -17,6 +19,12 @@ export default function ShallowPage({
 
  const router = useRouter();
  const pathname = usePathname();
+
+ const { previousPage, updatePreviousPage } = usePageContext();
+
+ useEffect(() => {
+  if (previousPage.includes('home')) updatePreviousPage('project');
+ }, []);
 
  // this is used as a workaround to prevent the intercepted route of showing in all pages
  // Next 13 bug

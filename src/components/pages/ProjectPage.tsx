@@ -1,8 +1,8 @@
 'use client';
 
 import { useRef, useEffect } from 'react';
-import { CldImage } from 'next-cloudinary';
 
+import { CldImage } from 'next-cloudinary';
 import gsap from 'gsap';
 
 import {
@@ -11,7 +11,6 @@ import {
  ProjectSplitScreen,
  ShallowPage,
 } from '@/components';
-import { Title } from '@/components/ui';
 
 import { Project } from '@/types';
 
@@ -48,9 +47,9 @@ export default function ProjectPage({ project, allProjects }: Props) {
 
     <div ref={headerRef} className='md:grid grid-cols-12'>
      {/* Cover Image */}
-     <div className={`col-span-6 block overflow-hidden aspect-square`}>
+     <div className={`col-span-6 block overflow-hidden aspect-square relative`}>
       <CldImage
-       src={`portfolio2023/work/${project.slug}/${project.coverImage.fileName}`}
+       src={`portfolio2023/work/${project.slug}/01`}
        alt={project.coverImage.alt}
        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
        fill

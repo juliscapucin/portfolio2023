@@ -45,15 +45,9 @@ export default function HomePage({ allProjects }: { allProjects: Project[] }) {
  //  Enter page animation
  useEffect(() => {
   if (pathname === '/') {
-   if (previousPage == 'work' || previousPage == 'about')
-    animateToRight(`home-page`);
+   if (previousPage.includes('work' || 'about')) animateToRight(`home-page`);
   }
  }, [pathname]);
-
- // Track previous page for animations
- useEffect(() => {
-  updatePreviousPage('home');
- }, []);
 
  return (
   <div className='page home-page main-page overflow-hidden'>

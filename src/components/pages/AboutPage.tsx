@@ -42,9 +42,9 @@ export default function AboutPage({ data }: { data: AboutData }) {
     actualPage[0]?.id > previousPageId[0]?.id) ||
    previousPage === 'home'
   ) {
-   animateToLeft(`about-page`);
+   animateToLeft(`page`);
   } else {
-   animateToRight(`about-page`);
+   animateToRight(`page`);
   }
 
   updatePreviousPage(pathname.slice(1));

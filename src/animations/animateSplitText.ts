@@ -12,7 +12,7 @@ export const animateSplitText = (textElement: HTMLElement) => {
       duration: 0.3,
       delay: 0.5,
       yPercent: 50,
-      yScale: 1.2,
+      scaleY: 1.2,
       stagger: 0.05,
       ease: 'expo.out',
    });

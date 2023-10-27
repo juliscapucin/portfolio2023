@@ -50,13 +50,13 @@ export default function ProjectSplitScreen({ project }: { project: Project }) {
     </div>
     {/* Left Column Images */}
     <div className='w-full aspect-square overflow-hidden relative'>
-     <CldImage
+     {/* <CldImage
       src={`portfolio2023/work/${project.slug}/02`}
       alt='photo'
       className='absolute w-full object-cover z-50'
       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
       fill
-     />
+     /> */}
      <CldImage
       src={`portfolio2023/work/bg-ipad-landscape`}
       alt='photo'
