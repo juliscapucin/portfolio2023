@@ -198,10 +198,7 @@ export default function ProjectsMenu({
 
    {/* Thumb View */}
    {isThumbView && (
-    <GridDiv
-     divClass='thumb-view filter-projects flex flex-col gap-8 p-8 pt-24'
-     left={true}
-    >
+    <div className='thumb-view filter-projects flex flex-col gap-8 p-8 pt-24 h-screen overflow-y-scroll'>
      {projectItems &&
       projectItems.map((project, index) => {
        return (
@@ -225,7 +222,7 @@ export default function ProjectsMenu({
         </div>
        );
       })}
-    </GridDiv>
+    </div>
    )}
   </section>
  );

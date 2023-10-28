@@ -74,13 +74,13 @@ export default function Header() {
     if (document.documentElement.classList.contains('overflow-hidden'))
      document.documentElement.classList.remove('overflow-hidden');
 
-    animateHorizontal('shallow-page', 0, 100);
-
+    // If coming from project page which was preceded by home page
     if (previousPage === 'project') {
      animateToLeftTransition('shallow-page', () => {
       router.back();
      });
     } else {
+     animateHorizontal('shallow-page', 0, 100);
      animateToRightTransition('page', () => {
       router.push(`/${link.slug}`);
      });
