@@ -9,6 +9,7 @@ import { breakpoints } from '@/constants';
 import { useMediaQuery } from '@/hooks';
 
 import {
+ GridDiv,
  ProjectInfo,
  ProjectNext,
  ProjectSplitScreen,
@@ -45,7 +46,12 @@ export default function ProjectPage({ project, allProjects }: Props) {
 
  return project ? (
   <ShallowPage>
-   <div className='fixed top-0 right-8 bg-primary h-screen overflow-y-scroll z-50'>
+   <div className='projects-thumbs fixed top-0 right-8 flex bg-primary h-screen overflow-y-scroll z-50'>
+    <GridDiv divClass='w-16 bg-primary min-h-full pt-48' left={true}>
+     <span className='block -rotate-90 text-right whitespace-nowrap'>
+      Projects
+     </span>
+    </GridDiv>
     <ProjectsMenu
      allProjects={allProjects}
      activeBreakpoint={breakpoint}

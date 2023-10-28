@@ -205,7 +205,7 @@ export default function ProjectsMenu({
      {projectItems &&
       projectItems.map((project, index) => {
        return (
-        <div className='w-48 h-48' key={project._id}>
+        <div className='w-56 h-56' key={project._id}>
          {project.title &&
           project.slug &&
           project.imageSize &&

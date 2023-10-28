@@ -22,11 +22,9 @@ export default function MenuLink({
   const link = linkRef.current;
 
   if (label === 'Home' && pathname === '/') {
-   link?.classList.add('translate-y-full');
-   link?.classList.add('pointer-events-none');
+   link?.classList.add('translate-y-full', 'pointer-events-none');
   } else {
-   link?.classList.remove('translate-y-full');
-   link?.classList.remove('pointer-events-none');
+   link?.classList.remove('translate-y-full', 'pointer-events-none');
   }
  }, [linkRef.current, pathname]);
 

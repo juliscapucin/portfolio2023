@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
-import { MenuDesktop, MenuMobile } from '.';
-
+import { MenuDesktop, MenuMobile } from '@/components';
+import { usePageContext } from '@/context';
 import {
  animateHorizontal,
  animateMobileMenu,
@@ -10,15 +10,12 @@ import {
  animateToRightTransition,
 } from '@/animations';
 
-type NavbarData = {
- items: { title: string; slug: string; _key: string }[];
-};
-
 type NavLink = { title: string; slug: string; _key: string };
 
 export default function Header() {
  const router = useRouter();
  const pathname = usePathname();
+ const { previousPage } = usePageContext();
 
  const [navLinks, setNavlinks] = useState<NavLink[] | null>(null);
 
@@ -47,7 +44,7 @@ export default function Header() {
    ? navLinks.filter((element) => element.slug === 'work')
    : navLinks.filter((element) => element.slug === pathname.slice(1));
 
-  // Transition to left
+  ///// Transition to left
   if ((actualPage && link._key > actualPage[0]?._key) || pathname === '/') {
    // Close shallow-page if open
    if (shallowPage) {
@@ -69,7 +66,7 @@ export default function Header() {
     router.push(`/${link.slug}`);
    });
   } else {
-   // Transition to right
+   ///// Transition to right
 
    // Close shallow-page if open
    if (shallowPage) {
@@ -79,9 +76,15 @@ export default function Header() {
 
     animateHorizontal('shallow-page', 0, 100);
 
-    animateToRightTransition('page', () => {
-     router.push(`/${link.slug}`);
-    });
+    if (previousPage === 'project') {
+     animateToLeftTransition('shallow-page', () => {
+      router.back();
+     });
+    } else {
+     animateToRightTransition('page', () => {
+      router.push(`/${link.slug}`);
+     });
+    }
 
     return;
    }
@@ -94,15 +97,11 @@ export default function Header() {
  };
 
  return (
-  <>
-   {navLinks ? (
-    <header className='fixed top-0 z-50 w-full max-w-desktop'>
-     <MenuDesktop navLinks={navLinks} buttonAction={buttonAction} />
-     <MenuMobile navLinks={navLinks} buttonAction={buttonAction} />
-    </header>
-   ) : (
-    <span>Loading...</span>
-   )}
-  </>
+  navLinks && (
+   <header className='fixed top-0 z-50 w-full max-w-desktop'>
+    <MenuDesktop navLinks={navLinks} buttonAction={buttonAction} />
+    <MenuMobile navLinks={navLinks} buttonAction={buttonAction} />
+   </header>
+  )
  );
 }

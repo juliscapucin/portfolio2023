@@ -28,7 +28,6 @@ export default function HomePage({ allProjects }: { allProjects: Project[] }) {
 
  // Set breakpoint for mobile/desktop (values are in constants.ts)
  const breakpoint = useMediaQuery(breakpoints.desktop);
-
  const [servicesData, setServicesData] = useState<ServicesData | null>(null);
 
  //  Fetch data from api Route Handler (api/services)
@@ -45,7 +44,9 @@ export default function HomePage({ allProjects }: { allProjects: Project[] }) {
  //  Enter page animation
  useEffect(() => {
   if (pathname === '/') {
-   if (previousPage.includes('work' || 'about')) animateToRight(`home-page`);
+   if (previousPage.includes('work') || previousPage.includes('about')) {
+    animateToRight(`home-page`);
+   }
    updatePreviousPage('home');
   }
  }, [pathname]);
