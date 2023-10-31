@@ -6,11 +6,11 @@ import CustomCursor from './CustomCursor';
 import CustomImage from './CustomImage';
 import Experience from './Experience';
 import ExperienceItem from './ExperienceItem';
+import FeedbackForm from './FeedbackForm';
 import Footer from './Footer';
 import GridDiv from './GridDiv';
 import GridElement from './GridElement';
 import Header from './header';
-import HtmlWrapper from './HtmlWrapper';
 import MenuLink from './MenuLink';
 import HeroDesktop from './HeroDesktop';
 import HeroMobile from './HeroMobile';
@@ -22,6 +22,9 @@ import ProjectLabel from './ProjectLabel';
 import ProjectNext from './ProjectNext';
 import ProjectsFilter from './ProjectsFilter';
 import ProjectsMenu from './ProjectsMenu';
+import ProjectsMenuThumbs from './ProjectsMenuThumbs';
+import ProjectSplitScreen from './ProjectSplitScreen';
+import RootLayout from './RootLayout';
 import Services from './Services';
 import SectionTitle from './SectionTitle';
 import ShallowPage from './shallowPage/ShallowPage';
@@ -38,11 +41,11 @@ export {
    CustomImage,
    Experience,
    ExperienceItem,
+   FeedbackForm,
    Footer,
    GridDiv,
    GridElement,
    Header,
-   HtmlWrapper,
    MenuLink,
    HeroDesktop,
    HeroMobile,
@@ -54,6 +57,9 @@ export {
    ProjectNext,
    ProjectsFilter,
    ProjectsMenu,
+   ProjectsMenuThumbs,
+   ProjectSplitScreen,
+   RootLayout,
    SectionTitle,
    Services,
    ShallowPage,

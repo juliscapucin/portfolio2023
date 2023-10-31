@@ -3,20 +3,27 @@
 import { useCallback, useRef, MouseEventHandler, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
+import { usePageContext } from '@/context';
+
 import { animateToLeftTransition } from '@/animations/pageTransitions';
 import { Footer } from '@/components';
 import { ButtonBack } from '@buttons/.';
 
-export default function ShallowPage({
- children,
-}: {
- children: React.ReactNode;
-}) {
+type Props = { children: React.ReactNode; isShallow: boolean };
+
+export default function ShallowPage({ children, isShallow }: Props) {
  const overlay = useRef<HTMLDivElement | null>(null);
  const wrapper = useRef<HTMLDivElement | null>(null);
 
  const router = useRouter();
  const pathname = usePathname();
+
+ const { previousPage, updatePreviousPage } = usePageContext();
+
+ useEffect(() => {
+  if (previousPage === 'home' && isShallow === true)
+   updatePreviousPage('project');
+ }, []);
 
  // this is used as a workaround to prevent the intercepted route of showing in all pages
  // Next 13 bug
@@ -56,7 +63,9 @@ export default function ShallowPage({
  return (
   shouldShowShallowPage && (
    <div
-    className='shallow-page scroll-trigger fixed top-0 left-0 bottom-0 right-0 mx-auto px-8 bg-primary max-w-desktop overflow-y-scroll overflow-x-hidden z-10'
+    className={`${
+     isShallow && 'shallow-page'
+    } project-page scroll-trigger fixed top-0 left-0 bottom-0 right-0 mx-auto px-8 bg-primary max-w-desktop overflow-y-scroll overflow-x-hidden z-10`}
     ref={overlay}
     onClick={onClick}
    >
@@ -65,7 +74,7 @@ export default function ShallowPage({
      ref={wrapper}
     >
      {/* Back button */}
-     <ButtonBack action={onDismiss} />
+     {isShallow && <ButtonBack action={onDismiss} />}
 
      {children}
     </div>

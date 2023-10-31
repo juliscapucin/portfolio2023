@@ -24,5 +24,10 @@ export const animateProjectsMenu = (
          images[index].classList.remove('translate-y-full');
          images[index].classList.add('translate-y-0');
       });
+
+      // Remove event listener / cleanup
+      return () => {
+         link.removeEventListener('mouseenter', () => {});
+      };
    });
 };

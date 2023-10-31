@@ -4,8 +4,9 @@ import clientConfig from '@sanity/config/client-config';
 export default async function getWorkPage() {
  const client = createClient(clientConfig);
  const res = await client.fetch(
-  groq`*[_type == "project"]{
+  groq`*[_type == "project"] | order(releaseDate desc){
    _id,
+   releaseDate,
    title,
    "slug": slug.current,
    coverImage{
@@ -13,7 +14,8 @@ export default async function getWorkPage() {
       alt,
     },
     gridSize,
-   thumbnailSize,
+   imageSize,
+   imageStart,
    url,
    category,
    services,

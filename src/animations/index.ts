@@ -8,17 +8,17 @@ import {
 } from './pageTransitions';
 
 import { animateMobileMenu } from './mobileMenu';
-import { animatePanorama } from './panorama';
 import { animateProjectsMenu } from './projectsMenu';
+import { animateSplitText } from './animateSplitText';
 
 export {
    animateHorizontal,
    animateMobileMenu,
-   animatePanorama,
    animateProjectsMenu,
    animateToFullScreen,
    animateToLeft,
    animateToLeftTransition,
    animateToRight,
    animateToRightTransition,
+   animateSplitText,
 };

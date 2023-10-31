@@ -41,10 +41,27 @@
       --color-secondary: 0 255 0;
       --color-faded: 0 100 0;
    }
-   :root[data-theme='burgundy'] {
-      --color-primary: 54 0 0;
-      --color-secondary: 240 20 60;
-      --color-faded: 130 40 60;
+
+   .projects-thumbs::-webkit-scrollbar {
+      width: 1rem;
+      height: 1rem;
+   }
+   .projects-thumbs::-webkit-scrollbar-track {
+      background-color: var(--color-secondary);
+      margin-block: 0;
+   }
+   .projects-thumbs::-webkit-scrollbar-thumb {
+      background-color: var(--color-secondary);
+      width: 1rem;
+      height: 1rem;
+      border: none;
+   }
+
+   @supports (scrollbar-color: var(--color-secondary) var(--color-primary)) {
+      & > * {
+         scrollbar-color: var(--color-secondary) var(--color-primary);
+         scrollbar-width: thin;
+      }
    }
 }
 
@@ -55,7 +72,7 @@
 }
 
 * > :focus-visible {
-   background-color: var(--color-gray);
+   background-color: var(--color-faded);
    outline: none;
 }
 
@@ -73,6 +90,12 @@ body {
 
 a {
    text-decoration: none;
+   color: var(--color-secondary);
+   transition: color 2s ease-in-out;
+}
+
+a:hover {
+   color: var(--color-faded);
 }
 
 h1,
@@ -112,6 +135,10 @@ p {
 
 button {
    cursor: pointer;
+}
+
+textarea {
+   resize: none;
 }
 
 /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */
@@ -218,4 +245,38 @@ button {
    to {
       transform: translate3d(0, 0, 0);
    }
+}
+
+/* WORKAROUND FOR COL-START BUG */
+
+.custom-col-start-1 {
+   grid-column-start: 1;
+}
+
+.custom-col-start-2 {
+   grid-column-start: 2;
+}
+
+.custom-col-start-3 {
+   grid-column-start: 3;
+}
+
+.custom-col-start-4 {
+   grid-column-start: 4;
+}
+
+.custom-col-start-5 {
+   grid-column-start: 5;
+}
+
+.custom-col-start-6 {
+   grid-column-start: 6;
+}
+
+.custom-col-start-7 {
+   grid-column-start: 7;
+}
+
+.custom-col-start-8 {
+   grid-column-start: 8;
 }

@@ -6,8 +6,9 @@ export type Project = {
    _id: string;
    coverImage: { fileName: string; alt: string };
    gridSize: number;
-   thumbnailSize: number;
-   content: string;
+   imageSize: number;
+   imageStart: number;
    info: { tech: string; scope: string; link: string };
-   textContent: { children: { text: string; _key: string } }[];
+   textContent1?: { children: { text: string; _key: string } }[];
+   textContent2?: { children: { text: string; _key: string } }[];
 };

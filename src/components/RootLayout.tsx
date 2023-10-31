@@ -2,7 +2,7 @@
 
 import { useThemeStorage } from '@/hooks';
 
-export default function HtmlWrapper(props: { children: React.ReactNode }) {
+export default function RootLayout(props: { children: React.ReactNode }) {
  const { theme } = useThemeStorage();
 
  return (

@@ -12,25 +12,17 @@ import { Project } from '@/types';
 
 interface ProjectsMenuProps {
  activeBreakpoint: string | undefined;
+ allProjects: Project[];
+ isThumbView?: boolean;
 }
 
-export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
+export default function ProjectsMenu({
+ activeBreakpoint,
+ allProjects,
+ isThumbView,
+}: ProjectsMenuProps) {
  const pathname = usePathname();
-
- const [allProjects, setAllProjects] = useState<Project[] | null>(null);
- const [projectItems, setProjectItems] = useState<Project[] | null>(null);
-
- // Fetch data
- useEffect(() => {
-  const fetchAllProjects = async () => {
-   const response = await fetch('/api/projects');
-   const data = await response.json();
-   setAllProjects(data);
-   setProjectItems(data);
-  };
-
-  fetchAllProjects();
- }, []);
+ const [projectItems, setProjectItems] = useState(allProjects);
 
  // View options
  const [variant, setVariant] = useState<string>(
@@ -78,7 +70,7 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
      setVariant('image');
     },
    });
-  } else {
+  } else if (variant === 'image') {
    gsap.to('.image-view', {
     opacity: 0,
     duration: 0.5,
@@ -110,18 +102,19 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
  }, [projectsImgsRef.current, projectsLinksRef.current, variant, projectItems]);
 
  return (
-  <section className='min-h-screen mb-32'>
-   <ProjectsFilter
-    {...{
-     filterProjects,
-     editVariant,
-     variant,
-    }}
-   />
+  <section className={`min-h-screen ${!isThumbView}`}>
+   {!isThumbView && (
+    <ProjectsFilter
+     {...{
+      filterProjects,
+      editVariant,
+      variant,
+     }}
+    />
+   )}
 
-   {/* Projects */}
    {/* List View */}
-   {variant === 'list' ? (
+   {!isThumbView && variant === 'list' && (
     <GridDiv
      divClass='list-view filter-projects grid grid-cols-12 w-full h-full overflow-hidden'
      top={true}
@@ -133,13 +126,13 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
        ref={projectsImgsRef}
       >
        {projectItems &&
-        projectItems.map((img, index) => {
-         if (!img.coverImage) return;
+        projectItems.map((project, index) => {
+         if (!project.coverImage.fileName) return;
          return (
           <CldImage
-           src={`portfolio2023/${img.coverImage.fileName}`}
+           src={`portfolio2023/work/${project.slug}/${project.coverImage.fileName}`}
            key={index}
-           alt={img.coverImage.alt}
+           alt={project.coverImage.alt}
            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
            fill
           />
@@ -164,7 +157,6 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
            scope={link.info.scope}
            slug={link.slug}
            id={link._id}
-           coverImage={link.coverImage.fileName}
            alt={link.coverImage.alt}
            variant={variant}
           />
@@ -173,39 +165,64 @@ export default function ProjectsMenu({ activeBreakpoint }: ProjectsMenuProps) {
        })}
      </div>
     </GridDiv>
-   ) : (
-    // Image View
-    <GridDiv divClass='image-view filter-projects grid lg:grid-cols-12 gap-32 w-full'>
+   )}
+
+   {/* Image View */}
+   {!isThumbView && variant === 'image' && (
+    <GridDiv divClass='image-view filter-projects w-full'>
      {projectItems &&
-      projectItems.map((link, index) => {
+      projectItems.map((project, index) => {
        return (
-        <div
-         className={`w-3/4 lg:w-full ${
-          index % 2 === 0 ? 'ml-auto mr-0' : 'ml-0 mr-auto'
-         } lg:ml-auto lg:mr-auto ${
-          activeBreakpoint === 'desktop'
-           ? `col-span-${link.gridSize} grid grid-cols-${link.gridSize}`
-           : ''
-         }`}
-         key={link._id}
-        >
-         {link.coverImage && link.title && link.slug && link.thumbnailSize && (
-          <ProjectCard
-           title={link.title}
-           scope={link.info.scope}
-           slug={link.slug}
-           id={link._id}
-           coverImage={link.coverImage.fileName}
-           alt={link.coverImage.alt}
-           variant={variant}
-           thumbnailSize={link.thumbnailSize}
-           // setIsHovering={setIsHovering}
-          />
-         )}
+        <div className='lg:grid grid-cols-12 mb-64' key={project._id}>
+         {project.title &&
+          project.slug &&
+          project.imageSize &&
+          project.imageStart && (
+           <ProjectCard
+            index={index}
+            title={project.title}
+            scope={project.info.scope}
+            slug={project.slug}
+            id={project._id}
+            alt={project.coverImage.alt}
+            variant={variant}
+            imageSize={project.imageSize}
+            imageStart={project.imageStart}
+           />
+          )}
         </div>
        );
       })}
     </GridDiv>
+   )}
+
+   {/* Thumb View */}
+   {isThumbView && (
+    <div className='thumb-view filter-projects flex flex-col gap-8 p-8 pt-24 h-screen overflow-y-scroll'>
+     {projectItems &&
+      projectItems.map((project, index) => {
+       return (
+        <div className='w-56 h-56' key={project._id}>
+         {project.title &&
+          project.slug &&
+          project.imageSize &&
+          project.imageStart && (
+           <ProjectCard
+            index={index}
+            title={project.title}
+            scope={project.info.scope}
+            slug={project.slug}
+            id={project._id}
+            alt={project.coverImage.alt}
+            variant={variant}
+            imageSize={project.imageSize}
+            imageStart={project.imageStart}
+           />
+          )}
+        </div>
+       );
+      })}
+    </div>
    )}
   </section>
  );

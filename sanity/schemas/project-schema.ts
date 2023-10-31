@@ -4,6 +4,11 @@ const projectSchema = {
    type: 'document',
    fields: [
       {
+         title: 'Release Date',
+         name: 'releaseDate',
+         type: 'date',
+      },
+      {
          name: 'title',
          title: 'Title',
          type: 'string',
@@ -36,8 +41,9 @@ const projectSchema = {
          ],
       },
       { name: 'url', title: 'URL', type: 'url' },
-      { name: 'gridSize', title: 'Grid Size', type: 'number' },
-      { name: 'thumbnailSize', title: 'Thumbnail Size', type: 'number' },
+      { name: 'gridSize', title: 'Grid Size', type: 'string' },
+      { name: 'imageStart', title: 'Image Start', type: 'string' },
+      { name: 'imageSize', title: 'Image Size', type: 'string' },
       {
          name: 'images',
          title: 'Images',
@@ -57,8 +63,14 @@ const projectSchema = {
          },
       },
       {
-         name: 'content',
-         title: 'Content',
+         name: 'content1',
+         title: 'Content 1',
+         type: 'array',
+         of: [{ type: 'block' }],
+      },
+      {
+         name: 'content2',
+         title: 'Content 2',
          type: 'array',
          of: [{ type: 'block' }],
       },
@@ -88,6 +100,13 @@ const projectSchema = {
                ],
             },
          ],
+      },
+   ],
+   orderings: [
+      {
+         title: 'Release Date, New',
+         name: 'releaseDateDesc',
+         by: [{ field: 'releaseDate', direction: 'desc' }],
       },
    ],
    preview: {
