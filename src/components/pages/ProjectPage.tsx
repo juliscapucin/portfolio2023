@@ -17,9 +17,14 @@ import { Project } from '@/types';
 type Props = {
  project: Project;
  allProjects: Project[];
+ isShallow: boolean;
 };
 
-export default function ProjectPage({ project, allProjects }: Props) {
+export default function ProjectPage({
+ project,
+ allProjects,
+ isShallow,
+}: Props) {
  const headerRef = useRef<HTMLHeadingElement | null>(null);
 
  // Animate header children on mount
@@ -37,7 +42,7 @@ export default function ProjectPage({ project, allProjects }: Props) {
  }, [headerRef]);
 
  return project ? (
-  <ShallowPage>
+  <ShallowPage isShallow={isShallow}>
    <ProjectsMenuThumbs allProjects={allProjects} />
    {/* Project header */}
    <section className='relative w-full mt-32'>

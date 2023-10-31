@@ -9,11 +9,9 @@ import { animateToLeftTransition } from '@/animations/pageTransitions';
 import { Footer } from '@/components';
 import { ButtonBack } from '@buttons/.';
 
-export default function ShallowPage({
- children,
-}: {
- children: React.ReactNode;
-}) {
+type Props = { children: React.ReactNode; isShallow: boolean };
+
+export default function ShallowPage({ children, isShallow }: Props) {
  const overlay = useRef<HTMLDivElement | null>(null);
  const wrapper = useRef<HTMLDivElement | null>(null);
 
@@ -23,7 +21,7 @@ export default function ShallowPage({
  const { previousPage, updatePreviousPage } = usePageContext();
 
  useEffect(() => {
-  if (previousPage.includes('home')) updatePreviousPage('project');
+  if (previousPage === 'home') updatePreviousPage('project');
  }, []);
 
  // this is used as a workaround to prevent the intercepted route of showing in all pages
@@ -73,7 +71,7 @@ export default function ShallowPage({
      ref={wrapper}
     >
      {/* Back button */}
-     <ButtonBack action={onDismiss} />
+     {isShallow && <ButtonBack action={onDismiss} />}
 
      {children}
     </div>
