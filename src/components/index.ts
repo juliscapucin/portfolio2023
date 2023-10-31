@@ -1,7 +1,10 @@
 'use client';
 
+import AboutText from './AboutText';
 import AnimationGridDiv from './AnimationGridDiv';
+import Availability from './Availability';
 import ContactModal from './ContactModal';
+import Copyright from './Copyright';
 import CustomCursor from './CustomCursor';
 import CustomImage from './CustomImage';
 import Experience from './Experience';
@@ -30,12 +33,13 @@ import SectionTitle from './SectionTitle';
 import SocialLinks from './SocialLinks';
 import Status from './Status';
 import ThemeSwitcher from './ThemeSwitcher';
-import AboutText from './AboutText';
 
 export {
    AboutText,
    AnimationGridDiv,
+   Availability,
    ContactModal,
+   Copyright,
    CustomCursor,
    CustomImage,
    Experience,
