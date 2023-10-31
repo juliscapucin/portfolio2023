@@ -1,10 +1,13 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 
 import { GridDiv, Status, ThemeSwitcher } from '@/components';
-import { animatePanorama } from '@/animations';
+import { useTextResize } from '@/hooks';
 
 export default function HeroDesktop() {
  const heroRef = useRef(null);
+ const numberRef = useRef(null);
+
+ useTextResize(numberRef.current);
 
  return (
   <div
@@ -44,7 +47,9 @@ export default function HeroDesktop() {
     divClass='col-span-4 row-span-3 overflow-hidden flex items-center'
     top={true}
    >
-    <span className='text-huge tracking-tighter'>23</span>
+    <span ref={numberRef} className='tracking-tighter'>
+     23
+    </span>
    </GridDiv>
 
    {/* Theme */}
