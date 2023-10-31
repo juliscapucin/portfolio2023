@@ -57,9 +57,7 @@ export default function ProjectPage({ project, allProjects }: Props) {
        priority
       />
      </div>
-     {/* Blank space */}
-     <div className='col-span-1'></div>
-     <div className='md:col-span-5'>
+     <div className='md:col-span-5 md:pl-16'>
       {/* Description */}
       <div className='mb-16'>
        <p className='text-titleLarge md:text-headlineSmall mt-16 md:mt-0'>

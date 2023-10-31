@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 import gsap from 'gsap';
 
 export function useToggle(
@@ -14,7 +14,14 @@ export function useToggle(
  };
 
  useEffect(() => {
+  gsap.set(element, {
+   x: '195px',
+  });
+ }, [element]);
+
+ useEffect(() => {
   if (!element) return;
+
   if (open) {
    gsap.to(element, {
     duration: 0.5,
@@ -24,7 +31,7 @@ export function useToggle(
   } else {
    gsap.to(element, {
     duration: 0.5,
-    x: '180px',
+    x: '195px',
     ease: 'expo.out',
    });
   }
