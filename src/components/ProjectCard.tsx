@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { CldImage } from 'next-cloudinary';
 
-import { usePageContext } from '@/context';
+import { useCursorFollowerContext } from '@/context';
 
 import { GridDiv, AnimationGridDiv, ProjectLabel } from '@/components';
 import { animateToFullScreen, animateSplitText } from '@/animations';
@@ -23,7 +23,7 @@ interface ProjectCardProps {
 
 export default function ProjectCard(props: ProjectCardProps) {
  const router = useRouter();
- const { updateIsHovering } = usePageContext();
+ const { updateIsHovering } = useCursorFollowerContext();
  const { index, title, scope, id, slug, alt, variant, imageSize, imageStart } =
   props;
 

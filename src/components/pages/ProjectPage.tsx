@@ -9,8 +9,9 @@ import {
  ProjectInfo,
  ProjectSplitScreen,
  ProjectsMenuThumbs,
- ShallowPage,
 } from '@/components';
+
+import { ShallowPage } from '@/components/pages';
 
 import { Project } from '@/types';
 

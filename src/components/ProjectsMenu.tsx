@@ -6,8 +6,15 @@ import { CldImage } from 'next-cloudinary';
 
 import { gsap } from 'gsap';
 
+import { CursorFollowerContextProvider } from '@/context';
+
 import { animateProjectsMenu } from '@/animations';
-import { ProjectCard, GridDiv, ProjectsFilter } from '@/components';
+import {
+ ProjectCard,
+ GridDiv,
+ ProjectsFilter,
+ CustomCursor,
+} from '@/components';
 import { Project } from '@/types';
 
 interface ProjectsMenuProps {
@@ -102,128 +109,136 @@ export default function ProjectsMenu({
  }, [projectsImgsRef.current, projectsLinksRef.current, variant, projectItems]);
 
  return (
-  <section className={`min-h-screen ${!isThumbView}`}>
-   {!isThumbView && (
-    <ProjectsFilter
-     {...{
-      filterProjects,
-      editVariant,
-      variant,
-     }}
-    />
-   )}
+  <CursorFollowerContextProvider>
+   {/* Custom Cursor */}
+   {activeBreakpoint === 'desktop' && <CustomCursor />}
+   <section className={`min-h-screen ${!isThumbView}`}>
+    {!isThumbView && (
+     <ProjectsFilter
+      {...{
+       filterProjects,
+       editVariant,
+       variant,
+      }}
+     />
+    )}
 
-   {/* List View */}
-   {!isThumbView && variant === 'list' && (
-    <GridDiv
-     divClass='list-view filter-projects grid grid-cols-12 w-full h-full overflow-hidden'
-     top={true}
-    >
-     {/* Render left side images only on desktop */}
-     {activeBreakpoint === 'desktop' && (
+    {/* List View */}
+    {!isThumbView && variant === 'list' && (
+     <GridDiv
+      divClass='list-view filter-projects grid grid-cols-12 w-full h-full overflow-hidden'
+      top={true}
+     >
+      {/* Render left side images only on desktop */}
+      {activeBreakpoint === 'desktop' && (
+       <div
+        className='col-span-4 aspect-square relative overflow-hidden'
+        ref={projectsImgsRef}
+       >
+        {projectItems &&
+         projectItems.map((project, index) => {
+          if (!project.coverImage.fileName) return;
+          return (
+           <CldImage
+            src={`portfolio2023/work/${project.slug}/${project.coverImage.fileName}`}
+            key={index}
+            alt={project.coverImage.alt}
+            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+            fill
+           />
+          );
+         })}
+       </div>
+      )}
       <div
-       className='col-span-4 aspect-square relative overflow-hidden'
-       ref={projectsImgsRef}
+       className={`col-span-${
+        activeBreakpoint === 'mobile' ? 3 : 2
+       } row-span-6`}
+      ></div>
+      <div
+       className={`col-span-${
+        activeBreakpoint === 'mobile' ? 9 : 6
+       } row-span-6`}
+       ref={projectsLinksRef}
       >
        {projectItems &&
-        projectItems.map((project, index) => {
-         if (!project.coverImage.fileName) return;
+        projectItems.map((link, index) => {
+         if (!link.coverImage || !link.title || !link.slug) return;
          return (
-          <CldImage
-           src={`portfolio2023/work/${project.slug}/${project.coverImage.fileName}`}
-           key={index}
-           alt={project.coverImage.alt}
-           sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-           fill
-          />
+          <div key={index}>
+           <ProjectCard
+            title={link.title}
+            scope={link.info.scope}
+            slug={link.slug}
+            id={link._id}
+            alt={link.coverImage.alt}
+            variant={variant}
+           />
+          </div>
          );
         })}
       </div>
-     )}
-     <div
-      className={`col-span-${activeBreakpoint === 'mobile' ? 3 : 2} row-span-6`}
-     ></div>
-     <div
-      className={`col-span-${activeBreakpoint === 'mobile' ? 9 : 6} row-span-6`}
-      ref={projectsLinksRef}
-     >
+     </GridDiv>
+    )}
+
+    {/* Image View */}
+    {!isThumbView && variant === 'image' && (
+     <GridDiv divClass='image-view filter-projects w-full'>
       {projectItems &&
-       projectItems.map((link, index) => {
-        if (!link.coverImage || !link.title || !link.slug) return;
+       projectItems.map((project, index) => {
         return (
-         <div key={index}>
-          <ProjectCard
-           title={link.title}
-           scope={link.info.scope}
-           slug={link.slug}
-           id={link._id}
-           alt={link.coverImage.alt}
-           variant={variant}
-          />
+         <div className='lg:grid grid-cols-12 mb-64' key={project._id}>
+          {project.title &&
+           project.slug &&
+           project.imageSize &&
+           project.imageStart && (
+            <ProjectCard
+             index={index}
+             title={project.title}
+             scope={project.info.scope}
+             slug={project.slug}
+             id={project._id}
+             alt={project.coverImage.alt}
+             variant={variant}
+             imageSize={project.imageSize}
+             imageStart={project.imageStart}
+            />
+           )}
+         </div>
+        );
+       })}
+     </GridDiv>
+    )}
+
+    {/* Thumb View */}
+    {isThumbView && (
+     <div className='thumb-view filter-projects flex flex-col gap-8 p-8 pt-24 h-screen overflow-y-scroll'>
+      {projectItems &&
+       projectItems.map((project, index) => {
+        return (
+         <div className='w-56 h-56' key={project._id}>
+          {project.title &&
+           project.slug &&
+           project.imageSize &&
+           project.imageStart && (
+            <ProjectCard
+             index={index}
+             title={project.title}
+             scope={project.info.scope}
+             slug={project.slug}
+             id={project._id}
+             alt={project.coverImage.alt}
+             variant={variant}
+             imageSize={project.imageSize}
+             imageStart={project.imageStart}
+            />
+           )}
          </div>
         );
        })}
      </div>
-    </GridDiv>
-   )}
-
-   {/* Image View */}
-   {!isThumbView && variant === 'image' && (
-    <GridDiv divClass='image-view filter-projects w-full'>
-     {projectItems &&
-      projectItems.map((project, index) => {
-       return (
-        <div className='lg:grid grid-cols-12 mb-64' key={project._id}>
-         {project.title &&
-          project.slug &&
-          project.imageSize &&
-          project.imageStart && (
-           <ProjectCard
-            index={index}
-            title={project.title}
-            scope={project.info.scope}
-            slug={project.slug}
-            id={project._id}
-            alt={project.coverImage.alt}
-            variant={variant}
-            imageSize={project.imageSize}
-            imageStart={project.imageStart}
-           />
-          )}
-        </div>
-       );
-      })}
-    </GridDiv>
-   )}
-
-   {/* Thumb View */}
-   {isThumbView && (
-    <div className='thumb-view filter-projects flex flex-col gap-8 p-8 pt-24 h-screen overflow-y-scroll'>
-     {projectItems &&
-      projectItems.map((project, index) => {
-       return (
-        <div className='w-56 h-56' key={project._id}>
-         {project.title &&
-          project.slug &&
-          project.imageSize &&
-          project.imageStart && (
-           <ProjectCard
-            index={index}
-            title={project.title}
-            scope={project.info.scope}
-            slug={project.slug}
-            id={project._id}
-            alt={project.coverImage.alt}
-            variant={variant}
-            imageSize={project.imageSize}
-            imageStart={project.imageStart}
-           />
-          )}
-        </div>
-       );
-      })}
-    </div>
-   )}
-  </section>
+    )}
+   </section>
+  </CursorFollowerContextProvider>
  );
 }

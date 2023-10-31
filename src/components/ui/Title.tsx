@@ -13,7 +13,7 @@ export default function Title({ title, margin }: TitleProps) {
   if (titleRef.current) {
    animateSplitText(titleRef.current);
   }
- }, [titleRef.current]);
+ }, [titleRef]);
 
  return (
   <div className='overflow-hidden col-span-5'>

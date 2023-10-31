@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
-import { usePageContext } from '@/context';
+import { useCursorFollowerContext } from '@/context';
 
 export default function CustomCursor() {
- const { isHovering } = usePageContext();
+ const { isHovering } = useCursorFollowerContext();
 
  const refCursor = useRef(null);
  const refFollower = useRef(null);

@@ -27,7 +27,6 @@ import ProjectSplitScreen from './ProjectSplitScreen';
 import RootLayout from './RootLayout';
 import Services from './Services';
 import SectionTitle from './SectionTitle';
-import ShallowPage from './shallowPage/ShallowPage';
 import SocialLinks from './SocialLinks';
 import Status from './Status';
 import ThemeSwitcher from './ThemeSwitcher';
@@ -62,7 +61,6 @@ export {
    RootLayout,
    SectionTitle,
    Services,
-   ShallowPage,
    SocialLinks,
    Status,
    ThemeSwitcher,

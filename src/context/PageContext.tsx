@@ -6,8 +6,6 @@ import { createContext, useContext, useState } from 'react';
 interface ContextProps {
  previousPage: string;
  updatePreviousPage: (page: string) => void;
- isHovering: boolean;
- updateIsHovering: (arg: boolean) => void;
 }
 
 // CREATE CONTEXT
@@ -20,14 +18,9 @@ export const PageContextProvider = ({
  children: React.ReactNode;
 }) => {
  const [previousPage, setPreviousPage] = useState('home');
- const [isHovering, setIsHovering] = useState(false);
 
  const updatePreviousPage = (page: string) => {
   setPreviousPage(page);
- };
-
- const updateIsHovering = (state: boolean) => {
-  setIsHovering(state);
  };
 
  console.log(previousPage);
@@ -37,8 +30,6 @@ export const PageContextProvider = ({
    value={{
     previousPage,
     updatePreviousPage,
-    isHovering,
-    updateIsHovering,
    }}
   >
    {children}
