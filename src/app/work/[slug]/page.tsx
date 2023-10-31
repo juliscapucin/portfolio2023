@@ -41,7 +41,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
  return (
   <Suspense fallback={<h1>Loading...</h1>}>
    <ProjectPage project={project} allProjects={allProjects} isShallow={false} />
-   ;
   </Suspense>
  );
 }

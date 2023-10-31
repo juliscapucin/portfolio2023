@@ -39,13 +39,18 @@ export default function Header() {
   }
 
   const shallowPage = document.querySelector('.shallow-page');
+  const projectPage = document.querySelector('.project-page');
 
   const actualPage = shallowPage
    ? navLinks.filter((element) => element.slug === 'work')
-   : navLinks.filter((element) => element.slug === pathname.slice(1));
+   : navLinks.filter(
+      (element) => element.slug === pathname.slice(1).split('/')[0]
+     );
+
+  console.log(actualPage);
 
   ///// Transition to left
-  if ((actualPage && link._key > actualPage[0]?._key) || pathname === '/') {
+  if ((actualPage && link._key > actualPage[0]?._key) || link.slug === '/') {
    // Close shallow-page if open
    if (shallowPage) {
     //  Restore scroll on html div
@@ -62,7 +67,7 @@ export default function Header() {
    }
 
    // If regular page
-   animateToLeftTransition('page', () => {
+   animateToLeftTransition(`${projectPage ? 'project-page' : 'page'}`, () => {
     router.push(`/${link.slug}`);
    });
   } else {
@@ -90,7 +95,7 @@ export default function Header() {
    }
 
    // If regular page
-   animateToRightTransition('page', () => {
+   animateToRightTransition(`${projectPage ? 'project-page' : 'page'}`, () => {
     router.push(`/${link.slug}`);
    });
   }

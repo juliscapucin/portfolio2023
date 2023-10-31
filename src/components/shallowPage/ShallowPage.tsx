@@ -21,7 +21,8 @@ export default function ShallowPage({ children, isShallow }: Props) {
  const { previousPage, updatePreviousPage } = usePageContext();
 
  useEffect(() => {
-  if (previousPage === 'home') updatePreviousPage('project');
+  if (previousPage === 'home' && isShallow === true)
+   updatePreviousPage('project');
  }, []);
 
  // this is used as a workaround to prevent the intercepted route of showing in all pages
@@ -62,7 +63,9 @@ export default function ShallowPage({ children, isShallow }: Props) {
  return (
   shouldShowShallowPage && (
    <div
-    className='shallow-page scroll-trigger fixed top-0 left-0 bottom-0 right-0 mx-auto px-8 bg-primary max-w-desktop overflow-y-scroll overflow-x-hidden z-10'
+    className={`${
+     isShallow && 'shallow-page'
+    } project-page scroll-trigger fixed top-0 left-0 bottom-0 right-0 mx-auto px-8 bg-primary max-w-desktop overflow-y-scroll overflow-x-hidden z-10`}
     ref={overlay}
     onClick={onClick}
    >
