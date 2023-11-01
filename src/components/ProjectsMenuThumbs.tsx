@@ -1,5 +1,6 @@
 import { useRef } from 'react';
-import { GridDiv, ProjectsMenu } from '@/components';
+import { ProjectsMenu } from '@/components';
+import { GridDiv } from '@/components/ui';
 import { breakpoints } from '@/constants';
 import { useMediaQuery, useToggle } from '@/hooks';
 import { Project } from '@/types';

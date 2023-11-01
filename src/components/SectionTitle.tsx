@@ -6,7 +6,7 @@ import { SplitText } from 'gsap/SplitText';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import { animateSplitText } from '@/animations';
-import { GridDiv } from '@/components';
+import { GridDiv } from '@/components/ui';
 
 interface SectionTitleProps {
  title: string;

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Availability, Copyright, GridDiv, SocialLinks } from '@/components';
+import { Availability, Copyright, SocialLinks } from '@/components';
+import { GridDiv } from '@/components/ui';
 
 type NavbarData = {
  items: { title: string; slug: string; _key: string }[];

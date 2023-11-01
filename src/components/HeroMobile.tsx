@@ -1,6 +1,8 @@
-import { GridDiv, Status, ThemeSwitcher } from '@/components';
+import { forwardRef } from 'react';
+import { Status, ThemeSwitcher } from '@/components';
+import { GridDiv } from '@/components/ui';
 
-export default function HeroMobile() {
+export const HeroMobile = forwardRef<HTMLSpanElement, {}>((props, ref) => {
  return (
   <div className='hero__mobile grid grid-cols-6 grid-rows-6 h-screen max-h-screen'>
    {/* Status */}
@@ -28,8 +30,10 @@ export default function HeroMobile() {
     divClass='col-span-6 row-span-3 overflow-hidden flex items-center'
     top={true}
    >
-    <span className='text-huge tracking-tighter'>23</span>
+    <span ref={ref} className='tracking-tighter'>
+     23
+    </span>
    </GridDiv>
   </div>
  );
-}
+});

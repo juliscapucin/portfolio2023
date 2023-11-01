@@ -9,12 +9,8 @@ import { gsap } from 'gsap';
 import { CursorFollowerContextProvider } from '@/context';
 
 import { animateProjectsMenu } from '@/animations';
-import {
- ProjectCard,
- GridDiv,
- ProjectsFilter,
- CustomCursor,
-} from '@/components';
+import { GridDiv } from '@/components/ui';
+import { ProjectCard, ProjectsFilter, CustomCursor } from '@/components';
 import { Project } from '@/types';
 
 interface ProjectsMenuProps {

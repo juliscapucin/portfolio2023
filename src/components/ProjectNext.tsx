@@ -3,7 +3,7 @@
 import { useRef } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
-import { GridDiv } from '.';
+import { GridDiv } from '@/components/ui';
 import {
  animateToLeftTransition,
  animateToRightTransition,

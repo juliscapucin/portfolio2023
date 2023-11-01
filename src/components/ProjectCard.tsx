@@ -5,9 +5,9 @@ import { CldImage } from 'next-cloudinary';
 
 import { useCursorFollowerContext } from '@/context';
 
-import { GridDiv, AnimationGridDiv, ProjectLabel } from '@/components';
-import { animateToFullScreen, animateSplitText } from '@/animations';
-import { useRef } from 'react';
+import { AnimationGridDiv, ProjectLabel } from '@/components';
+import { GridDiv } from '@/components/ui';
+import { animateToFullScreen } from '@/animations';
 
 interface ProjectCardProps {
  index?: number;

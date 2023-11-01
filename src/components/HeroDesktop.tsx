@@ -1,13 +1,10 @@
-import { useRef } from 'react';
+import { forwardRef, useRef } from 'react';
 
-import { GridDiv, Status, ThemeSwitcher } from '@/components';
-import { useTextResize } from '@/hooks';
+import { Status, ThemeSwitcher } from '@/components';
+import { GridDiv } from '@/components/ui';
 
-export default function HeroDesktop() {
+export const HeroDesktop = forwardRef<HTMLSpanElement, {}>((props, ref) => {
  const heroRef = useRef(null);
- const numberRef = useRef(null);
-
- useTextResize(numberRef.current);
 
  return (
   <div
@@ -47,7 +44,7 @@ export default function HeroDesktop() {
     divClass='col-span-4 row-span-3 overflow-hidden flex items-center'
     top={true}
    >
-    <span ref={numberRef} className='tracking-tighter'>
+    <span ref={ref} className='tracking-tighter'>
      23
     </span>
    </GridDiv>
@@ -70,4 +67,4 @@ export default function HeroDesktop() {
    <GridDiv divClass='col-span-7 row-span-3' top={true}></GridDiv>
   </div>
  );
-}
+});

@@ -1,7 +1,8 @@
 'use client';
 
 import { useModalContext } from '@/context';
-import { Copyright, GridDiv, SocialLinks } from '@/components';
+import { Copyright, SocialLinks } from '@/components';
+import { GridDiv } from '@/components/ui';
 import { ButtonClose } from '@buttons/.';
 import Availability from './Availability';
 

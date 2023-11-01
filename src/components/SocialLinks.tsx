@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
-import { GridDiv } from '.';
+import { GridDiv } from '@/components/ui';
 
 type SocialsData = {
  title: string;

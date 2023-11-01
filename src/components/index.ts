@@ -11,12 +11,11 @@ import Experience from './Experience';
 import ExperienceItem from './ExperienceItem';
 import FeedbackForm from './FeedbackForm';
 import Footer from './Footer';
-import GridDiv from './GridDiv';
 import GridElement from './GridElement';
 import Header from './header';
 import MenuLink from './MenuLink';
-import HeroDesktop from './HeroDesktop';
-import HeroMobile from './HeroMobile';
+import { HeroDesktop } from './HeroDesktop';
+import { HeroMobile } from './HeroMobile';
 import MenuDesktop from './MenuDesktop';
 import MenuMobile from './MenuMobile';
 import ProjectCard from './ProjectCard';
@@ -46,7 +45,6 @@ export {
    ExperienceItem,
    FeedbackForm,
    Footer,
-   GridDiv,
    GridElement,
    Header,
    MenuLink,

@@ -5,20 +5,15 @@ export const useTextResize = (textElement: HTMLElement | null): void => {
 
  useEffect(() => {
   if (!textElement) return;
-  console.log('useTextResize');
 
   const resize = (): void => {
    textElement.style.fontSize = '40rem';
-
-   console.log(textElement.offsetWidth);
-   console.log(textElement.parentElement!.offsetWidth);
 
    while (textElement.offsetWidth > textElement.parentElement!.offsetWidth) {
     const currentSize = parseInt(
      window.getComputedStyle(textElement).fontSize,
      10
     );
-    console.log(currentSize);
     textElement.style.fontSize = `${currentSize - 1}px`;
    }
   };
