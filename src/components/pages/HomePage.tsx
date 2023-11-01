@@ -68,7 +68,11 @@ export default function HomePage({ allProjects }: { allProjects: Project[] }) {
    {/* {servicesData && <Services services={servicesData.services} />} */}
 
    <SectionTitle title='Work' />
-   <ProjectsMenu activeBreakpoint={breakpoint} allProjects={allProjects} />
+   <ProjectsMenu
+    startVariant={breakpoint === 'desktop' ? 'list' : 'image'}
+    activeBreakpoint={breakpoint}
+    allProjects={allProjects}
+   />
 
    <Footer />
   </div>

@@ -16,21 +16,19 @@ import { Project } from '@/types';
 interface ProjectsMenuProps {
  activeBreakpoint: string | undefined;
  allProjects: Project[];
- isThumbView?: boolean;
+ startVariant: 'list' | 'image' | 'thumbs';
 }
 
 export default function ProjectsMenu({
  activeBreakpoint,
  allProjects,
- isThumbView,
+ startVariant,
 }: ProjectsMenuProps) {
  const pathname = usePathname();
  const [projectItems, setProjectItems] = useState(allProjects);
 
  // View options
- const [variant, setVariant] = useState<string>(
-  pathname === '/' && activeBreakpoint === 'desktop' ? 'list' : 'image'
- );
+ const [variant, setVariant] = useState(startVariant);
 
  // List View Refs
  const projectsImgsRef = useRef(null);
@@ -108,8 +106,8 @@ export default function ProjectsMenu({
   <CursorFollowerContextProvider>
    {/* Custom Cursor */}
    {activeBreakpoint === 'desktop' && <CustomCursor />}
-   <section className={`min-h-screen ${!isThumbView}`}>
-    {!isThumbView && (
+   <section className={`min-h-screen`}>
+    {variant !== 'thumbs' && (
      <ProjectsFilter
       {...{
        filterProjects,
@@ -120,7 +118,7 @@ export default function ProjectsMenu({
     )}
 
     {/* List View */}
-    {!isThumbView && variant === 'list' && (
+    {variant === 'list' && (
      <GridDiv
       divClass='list-view filter-projects grid grid-cols-12 w-full h-full overflow-hidden'
       top={true}
@@ -178,7 +176,7 @@ export default function ProjectsMenu({
     )}
 
     {/* Image View */}
-    {!isThumbView && variant === 'image' && (
+    {variant === 'image' && (
      <GridDiv divClass='image-view filter-projects w-full'>
       {projectItems &&
        projectItems.map((project, index) => {
@@ -207,7 +205,7 @@ export default function ProjectsMenu({
     )}
 
     {/* Thumb View */}
-    {isThumbView && (
+    {variant === 'thumbs' && (
      <div className='thumb-view filter-projects flex flex-col gap-8 p-8 pt-24 h-screen overflow-y-scroll'>
       {projectItems &&
        projectItems.map((project, index) => {

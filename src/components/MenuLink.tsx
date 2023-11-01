@@ -29,17 +29,24 @@ export default function MenuLink({
  }, [linkRef.current, pathname]);
 
  return (
-  <div className='overflow-hidden max-h-8'>
-   <button
-    ref={linkRef}
-    className={`flex flex-col justify-center items-center hover:-translate-y-1/2 transition-transform ${
-     activeState && 'opacity-50 pointer-events-none'
-    }`}
-    onClick={action}
-   >
-    <span className='text-titleMedium uppercase text-secondary'>{label}</span>
-    <span className='text-titleMedium uppercase text-secondary'>{label}</span>
-   </button>
-  </div>
+  <>
+   {activeState ? (
+    <div className='relative max-h-8'>
+     <span className='text-titleMedium uppercase text-secondary'>{label}</span>
+     <div className='absolute -bottom-1 w-full h-[1px] bg-secondary'></div>
+    </div>
+   ) : (
+    <div className='overflow-hidden max-h-8'>
+     <button
+      ref={linkRef}
+      className={`flex flex-col justify-center items-center hover:-translate-y-1/2 transition-transform`}
+      onClick={action}
+     >
+      <span className='text-titleMedium uppercase text-secondary'>{label}</span>
+      <span className='text-titleMedium uppercase text-secondary'>{label}</span>
+     </button>
+    </div>
+   )}
+  </>
  );
 }

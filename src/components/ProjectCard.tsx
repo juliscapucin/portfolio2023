@@ -95,7 +95,7 @@ export default function ProjectCard(props: ProjectCardProps) {
        src={`portfolio2023/work/${slug}/01`}
        key={id}
        alt={alt}
-       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+       sizes='100vw (max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
        fill
        priority
       />
@@ -104,7 +104,7 @@ export default function ProjectCard(props: ProjectCardProps) {
        src={`portfolio2023/work/${slug}/01`}
        key={id}
        alt={alt}
-       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+       sizes='100vw (max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
        fill
       />
      )}
