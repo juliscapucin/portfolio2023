@@ -42,24 +42,24 @@
       --color-faded: 0 100 0;
    }
 
-   .projects-thumbs::-webkit-scrollbar {
+   ::-webkit-scrollbar {
       width: 1rem;
       height: 1rem;
    }
-   .projects-thumbs::-webkit-scrollbar-track {
-      background-color: var(--color-secondary);
+   ::-webkit-scrollbar-track {
+      background-color: var(--color-faded);
       margin-block: 0;
    }
-   .projects-thumbs::-webkit-scrollbar-thumb {
-      background-color: var(--color-secondary);
+   ::-webkit-scrollbar-thumb {
+      background-color: var(--color-faded);
       width: 1rem;
       height: 1rem;
       border: none;
    }
 
-   @supports (scrollbar-color: var(--color-secondary) var(--color-primary)) {
+   @supports (scrollbar-color: var(--color-faded) var(--color-faded)) {
       & > * {
-         scrollbar-color: var(--color-secondary) var(--color-primary);
+         scrollbar-color: var(--color-faded) var(--color-faded);
          scrollbar-width: thin;
       }
    }
@@ -119,6 +119,12 @@ h4,
 h5,
 h6 {
    font-weight: 400;
+   line-height: 0.8;
+}
+
+h4,
+h5,
+h6 {
    line-height: 1;
 }
 
@@ -170,34 +176,6 @@ textarea {
    width: 1px;
    height: 100%;
 }
-
-/* outline animation */
-/* .grid-element {
-   position: relative;
-   overflow: hidden;
-} */
-
-/* .line,
-.line-transparent {
-   position: absolute;
-   transform: translate3d(0, 0, 0);
-} */
-
-/* .grid-element .line {
-   background-color: var(--color-black);
-}
-
-.grid-element .line-transparent {
-   background-color: var(--color-white);
-}
-
-.dark .grid-element .line {
-   background-color: var(--color-white);
-}
-
-.dark .grid-element .line-transparent {
-   background-color: var(--color-black);
-} */
 
 /* top line */
 .grid-element .line:nth-child(1) {

@@ -97,7 +97,7 @@ export default function ProjectsFilter({
    >
     {filterOptions.map((label, index) => {
      return (
-      <>
+      <div key={label} className='flex gap-8'>
        {index !== 0 && activeBreakpoint === 'desktop' && <span>/</span>}
        <FilterButton
         label={label}
@@ -105,7 +105,7 @@ export default function ProjectsFilter({
         handleActiveButton={handleActiveButton}
         active={activeButton === label ? true : false}
        />
-      </>
+      </div>
      );
     })}
    </div>

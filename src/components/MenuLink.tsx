@@ -1,6 +1,6 @@
 'use client';
 
-import { MouseEvent, useEffect, useRef } from 'react';
+import { MouseEvent } from 'react';
 import { usePathname } from 'next/navigation';
 
 interface MenuLinkProps {
@@ -15,18 +15,7 @@ export default function MenuLink({
  action,
  activeState,
 }: MenuLinkProps) {
- const linkRef = useRef<HTMLButtonElement | null>(null);
  const pathname = usePathname();
-
- useEffect(() => {
-  const link = linkRef.current;
-
-  if (label === 'Home' && pathname === '/') {
-   link?.classList.add('translate-y-full', 'pointer-events-none');
-  } else {
-   link?.classList.remove('translate-y-full', 'pointer-events-none');
-  }
- }, [linkRef.current, pathname]);
 
  return (
   <>
@@ -38,9 +27,14 @@ export default function MenuLink({
    ) : (
     <div className='overflow-hidden max-h-8'>
      <button
-      ref={linkRef}
-      className={`flex flex-col justify-center items-center hover:-translate-y-1/2 transition-transform`}
+      className={`flex flex-col justify-center items-center hover:-translate-y-1/2 transition-transform ${
+       label === 'Home' &&
+       pathname === '/' &&
+       'translate-y-full pointer-events-none'
+      }`}
       onClick={action}
+      aria-hidden={pathname === '/' && label === 'Home'}
+      tabIndex={pathname === '/' && label === 'Home' ? -1 : 0}
      >
       <span className='text-titleMedium uppercase text-secondary'>{label}</span>
       <span className='text-titleMedium uppercase text-secondary'>{label}</span>

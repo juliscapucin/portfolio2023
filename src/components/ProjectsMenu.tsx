@@ -121,13 +121,13 @@ export default function ProjectsMenu({
     {/* List View */}
     {variant === 'list' && (
      <GridDiv
-      divClass='list-view filter-projects grid grid-cols-12 w-full h-full overflow-hidden'
+      divClass='list-view filter-projects grid grid-cols-12 w-full h-[500px] overflow-hidden'
       top={true}
      >
       {/* Render left side images only on desktop */}
       {activeBreakpoint === 'desktop' && (
        <div
-        className='col-span-4 aspect-square relative overflow-hidden'
+        className='col-span-4 aspect-square relative mt-8 overflow-hidden'
         ref={projectsImgsRef}
        >
         {projectItems &&
@@ -145,15 +145,17 @@ export default function ProjectsMenu({
          })}
        </div>
       )}
+      {/* White space */}
       <div
        className={`col-span-${
         activeBreakpoint === 'mobile' ? 3 : 2
        } row-span-6`}
       ></div>
+      {/* Render right side links */}
       <div
        className={`col-span-${
         activeBreakpoint === 'mobile' ? 9 : 6
-       } row-span-6`}
+       } row-span-6 overflow-y-auto`}
        ref={projectsLinksRef}
       >
        {projectItems &&
