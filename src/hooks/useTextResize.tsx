@@ -21,20 +21,18 @@ export const useTextResize = (textElement: TextElement): void => {
    }
   };
 
-  const handleResize = (): void => {
-   const rtime = new Date();
-
-   if (!resizeTimeoutRef.current) {
-    resizeTimeoutRef.current = window.setTimeout(() => {
-     if (new Date().getTime() - rtime.getTime() < 100) {
-      setTimeout(handleResize, 100);
-     } else {
-      resizeTimeoutRef.current = null;
-      resize();
-     }
-    }, 100);
+  // Debounce the resize event
+  const handleResize = () => {
+   if (resizeTimeoutRef.current) {
+    clearTimeout(resizeTimeoutRef.current);
    }
+
+   resizeTimeoutRef.current = window.setTimeout(() => {
+    resize();
+    resizeTimeoutRef.current = null;
+   }, 100);
   };
+
   // Execute once on mount
   resize();
 
