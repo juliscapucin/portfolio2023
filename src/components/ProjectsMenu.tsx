@@ -106,13 +106,14 @@ export default function ProjectsMenu({
   <CursorFollowerContextProvider>
    {/* Custom Cursor */}
    {activeBreakpoint === 'desktop' && <CustomCursor />}
-   <section className={`min-h-screen`}>
+   <section className='min-h-screen'>
     {variant !== 'thumbs' && (
      <ProjectsFilter
       {...{
        filterProjects,
        editVariant,
        variant,
+       activeBreakpoint,
       }}
      />
     )}

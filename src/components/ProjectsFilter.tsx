@@ -1,12 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 const filterOptions = ['all', 'recent', 'playground', 'archive'];
-
-interface ProjectsFilterProps {
- filterProjects: (filter: any) => void;
- editVariant: () => void;
- variant?: string;
-}
 
 const ActiveButton = ({ label }: { label: string }) => {
  return (
@@ -17,7 +11,7 @@ const ActiveButton = ({ label }: { label: string }) => {
  );
 };
 
-type FilterButton = {
+type FilterButtonProps = {
  filterProjects: (filter: any) => void;
  handleActiveButton: (label: string) => void;
  active: boolean;
@@ -29,9 +23,9 @@ const FilterButton = ({
  handleActiveButton,
  active,
  label,
-}: FilterButton) => {
+}: FilterButtonProps) => {
  return active ? (
-  <ActiveButton label={label.toUpperCase()} />
+  <ActiveButton label={label} />
  ) : (
   <button
    className='hover:text-colorFaded duration-200'
@@ -40,15 +34,23 @@ const FilterButton = ({
     handleActiveButton(label);
    }}
   >
-   {label.toUpperCase()}
+   {label}
   </button>
  );
+};
+
+type ProjectsFilterProps = {
+ filterProjects: (filter: any) => void;
+ editVariant: () => void;
+ variant?: string;
+ activeBreakpoint: string | undefined;
 };
 
 export default function ProjectsFilter({
  filterProjects,
  editVariant,
  variant,
+ activeBreakpoint,
 }: ProjectsFilterProps) {
  const filterButtonsRef = useRef(null);
  const [activeButton, setActiveButton] = useState('all');
@@ -57,12 +59,8 @@ export default function ProjectsFilter({
   setActiveButton(label);
  };
 
- useEffect(() => {
-  console.log(activeButton);
- }, [activeButton]);
-
  return (
-  <div className='flex justify-between items-end mt-16 mr-4 mb-4 h-32'>
+  <div className='flex justify-between items-end mt-16 mr-4 mb-16 lg:mb-4 lg:h-32'>
    {/* View buttons */}
    <div className='hidden md:flex gap-8 align-bottom '>
     {variant === 'list' ? (
@@ -93,17 +91,20 @@ export default function ProjectsFilter({
    </div>
 
    {/* Filter buttons */}
-   <div ref={filterButtonsRef} className='flex gap-8 align-bottom '>
-    {filterOptions.map((label) => {
+   <div
+    ref={filterButtonsRef}
+    className='flex flex-col lg:flex-row gap-2 lg:gap-8 items-start lg:items-center align-bottom '
+   >
+    {filterOptions.map((label, index) => {
      return (
       <>
+       {index !== 0 && activeBreakpoint === 'desktop' && <span>/</span>}
        <FilterButton
         label={label}
         filterProjects={filterProjects}
         handleActiveButton={handleActiveButton}
         active={activeButton === label ? true : false}
        />
-       <span>/</span>
       </>
      );
     })}

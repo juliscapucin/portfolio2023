@@ -44,7 +44,7 @@ export default function SectionTitle({ title }: SectionTitleProps) {
 
  return (
   <GridDiv top={true}>
-   <div className='h-full w-full flex justify-start items-center overflow-hidden'>
+   <div className='h-full w-full flex justify-start items-center mt-16 lg:mt-8 overflow-hidden'>
     <h2
      ref={textRef}
      className='text-displaySmall md:text-displayMedium lg:text-displayLarge ml-4 opacity-0'
