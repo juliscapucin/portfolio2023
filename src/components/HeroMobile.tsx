@@ -30,7 +30,7 @@ export const HeroMobile = forwardRef<HTMLSpanElement, {}>((props, ref) => {
     divClass='col-span-6 row-span-3 overflow-hidden flex items-center'
     top={true}
    >
-    <span ref={ref} className='tracking-tighter'>
+    <span ref={ref} className='mobile tracking-tighter'>
      23
     </span>
    </GridDiv>

@@ -1,12 +1,15 @@
 import { useEffect, useRef } from 'react';
 
-export const useTextResize = (textElement: HTMLElement | null): void => {
+type TextElement = HTMLElement | null;
+
+export const useTextResize = (textElement: TextElement): void => {
  const resizeTimeoutRef = useRef<number | null>(null);
 
  useEffect(() => {
+  console.log('useTextResize');
   if (!textElement) return;
 
-  const resize = (): void => {
+  const resize = () => {
    textElement.style.fontSize = '40rem';
 
    while (textElement.offsetWidth > textElement.parentElement!.offsetWidth) {
@@ -22,7 +25,6 @@ export const useTextResize = (textElement: HTMLElement | null): void => {
    const rtime = new Date();
 
    if (!resizeTimeoutRef.current) {
-    console.log('resizeTimeoutRef.current');
     resizeTimeoutRef.current = window.setTimeout(() => {
      if (new Date().getTime() - rtime.getTime() < 100) {
       setTimeout(handleResize, 100);

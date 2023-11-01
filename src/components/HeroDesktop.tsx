@@ -44,7 +44,7 @@ export const HeroDesktop = forwardRef<HTMLSpanElement, {}>((props, ref) => {
     divClass='col-span-4 row-span-3 overflow-hidden flex items-center'
     top={true}
    >
-    <span ref={ref} className='tracking-tighter'>
+    <span ref={ref} className='desktop tracking-tighter'>
      23
     </span>
    </GridDiv>

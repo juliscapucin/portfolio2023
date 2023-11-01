@@ -31,6 +31,8 @@ export default function HomePage({ allProjects }: { allProjects: Project[] }) {
  const [servicesData, setServicesData] = useState<ServicesData | null>(null);
 
  const numberRef = useRef(null);
+ const numberDesktopRef = useRef(null);
+ const numberMobileRef = useRef(null);
  useTextResize(numberRef.current);
 
  //  Fetch data from api Route Handler (api/services)
