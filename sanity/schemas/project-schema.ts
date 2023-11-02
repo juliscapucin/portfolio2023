@@ -48,10 +48,7 @@ const projectSchema = {
          name: 'images',
          title: 'Images',
          type: 'array',
-         of: [{ type: 'image' }],
-         options: {
-            hotspot: true,
-         },
+         of: [{ type: 'string' }],
       },
       {
          name: 'category',

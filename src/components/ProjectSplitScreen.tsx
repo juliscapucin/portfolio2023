@@ -9,6 +9,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import { breakpoints } from '@/constants';
 import { useMediaQuery } from '@/hooks';
 import { Project } from '@/types';
+import ProjectImage from './ProjectImage';
 
 export default function ProjectSplitScreen({ project }: { project: Project }) {
  const leftColumnRef = useRef<HTMLDivElement | null>(null);
@@ -48,41 +49,11 @@ export default function ProjectSplitScreen({ project }: { project: Project }) {
       return <p key={text.children._key}>{text.children.text}</p>;
      })}
     </div>
+
     {/* Left Column Images */}
-    <div className='w-full aspect-square overflow-hidden relative'>
-     {/* <CldImage
-      src={`portfolio2023/work/${project.slug}/02`}
-      alt='photo'
-      className='absolute w-full object-cover z-50'
-      sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-      fill
-     /> */}
-     <CldImage
-      src={`portfolio2023/work/bg-ipad-landscape`}
-      alt='photo'
-      className='w-full object-cover'
-      sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-      fill
-     />
-    </div>
-    <div className='w-full aspect-square overflow-hidden relative'>
-     <CldImage
-      src={`portfolio2023/work/bg-ipad-landscape`}
-      alt='photo'
-      className='w-full object-cover'
-      sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-      fill
-     />
-    </div>
-    <div className='w-full aspect-square overflow-hidden relative'>
-     <CldImage
-      src={`portfolio2023/work/bg-ipad-landscape`}
-      alt='photo'
-      className='w-full object-cover'
-      sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-      fill
-     />
-    </div>
+    {project.images?.map((image) => {
+     return <ProjectImage projectSlug={project.slug} image={image} />;
+    })}
    </div>
 
    {/* Right */}
@@ -91,10 +62,10 @@ export default function ProjectSplitScreen({ project }: { project: Project }) {
     className='hidden lg:block col-span-12 lg:col-span-5 h-[50vw] lg:h-[500px] relative'
    >
     <CldImage
-     src={`portfolio2023/work/bg-ipad-landscape`}
+     src={`portfolio2023/work/blank-ipad`}
      alt='photo'
      className='w-full object-cover'
-     sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+     sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw'
      fill
     />
    </div>

@@ -43,7 +43,8 @@ export default function ProjectsMenuThumbs({
    <ProjectsMenu
     allProjects={allProjects}
     activeBreakpoint={breakpoint}
-    startVariant={'thumbs'}
+    startVariant='thumbs'
+    startCategory='all'
    />
   </div>
  );

@@ -89,6 +89,6 @@ export default function ProjectPage({
    </section>
   </ShallowPage>
  ) : (
-  <span>Loading...</span>
+  <h1>Loading...</h1>
  );
 }
