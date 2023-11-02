@@ -2,7 +2,8 @@
 
 import { usePathname } from 'next/navigation';
 
-import { GridDiv, MenuLink } from '@/components';
+import { MenuLink } from '@/components';
+import { GridDiv } from '@/components/ui';
 import { useModalContext } from '@/context';
 
 type NavLink = { title: string; slug: string; _key: string };

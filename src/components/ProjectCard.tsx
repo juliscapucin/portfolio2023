@@ -3,11 +3,11 @@
 import { useRouter } from 'next/navigation';
 import { CldImage } from 'next-cloudinary';
 
-import { usePageContext } from '@/context';
+import { useCursorFollowerContext } from '@/context';
 
-import { GridDiv, AnimationGridDiv, ProjectLabel } from '@/components';
-import { animateToFullScreen, animateSplitText } from '@/animations';
-import { useRef } from 'react';
+import { AnimationGridDiv, CustomCursor, ProjectLabel } from '@/components';
+import { GridDiv } from '@/components/ui';
+import { animateToFullScreen } from '@/animations';
 
 interface ProjectCardProps {
  index?: number;
@@ -19,24 +19,37 @@ interface ProjectCardProps {
  variant?: string;
  imageSize?: number;
  imageStart?: number;
+ activeBreakpoint?: string;
 }
 
 export default function ProjectCard(props: ProjectCardProps) {
  const router = useRouter();
- const { updateIsHovering } = usePageContext();
- const { index, title, scope, id, slug, alt, variant, imageSize, imageStart } =
-  props;
+ const { updateIsHovering } = useCursorFollowerContext();
+ const {
+  index,
+  title,
+  scope,
+  id,
+  slug,
+  alt,
+  variant,
+  imageSize,
+  imageStart,
+  activeBreakpoint,
+ } = props;
 
  return variant === 'list' ? (
   ////----- LIST VIEW -----////
   <GridDiv bottom={true} divClass={`relative h-32`}>
+   {/* Custom Cursor */}
+   {activeBreakpoint === 'desktop' && <CustomCursor />}
    {/* Div for animation */}
    <AnimationGridDiv
-    divClass={`project-card-${id} overflow-hidden bg-primary pointer-events-none absolute top-[-5px] left-0 bottom-0 w-full z-10 translate-x-full`}
+    divClass={`project-card-${id} overflow-hidden bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-full z-10 translate-x-full`}
     top={true}
     bottom={true}
    >
-    <div className='m-auto mt-0 pt-44 md:pt-32'>
+    <div className='m-auto mt-0 pt-48'>
      <span className='text-displaySmall md:text-displayMedium lg:text-displayLarge font-normal whitespace-nowrap'>
       {title}
      </span>
@@ -64,14 +77,17 @@ export default function ProjectCard(props: ProjectCardProps) {
   >
    {/* Div for animation */}
    <div
-    className={`project-card-${id} overflow-hidden bg-primary pointer-events-none absolute top-[-5px] left-0 bottom-0 w-full z-10 translate-x-full`}
+    className={`project-card-${id} overflow-hidden bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-full z-10 translate-x-full`}
    >
-    <div className='m-auto mt-0 pt-44 md:pt-32 overflow-hidden'>
-     <span className='text-displaySmall md:text-displayMedium lg:text-displayLarge col-span-5 whitespace-nowrap font-normal'>
+    <div className='m-auto mt-0 pt-48 overflow-hidden'>
+     <h1 className='text-displaySmall md:text-displayMedium lg:text-displayLarge col-span-5 whitespace-nowrap font-normal'>
       {title}
-     </span>
+     </h1>
     </div>
    </div>
+
+   {/* Custom Cursor */}
+   {activeBreakpoint === 'desktop' && <CustomCursor />}
 
    <button
     className={`h-full w-full group flex justify-center items-center absolute`}
@@ -95,7 +111,7 @@ export default function ProjectCard(props: ProjectCardProps) {
        src={`portfolio2023/work/${slug}/01`}
        key={id}
        alt={alt}
-       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+       sizes='100vw (max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
        fill
        priority
       />
@@ -104,7 +120,7 @@ export default function ProjectCard(props: ProjectCardProps) {
        src={`portfolio2023/work/${slug}/01`}
        key={id}
        alt={alt}
-       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+       sizes='100vw (max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
        fill
       />
      )}

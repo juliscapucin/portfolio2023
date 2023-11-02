@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
-import { usePageContext } from '@/context';
+import { useCursorFollowerContext } from '@/context';
 
 export default function CustomCursor() {
- const { isHovering } = usePageContext();
+ const { isHovering } = useCursorFollowerContext();
 
  const refCursor = useRef(null);
  const refFollower = useRef(null);
@@ -35,7 +35,7 @@ export default function CustomCursor() {
  return (
   <div
    className={`${
-    isHovering ? '' : 'hidden'
+    !isHovering && 'hidden'
    } fixed top-0 left-0 w-32 h-32 bg-secondary rounded-full flex items-center justify-center z-50 pointer-events-none`}
    ref={refCursor}
   >

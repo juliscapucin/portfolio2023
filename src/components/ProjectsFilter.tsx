@@ -1,36 +1,73 @@
-import { MouseEvent, useRef } from 'react';
+import { useRef, useState } from 'react';
+import { start } from 'repl';
 
-interface ProjectsFilterProps {
+const filterOptions = ['all', 'recent', 'playground', 'archive'];
+
+const ActiveButton = ({ label }: { label: string }) => {
+ return (
+  <div className='relative'>
+   <span>{label}</span>
+   <div className='w-full h-[1px] bg-secondary bottom-0'></div>
+  </div>
+ );
+};
+
+type FilterButtonProps = {
+ filterProjects: (filter: any) => void;
+ handleActiveButton: (label: string) => void;
+ active: boolean;
+ label: string;
+};
+
+const FilterButton = ({
+ filterProjects,
+ handleActiveButton,
+ active,
+ label,
+}: FilterButtonProps) => {
+ return active ? (
+  <ActiveButton label={label} />
+ ) : (
+  <button
+   className='hover:text-colorFaded duration-200'
+   onClick={(e) => {
+    filterProjects(label);
+    handleActiveButton(label);
+   }}
+  >
+   {label}
+  </button>
+ );
+};
+
+type ProjectsFilterProps = {
  filterProjects: (filter: any) => void;
  editVariant: () => void;
  variant?: string;
-}
+ activeBreakpoint: string | undefined;
+ startCategory: 'all' | 'recent' | 'playground' | 'archive';
+};
 
 export default function ProjectsFilter({
  filterProjects,
  editVariant,
  variant,
+ activeBreakpoint,
+ startCategory,
 }: ProjectsFilterProps) {
  const filterButtonsRef = useRef(null);
+ const [activeButton, setActiveButton] = useState(startCategory);
 
- const handleActiveButton = (e: MouseEvent) => {
-  const filterDiv = filterButtonsRef.current as HTMLElement | null;
-  if (!filterDiv) return;
-
-  const button = e.target as HTMLButtonElement;
-  const buttons = filterDiv.querySelectorAll('button');
-  buttons.forEach((btn) => {
-   btn.classList.remove('text-colorFaded');
-  });
-  button.classList.add('text-colorFaded');
+ const handleActiveButton = (label: string) => {
+  setActiveButton(label as 'all' | 'recent' | 'playground' | 'archive');
  };
 
  return (
-  <div className='flex justify-between items-end mt-16 mr-4 mb-4 h-32'>
+  <div className='flex justify-between items-end mt-16 mr-4 mb-16 lg:mb-4 lg:h-32'>
    {/* View buttons */}
    <div className='hidden md:flex gap-8 align-bottom '>
     {variant === 'list' ? (
-     <span className='text-colorFaded'>List View</span>
+     <ActiveButton label='List View' />
     ) : (
      <button
       className='hover:text-colorFaded transition-colors duration-200'
@@ -43,7 +80,7 @@ export default function ProjectsFilter({
     )}
     <span>/</span>
     {variant === 'image' ? (
-     <span className='text-colorFaded'>Image View</span>
+     <ActiveButton label='Image View' />
     ) : (
      <button
       className='hover:text-colorFaded transition-colors duration-200'
@@ -57,46 +94,23 @@ export default function ProjectsFilter({
    </div>
 
    {/* Filter buttons */}
-   <div ref={filterButtonsRef} className='flex gap-8 align-bottom '>
-    <button
-     className='text-colorFaded hover:text-colorFaded duration-200'
-     onClick={(e) => {
-      filterProjects('all');
-      handleActiveButton(e);
-     }}
-    >
-     All
-    </button>
-    <span>/</span>
-    <button
-     className='hover:text-colorFaded duration-200'
-     onClick={(e) => {
-      filterProjects('latest');
-      handleActiveButton(e);
-     }}
-    >
-     Recent
-    </button>
-    <span>/</span>
-    <button
-     className='hover:text-colorFaded duration-200'
-     onClick={(e) => {
-      filterProjects('playground');
-      handleActiveButton(e);
-     }}
-    >
-     Playground
-    </button>
-    <span>/</span>
-    <button
-     className='hover:text-colorFaded duration-200'
-     onClick={(e) => {
-      filterProjects('archive');
-      handleActiveButton(e);
-     }}
-    >
-     Archive
-    </button>
+   <div
+    ref={filterButtonsRef}
+    className='flex flex-col lg:flex-row gap-2 lg:gap-8 items-start lg:items-center align-bottom '
+   >
+    {filterOptions.map((label, index) => {
+     return (
+      <div key={label} className='flex gap-8'>
+       {index !== 0 && activeBreakpoint === 'desktop' && <span>/</span>}
+       <FilterButton
+        label={label}
+        filterProjects={filterProjects}
+        handleActiveButton={handleActiveButton}
+        active={activeButton === label ? true : false}
+       />
+      </div>
+     );
+    })}
    </div>
   </div>
  );

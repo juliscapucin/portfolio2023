@@ -1,15 +1,14 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 
 import { breakpoints } from '@/constants';
 import { usePageContext } from '@/context';
-import { useMediaQuery } from '@/hooks';
+import { useMediaQuery, useTextResize } from '@/hooks';
 
 import {
  AboutText,
- GridDiv,
  ProjectsMenu,
  HeroDesktop,
  HeroMobile,
@@ -17,6 +16,7 @@ import {
  Services,
  SectionTitle,
 } from '@/components';
+import { GridDiv } from '@/components/ui';
 import { animateToRight } from '@/animations';
 import { Project } from '@/types';
 
@@ -29,6 +29,11 @@ export default function HomePage({ allProjects }: { allProjects: Project[] }) {
  // Set breakpoint for mobile/desktop (values are in constants.ts)
  const breakpoint = useMediaQuery(breakpoints.desktop);
  const [servicesData, setServicesData] = useState<ServicesData | null>(null);
+
+ const numberRef = useRef(null);
+ const numberDesktopRef = useRef(null);
+ const numberMobileRef = useRef(null);
+ useTextResize(numberRef.current);
 
  //  Fetch data from api Route Handler (api/services)
  useEffect(() => {
@@ -54,8 +59,8 @@ export default function HomePage({ allProjects }: { allProjects: Project[] }) {
  return (
   <div className='page home-page main-page overflow-hidden'>
    <GridDiv divClass='overflow-hidden min-h-screen' bottom={true}>
-    {breakpoint === 'mobile' && <HeroMobile />}
-    {breakpoint === 'desktop' && <HeroDesktop />}
+    {breakpoint === 'mobile' && <HeroMobile ref={numberRef} />}
+    {breakpoint === 'desktop' && <HeroDesktop ref={numberRef} />}
    </GridDiv>
 
    <AboutText />
@@ -63,7 +68,12 @@ export default function HomePage({ allProjects }: { allProjects: Project[] }) {
    {/* {servicesData && <Services services={servicesData.services} />} */}
 
    <SectionTitle title='Work' />
-   <ProjectsMenu activeBreakpoint={breakpoint} allProjects={allProjects} />
+   <ProjectsMenu
+    startVariant={breakpoint === 'desktop' ? 'list' : 'image'}
+    activeBreakpoint={breakpoint}
+    allProjects={allProjects}
+    startCategory='recent'
+   />
 
    <Footer />
   </div>

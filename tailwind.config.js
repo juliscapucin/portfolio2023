@@ -9,6 +9,9 @@ module.exports = {
          maxWidth: {
             desktop: '2000px',
          },
+         minHeight: {
+            '1/2': '50vh',
+         },
          gridTemplateColumns: { fluid: 'repeat(auto-fit, minmax(15rem, 1fr))' },
          fontFamily: {
             headline: ['var(--font-primary) sans-serif'],
@@ -26,7 +29,7 @@ module.exports = {
             20: 'repeat(20, 1fr)',
          },
          fontSize: {
-            huge: '40rem',
+            huge: '100%',
             displayLarge: '18rem',
             displayMedium: '10.3rem',
             displaySmall: '5.7rem',

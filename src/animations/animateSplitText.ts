@@ -8,10 +8,10 @@ export const animateSplitText = (textElement: HTMLElement) => {
 
    const tl = gsap.timeline();
 
-   tl.from(split.chars, {
+   return tl.set(textElement, { opacity: 1 }).from(split.chars, {
       duration: 0.3,
       delay: 0.5,
-      yPercent: 50,
+      yPercent: 100,
       scaleY: 1.2,
       stagger: 0.05,
       ease: 'expo.out',

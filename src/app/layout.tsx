@@ -47,8 +47,6 @@ export default function Layout(props: {
       <Header />
 
       <main className={`mt-16 mx-8 overflow-x-hidden`}>
-       {/* Custom Cursor */}
-       <CustomCursor />
        {/* Transition Overlay */}
        <div className='transition-fullscreen hidden h-screen top-16 left-8 right-8 fixed z-20 overflow-hidden pointer-events-none'></div>
        {props.children}

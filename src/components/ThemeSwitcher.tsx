@@ -21,29 +21,6 @@ export default function ThemeSwitcher() {
  ) => {
   setTheme(color);
   e.currentTarget.classList.add('active');
-  handleThemeHover(e, color);
- };
-
- const handleThemeHover = (e: MouseEvent<HTMLButtonElement>, color: string) => {
-  const container = e.currentTarget.closest('.theme-switcher');
-  const arrows = container?.querySelectorAll('.arrow');
-  const target = e.currentTarget;
-
-  arrows?.forEach((arrow) => {
-   if (
-    !arrow.classList.contains('opacity-0') &&
-    !target.classList.contains('active')
-   )
-    arrow.classList.add('opacity-0');
-   if (
-    arrow.classList.contains('opacity-100') &&
-    !target.classList.contains('active')
-   )
-    arrow.classList.remove('opacity-100');
-  });
-
-  target.previousElementSibling?.classList.remove('opacity-0');
-  target.previousElementSibling?.classList.add('opacity-100');
  };
 
  //  Apply theme on theme change
@@ -52,8 +29,8 @@ export default function ThemeSwitcher() {
  }, [theme]);
 
  return (
-  <div className='theme-switcher mt-2 ml-2 bg-primary'>
-   <span>Theme</span>
+  <div className='theme-switcher mt-4 lg:mt-8 flex flex-col items-center'>
+   <span className='mb-2 lg:mb-4'>Theme</span>
    <div className='flex flex-col gap-2'>
     {themes.map((item) => {
      return (
@@ -69,9 +46,8 @@ export default function ThemeSwitcher() {
         type='button'
         className={`${item.color} ${
          item.theme === theme && 'active'
-        } border border-colorFaded w-10 h-10`}
+        } border border-colorFaded w-8 lg:w-10 h-8 lg:h-10`}
         onClick={(e) => handleThemeChange(e, item.theme)}
-        onMouseEnter={(e) => handleThemeHover(e, item.theme)}
        ></button>
       </div>
      );

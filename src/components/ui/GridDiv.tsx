@@ -1,13 +1,13 @@
 'use client';
 
-interface GridDivProps {
+type GridDivProps = {
  top?: boolean;
  right?: boolean;
  bottom?: boolean;
  left?: boolean;
  children?: React.ReactNode;
  divClass?: string;
-}
+};
 
 export default function GridDiv({
  top,

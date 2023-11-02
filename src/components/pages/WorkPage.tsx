@@ -56,7 +56,12 @@ export default function WorkPage({ data, allProjects }: Props) {
    <p className='text-titleLarge md:text-headlineSmall mt-4 lg:mt-0 lg:w-4/6'>
     {data.description}
    </p>
-   <ProjectsMenu activeBreakpoint={breakpoint} allProjects={allProjects} />
+   <ProjectsMenu
+    startVariant='image'
+    activeBreakpoint={breakpoint}
+    allProjects={allProjects}
+    startCategory='all'
+   />
    <Footer />
   </div>
  );

@@ -19,7 +19,7 @@ export default function AboutText() {
   const tl = gsap.timeline({
    scrollTrigger: {
     trigger: textRef.current,
-    start: 'top 90%',
+    start: 'top 80%',
     toggleActions: 'play none none reverse',
    },
   });
@@ -33,7 +33,10 @@ export default function AboutText() {
  }, []);
 
  return (
-  <p ref={textRef} className='my-32 mx-4 text-titleLarge md:text-headlineSmall'>
+  <p
+   ref={textRef}
+   className='mt-96 mb-96 mx-4 text-titleLarge md:text-headlineSmall'
+  >
    I&apos;m a Front-End Developer with a broad background in Graphic and Digital
    Design. Since 2000 I&apos;ve been designing meaningful, memorable, and
    communicative work for companies and professionals worldwide. Commitment to

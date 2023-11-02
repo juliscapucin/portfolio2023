@@ -2,10 +2,8 @@ import { useRef } from 'react';
 
 import { animateMobileMenu } from '@/animations';
 
-import { GridDiv } from '.';
-
-import ButtonBurger from '@buttons/ButtonBurger';
-import ButtonClose from '@buttons/ButtonClose';
+import { GridDiv } from '@/components/ui';
+import { ButtonBurger, ButtonClose } from '@/components/buttons';
 
 type NavLink = { title: string; slug: string; _key: string };
 

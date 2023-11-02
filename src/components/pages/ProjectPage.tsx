@@ -9,8 +9,9 @@ import {
  ProjectInfo,
  ProjectSplitScreen,
  ProjectsMenuThumbs,
- ShallowPage,
 } from '@/components';
+
+import { ShallowPage } from '@/components/pages';
 
 import { Project } from '@/types';
 
@@ -47,7 +48,7 @@ export default function ProjectPage({
    {/* Project header */}
    <section className='relative w-full mt-32'>
     {/* Title */}
-    <h1 className='text-displaySmall md:text-displayMedium lg:text-displayLarge whitespace-nowrap'>
+    <h1 className='text-displaySmall md:text-displayMedium lg:text-displayLarge mb-4'>
      {project.title}
     </h1>
 
@@ -62,7 +63,7 @@ export default function ProjectPage({
        priority
       />
      </div>
-     <div className='md:col-span-5 md:pl-16'>
+     <div className='md:col-span-5 md:pl-16 mt-8'>
       {/* Description */}
       <div className='mb-16'>
        <p className='text-titleLarge md:text-headlineSmall mt-16 md:mt-0'>

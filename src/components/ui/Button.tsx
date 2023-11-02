@@ -21,17 +21,18 @@ export default function Button({ label, action, activeState }: ButtonProps) {
  }, [linkRef.current, pathname]);
 
  return (
-  <div className='overflow-hidden max-h-8'>
+  <div className='relative overflow-hidden max-h-8'>
    <button
     ref={linkRef}
-    className={`flex flex-col justify-center items-center translate-y-full hover:-translate-y-1/2 transition ${
-     activeState ? 'opacity-50 pointer-events-none' : ''
-    }`}
+    className={`flex flex-col justify-center items-center translate-y-full hover:-translate-y-1/2 transition`}
     onClick={action}
    >
     <span className='text-titleMedium uppercase text-secondary'>{label}</span>
     <span className='text-titleMedium uppercase text-secondary'>{label}</span>
    </button>
+   {activeState && (
+    <div className='absolute bottom-0 w-full h-[1px] bg-secondary'></div>
+   )}
   </div>
  );
 }

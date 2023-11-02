@@ -1,9 +1,9 @@
-import { useEffect, useRef } from 'react';
+import { forwardRef, useRef } from 'react';
 
-import { GridDiv, Status, ThemeSwitcher } from '@/components';
-import { animatePanorama } from '@/animations';
+import { Status, ThemeSwitcher } from '@/components';
+import { GridDiv } from '@/components/ui';
 
-export default function HeroDesktop() {
+export const HeroDesktop = forwardRef<HTMLSpanElement, {}>((props, ref) => {
  const heroRef = useRef(null);
 
  return (
@@ -44,7 +44,9 @@ export default function HeroDesktop() {
     divClass='col-span-4 row-span-3 overflow-hidden flex items-center'
     top={true}
    >
-    <span className='text-huge tracking-tighter'>23</span>
+    <span ref={ref} className='desktop tracking-tighter'>
+     23
+    </span>
    </GridDiv>
 
    {/* Theme */}
@@ -65,4 +67,4 @@ export default function HeroDesktop() {
    <GridDiv divClass='col-span-7 row-span-3' top={true}></GridDiv>
   </div>
  );
-}
+});

@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { GridDiv } from '.';
+import { GridDiv } from '@/components/ui';
 import { ButtonPlus, ButtonMinus } from '@/components/buttons';
 
 interface ExperienceItemProps {

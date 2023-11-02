@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { GridDiv, SocialLinks } from '.';
-
-import Availability from './Availability';
+import { Availability, Copyright, SocialLinks } from '@/components';
+import { GridDiv } from '@/components/ui';
 
 type NavbarData = {
  items: { title: string; slug: string; _key: string }[];
@@ -27,11 +26,8 @@ export default function Footer() {
    top={true}
    divClass={`px-8 py-32 lg:grid grid-cols-12 max-w-desktop`}
   >
-   {/* White Space */}
-   <div className='col-span-2 flex flex-col mb-16 lg:mb-0'>
-    <span>Juli Scapucin</span>
-    <span>©2023</span>
-   </div>
+   {/* Copyright */}
+   <Copyright />
    <nav className='lg:grid grid-cols-7 col-span-7'>
     {/* Nav Column */}
     <div className='col-span-3 lg:grid grid-cols-3'>
