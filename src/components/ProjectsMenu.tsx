@@ -104,8 +104,6 @@ export default function ProjectsMenu({
 
  return (
   <CursorFollowerContextProvider>
-   {/* Custom Cursor */}
-   {activeBreakpoint === 'desktop' && <CustomCursor />}
    <section className='min-h-screen'>
     {variant !== 'thumbs' && (
      <ProjectsFilter
@@ -170,6 +168,7 @@ export default function ProjectsMenu({
             id={link._id}
             alt={link.coverImage.alt}
             variant={variant}
+            activeBreakpoint={activeBreakpoint}
            />
           </div>
          );
@@ -199,6 +198,7 @@ export default function ProjectsMenu({
              variant={variant}
              imageSize={project.imageSize}
              imageStart={project.imageStart}
+             activeBreakpoint={activeBreakpoint}
             />
            )}
          </div>

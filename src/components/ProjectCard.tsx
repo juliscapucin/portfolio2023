@@ -5,7 +5,7 @@ import { CldImage } from 'next-cloudinary';
 
 import { useCursorFollowerContext } from '@/context';
 
-import { AnimationGridDiv, ProjectLabel } from '@/components';
+import { AnimationGridDiv, CustomCursor, ProjectLabel } from '@/components';
 import { GridDiv } from '@/components/ui';
 import { animateToFullScreen } from '@/animations';
 
@@ -19,17 +19,32 @@ interface ProjectCardProps {
  variant?: string;
  imageSize?: number;
  imageStart?: number;
+ activeBreakpoint?: string;
 }
 
 export default function ProjectCard(props: ProjectCardProps) {
  const router = useRouter();
  const { updateIsHovering } = useCursorFollowerContext();
- const { index, title, scope, id, slug, alt, variant, imageSize, imageStart } =
-  props;
+ const {
+  index,
+  title,
+  scope,
+  id,
+  slug,
+  alt,
+  variant,
+  imageSize,
+  imageStart,
+  activeBreakpoint,
+ } = props;
+
+ console.log(activeBreakpoint);
 
  return variant === 'list' ? (
   ////----- LIST VIEW -----////
   <GridDiv bottom={true} divClass={`relative h-32`}>
+   {/* Custom Cursor */}
+   {activeBreakpoint === 'desktop' && <CustomCursor />}
    {/* Div for animation */}
    <AnimationGridDiv
     divClass={`project-card-${id} overflow-hidden bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-full z-10 translate-x-full`}
@@ -72,6 +87,9 @@ export default function ProjectCard(props: ProjectCardProps) {
      </h1>
     </div>
    </div>
+
+   {/* Custom Cursor */}
+   {activeBreakpoint === 'desktop' && <CustomCursor />}
 
    <button
     className={`h-full w-full group flex justify-center items-center absolute`}
