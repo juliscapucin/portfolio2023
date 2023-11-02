@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { start } from 'repl';
 
 const filterOptions = ['all', 'recent', 'playground', 'archive'];
 
@@ -44,6 +45,7 @@ type ProjectsFilterProps = {
  editVariant: () => void;
  variant?: string;
  activeBreakpoint: string | undefined;
+ startCategory: 'all' | 'recent' | 'playground' | 'archive';
 };
 
 export default function ProjectsFilter({
@@ -51,12 +53,13 @@ export default function ProjectsFilter({
  editVariant,
  variant,
  activeBreakpoint,
+ startCategory,
 }: ProjectsFilterProps) {
  const filterButtonsRef = useRef(null);
- const [activeButton, setActiveButton] = useState('all');
+ const [activeButton, setActiveButton] = useState(startCategory);
 
  const handleActiveButton = (label: string) => {
-  setActiveButton(label);
+  setActiveButton(label as 'all' | 'recent' | 'playground' | 'archive');
  };
 
  return (

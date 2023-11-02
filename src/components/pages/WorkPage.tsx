@@ -60,6 +60,7 @@ export default function WorkPage({ data, allProjects }: Props) {
     startVariant='image'
     activeBreakpoint={breakpoint}
     allProjects={allProjects}
+    startCategory='all'
    />
    <Footer />
   </div>

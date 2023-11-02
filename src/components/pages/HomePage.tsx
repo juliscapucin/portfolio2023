@@ -72,6 +72,7 @@ export default function HomePage({ allProjects }: { allProjects: Project[] }) {
     startVariant={breakpoint === 'desktop' ? 'list' : 'image'}
     activeBreakpoint={breakpoint}
     allProjects={allProjects}
+    startCategory='recent'
    />
 
    <Footer />

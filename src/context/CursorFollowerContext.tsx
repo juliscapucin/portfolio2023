@@ -20,7 +20,6 @@ export const CursorFollowerContextProvider = ({
  const [isHovering, setIsHovering] = useState(false);
 
  const updateIsHovering = (state: boolean) => {
-  console.log('updateIsHovering', state);
   setIsHovering(state);
  };
 

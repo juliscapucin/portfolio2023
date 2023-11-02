@@ -38,8 +38,6 @@ export default function ProjectCard(props: ProjectCardProps) {
   activeBreakpoint,
  } = props;
 
- console.log(activeBreakpoint);
-
  return variant === 'list' ? (
   ////----- LIST VIEW -----////
   <GridDiv bottom={true} divClass={`relative h-32`}>

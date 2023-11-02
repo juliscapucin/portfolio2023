@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { usePathname } from 'next/navigation';
 import { CldImage } from 'next-cloudinary';
 
 import { gsap } from 'gsap';
@@ -10,22 +9,30 @@ import { CursorFollowerContextProvider } from '@/context';
 
 import { animateProjectsMenu } from '@/animations';
 import { GridDiv } from '@/components/ui';
-import { ProjectCard, ProjectsFilter, CustomCursor } from '@/components';
+import { ProjectCard, ProjectsFilter } from '@/components';
 import { Project } from '@/types';
 
 interface ProjectsMenuProps {
  activeBreakpoint: string | undefined;
  allProjects: Project[];
  startVariant: 'list' | 'image' | 'thumbs';
+ startCategory: 'all' | 'recent' | 'playground' | 'archive';
 }
 
 export default function ProjectsMenu({
  activeBreakpoint,
  allProjects,
  startVariant,
+ startCategory,
 }: ProjectsMenuProps) {
- const pathname = usePathname();
- const [projectItems, setProjectItems] = useState(allProjects);
+ // Start component with startCategory projects
+ const [projectItems, setProjectItems] = useState(
+  startCategory === 'all'
+   ? allProjects
+   : allProjects.filter((project: Project) => {
+      return project.category?.includes(startCategory);
+     })
+ );
 
  // View options
  const [variant, setVariant] = useState(startVariant);
@@ -61,7 +68,7 @@ export default function ProjectsMenu({
   });
  }, [projectItems]);
 
- //  Change view
+ //  Change view – fade out + change variant
  const editVariant = () => {
   if (variant === 'list') {
    gsap.to('.list-view', {
@@ -82,6 +89,7 @@ export default function ProjectsMenu({
   }
  };
 
+ //  Change view – fade in
  useEffect(() => {
   if (variant === 'list') {
    gsap.to('.list-view', {
@@ -112,6 +120,7 @@ export default function ProjectsMenu({
        editVariant,
        variant,
        activeBreakpoint,
+       startCategory,
       }}
      />
     )}
@@ -189,16 +198,18 @@ export default function ProjectsMenu({
            project.imageSize &&
            project.imageStart && (
             <ProjectCard
-             index={index}
-             title={project.title}
-             scope={project.info.scope}
-             slug={project.slug}
-             id={project._id}
-             alt={project.coverImage.alt}
-             variant={variant}
-             imageSize={project.imageSize}
-             imageStart={project.imageStart}
-             activeBreakpoint={activeBreakpoint}
+             {...{
+              title: project.title,
+              slug: project.slug,
+              id: project._id,
+              imageSize: project.imageSize,
+              imageStart: project.imageStart,
+              scope: project.info.scope,
+              alt: project.coverImage.alt,
+              index,
+              variant,
+              activeBreakpoint,
+             }}
             />
            )}
          </div>
