@@ -38,15 +38,15 @@ export default function ProjectSplitScreen({ project }: { project: Project }) {
  }, [leftColumnRef, rightColumnRef, breakpoint]);
 
  return (
-  <section className='grid grid-cols-12 w-full gap-1 mb-32'>
+  <section className='lg:grid grid-cols-12 w-full gap-1 mb-32'>
    {/* Left */}
    <div
     ref={leftColumnRef}
     className='lg:col-span-7 relative gap-8 lg:gap-1 overflow-hidden'
    >
     {/* Text content 1 */}
-    <div className='lg:grid grid-cols-7'>
-     <div className='col-start-2 col-span-5 aspect-square flex flex-col justify-center'>
+    <div className='grid grid-cols-7'>
+     <div className='lg:col-start-2 col-span-6 lg:col-span-5 aspect-square flex flex-col justify-center'>
       {project.textContent1?.map((text) => {
        return <p key={text.children._key}>{text.children.text}</p>;
       })}
