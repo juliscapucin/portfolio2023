@@ -16,7 +16,7 @@ interface ProjectCardProps {
  scope: string;
  slug: string;
  alt: string;
- variant?: string;
+ variant: 'list' | 'image' | 'thumbs';
  imageSize?: number;
  imageStart?: number;
  activeBreakpoint?: string;
@@ -67,11 +67,16 @@ export default function ProjectCard(props: ProjectCardProps) {
      );
     }}
    >
-    <ProjectLabel title={title} scope={scope} textSize='text-headlineSmall' />
+    <ProjectLabel
+     title={title}
+     scope={scope}
+     textSize='text-headlineSmall'
+     variant='list'
+    />
    </button>
   </GridDiv>
  ) : (
-  ////----- IMAGE VIEW -----////
+  ////----- IMAGE VIEW + THUMBS VIEW -----////
   <div
    className={`custom-col-start-${imageStart} col-span-5 aspect-square relative overflow-hidden`}
   >
@@ -102,8 +107,11 @@ export default function ProjectCard(props: ProjectCardProps) {
     <ProjectLabel
      title={title}
      scope={scope}
-     divClass={`absolute bottom-4 left-4 z-10`}
-     textSize='text-titleMedium'
+     divClass={`absolute ${
+      variant === 'image' ? 'bottom-4 left-0' : 'bottom-0 left-4'
+     } z-10`}
+     textSize={variant === 'image' ? 'text-titleMedium' : 'text-titleSmall'}
+     variant={variant}
     />
     <div className='relative w-full h-full overflow-hidden'>
      {index === 1 ? (

@@ -31,7 +31,7 @@ const Marquee = ({ text, speed = 100 }: Props) => {
  }, [marqueeRef]);
 
  return (
-  <div className='overflow-hidden w-[200px] relative'>
+  <div className='overflow-hidden flex-1 relative'>
    <div ref={marqueeRef} className='flex flex-nowrap w-fit'>
     <span className='block whitespace-nowrap px-1'>{text}</span>
     <span className='block whitespace-nowrap px-1'>{text}</span>
