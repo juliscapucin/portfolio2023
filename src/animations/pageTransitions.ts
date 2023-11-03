@@ -28,7 +28,9 @@ export const animateToFullScreen = (
    animationStartParent.appendChild(animationStartClone);
 
    const titleAnimation = () => {
-      const titleSpan = animationStartClone.querySelector('span');
+      const titleSpan = animationStartClone.querySelector(
+         '.page-transition-title'
+      );
 
       return gsap.to(titleSpan, {
          yPercent: -200,

@@ -32,14 +32,24 @@ export default function ProjectPage({
  useEffect(() => {
   if (!headerRef.current) return;
   const children = headerRef.current.children;
-  gsap.from(children, {
-   opacity: 0,
-   yPercent: 30,
-   stagger: 0.05,
-   ease: 'expo.out',
-   duration: 0.2,
-   delay: 0.3,
-  });
+
+  if (!children) return;
+
+  gsap.fromTo(
+   children,
+   {
+    opacity: 0,
+    yPercent: 30,
+   },
+   {
+    opacity: 1,
+    yPercent: 0,
+    stagger: 0.05,
+    ease: 'expo.out',
+    duration: 0.2,
+    delay: 0.3,
+   }
+  );
  }, [headerRef]);
 
  return project ? (

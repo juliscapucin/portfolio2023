@@ -96,7 +96,7 @@ export default function ProjectsMenu({
     opacity: 1,
     duration: 0.5,
    });
-  } else {
+  } else if (variant === 'image') {
    gsap.to('.image-view', {
     opacity: 1,
     duration: 0.5,

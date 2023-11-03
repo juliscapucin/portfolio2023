@@ -51,8 +51,14 @@ export default function ProjectSplitScreen({ project }: { project: Project }) {
     </div>
 
     {/* Left Column Images */}
-    {project.images?.map((image) => {
-     return <ProjectImage projectSlug={project.slug} image={image} />;
+    {project.images?.map((image, index) => {
+     return (
+      <ProjectImage
+       key={`${project.slug}-${index}}`}
+       projectSlug={project.slug}
+       image={image}
+      />
+     );
     })}
    </div>
 

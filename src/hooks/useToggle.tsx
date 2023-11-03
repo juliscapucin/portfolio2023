@@ -14,6 +14,7 @@ export function useToggle(
  };
 
  useEffect(() => {
+  if (!element) return;
   gsap.set(element, {
    x: '195px',
   });
