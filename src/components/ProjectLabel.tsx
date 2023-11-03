@@ -1,4 +1,5 @@
 import { IconArrow } from '@icons/.';
+import { ProjectLabelMarquee } from '@/components';
 
 interface ProjectLabelProps {
  title: string;
@@ -23,7 +24,7 @@ export default function ProjectLabel({
       <span className='-translate-x-1/2 group-hover:-translate-x-0 transition duration-500'>
        <IconArrow />
       </span>
-      <span>{scope}</span>
+      <ProjectLabelMarquee text={scope} />
      </div>
     </div>
    </div>

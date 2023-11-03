@@ -22,6 +22,7 @@ import ProjectCard from './ProjectCard';
 import ProjectImage from './ProjectImage';
 import ProjectInfo from './ProjectInfo';
 import ProjectLabel from './ProjectLabel';
+import ProjectLabelMarquee from './ProjectLabelMarquee';
 import ProjectNext from './ProjectNext';
 import ProjectsFilter from './ProjectsFilter';
 import ProjectsMenu from './ProjectsMenu';
@@ -58,6 +59,7 @@ export {
    ProjectImage,
    ProjectInfo,
    ProjectLabel,
+   ProjectLabelMarquee,
    ProjectNext,
    ProjectsFilter,
    ProjectsMenu,
