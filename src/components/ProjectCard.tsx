@@ -16,7 +16,7 @@ interface ProjectCardProps {
  scope: string;
  slug: string;
  alt: string;
- variant?: string;
+ variant: 'list' | 'image' | 'thumbs';
  imageSize?: number;
  imageStart?: number;
  activeBreakpoint?: string;
@@ -50,9 +50,9 @@ export default function ProjectCard(props: ProjectCardProps) {
     bottom={true}
    >
     <div className='m-auto mt-0 pt-48'>
-     <span className='text-displaySmall md:text-displayMedium lg:text-displayLarge font-normal whitespace-nowrap'>
+     <h1 className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge font-normal whitespace-nowrap'>
       {title}
-     </span>
+     </h1>
     </div>
    </AnimationGridDiv>
 
@@ -67,11 +67,16 @@ export default function ProjectCard(props: ProjectCardProps) {
      );
     }}
    >
-    <ProjectLabel title={title} scope={scope} textSize='text-headlineSmall' />
+    <ProjectLabel
+     title={title}
+     scope={scope}
+     textSize='text-headlineSmall'
+     variant='list'
+    />
    </button>
   </GridDiv>
  ) : (
-  ////----- IMAGE VIEW -----////
+  ////----- IMAGE VIEW + THUMBS VIEW -----////
   <div
    className={`custom-col-start-${imageStart} col-span-5 aspect-square relative overflow-hidden`}
   >
@@ -80,7 +85,7 @@ export default function ProjectCard(props: ProjectCardProps) {
     className={`project-card-${id} overflow-hidden bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-full z-10 translate-x-full`}
    >
     <div className='m-auto mt-0 pt-48 overflow-hidden'>
-     <h1 className='text-displaySmall md:text-displayMedium lg:text-displayLarge col-span-5 whitespace-nowrap font-normal'>
+     <h1 className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge col-span-5 whitespace-nowrap font-normal'>
       {title}
      </h1>
     </div>
@@ -102,8 +107,11 @@ export default function ProjectCard(props: ProjectCardProps) {
     <ProjectLabel
      title={title}
      scope={scope}
-     divClass={`absolute bottom-4 left-4 z-10`}
-     textSize='text-titleMedium'
+     divClass={`absolute ${
+      variant === 'image' ? 'bottom-4 left-0' : 'bottom-0 left-4'
+     } z-10`}
+     textSize={variant === 'image' ? 'text-titleMedium' : 'text-titleSmall'}
+     variant={variant}
     />
     <div className='relative w-full h-full overflow-hidden'>
      {index === 1 ? (

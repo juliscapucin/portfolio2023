@@ -24,12 +24,12 @@ export default function ProjectsMenuThumbs({
   >
    {/* All projects button */}
    <GridDiv
-    divClass='relative fixed w-16 bg-primary min-h-full pt-32'
+    divClass='relative fixed w-16 bg-primary min-h-full mt-16'
     left={true}
     right={true}
    >
     <button
-     className='relative w-full h-full flex flex-col items-center justify-start gap-8 overflow-hidden'
+     className='relative w-full h-full mt-8 flex flex-col items-center justify-start gap-8 overflow-hidden'
      onClick={toggle}
     >
      <div className='relative flex items-center justify-center w-8 h-8 z-20'>
@@ -43,7 +43,8 @@ export default function ProjectsMenuThumbs({
    <ProjectsMenu
     allProjects={allProjects}
     activeBreakpoint={breakpoint}
-    startVariant={'thumbs'}
+    startVariant='thumbs'
+    startCategory='all'
    />
   </div>
  );

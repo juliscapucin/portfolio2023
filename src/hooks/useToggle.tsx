@@ -14,8 +14,9 @@ export function useToggle(
  };
 
  useEffect(() => {
+  if (!element) return;
   gsap.set(element, {
-   x: '195px',
+   x: '190px',
   });
  }, [element]);
 
@@ -31,7 +32,7 @@ export function useToggle(
   } else {
    gsap.to(element, {
     duration: 0.5,
-    x: '195px',
+    x: '190px',
     ease: 'expo.out',
    });
   }

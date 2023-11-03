@@ -25,7 +25,7 @@ export default function ExperienceItem({
  return (
   <GridDiv divClass={'w-full px-2'} top={true} bottom={true}>
    <button
-    className='text-bodyLarge w-full flex items-center justify-between h-32'
+    className='text-bodyMedium w-full flex items-center justify-between h-32'
     onClick={() => setShowInfo(!showInfo)}
    >
     <div className='flex flex-col items-start'>

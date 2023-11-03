@@ -19,12 +19,15 @@ import { HeroMobile } from './HeroMobile';
 import MenuDesktop from './MenuDesktop';
 import MenuMobile from './MenuMobile';
 import ProjectCard from './ProjectCard';
+import ProjectImage from './ProjectImage';
 import ProjectInfo from './ProjectInfo';
 import ProjectLabel from './ProjectLabel';
+import ProjectLabelMarquee from './ProjectLabelMarquee';
 import ProjectNext from './ProjectNext';
 import ProjectsFilter from './ProjectsFilter';
 import ProjectsMenu from './ProjectsMenu';
 import ProjectsMenuThumbs from './ProjectsMenuThumbs';
+import ProjectSlideshow from './ProjectSlideshow';
 import ProjectSplitScreen from './ProjectSplitScreen';
 import RootLayout from './RootLayout';
 import Services from './Services';
@@ -53,12 +56,15 @@ export {
    MenuDesktop,
    MenuMobile,
    ProjectCard,
+   ProjectImage,
    ProjectInfo,
    ProjectLabel,
+   ProjectLabelMarquee,
    ProjectNext,
    ProjectsFilter,
    ProjectsMenu,
    ProjectsMenuThumbs,
+   ProjectSlideshow,
    ProjectSplitScreen,
    RootLayout,
    SectionTitle,
