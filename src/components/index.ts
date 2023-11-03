@@ -26,6 +26,7 @@ import ProjectNext from './ProjectNext';
 import ProjectsFilter from './ProjectsFilter';
 import ProjectsMenu from './ProjectsMenu';
 import ProjectsMenuThumbs from './ProjectsMenuThumbs';
+import ProjectSlideshow from './ProjectSlideshow';
 import ProjectSplitScreen from './ProjectSplitScreen';
 import RootLayout from './RootLayout';
 import Services from './Services';
@@ -61,6 +62,7 @@ export {
    ProjectsFilter,
    ProjectsMenu,
    ProjectsMenuThumbs,
+   ProjectSlideshow,
    ProjectSplitScreen,
    RootLayout,
    SectionTitle,

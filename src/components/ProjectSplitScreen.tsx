@@ -10,6 +10,7 @@ import { breakpoints } from '@/constants';
 import { useMediaQuery } from '@/hooks';
 import { Project } from '@/types';
 import ProjectImage from './ProjectImage';
+import { ProjectSlideshow } from '.';
 
 export default function ProjectSplitScreen({ project }: { project: Project }) {
  const leftColumnRef = useRef<HTMLDivElement | null>(null);
@@ -41,13 +42,15 @@ export default function ProjectSplitScreen({ project }: { project: Project }) {
    {/* Left */}
    <div
     ref={leftColumnRef}
-    className='grid col-span-12 lg:col-span-7 relative gap-8 lg:gap-1 overflow-hidden'
+    className='lg:col-span-7 relative gap-8 lg:gap-1 overflow-hidden'
    >
-    {/* Project text */}
-    <div className='w-full my-64 lg:pr-32'>
-     {project.textContent1?.map((text) => {
-      return <p key={text.children._key}>{text.children.text}</p>;
-     })}
+    {/* Text content 1 */}
+    <div className='lg:grid grid-cols-7'>
+     <div className='col-start-2 col-span-5 aspect-square flex flex-col justify-center'>
+      {project.textContent1?.map((text) => {
+       return <p key={text.children._key}>{text.children.text}</p>;
+      })}
+     </div>
     </div>
 
     {/* Left Column Images */}
@@ -62,17 +65,14 @@ export default function ProjectSplitScreen({ project }: { project: Project }) {
     })}
    </div>
 
-   {/* Right */}
+   {/* Right Column Image */}
    <div
     ref={rightColumnRef}
-    className='hidden lg:block col-span-12 lg:col-span-5 h-[50vw] lg:h-[500px] relative'
+    className='hidden lg:block col-span-12 lg:col-span-5 aspect-square relative'
    >
-    <CldImage
-     src={`portfolio2023/work/blank-ipad`}
-     alt='photo'
-     className='w-full object-cover'
-     sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw'
-     fill
+    <ProjectSlideshow
+     projectImages={project.images}
+     projectSlug={project.slug}
     />
    </div>
   </section>

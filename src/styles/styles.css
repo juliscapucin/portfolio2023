@@ -63,6 +63,11 @@
          scrollbar-width: thin;
       }
    }
+
+   p {
+      @apply text-bodyMedium;
+      @apply mb-8;
+   }
 }
 
 * {
@@ -133,10 +138,6 @@ button,
 a,
 p {
    font-weight: 300;
-}
-
-p {
-   margin-bottom: 2rem;
 }
 
 button {
