@@ -41,37 +41,34 @@ export default function Header() {
   const shallowPage = document.querySelector('.shallow-page');
   const projectPage = document.querySelector('.project-page');
 
-  const actualPage = shallowPage
-   ? navLinks.filter((element) => element.slug === 'work')
-   : navLinks.filter(
-      (element) => element.slug === pathname.slice(1).split('/')[0]
-     );
+  const previousPageLink =
+   previousPage === 'project'
+    ? navLinks.find((element) => element.slug === 'work')
+    : navLinks.find((element) => element.title.toLowerCase() === previousPage);
 
-  console.log(actualPage);
+  console.log('previous page', previousPage);
+  console.log('previous page object', previousPageLink);
 
-  ///// Transition to left
-  if ((actualPage && link._key > actualPage[0]?._key) || link.slug === '/') {
+  if (!previousPageLink) return;
+
+  ///// TRANSITION TO LEFT
+  if (link._key > previousPageLink._key) {
    // Close shallow-page if open
    if (shallowPage) {
     //  Restore scroll on html div
     if (document.documentElement.classList.contains('overflow-hidden'))
      document.documentElement.classList.remove('overflow-hidden');
 
+    // Animate shallow page to left
     animateHorizontal('shallow-page', 0, -100);
-
-    animateToLeftTransition('page', () => {
-     router.push(`/${link.slug}`);
-    });
-
-    return;
    }
 
-   // If regular page
+   // Transition regular page to left and push new page
    animateToLeftTransition(`${projectPage ? 'project-page' : 'page'}`, () => {
     router.push(`/${link.slug}`);
    });
   } else {
-   ///// Transition to right
+   ///// TRANSITION TO RIGHT
 
    // Close shallow-page if open
    if (shallowPage) {
@@ -81,7 +78,7 @@ export default function Header() {
 
     // If coming from project page which was preceded by home page
     if (previousPage === 'project') {
-     animateToLeftTransition('shallow-page', () => {
+     animateToRightTransition('shallow-page', () => {
       router.back();
      });
     } else {

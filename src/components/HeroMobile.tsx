@@ -1,8 +1,14 @@
-import { forwardRef } from 'react';
+import { useRef } from 'react';
 import { Status, ThemeSwitcher } from '@/components';
 import { GridDiv } from '@/components/ui';
+import { useTextResize } from '@/hooks';
 
-export const HeroMobile = forwardRef<HTMLSpanElement, {}>((props, ref) => {
+const HeroMobile = () => {
+ const numberRef = useRef(null);
+
+ // Resize number on window resize
+ useTextResize(numberRef.current);
+
  return (
   <div className='hero__mobile grid grid-cols-6 grid-rows-6 h-screen max-h-screen'>
    {/* Status */}
@@ -30,10 +36,12 @@ export const HeroMobile = forwardRef<HTMLSpanElement, {}>((props, ref) => {
     divClass='col-span-6 row-span-3 overflow-hidden flex items-center'
     top={true}
    >
-    <span ref={ref} className='mobile tracking-tighter'>
+    <span ref={numberRef} className='mobile tracking-tighter'>
      23
     </span>
    </GridDiv>
   </div>
  );
-});
+};
+
+export default HeroMobile;

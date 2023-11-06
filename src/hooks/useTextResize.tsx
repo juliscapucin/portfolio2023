@@ -6,7 +6,7 @@ export const useTextResize = (textElement: TextElement): void => {
  const resizeTimeoutRef = useRef<number | null>(null);
 
  useEffect(() => {
-  console.log('useTextResize');
+  console.log(textElement);
   if (!textElement) return;
 
   const resize = () => {

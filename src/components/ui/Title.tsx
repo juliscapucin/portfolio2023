@@ -1,3 +1,5 @@
+'use client';
+
 import { animateSplitText } from '@/animations';
 import { useEffect, useRef } from 'react';
 
