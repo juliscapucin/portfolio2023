@@ -10,6 +10,7 @@ import { navLinks } from '@/constants';
 import { usePageContext } from '@/context';
 import { Footer, Experience, Services } from '@/components';
 import { Title } from '@/components/ui';
+import { useEnterTransitionDirection } from '@/hooks';
 
 type AboutData = {
  title: string;
@@ -24,31 +25,7 @@ export default function AboutPage({ data }: { data: AboutData }) {
  const pathname = usePathname();
  const { previousPage, updatePreviousPage } = usePageContext();
 
- //  Define the page transition direction based on the previous page + navLinks order
- useEffect(() => {
-  if (!data) return;
-
-  const actualPage = navLinks.filter(
-   (element) => element.slug === pathname.slice(1)
-  );
-
-  const previousPageId = navLinks.filter(
-   (element) => element.slug === previousPage
-  ) || [{ id: 0 }];
-
-  if (
-   (actualPage &&
-    previousPageId &&
-    actualPage[0]?.id > previousPageId[0]?.id) ||
-   previousPage === 'home'
-  ) {
-   animateToLeft(`page`);
-  } else {
-   animateToRight(`page`);
-  }
-
-  updatePreviousPage(pathname.slice(1));
- }, [data]);
+ useEnterTransitionDirection();
 
  return (
   <>

@@ -26,7 +26,7 @@ export default function HomePage({ allProjects }: { allProjects: Project[] }) {
 
  //  Enter page animation
  useEffect(() => {
-  if (previousPage.includes('work') || previousPage.includes('about')) {
+  if (!previousPage.includes('project-home')) {
    animateToRight(`home-page`);
   }
   updatePreviousPage('home');

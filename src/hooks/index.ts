@@ -1,3 +1,4 @@
+import { useEnterTransitionDirection } from './useEnterTransitionDirection';
 import { useFetch } from './useFetch';
 import { useMediaQuery } from './useMediaQuery';
 import { useModalOpen } from './useModalOpen';
@@ -8,6 +9,7 @@ import { useWindowDimensions } from './useWindowDimensions';
 import { useWindowResize } from './useWindowResize';
 
 export {
+   useEnterTransitionDirection,
    useFetch,
    useMediaQuery,
    useModalOpen,

@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import { navLinks } from '@/constants';
+import { useRouter } from 'next/navigation';
 
 import { MenuDesktop, MenuMobile } from '@/components';
 import { usePageContext } from '@/context';
@@ -10,29 +10,13 @@ import {
  animateToRightTransition,
 } from '@/animations';
 
-type NavLink = { title: string; slug: string; _key: string };
+type NavLink = { label: string; slug: string; _key: number };
 
 export default function Header() {
  const router = useRouter();
- const pathname = usePathname();
  const { previousPage } = usePageContext();
 
- const [navLinks, setNavlinks] = useState<NavLink[] | null>(null);
-
- //  Fetch data from api Route Handler (api/navbar)
- useEffect(() => {
-  const fetchData = async () => {
-   const response = await fetch('/api/navbar');
-   const data = await response.json();
-   setNavlinks(data.items);
-  };
-
-  fetchData();
- }, []);
-
  const buttonAction = (link: NavLink, mobileMenuRef?: HTMLDivElement) => {
-  if (!navLinks) return;
-
   // Toggle mobile menu
   if (mobileMenuRef) {
    animateMobileMenu(mobileMenuRef);
@@ -41,13 +25,14 @@ export default function Header() {
   const shallowPage = document.querySelector('.shallow-page');
   const projectPage = document.querySelector('.project-page');
 
-  const previousPageLink =
-   previousPage === 'project'
-    ? navLinks.find((element) => element.slug === 'work')
-    : navLinks.find((element) => element.title.toLowerCase() === previousPage);
+  const previousPageLink = previousPage.includes('project')
+   ? previousPage.includes('home')
+     ? navLinks.find((el) => el.label.toLowerCase() === 'home')
+     : navLinks.find((el) => el.label.toLowerCase() === 'work')
+   : navLinks.find((el) => el.label.toLowerCase() === previousPage);
 
   console.log('previous page', previousPage);
-  console.log('previous page object', previousPageLink);
+  console.log('previous page link', previousPageLink);
 
   if (!previousPageLink) return;
 
@@ -77,12 +62,12 @@ export default function Header() {
      document.documentElement.classList.remove('overflow-hidden');
 
     // If coming from project page which was preceded by home page
-    if (previousPage === 'project') {
+    if (previousPage.includes('project-home')) {
      animateToRightTransition('shallow-page', () => {
-      router.back();
+      router.push(`/${link.slug}`, { scroll: false });
      });
     } else {
-     animateHorizontal('shallow-page', 0, 100);
+     animateHorizontal('shallow-page', 0, 200);
      animateToRightTransition('page', () => {
       router.push(`/${link.slug}`);
      });

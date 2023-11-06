@@ -6,7 +6,7 @@ import { MenuLink } from '@/components';
 import { GridDiv } from '@/components/ui';
 import { useModalContext } from '@/context';
 
-type NavLink = { title: string; slug: string; _key: string };
+type NavLink = { label: string; slug: string; _key: number };
 
 type NavLinksProps = {
  navLinks: NavLink[];
@@ -29,7 +29,7 @@ export default function MenuDesktop({ navLinks, buttonAction }: NavLinksProps) {
       {navLinks.map((link) => {
        return (
         <MenuLink
-         label={link.title}
+         label={link.label}
          key={link._key}
          activeState={pathname.includes(`/${link.slug}`) ? true : false}
          action={() => {
