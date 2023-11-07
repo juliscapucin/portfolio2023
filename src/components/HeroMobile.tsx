@@ -16,7 +16,7 @@ const HeroMobile = () => {
 
    {/* Description */}
    <GridDiv divClass='col-span-full row-span-1' top={true}>
-    <h2 className='text-headlineLarge'>Design & web Development</h2>
+    <h2 className='text-headlineLarge mt-16'>Design & Web Development</h2>
    </GridDiv>
 
    {/* Theme */}
@@ -26,10 +26,12 @@ const HeroMobile = () => {
 
    {/* Number */}
    <GridDiv
-    divClass='col-span-6 row-span-3 overflow-hidden flex items-center'
+    divClass='col-span-6 row-span-2 overflow-hidden flex items-center'
     top={true}
    >
-    <span className='text-numberMobile tracking-tighter'>23</span>
+    <span className='text-numberMobile sm:text-numberTablet tracking-tighter'>
+     23
+    </span>
    </GridDiv>
   </div>
  );
