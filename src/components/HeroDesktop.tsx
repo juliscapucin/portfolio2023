@@ -2,14 +2,9 @@ import { useRef } from 'react';
 
 import { Status, ThemeSwitcher } from '@/components';
 import { GridDiv } from '@/components/ui';
-import { useTextResize } from '@/hooks';
 
 const HeroDesktop = () => {
  const heroRef = useRef(null);
- const numberRef = useRef(null);
-
- // Resize number on window resize
- useTextResize(numberRef.current);
 
  return (
   <div
@@ -49,9 +44,7 @@ const HeroDesktop = () => {
     divClass='col-span-4 row-span-3 overflow-hidden flex items-center'
     top={true}
    >
-    <span ref={numberRef} className='desktop tracking-tighter'>
-     23
-    </span>
+    <span className='text-numberDesktop tracking-tighter'>23</span>
    </GridDiv>
 
    {/* Theme */}

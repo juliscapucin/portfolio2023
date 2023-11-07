@@ -8,6 +8,6 @@ const allProjectsData = getProjects();
 export default async function page() {
  const allProjects = await allProjectsData;
 
- //  if (!allProjects) return notFound();
+ if (!allProjects) return notFound();
  return <HomePage allProjects={allProjects} />;
 }
