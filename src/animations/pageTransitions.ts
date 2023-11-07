@@ -110,7 +110,8 @@ export const animateToLeft = (enterElement: string) => {
 
    if (!animateToLeftEnter) return;
 
-   gsap.fromTo(
+   const tl = gsap.timeline();
+   tl.set(animateToLeftEnter, { autoAlpha: 1 }).fromTo(
       animateToLeftEnter,
       { xPercent: 100 },
       {
@@ -128,7 +129,8 @@ export const animateToRight = (enterElement: string) => {
 
    if (!animateToRightEnter) return;
 
-   gsap.fromTo(
+   const tl = gsap.timeline();
+   tl.set(animateToRightEnter, { autoAlpha: 1 }).fromTo(
       animateToRightEnter,
       { xPercent: -100 },
       {

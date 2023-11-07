@@ -149,6 +149,10 @@ textarea {
    resize: none;
 }
 
+.page {
+   display: hidden;
+}
+
 /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */
 
 .animation-grid-element .static-line:nth-child(1) {

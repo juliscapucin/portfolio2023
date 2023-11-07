@@ -20,7 +20,7 @@ export default function ProjectsMenuThumbs({
  return (
   <div
    ref={projectsMenuRef}
-   className='projects-thumbs fixed top-0 right-8 flex bg-primary z-50'
+   className='projects-thumbs fixed top-0 right-0 lg:right-8 flex bg-primary z-50'
   >
    {/* All projects button */}
    <GridDiv

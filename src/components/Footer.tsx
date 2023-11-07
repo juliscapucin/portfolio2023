@@ -29,10 +29,7 @@ export default function Footer() {
  }, []);
 
  return (
-  <GridDiv
-   top={true}
-   divClass={`px-8 py-64 lg:grid grid-cols-12 max-w-desktop`}
-  >
+  <GridDiv top={true} divClass='py-64 lg:grid grid-cols-12 max-w-desktop'>
    <nav className='col-span-3'>
     {/* Nav Column */}
 
