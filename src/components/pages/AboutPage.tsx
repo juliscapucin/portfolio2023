@@ -21,7 +21,7 @@ export default function AboutPage({ data }: { data: AboutData }) {
  return (
   <>
    {data ? (
-    <div className='page about-page pt-32'>
+    <div className='page about-page pt-64'>
      {/* Title */}
      <Title title={data.title} />
      <div className='lg:grid grid-cols-12'>
@@ -41,20 +41,18 @@ export default function AboutPage({ data }: { data: AboutData }) {
        <p className='text-titleLarge md:text-headlineSmall col-span-5 mt-4 lg:mt-0'>
         {data.description}
        </p>
-       <div className='col-span-2'></div>
 
        {/* Paragraphs */}
-       <div className='col-span-2'></div>
-       <div className='col-span-3 mt-32'>
+       <div className='col-span-4 mt-32'>
         {data.content1.map((paragraph) => (
          <p key={paragraph._key}>{paragraph.children[0].text}</p>
         ))}
        </div>
-
-       {/* Heads up */}
-       <p className='col-span-3 mt-32'>{data.content2[0].children[0].text}</p>
       </div>
-      <div className='col-span-1'></div>
+      {/* Heads up */}
+      <p className='col-start-4 col-span-6 my-64 text-titleLarge md:text-headlineSmall text-center'>
+       {data.content2[0].children[0].text}
+      </p>
      </div>
      {/* <Services services={data.services} /> */}
      {/* <Experience experience={experience} /> */}
