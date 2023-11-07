@@ -22,8 +22,8 @@ export function useEnterTransitionDirection() {
      : navLinks.find((el) => el.label.toLowerCase() === 'work')
    : navLinks.find((el) => el.label.toLowerCase() === previousPage);
 
-  console.log('actual page link', actualPage);
-  console.log('previous page link', previousPageLink);
+  // console.log('actual page link', actualPage);
+  // console.log('previous page link', previousPageLink);
 
   // if actual page id is greater than previous page id, animate to left
   if (

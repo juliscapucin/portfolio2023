@@ -91,12 +91,13 @@ body {
    overflow-x: hidden;
    font-weight: 200;
    -webkit-font-smoothing: antialiased;
+   transition: background-color 0.2s linear;
 }
 
 a {
    text-decoration: none;
    color: var(--color-secondary);
-   transition: color 2s ease-in-out;
+   transition: color 0.2s linear;
 }
 
 a:hover {

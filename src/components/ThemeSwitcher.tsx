@@ -12,7 +12,6 @@ const themes = [
 ];
 
 export default function ThemeSwitcher() {
- const documentDiv = document.querySelector('html');
  const { theme, setTheme } = useThemeStorage();
 
  const handleThemeChange = (
@@ -25,6 +24,7 @@ export default function ThemeSwitcher() {
 
  //  Apply theme on theme change
  useEffect(() => {
+  const documentDiv = document.querySelector('html');
   documentDiv?.setAttribute('data-theme', theme);
  }, [theme]);
 

@@ -2,9 +2,6 @@
 
 import Image from 'next/image';
 
-import { usePathname } from 'next/navigation';
-
-import { usePageContext } from '@/context';
 import { Footer, Services } from '@/components';
 import { Title } from '@/components/ui';
 import { useEnterTransitionDirection } from '@/hooks';
@@ -24,9 +21,11 @@ export default function AboutPage({ data }: { data: AboutData }) {
  return (
   <>
    {data ? (
-    <div className={`page about-page`}>
-     <div className='md:grid grid-cols-12 my-32'>
-      <div className='col-span-5 aspect-square overflow-hidden relative mb-8 lg:mb-0'>
+    <div className='page about-page pt-32'>
+     {/* Title */}
+     <Title title={data.title} />
+     <div className='lg:grid grid-cols-12'>
+      <div className='col-span-6 aspect-square overflow-hidden relative mt-4 mb-8 lg:mb-0'>
        <Image
         src='/juli.avif'
         alt='photo'
@@ -38,11 +37,8 @@ export default function AboutPage({ data }: { data: AboutData }) {
       </div>
       <div className='col-span-1'></div>
       <div className='col-span-5 md:grid grid-cols-5'>
-       {/* Title */}
-       <Title title={data.title} />
-
        {/* Subtitle */}
-       <p className='text-titleLarge md:text-headlineSmall col-span-3 mt-4 lg:mt-0'>
+       <p className='text-titleLarge md:text-headlineSmall col-span-5 mt-4 lg:mt-0'>
         {data.description}
        </p>
        <div className='col-span-2'></div>
@@ -60,7 +56,7 @@ export default function AboutPage({ data }: { data: AboutData }) {
       </div>
       <div className='col-span-1'></div>
      </div>
-     <Services services={data.services} />
+     {/* <Services services={data.services} /> */}
      {/* <Experience experience={experience} /> */}
      <Footer />
     </div>
