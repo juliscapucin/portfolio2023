@@ -16,22 +16,28 @@ export function useEnterTransitionDirection() {
    (element) => element.slug === pathname.slice(1)
   );
 
-  const previousPageId = previousPage.includes('project')
+  const previousPageLink = previousPage.includes('project')
    ? previousPage.includes('home')
-     ? navLinks.find((el) => el.label.toLowerCase() === '/')
+     ? navLinks.find((el) => el.label.toLowerCase() === 'home')
      : navLinks.find((el) => el.label.toLowerCase() === 'work')
-   : navLinks.find((el) => el.slug === previousPage);
+   : navLinks.find((el) => el.label.toLowerCase() === previousPage);
+
+  console.log('actual page link', actualPage);
+  console.log('previous page link', previousPageLink);
 
   // if actual page id is greater than previous page id, animate to left
   if (
-   (actualPage && previousPageId && actualPage?._key > previousPageId?._key) ||
-   previousPage === 'home'
+   actualPage &&
+   previousPageLink &&
+   actualPage?._key > previousPageLink?._key
   ) {
-   animateToLeft(`page`);
+   animateToLeft('page');
   } else {
-   animateToRight(`page`);
+   animateToRight('page');
   }
 
   updatePreviousPage(pathname.slice(1));
+
+  return () => {};
  }, []);
 }

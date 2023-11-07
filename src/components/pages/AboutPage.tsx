@@ -1,14 +1,11 @@
 'use client';
 
-import { useEffect } from 'react';
 import Image from 'next/image';
 
 import { usePathname } from 'next/navigation';
 
-import { animateToLeft, animateToRight } from '@/animations/pageTransitions';
-import { navLinks } from '@/constants';
 import { usePageContext } from '@/context';
-import { Footer, Experience, Services } from '@/components';
+import { Footer, Services } from '@/components';
 import { Title } from '@/components/ui';
 import { useEnterTransitionDirection } from '@/hooks';
 
@@ -22,9 +19,6 @@ type AboutData = {
 };
 
 export default function AboutPage({ data }: { data: AboutData }) {
- const pathname = usePathname();
- const { previousPage, updatePreviousPage } = usePageContext();
-
  useEnterTransitionDirection();
 
  return (

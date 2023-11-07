@@ -45,7 +45,7 @@ export default function Header() {
      document.documentElement.classList.remove('overflow-hidden');
 
     // Animate shallow page to left
-    animateHorizontal('shallow-page', 0, -100);
+    animateHorizontal('shallow-page', 0, -200);
    }
 
    // Transition regular page to left and push new page
