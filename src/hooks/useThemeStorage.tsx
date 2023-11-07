@@ -5,12 +5,10 @@ import { useEffect, useState } from 'react';
 import { getTheme, updateTheme } from '@/utils';
 
 export function useThemeStorage() {
- const [theme, setTheme] = useState('');
-
- // Get theme from session storage on mount
- useEffect(() => {
-  setTheme(getTheme() || 'dark');
- }, []);
+ const [theme, setTheme] = useState(() => {
+  const storageTheme = getTheme();
+  return storageTheme || 'dark'; // Default to 'dark' if storageTheme is not available
+ });
 
  // Update theme in session storage on change
  useEffect(() => {

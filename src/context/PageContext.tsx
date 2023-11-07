@@ -2,7 +2,6 @@
 
 import { usePathname } from 'next/navigation';
 import { createContext, useContext, useEffect, useState } from 'react';
-import { set } from 'sanity';
 
 // TYPE
 interface ContextProps {
@@ -32,10 +31,6 @@ export const PageContextProvider = ({
   if (pathname === '/') setPreviousPage('home');
   if (pathname === '/work') setPreviousPage('work');
  }, [pathname]);
-
- useEffect(() => {
-  console.log('previous page', previousPage);
- }, [previousPage]);
 
  return (
   <PageContext.Provider
