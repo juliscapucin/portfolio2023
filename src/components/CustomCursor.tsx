@@ -10,18 +10,13 @@ export default function CustomCursor() {
  const refFollower = useRef(null);
 
  useEffect(() => {
-  const cursorDiv = refCursor.current;
+  const cursorDiv = refCursor.current as HTMLDivElement | null;
   if (!cursorDiv) return;
-
-  gsap.set(cursorDiv, {
-   xPercent: -50,
-   yPercent: -50,
-  });
 
   const moveCursor = (e: MouseEvent) => {
    gsap.to(cursorDiv, {
-    x: e.clientX,
-    y: e.clientY,
+    x: e.clientX + window.scrollX - cursorDiv.clientWidth / 2,
+    y: e.clientY + window.scrollY - cursorDiv.clientHeight / 2,
     duration: 0.3,
    });
   };
