@@ -181,7 +181,6 @@ export default function ProjectsMenu({
            id={link._id}
            alt={link.coverImage.alt}
            variant={variant}
-           activeBreakpoint={activeBreakpoint}
            updateIsHovering={updateIsHovering}
           />
          </div>
@@ -213,7 +212,6 @@ export default function ProjectsMenu({
              alt: project.coverImage.alt,
              index,
              variant,
-             activeBreakpoint,
              updateIsHovering,
             }}
            />
