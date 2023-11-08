@@ -17,9 +17,12 @@ export default function MenuMobile({ navLinks, buttonAction }: NavLinksProps) {
 
  return (
   <>
-   {navLinks ? (
+   {navLinks && (
     <div className='block lg:hidden'>
-     <GridDiv divClass='absolute max-w-full h-16 mx-8 flex justify-end items-center bg-primary'>
+     <GridDiv
+      divClass='absolute max-w-full max-w-16 py-2 flex justify-end items-center bg-primary'
+      bottom={true}
+     >
       {/* Burger Button */}
       <ButtonBurger
        action={(e) => {
@@ -75,8 +78,6 @@ export default function MenuMobile({ navLinks, buttonAction }: NavLinksProps) {
       </div>
      </aside>
     </div>
-   ) : (
-    <h1>Loading...</h1>
    )}
   </>
  );

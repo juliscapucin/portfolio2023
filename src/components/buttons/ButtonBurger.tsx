@@ -7,7 +7,7 @@ interface ButtonBurgerProps {
 
 export default function ButtonBurger({ action }: ButtonBurgerProps) {
  return (
-  <button onClick={action} className='h-16 w-16 relative mr-8'>
+  <button onClick={action} aria-label='open menu'>
    <IconBurger />
   </button>
  );
