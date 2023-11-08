@@ -5,9 +5,8 @@ import { useRouter } from 'next/navigation';
 import { CldImage } from 'next-cloudinary';
 
 import { AnimationGridDiv, ProjectLabel } from '@/components';
-import { GridDiv } from '@/components/ui';
+import { GridDiv, ElementReveal } from '@/components/ui';
 import { animateToFullScreen } from '@/animations';
-import { set } from 'sanity';
 
 interface ProjectCardProps {
  index?: number;
@@ -89,48 +88,49 @@ export default function ProjectCard(props: ProjectCardProps) {
      </h1>
     </div>
    </div>
-
-   <button
-    className='h-full w-full group flex justify-center items-center absolute'
-    onMouseEnter={() => {
-     setIsHovering(true);
-     updateIsHovering(true);
-    }}
-    onMouseLeave={() => {
-     setIsHovering(false);
-     updateIsHovering(false);
-    }}
-    onClick={() => {
-     animateToFullScreen(`.project-card-${id}`, () =>
-      router.push(`/work/${slug}`, { scroll: false })
-     );
-    }}
-   >
-    <ProjectLabel
-     title={title}
-     scope={scope}
-     divClass={`absolute ${
-      variant === 'image' ? 'bottom-4 left-0' : 'bottom-0 left-4'
-     } z-10`}
-     textSize={variant === 'image' ? 'text-titleMedium' : 'text-titleSmall'}
-     variant={variant}
-    />
-    <div
-     className={`relative w-full h-full overflow-hidden transition-transform duration-300 ease-in-out ${
-      // Hover animation
-      isHovering && 'scale-[115%] -rotate-2'
-     }`}
+   <ElementReveal>
+    <button
+     className='h-full w-full group flex justify-center items-center absolute'
+     onMouseEnter={() => {
+      setIsHovering(true);
+      updateIsHovering(true);
+     }}
+     onMouseLeave={() => {
+      setIsHovering(false);
+      updateIsHovering(false);
+     }}
+     onClick={() => {
+      animateToFullScreen(`.project-card-${id}`, () =>
+       router.push(`/work/${slug}`, { scroll: false })
+      );
+     }}
     >
-     <CldImage
-      src={`portfolio2023/work/${slug}/01`}
-      key={id}
-      alt={alt}
-      sizes='100vw (max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-      fill
-      priority={index === 1 ? true : false}
+     <ProjectLabel
+      title={title}
+      scope={scope}
+      divClass={`absolute ${
+       variant === 'image' ? 'bottom-4 left-0' : 'bottom-0 left-4'
+      } z-10`}
+      textSize={variant === 'image' ? 'text-titleMedium' : 'text-titleSmall'}
+      variant={variant}
      />
-    </div>
-   </button>
+     <div
+      className={`relative w-full h-full overflow-hidden transition-transform duration-300 ease-in-out ${
+       // Hover animation
+       isHovering && 'scale-[115%] -rotate-2'
+      }`}
+     >
+      <CldImage
+       src={`portfolio2023/work/${slug}/01`}
+       key={id}
+       alt={alt}
+       sizes='100vw (max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+       fill
+       priority={index === 1 ? true : false}
+      />
+     </div>
+    </button>
+   </ElementReveal>
   </div>
  );
 }
