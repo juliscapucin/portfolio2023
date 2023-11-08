@@ -1,12 +1,11 @@
 'use client';
 
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { CldImage } from 'next-cloudinary';
 
-import { useCursorFollowerContext } from '@/context';
-
-import { AnimationGridDiv, CustomCursor, ProjectLabel } from '@/components';
-import { GridDiv } from '@/components/ui';
+import { AnimationGridDiv, ProjectLabel } from '@/components';
+import { GridDiv, ElementReveal } from '@/components/ui';
 import { animateToFullScreen } from '@/animations';
 
 interface ProjectCardProps {
@@ -19,12 +18,11 @@ interface ProjectCardProps {
  variant: 'list' | 'image' | 'thumbs';
  imageSize?: number;
  imageStart?: number;
- activeBreakpoint?: string;
+ updateIsHovering: (state: boolean) => void;
 }
 
 export default function ProjectCard(props: ProjectCardProps) {
  const router = useRouter();
- const { updateIsHovering } = useCursorFollowerContext();
  const {
   index,
   title,
@@ -35,14 +33,14 @@ export default function ProjectCard(props: ProjectCardProps) {
   variant,
   imageSize,
   imageStart,
-  activeBreakpoint,
+  updateIsHovering,
  } = props;
+ // local isHovering state for individual hover animation
+ const [isHovering, setIsHovering] = useState(false);
 
  return variant === 'list' ? (
   ////----- LIST VIEW -----////
-  <GridDiv bottom={true} divClass={`relative h-32`}>
-   {/* Custom Cursor */}
-   {activeBreakpoint === 'desktop' && <CustomCursor />}
+  <GridDiv bottom={true} divClass='relative h-32'>
    {/* Div for animation */}
    <AnimationGridDiv
     divClass={`project-card-${id} overflow-hidden bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-full z-10 translate-x-full`}
@@ -58,7 +56,7 @@ export default function ProjectCard(props: ProjectCardProps) {
 
    {/* Button action */}
    <button
-    className={`h-full w-full p-8 group`}
+    className='h-full w-full p-8 group'
     onMouseEnter={() => updateIsHovering(true)}
     onMouseLeave={() => updateIsHovering(false)}
     onClick={() => {
@@ -90,50 +88,49 @@ export default function ProjectCard(props: ProjectCardProps) {
      </h1>
     </div>
    </div>
-
-   {/* Custom Cursor */}
-   {activeBreakpoint === 'desktop' && <CustomCursor />}
-
-   <button
-    className={`h-full w-full group flex justify-center items-center absolute`}
-    onMouseEnter={() => updateIsHovering(true)}
-    onMouseLeave={() => updateIsHovering(false)}
-    onClick={() => {
-     animateToFullScreen(`.project-card-${id}`, () =>
-      router.push(`/work/${slug}`, { scroll: false })
-     );
-    }}
-   >
-    <ProjectLabel
-     title={title}
-     scope={scope}
-     divClass={`absolute ${
-      variant === 'image' ? 'bottom-4 left-0' : 'bottom-0 left-4'
-     } z-10`}
-     textSize={variant === 'image' ? 'text-titleMedium' : 'text-titleSmall'}
-     variant={variant}
-    />
-    <div className='relative w-full h-full overflow-hidden'>
-     {index === 1 ? (
+   <ElementReveal>
+    <button
+     className='h-full w-full group flex justify-center items-center absolute'
+     onMouseEnter={() => {
+      setIsHovering(true);
+      updateIsHovering(true);
+     }}
+     onMouseLeave={() => {
+      setIsHovering(false);
+      updateIsHovering(false);
+     }}
+     onClick={() => {
+      animateToFullScreen(`.project-card-${id}`, () =>
+       router.push(`/work/${slug}`, { scroll: false })
+      );
+     }}
+    >
+     <ProjectLabel
+      title={title}
+      scope={scope}
+      divClass={`absolute ${
+       variant === 'image' ? 'bottom-4 left-0' : 'bottom-0 left-4'
+      } z-10`}
+      textSize={variant === 'image' ? 'text-titleMedium' : 'text-titleSmall'}
+      variant={variant}
+     />
+     <div
+      className={`relative w-full h-full overflow-hidden transition-transform duration-300 ease-in-out ${
+       // Hover animation
+       isHovering && 'scale-[115%] -rotate-2'
+      }`}
+     >
       <CldImage
        src={`portfolio2023/work/${slug}/01`}
        key={id}
        alt={alt}
        sizes='100vw (max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
        fill
-       priority
+       priority={index === 1 ? true : false}
       />
-     ) : (
-      <CldImage
-       src={`portfolio2023/work/${slug}/01`}
-       key={id}
-       alt={alt}
-       sizes='100vw (max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-       fill
-      />
-     )}
-    </div>
-   </button>
+     </div>
+    </button>
+   </ElementReveal>
   </div>
  );
 }

@@ -5,7 +5,7 @@ import { animateMobileMenu } from '@/animations';
 import { GridDiv } from '@/components/ui';
 import { ButtonBurger, ButtonClose } from '@/components/buttons';
 
-type NavLink = { title: string; slug: string; _key: string };
+type NavLink = { label: string; slug: string; _key: number };
 
 type NavLinksProps = {
  navLinks: NavLink[];
@@ -59,7 +59,7 @@ export default function MenuMobile({ navLinks, buttonAction }: NavLinksProps) {
            }}
           >
            <span className='font-headline text-displaySmall uppercase text-secondary'>
-            {link.title}
+            {link.label}
            </span>
           </button>
          </GridDiv>

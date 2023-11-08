@@ -1,27 +1,18 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
-import { useCursorFollowerContext } from '@/context';
-
-export default function CustomCursor() {
- const { isHovering } = useCursorFollowerContext();
-
+export default function CustomCursor({ isHovering }: { isHovering: boolean }) {
  const refCursor = useRef(null);
  const refFollower = useRef(null);
 
  useEffect(() => {
-  const cursorDiv = refCursor.current;
+  const cursorDiv = refCursor.current as HTMLDivElement | null;
   if (!cursorDiv) return;
-
-  gsap.set(cursorDiv, {
-   xPercent: -50,
-   yPercent: -50,
-  });
 
   const moveCursor = (e: MouseEvent) => {
    gsap.to(cursorDiv, {
-    x: e.clientX,
-    y: e.clientY,
+    x: e.clientX + window.scrollX - cursorDiv.clientWidth / 2,
+    y: e.clientY + window.scrollY - cursorDiv.clientHeight / 2,
     duration: 0.3,
    });
   };
@@ -30,7 +21,7 @@ export default function CustomCursor() {
   return () => {
    window.removeEventListener('mousemove', moveCursor);
   };
- }, [refCursor.current]);
+ }, [refCursor]);
 
  return (
   <div

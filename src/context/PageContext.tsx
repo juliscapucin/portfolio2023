@@ -1,6 +1,7 @@
 'use client';
 
-import { createContext, useContext, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 // TYPE
 interface ContextProps {
@@ -18,12 +19,18 @@ export const PageContextProvider = ({
  children: React.ReactNode;
 }) => {
  const [previousPage, setPreviousPage] = useState('home');
+ const pathname = usePathname();
 
  const updatePreviousPage = (page: string) => {
   setPreviousPage(page);
  };
 
- console.log(previousPage);
+ // Set previous page when using shallow page back button
+ useEffect(() => {
+  if (!previousPage.includes('project')) return;
+  if (pathname === '/') setPreviousPage('home');
+  if (pathname === '/work') setPreviousPage('work');
+ }, [pathname]);
 
  return (
   <PageContext.Provider

@@ -10,10 +10,10 @@ export const metadata: Metadata = {
  description: 'A list of projects I have worked on.',
 };
 
-export default async function Page() {
- const workPageData = getWorkPage();
- const allProjectsData = getProjects();
+const workPageData = getWorkPage();
+const allProjectsData = getProjects();
 
+export default async function Page() {
  const [data, allProjects] = await Promise.all([workPageData, allProjectsData]);
 
  if (!data || !allProjects) return notFound();

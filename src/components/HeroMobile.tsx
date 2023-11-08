@@ -1,8 +1,7 @@
-import { forwardRef } from 'react';
 import { Status, ThemeSwitcher } from '@/components';
 import { GridDiv } from '@/components/ui';
 
-export const HeroMobile = forwardRef<HTMLSpanElement, {}>((props, ref) => {
+const HeroMobile = () => {
  return (
   <div className='hero__mobile grid grid-cols-6 grid-rows-6 h-screen max-h-screen'>
    {/* Status */}
@@ -17,7 +16,7 @@ export const HeroMobile = forwardRef<HTMLSpanElement, {}>((props, ref) => {
 
    {/* Description */}
    <GridDiv divClass='col-span-full row-span-1' top={true}>
-    <h2 className='text-headlineLarge'>Design & web Development</h2>
+    <h2 className='text-headlineLarge mt-16'>Design & Web Development</h2>
    </GridDiv>
 
    {/* Theme */}
@@ -27,13 +26,15 @@ export const HeroMobile = forwardRef<HTMLSpanElement, {}>((props, ref) => {
 
    {/* Number */}
    <GridDiv
-    divClass='col-span-6 row-span-3 overflow-hidden flex items-center'
+    divClass='col-span-6 row-span-2 overflow-hidden flex items-center'
     top={true}
    >
-    <span ref={ref} className='mobile tracking-tighter'>
+    <span className='text-numberMobile sm:text-numberTablet tracking-tighter'>
      23
     </span>
    </GridDiv>
   </div>
  );
-});
+};
+
+export default HeroMobile;

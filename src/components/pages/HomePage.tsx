@@ -1,11 +1,10 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
-import { usePathname } from 'next/navigation';
+import { useEffect } from 'react';
 
 import { breakpoints } from '@/constants';
 import { usePageContext } from '@/context';
-import { useMediaQuery, useTextResize } from '@/hooks';
+import { useMediaQuery } from '@/hooks';
 
 import {
  AboutText,
@@ -13,59 +12,34 @@ import {
  HeroDesktop,
  HeroMobile,
  Footer,
- Services,
  SectionTitle,
 } from '@/components';
 import { GridDiv } from '@/components/ui';
 import { animateToRight } from '@/animations';
 import { Project } from '@/types';
 
-type ServicesData = { services: string[] };
-
 export default function HomePage({ allProjects }: { allProjects: Project[] }) {
- const pathname = usePathname();
  const { previousPage, updatePreviousPage } = usePageContext();
 
  // Set breakpoint for mobile/desktop (values are in constants.ts)
  const breakpoint = useMediaQuery(breakpoints.desktop);
- const [servicesData, setServicesData] = useState<ServicesData | null>(null);
-
- const numberRef = useRef(null);
- const numberDesktopRef = useRef(null);
- const numberMobileRef = useRef(null);
- useTextResize(numberRef.current);
-
- //  Fetch data from api Route Handler (api/services)
- useEffect(() => {
-  const fetchData = async () => {
-   const response = await fetch('/api/services');
-   const data = await response.json();
-   setServicesData(data);
-  };
-
-  fetchData();
- }, []);
 
  //  Enter page animation
  useEffect(() => {
-  if (pathname === '/') {
-   if (previousPage.includes('work') || previousPage.includes('about')) {
-    animateToRight(`home-page`);
-   }
-   updatePreviousPage('home');
+  if (!previousPage.includes('project-home')) {
+   animateToRight(`home-page`);
   }
- }, [pathname]);
+  updatePreviousPage('home');
+ }, []);
 
  return (
   <div className='page home-page main-page overflow-hidden'>
    <GridDiv divClass='overflow-hidden min-h-screen' bottom={true}>
-    {breakpoint === 'mobile' && <HeroMobile ref={numberRef} />}
-    {breakpoint === 'desktop' && <HeroDesktop ref={numberRef} />}
+    {breakpoint === 'mobile' && <HeroMobile />}
+    {breakpoint === 'desktop' && <HeroDesktop />}
    </GridDiv>
 
    <AboutText />
-
-   {/* {servicesData && <Services services={servicesData.services} />} */}
 
    <SectionTitle title='Work' />
    <ProjectsMenu

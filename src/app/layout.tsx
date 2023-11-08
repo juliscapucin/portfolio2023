@@ -1,6 +1,6 @@
 import localFont from 'next/font/local';
 
-import { Header, RootLayout, ContactModal, CustomCursor } from '@/components';
+import { Header, RootLayout, ContactModal } from '@/components';
 
 import { ModalContextProvider, PageContextProvider } from '@/context';
 

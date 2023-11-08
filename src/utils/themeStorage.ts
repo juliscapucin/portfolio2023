@@ -3,5 +3,11 @@ export const updateTheme = (theme: string) => {
 };
 
 export const getTheme = () => {
-   return sessionStorage.getItem('theme');
+   // Only try to access `sessionStorage` if `window` is defined
+   if (typeof window !== 'undefined') {
+      return sessionStorage.getItem('theme');
+   }
+
+   // Return a default value or null if on the server
+   return null;
 };

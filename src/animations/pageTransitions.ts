@@ -110,17 +110,35 @@ export const animateToLeft = (enterElement: string) => {
 
    if (!animateToLeftEnter) return;
 
-   const timeline = gsap.timeline();
+   const tl = gsap.timeline();
+   tl.set(animateToLeftEnter, { autoAlpha: 1 }).fromTo(
+      animateToLeftEnter,
+      { xPercent: 100 },
+      {
+         duration: 1,
+         xPercent: 0,
+         ease: 'expo.inOut',
+      }
+   );
+};
 
-   timeline.set(animateToLeftEnter, {
-      x: '100%',
-   });
+// animate to right
+// used to start pages after transitions
+export const animateToRight = (enterElement: string) => {
+   const animateToRightEnter = document.querySelector(`.${enterElement}`);
 
-   timeline.to(animateToLeftEnter, {
-      duration: 1,
-      x: '0%',
-      ease: 'expo.inOut',
-   });
+   if (!animateToRightEnter) return;
+
+   const tl = gsap.timeline();
+   tl.set(animateToRightEnter, { autoAlpha: 1 }).fromTo(
+      animateToRightEnter,
+      { xPercent: -100 },
+      {
+         duration: 1,
+         xPercent: 0,
+         ease: 'expo.inOut',
+      }
+   );
 };
 
 // animate horizontal
@@ -143,26 +161,6 @@ export const animateHorizontal = (
    timeline.to(animateHorizontalEnter, {
       duration: 1,
       xPercent: endPos,
-      ease: 'expo.inOut',
-   });
-};
-
-// animate to right
-// used to start pages after transitions
-export const animateToRight = (enterElement: string) => {
-   const animateToRightEnter = document.querySelector(`.${enterElement}`);
-
-   if (!animateToRightEnter) return;
-
-   const timeline = gsap.timeline();
-
-   timeline.set(animateToRightEnter, {
-      x: '-100%',
-   });
-
-   timeline.to(animateToRightEnter, {
-      duration: 1,
-      x: '0%',
       ease: 'expo.inOut',
    });
 };

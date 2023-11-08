@@ -1,6 +1,12 @@
 'use client';
 
-import { useCallback, useRef, MouseEventHandler, useEffect } from 'react';
+import {
+ useCallback,
+ useRef,
+ MouseEventHandler,
+ useEffect,
+ useState,
+} from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
 import { usePageContext } from '@/context';
@@ -14,6 +20,9 @@ type Props = { children: React.ReactNode; isShallow: boolean };
 export default function ShallowPage({ children, isShallow }: Props) {
  const overlay = useRef<HTMLDivElement | null>(null);
  const wrapper = useRef<HTMLDivElement | null>(null);
+ const [showBackButton, setShowBackButton] = useState<boolean>(
+  isShallow ? true : false
+ );
 
  const router = useRouter();
  const pathname = usePathname();
@@ -21,8 +30,16 @@ export default function ShallowPage({ children, isShallow }: Props) {
  const { previousPage, updatePreviousPage } = usePageContext();
 
  useEffect(() => {
-  if (previousPage === 'home' && isShallow === true)
-   updatePreviousPage('project');
+  if (previousPage === 'home' && isShallow) {
+   updatePreviousPage('project-home');
+  } else if (previousPage === 'work' && isShallow) {
+   updatePreviousPage('project-work');
+  } else if (previousPage.includes('project')) {
+   setShowBackButton(false);
+  } else {
+   updatePreviousPage('work');
+   setShowBackButton(false);
+  }
  }, []);
 
  // this is used as a workaround to prevent the intercepted route of showing in all pages
@@ -74,7 +91,7 @@ export default function ShallowPage({ children, isShallow }: Props) {
      ref={wrapper}
     >
      {/* Back button */}
-     {isShallow && <ButtonBack action={onDismiss} />}
+     {showBackButton && <ButtonBack action={onDismiss} />}
 
      {children}
     </div>

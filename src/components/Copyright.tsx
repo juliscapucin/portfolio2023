@@ -1,8 +1,9 @@
 export default function Copyright() {
+ const year = new Date().getFullYear();
+
  return (
-  <div className='col-span-2 flex flex-col mb-16 lg:mb-0'>
-   <span>Juli Scapucin</span>
-   <span>©2023</span>
+  <div className='col-span-12 flex flex-col mb-16 mt-32 lg:mb-0'>
+   <span>Juli Scapucin ©{year}</span>
   </div>
  );
 }

@@ -1,9 +1,9 @@
-import { forwardRef, useRef } from 'react';
+import { useRef } from 'react';
 
 import { Status, ThemeSwitcher } from '@/components';
 import { GridDiv } from '@/components/ui';
 
-export const HeroDesktop = forwardRef<HTMLSpanElement, {}>((props, ref) => {
+const HeroDesktop = () => {
  const heroRef = useRef(null);
 
  return (
@@ -44,9 +44,7 @@ export const HeroDesktop = forwardRef<HTMLSpanElement, {}>((props, ref) => {
     divClass='col-span-4 row-span-3 overflow-hidden flex items-center'
     top={true}
    >
-    <span ref={ref} className='desktop tracking-tighter'>
-     23
-    </span>
+    <span className='text-numberDesktop tracking-tighter'>23</span>
    </GridDiv>
 
    {/* Theme */}
@@ -67,4 +65,6 @@ export const HeroDesktop = forwardRef<HTMLSpanElement, {}>((props, ref) => {
    <GridDiv divClass='col-span-7 row-span-3' top={true}></GridDiv>
   </div>
  );
-});
+};
+
+export default HeroDesktop;

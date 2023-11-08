@@ -29,6 +29,9 @@ module.exports = {
             20: 'repeat(20, 1fr)',
          },
          fontSize: {
+            numberDesktop: '30vw',
+            numberTablet: '40vw',
+            numberMobile: '80vw',
             huge: '100%',
             displayLarge: '18rem',
             displayMedium: '10.3rem',

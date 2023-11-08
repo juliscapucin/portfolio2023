@@ -26,10 +26,11 @@ export async function generateMetadata({ params: { slug } }: Params) {
  };
 }
 
+const allProjectsData = getProjects();
+
 export default async function Page({ params }: { params: { slug: string } }) {
  const { slug } = params;
  const projectData = getProject(slug);
- const allProjectsData = getProjects();
 
  const [project, allProjects] = await Promise.all([
   projectData,
