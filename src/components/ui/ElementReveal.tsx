@@ -11,8 +11,6 @@ export default function ElementReveal({
  useEffect(() => {
   if (!wrapperRef.current) return;
 
-  console.log('hello', isVisible);
-
   const observer = new IntersectionObserver(
    (entries) => {
     entries.forEach((entry) => {
@@ -24,7 +22,7 @@ export default function ElementReveal({
     });
    },
    {
-    threshold: 0.5, // 50% of the item is visible
+    threshold: 0.7, // 50% of the item is visible
    }
   );
 
@@ -43,7 +41,7 @@ export default function ElementReveal({
  return (
   <div ref={wrapperRef} className='relative w-full h-full overflow-hidden z-0'>
    <div
-    className={`absolute top-0 left-0 w-full h-full bg-primary z-20 transition-transform duration-[1.5s] ease-in-out ${
+    className={`absolute top-0 left-0 w-full h-full bg-primary z-20 transition-transform duration-500 ease-in-out ${
      isVisible ? 'translate-y-full' : 'translate-y-0'
     }`}
    ></div>

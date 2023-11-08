@@ -1,10 +1,38 @@
-import { useRef } from 'react';
+import { useLayoutEffect, useRef } from 'react';
+
+import gsap from 'gsap';
 
 import { Status, ThemeSwitcher } from '@/components';
 import { GridDiv } from '@/components/ui';
+import {
+ animateEnterHorizontal,
+ animateSplitText,
+ animateStaggerText,
+} from '@/animations';
 
 const HeroDesktop = () => {
  const heroRef = useRef(null);
+ const nameRef = useRef(null);
+ const numberRef = useRef(null);
+ const descriptionRef = useRef(null);
+ const statusRef = useRef(null);
+ const themeRef = useRef(null);
+
+ useLayoutEffect(() => {
+  if (
+   !nameRef.current ||
+   !numberRef.current ||
+   !descriptionRef.current ||
+   !statusRef.current ||
+   !themeRef.current
+  )
+   return;
+  animateSplitText(nameRef.current, 0.7);
+  animateStaggerText(descriptionRef.current, 0.7);
+  animateSplitText(numberRef.current, 1.6);
+  animateEnterHorizontal(themeRef.current, -100, 1.5);
+  animateEnterHorizontal(statusRef.current, -100, 1.5);
+ }, [nameRef, numberRef, descriptionRef, statusRef]);
 
  return (
   <div
@@ -12,7 +40,10 @@ const HeroDesktop = () => {
    ref={heroRef}
   >
    {/* Status */}
-   <GridDiv divClass='col-span-full row-span-1 grid grid-cols-12'>
+   <GridDiv
+    ref={statusRef}
+    divClass='col-span-full row-span-1 grid grid-cols-12'
+   >
     <Status />
    </GridDiv>
 
@@ -24,7 +55,12 @@ const HeroDesktop = () => {
     divClass='col-span-7 row-span-1 overflow-hidden flex items-center justify-start'
     top={true}
    >
-    <h1 className='text-displaySmall xl:text-displayMedium'>Juli Scapucin</h1>
+    <h1
+     ref={nameRef}
+     className='text-displaySmall xl:text-displayMedium font-normal'
+    >
+     Juli Scapucin
+    </h1>
    </GridDiv>
 
    {/* Blank Space */}
@@ -34,17 +70,27 @@ const HeroDesktop = () => {
    <GridDiv
     divClass='col-span-7 row-span-1 flex flex-col items-start justify-center'
     top={true}
+    ref={descriptionRef}
    >
-    <h2 className='text-headlineLarge xl:text-displaySmall'>Design & Web</h2>
-    <h2 className='text-headlineLarge xl:text-displaySmall'>Development</h2>
+    <h2 className='text-headlineLarge xl:text-displaySmall font-normal'>
+     Design &
+    </h2>
+    <h2 className='text-headlineLarge xl:text-displaySmall font-normal'>
+     Web Development
+    </h2>
    </GridDiv>
 
    {/* Number */}
    <GridDiv
-    divClass='col-span-4 row-span-3 overflow-hidden flex items-center'
+    divClass='col-span-4 row-span-3 overflow-hidden flex flex-nowrap items-center justify-center'
     top={true}
    >
-    <span className='text-numberDesktop tracking-tighter'>23</span>
+    <h3
+     ref={numberRef}
+     className='text-numberDesktop font-normal tracking-tighter flex'
+    >
+     23
+    </h3>
    </GridDiv>
 
    {/* Theme */}
@@ -53,6 +99,7 @@ const HeroDesktop = () => {
     top={true}
     right={true}
     left={true}
+    ref={themeRef}
    >
     <ThemeSwitcher />
    </GridDiv>
