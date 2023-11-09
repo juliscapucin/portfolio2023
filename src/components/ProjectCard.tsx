@@ -1,12 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { CldImage } from 'next-cloudinary';
 
 import { ProjectLabel } from '@/components';
 import { AnimationGridDiv, GridDiv, ElementReveal } from '@/components/ui';
 import { animateToFullScreen } from '@/animations';
+import { useElementReveal } from '@/hooks';
 
 interface ProjectCardProps {
  index?: number;
@@ -37,6 +38,8 @@ export default function ProjectCard(props: ProjectCardProps) {
  } = props;
  // local isHovering state for individual hover animation
  const [isHovering, setIsHovering] = useState(false);
+ const imageRevealRef = useRef(null);
+ const isVisible = useElementReveal(imageRevealRef);
 
  return variant === 'list' ? (
   ////----- LIST VIEW -----////
@@ -88,7 +91,15 @@ export default function ProjectCard(props: ProjectCardProps) {
      </h1>
     </div>
    </div>
-   <ElementReveal>
+   <div
+    ref={variant === 'image' ? imageRevealRef : null}
+    className='relative w-full h-full overflow-hidden z-0'
+   >
+    <div
+     className={`absolute top-0 left-0 w-full h-full bg-primary z-20 transition-transform duration-500 ease-in-out ${
+      isVisible || variant === 'thumbs' ? 'translate-y-full' : 'translate-y-0'
+     }`}
+    ></div>
     <button
      className='h-full w-full group flex justify-center items-center absolute'
      onMouseEnter={() => {
@@ -130,7 +141,7 @@ export default function ProjectCard(props: ProjectCardProps) {
       />
      </div>
     </button>
-   </ElementReveal>
+   </div>
   </div>
  );
 }
