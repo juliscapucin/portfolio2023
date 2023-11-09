@@ -30,36 +30,39 @@
       --color-primary: 6 6 7;
       --color-secondary: 252 249 248;
       --color-faded: 154 152 152;
+      --color-scroll: 252, 249, 248;
    }
    :root[data-theme='light'] {
       --color-primary: 252 249 248;
       --color-secondary: 6 6 7;
       --color-faded: 154 152 152;
+      --color-scroll: 6, 6, 7;
    }
    :root[data-theme='green'] {
       --color-primary: 0 40 0;
       --color-secondary: 0 255 0;
       --color-faded: 0 100 0;
+      --color-scroll: 0, 255, 0;
    }
 
    ::-webkit-scrollbar {
-      width: 1rem;
-      height: 1rem;
+      width: 4px;
+      height: 4px;
    }
    ::-webkit-scrollbar-track {
-      background-color: var(--color-faded);
-      margin-block: 0;
+      background-color: rgba(var(--color-scroll), 0.2);
+      margin-block: 2px;
    }
    ::-webkit-scrollbar-thumb {
-      background-color: var(--color-faded);
+      background-color: rgba(var(--color-scroll), 1);
       width: 1rem;
       height: 1rem;
       border: none;
    }
 
-   @supports (scrollbar-color: var(--color-faded) var(--color-faded)) {
+   @supports (scrollbar-color: #ccc #fff) {
       & > * {
-         scrollbar-color: var(--color-faded) var(--color-faded);
+         scrollbar-color: #ccc #fff;
          scrollbar-width: thin;
       }
    }
