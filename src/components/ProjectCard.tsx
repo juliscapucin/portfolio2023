@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { CldImage } from 'next-cloudinary';
 
-import { AnimationGridDiv, ProjectLabel } from '@/components';
-import { GridDiv, ElementReveal } from '@/components/ui';
+import { ProjectLabel } from '@/components';
+import { AnimationGridDiv, GridDiv, ElementReveal } from '@/components/ui';
 import { animateToFullScreen } from '@/animations';
 
 interface ProjectCardProps {

@@ -22,7 +22,7 @@ export default function ElementReveal({
     });
    },
    {
-    threshold: 0.7, // 50% of the item is visible
+    threshold: 0.5, // 50% of the item is visible
    }
   );
 

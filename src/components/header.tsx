@@ -31,9 +31,6 @@ export default function Header() {
      : navLinks.find((el) => el.label.toLowerCase() === 'work')
    : navLinks.find((el) => el.label.toLowerCase() === previousPage);
 
-  console.log('previous page', previousPage);
-  console.log('previous page link', previousPageLink);
-
   if (!previousPageLink) return;
 
   ///// TRANSITION TO LEFT
