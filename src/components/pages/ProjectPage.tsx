@@ -52,53 +52,55 @@ export default function ProjectPage({
   );
  }, [headerRef]);
 
- return project ? (
-  <ShallowPage isShallow={isShallow}>
-   <ProjectsMenuThumbs allProjects={allProjects} />
-   {/* Project header */}
-   <section className='relative w-full mt-32'>
-    {/* Title */}
-    <h1 className='text-displaySmall md:text-displayMedium lg:text-displayLarge mb-4'>
-     {project.title}
-    </h1>
+ return (
+  project && (
+   <ShallowPage isShallow={isShallow}>
+    <ProjectsMenuThumbs allProjects={allProjects} />
+    {/* Project header */}
+    <section className='relative w-full mt-32'>
+     {/* Title */}
+     <h1 className='text-displaySmall md:text-displayMedium lg:text-displayLarge mb-4'>
+      {project.title}
+     </h1>
 
-    <div ref={headerRef} className='md:grid grid-cols-12'>
-     {/* Cover Image */}
-     <div className={`col-span-7 block overflow-hidden aspect-square relative`}>
-      <CldImage
-       src={`portfolio2023/work/${project.slug}/01`}
-       alt={project.coverImage.alt}
-       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-       fill
-       priority
-      />
-     </div>
-     <div className='md:col-span-4 md:pl-16 mt-8'>
-      {/* Description */}
-      <div className='mb-16'>
-       <p className='text-titleLarge md:text-headlineSmall mt-16 md:mt-0'>
-        {project.description}
-       </p>
+     <div ref={headerRef} className='md:grid grid-cols-12'>
+      {/* Cover Image */}
+      <div
+       className={`col-span-7 block overflow-hidden aspect-square relative`}
+      >
+       <CldImage
+        src={`portfolio2023/work/${project.slug}/01`}
+        alt={project.coverImage.alt}
+        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+        fill
+        priority
+       />
       </div>
-      {/* Project Info */}
-      <ProjectInfo info={project.info} />
+      <div className='md:col-span-4 md:pl-16 mt-8'>
+       {/* Description */}
+       <div className='mb-16'>
+        <p className='text-titleLarge md:text-headlineSmall mt-16 md:mt-0'>
+         {project.description}
+        </p>
+       </div>
+       {/* Project Info */}
+       <ProjectInfo info={project.info} />
+      </div>
      </div>
-    </div>
-   </section>
+    </section>
 
-   {/* Split Screen */}
-   <ProjectSplitScreen project={project} />
+    {/* Split Screen */}
+    <ProjectSplitScreen project={project} />
 
-   {/* Text Content 2 */}
-   <section className='grid grid-cols-12 my-64'>
+    {/* Text Content 2 */}
+    {/* <section className='grid grid-cols-12 my-64'>
     <div className='lg:col-start-4 col-span-10 lg:col-span-6'>
      {project.textContent2?.map((text) => {
       return <p key={text.children._key}>{text.children.text}</p>;
      })}
     </div>
-   </section>
-  </ShallowPage>
- ) : (
-  <h1>Loading...</h1>
+   </section> */}
+   </ShallowPage>
+  )
  );
 }

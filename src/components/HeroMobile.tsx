@@ -1,7 +1,17 @@
+import { useLayoutEffect, useRef } from 'react';
+
 import { Status, ThemeSwitcher } from '@/components';
 import { GridDiv } from '@/components/ui';
+import { animateSplitText } from '@/animations';
 
 const HeroMobile = () => {
+ const nameRef = useRef(null);
+
+ useLayoutEffect(() => {
+  if (!nameRef.current) return;
+  animateSplitText(nameRef.current, 1);
+ }, [nameRef]);
+
  return (
   <div className='hero__mobile grid grid-cols-6 grid-rows-6 h-screen max-h-screen'>
    {/* Status */}
@@ -11,7 +21,9 @@ const HeroMobile = () => {
 
    {/* Name */}
    <GridDiv divClass='col-span-6 row-span-1 overflow-hidden flex items-center'>
-    <h1 className='text-headlineLarge'>Juli Scapucin</h1>
+    <h1 ref={nameRef} className='text-headlineLarge'>
+     Juli Scapucin
+    </h1>
    </GridDiv>
 
    {/* Description */}

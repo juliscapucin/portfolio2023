@@ -1,5 +1,7 @@
 'use client';
 
+import { forwardRef } from 'react';
+
 type GridDivProps = {
  top?: boolean;
  right?: boolean;
@@ -9,16 +11,15 @@ type GridDivProps = {
  divClass?: string;
 };
 
-export default function GridDiv({
- top,
- right,
- bottom,
- left,
- children,
- divClass,
-}: GridDivProps) {
+export const GridDiv = forwardRef(function GridDiv(
+ { top, right, bottom, left, children, divClass }: GridDivProps,
+ ref: React.Ref<HTMLDivElement>
+) {
  return (
-  <div className={`grid-element relative overflow-hidden ${divClass}`}>
+  <div
+   className={`grid-element relative overflow-hidden ${divClass}`}
+   ref={ref}
+  >
    {top ? (
     <div className='line absolute translate-x-0 translate-y-0 bg-secondary'></div>
    ) : (
@@ -42,4 +43,4 @@ export default function GridDiv({
    {children}
   </div>
  );
-}
+});

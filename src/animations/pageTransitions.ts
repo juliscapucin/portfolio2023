@@ -1,8 +1,6 @@
 import { gsap } from 'gsap';
 import { Flip } from 'gsap/Flip';
-import { SplitText } from 'gsap/SplitText';
 
-gsap.registerPlugin(SplitText);
 gsap.registerPlugin(Flip);
 
 export const animateToFullScreen = (
@@ -41,20 +39,6 @@ export const animateToFullScreen = (
             animationEnd.classList.add('hidden');
          },
       });
-
-      // const split = new SplitText(titleSpan, { type: 'chars' });
-
-      // return gsap.to(split.chars, {
-      //    duration: 0.2,
-      //    opacity: 0,
-      //    y: -20,
-      //    stagger: 0.1,
-      //    ease: 'expo.out',
-      //    onComplete: () => {
-      //       animationEnd.innerHTML = '';
-      //       animationEnd.classList.add('hidden');
-      //    },
-      // });
    };
 
    const translateXAnimation = () => {

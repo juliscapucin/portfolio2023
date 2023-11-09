@@ -7,7 +7,11 @@ interface ButtonCloseProps {
 
 export default function ButtonClose({ action }: ButtonCloseProps) {
  return (
-  <button onClick={action} className='h-16 w-16 relative'>
+  <button
+   onClick={action}
+   className='h-16 w-16 relative'
+   aria-label='close menu'
+  >
    <IconClose />
   </button>
  );

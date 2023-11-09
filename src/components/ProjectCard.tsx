@@ -1,12 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { CldImage } from 'next-cloudinary';
 
-import { AnimationGridDiv, ProjectLabel } from '@/components';
-import { GridDiv, ElementReveal } from '@/components/ui';
+import { ProjectLabel } from '@/components';
+import { AnimationGridDiv, GridDiv, ElementReveal } from '@/components/ui';
 import { animateToFullScreen } from '@/animations';
+import { useElementReveal } from '@/hooks';
 
 interface ProjectCardProps {
  index?: number;
@@ -37,6 +38,8 @@ export default function ProjectCard(props: ProjectCardProps) {
  } = props;
  // local isHovering state for individual hover animation
  const [isHovering, setIsHovering] = useState(false);
+ const imageRevealRef = useRef(null);
+ const isVisible = useElementReveal(imageRevealRef);
 
  return variant === 'list' ? (
   ////----- LIST VIEW -----////
@@ -48,7 +51,7 @@ export default function ProjectCard(props: ProjectCardProps) {
     bottom={true}
    >
     <div className='m-auto mt-0 pt-48'>
-     <h1 className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge font-normal whitespace-nowrap'>
+     <h1 className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge whitespace-nowrap'>
       {title}
      </h1>
     </div>
@@ -83,12 +86,20 @@ export default function ProjectCard(props: ProjectCardProps) {
     className={`project-card-${id} overflow-hidden bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-full z-10 translate-x-full`}
    >
     <div className='m-auto mt-0 pt-48 overflow-hidden'>
-     <h1 className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge col-span-5 whitespace-nowrap font-normal'>
+     <h1 className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge col-span-5 whitespace-nowrap'>
       {title}
      </h1>
     </div>
    </div>
-   <ElementReveal>
+   <div
+    ref={variant === 'image' ? imageRevealRef : null}
+    className='relative w-full h-full overflow-hidden z-0'
+   >
+    <div
+     className={`absolute top-0 left-0 w-full h-full bg-primary z-20 transition-transform duration-500 ease-in-out ${
+      isVisible || variant === 'thumbs' ? 'translate-y-full' : 'translate-y-0'
+     }`}
+    ></div>
     <button
      className='h-full w-full group flex justify-center items-center absolute'
      onMouseEnter={() => {
@@ -130,7 +141,7 @@ export default function ProjectCard(props: ProjectCardProps) {
       />
      </div>
     </button>
-   </ElementReveal>
+   </div>
   </div>
  );
 }

@@ -1,7 +1,6 @@
 'use client';
 
 import AboutText from './AboutText';
-import AnimationGridDiv from './AnimationGridDiv';
 import Availability from './Availability';
 import ContactModal from './ContactModal';
 import Copyright from './Copyright';
@@ -11,7 +10,6 @@ import Experience from './Experience';
 import ExperienceItem from './ExperienceItem';
 import FeedbackForm from './FeedbackForm';
 import Footer from './Footer';
-import GridElement from './GridElement';
 import Header from './header';
 import MenuLink from './MenuLink';
 import HeroDesktop from './HeroDesktop';
@@ -38,7 +36,6 @@ import ThemeSwitcher from './ThemeSwitcher';
 
 export {
    AboutText,
-   AnimationGridDiv,
    Availability,
    ContactModal,
    Copyright,
@@ -48,7 +45,6 @@ export {
    ExperienceItem,
    FeedbackForm,
    Footer,
-   GridElement,
    Header,
    MenuLink,
    HeroDesktop,

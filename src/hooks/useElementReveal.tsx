@@ -1,12 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { MutableRefObject, useEffect, useRef, useState } from 'react';
 
-export default function ElementReveal({
- children,
-}: {
- children: React.ReactNode;
-}) {
+export default function ElementReveal(wrapperRef: MutableRefObject<null>) {
  const [isVisible, setIsVisible] = useState(false);
- const wrapperRef = useRef(null);
 
  useEffect(() => {
   if (!wrapperRef.current) return;
@@ -38,14 +33,5 @@ export default function ElementReveal({
   };
  }, [wrapperRef]);
 
- return (
-  <div ref={wrapperRef} className='relative w-full h-full overflow-hidden z-0'>
-   <div
-    className={`absolute top-0 left-0 w-full h-full bg-primary z-20 transition-transform duration-500 ease-in-out ${
-     isVisible ? 'translate-y-full' : 'translate-y-0'
-    }`}
-   ></div>
-   {children}
-  </div>
- );
+ return isVisible;
 }

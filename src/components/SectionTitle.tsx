@@ -43,15 +43,13 @@ export default function SectionTitle({ title }: SectionTitleProps) {
  }, [textRef]);
 
  return (
-  <GridDiv top={true}>
-   <div className='h-full w-full flex justify-start items-center mt-16 lg:mt-8 overflow-hidden'>
-    <h2
-     ref={textRef}
-     className='text-displaySmall md:text-displayMedium lg:text-displayLarge ml-4 opacity-0'
-    >
-     {title}
-    </h2>
-   </div>
+  <GridDiv divClass='h-full w-full overflow-hidden' top={true}>
+   <h2
+    ref={textRef}
+    className='text-displaySmall md:text-displayMedium lg:text-displayLarge mt-16 lg:mt-64 lg:ml-4 opacity-0'
+   >
+    {title}
+   </h2>
   </GridDiv>
  );
 }

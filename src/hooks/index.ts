@@ -1,3 +1,4 @@
+import useElementReveal from './useElementReveal';
 import { useEnterTransitionDirection } from './useEnterTransitionDirection';
 import { useFetch } from './useFetch';
 import { useMediaQuery } from './useMediaQuery';
@@ -8,6 +9,7 @@ import { useWindowDimensions } from './useWindowDimensions';
 import { useWindowResize } from './useWindowResize';
 
 export {
+   useElementReveal,
    useEnterTransitionDirection,
    useFetch,
    useMediaQuery,

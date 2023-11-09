@@ -196,7 +196,7 @@ export default function ProjectsMenu({
      {projectItems &&
       projectItems.map((project, index) => {
        return (
-        <div className='lg:grid grid-cols-12 mb-64' key={project._id}>
+        <div className='lg:grid grid-cols-12 mb-32 lg:mb-64' key={project._id}>
          {project.title &&
           project.slug &&
           project.imageSize &&
