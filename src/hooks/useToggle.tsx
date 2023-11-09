@@ -8,6 +8,7 @@ export function useToggle(
  element: HTMLDivElement | null
 ) {
  const [open, setOpen] = useState(initialState);
+ const [addBackground, setAddBackground] = useState(false);
 
  const toggle = () => {
   setOpen(!open);
@@ -15,8 +16,9 @@ export function useToggle(
 
  useEffect(() => {
   if (!element) return;
+
   gsap.set(element, {
-   x: '190px',
+   x: '184px',
   });
  }, [element]);
 
@@ -24,6 +26,7 @@ export function useToggle(
   if (!element) return;
 
   if (open) {
+   setAddBackground(true);
    gsap.to(element, {
     duration: 0.5,
     x: '0px',
@@ -32,11 +35,14 @@ export function useToggle(
   } else {
    gsap.to(element, {
     duration: 0.5,
-    x: '190px',
+    x: '184px',
     ease: 'expo.out',
+    onComplete: () => {
+     setAddBackground(false);
+    },
    });
   }
  }, [open]);
 
- return { open, toggle };
+ return { open, addBackground, toggle };
 }

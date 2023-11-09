@@ -15,12 +15,17 @@ export default function ProjectsMenuThumbs({
  const breakpoint = useMediaQuery(breakpoints.desktop);
  const projectsMenuRef = useRef<HTMLDivElement | null>(null);
 
- const { toggle, open } = useToggle(false, projectsMenuRef.current);
+ const { toggle, open, addBackground } = useToggle(
+  false,
+  projectsMenuRef.current
+ );
 
  return (
   <div
    ref={projectsMenuRef}
-   className='projects-thumbs fixed top-0 right-0 lg:right-8 flex bg-primary z-50'
+   className={`projects-thumbs fixed top-0 right-0 lg:right-8 flex z-50 ${
+    addBackground && 'bg-primary'
+   }`}
   >
    {/* All projects button */}
    <GridDiv
