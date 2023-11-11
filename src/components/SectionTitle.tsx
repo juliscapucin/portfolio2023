@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { SplitText } from 'gsap/SplitText';
+import { SplitText } from 'gsap/dist/SplitText';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import { animateSplitText } from '@/animations';
