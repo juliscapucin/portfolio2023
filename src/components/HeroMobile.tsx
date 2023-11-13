@@ -9,7 +9,7 @@ const HeroMobile = () => {
 
  useLayoutEffect(() => {
   if (!nameRef.current) return;
-  animateSplitText(nameRef.current, 1);
+  animateSplitText(nameRef.current, 200, 1);
  }, [nameRef]);
 
  return (
@@ -21,7 +21,7 @@ const HeroMobile = () => {
 
    {/* Name */}
    <GridDiv divClass='col-span-6 row-span-1 overflow-hidden flex items-center'>
-    <h1 ref={nameRef} className='text-headlineLarge'>
+    <h1 ref={nameRef} className='text-[11vw] whitespace-nowrap'>
      Juli Scapucin
     </h1>
    </GridDiv>
@@ -41,7 +41,7 @@ const HeroMobile = () => {
     divClass='col-span-6 row-span-2 overflow-hidden flex items-center'
     top={true}
    >
-    <span className='text-numberMobile sm:text-numberTablet tracking-tighter'>
+    <span className='text-numberMobile sm:text-numberTablet font-normal tracking-tighter'>
      23
     </span>
    </GridDiv>
