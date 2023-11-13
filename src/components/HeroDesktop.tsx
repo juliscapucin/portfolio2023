@@ -27,9 +27,9 @@ const HeroDesktop = () => {
    !themeRef.current
   )
    return;
-  animateSplitText(nameRef.current, 0.7);
+  animateSplitText(nameRef.current, 100, 0.7);
   animateStaggerText(descriptionRef.current, 0.7);
-  animateSplitText(numberRef.current, 1.6);
+  animateSplitText(numberRef.current, 100, 1.6);
   animateEnterHorizontal(themeRef.current, -100, 1.5);
   animateEnterHorizontal(statusRef.current, -100, 1.5);
  }, [nameRef, numberRef, descriptionRef, statusRef]);
