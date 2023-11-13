@@ -2,6 +2,7 @@ import { useRef } from 'react';
 
 import { animateMobileMenu } from '@/animations';
 
+import { Availability } from '@/components';
 import { GridDiv } from '@/components/ui';
 import { ButtonBurger, ButtonClose } from '@/components/buttons';
 
@@ -70,11 +71,8 @@ export default function MenuMobile({ navLinks, buttonAction }: NavLinksProps) {
        })}
       </nav>
       {/* Availability / Contact */}
-      <div className='flex flex-col items-start mt-32'>
-       <span className='text-headlineSmall'>Available November 2023</span>
-       <a href='mailto:hello@juliscapucin.com' className='text-displaySmall'>
-        Say Hi :)
-       </a>
+      <div className='w-full flex justify-center mt-32'>
+       <Availability />
       </div>
      </aside>
     </div>
