@@ -27,7 +27,7 @@ export default function CustomCursor({ isHovering }: { isHovering: boolean }) {
   <div
    className={`${
     !isHovering && 'hidden'
-   } fixed top-0 left-0 w-32 h-32 bg-secondary rounded-full flex items-center justify-center z-50 pointer-events-none`}
+   } fixed top-0 left-0 w-32 h-32 bg-secondary rounded-full flex items-center justify-center z-50 pointer-events-none cursor-pointer`}
    ref={refCursor}
   >
    <div className='customcursor__follower__inner'>
