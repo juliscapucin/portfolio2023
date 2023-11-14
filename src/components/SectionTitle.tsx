@@ -18,13 +18,7 @@ export default function SectionTitle({ title }: SectionTitleProps) {
  useEffect(() => {
   if (!textRef.current) return;
 
-  gsap.registerPlugin(SplitText);
   gsap.registerPlugin(ScrollTrigger);
-
-  // Create a new SplitText instance
-  const splitText = new SplitText(textRef.current, {
-   type: 'words, chars, lines',
-  });
 
   // Create timeline + start scrollTrigger
   const tl = gsap.timeline({
@@ -33,7 +27,7 @@ export default function SectionTitle({ title }: SectionTitleProps) {
     start: 'top 80%',
     //onEnter, onLeave, onEnterBack, onLeaveBack
     onEnter: () => {
-     animateSplitText(textRef.current!);
+     animateSplitText(textRef.current!, 200, 0);
     },
     onLeaveBack: () => {
      gsap.set(textRef.current, { opacity: 0 });
