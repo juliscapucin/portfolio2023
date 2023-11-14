@@ -1,13 +1,15 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { CldImage } from 'next-cloudinary';
 
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 import { ProjectLabel } from '@/components';
-import { AnimationGridDiv, GridDiv, ElementReveal } from '@/components/ui';
+import { AnimationGridDiv, GridDiv } from '@/components/ui';
 import { animateToFullScreen } from '@/animations';
-import { useElementReveal } from '@/hooks';
 
 interface ProjectCardProps {
  index?: number;
@@ -38,8 +40,36 @@ export default function ProjectCard(props: ProjectCardProps) {
  } = props;
  // local isHovering state for individual hover animation
  const [isHovering, setIsHovering] = useState(false);
- const imageRevealRef = useRef(null);
- const isVisible = useElementReveal(imageRevealRef);
+ const imageViewRef = useRef(null);
+
+ useEffect(() => {
+  let ctx = gsap.context(() => {});
+
+  if (!imageViewRef || !imageViewRef.current) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  ctx.add(() => {
+   let tl = gsap.timeline({
+    scrollTrigger: {
+     trigger: imageViewRef.current,
+     // as explained here: https://www.youtube.com/watch?v=SVjndrQ6v9I (min 7:20)
+     toggleActions: 'play complete reverse reset',
+     start: 'top 80%',
+    },
+   });
+
+   tl.to('.mask', {
+    yPercent: 100,
+    duration: 0.5,
+    ease: 'power1.in',
+   });
+  }, imageViewRef);
+
+  return () => {
+   ctx.revert();
+  };
+ }, [imageViewRef]);
 
  return variant === 'list' ? (
   ////----- LIST VIEW -----////
@@ -79,6 +109,7 @@ export default function ProjectCard(props: ProjectCardProps) {
  ) : (
   ////----- IMAGE VIEW + THUMBS VIEW -----////
   <div
+   ref={variant === 'image' ? imageViewRef : null}
    className={`custom-col-start-${imageStart} col-span-5 aspect-square relative overflow-hidden`}
   >
    {/* Div for animation */}
@@ -91,15 +122,11 @@ export default function ProjectCard(props: ProjectCardProps) {
      </h1>
     </div>
    </div>
-   <div
-    ref={variant === 'image' ? imageRevealRef : null}
-    className='relative w-full h-full overflow-hidden z-0'
-   >
-    <div
-     className={`absolute top-0 left-0 w-full h-full bg-primary z-20 transition-transform duration-500 ease-in-out ${
-      isVisible || variant === 'thumbs' ? 'translate-y-full' : 'translate-y-0'
-     }`}
-    ></div>
+   <div className='relative w-full h-full overflow-hidden z-0'>
+    {/* Image Reveal Mask */}
+    {variant === 'image' && (
+     <div className='mask absolute top-0 left-0 w-full h-full bg-primary z-20'></div>
+    )}
     <button
      className='h-full w-full group flex justify-center items-center absolute cursor-none'
      onMouseEnter={() => {
