@@ -1,5 +1,7 @@
 'use client';
 
+import { useRef } from 'react';
+
 import { breakpoints } from '@/constants';
 
 import { useMediaQuery } from '@/hooks';
@@ -17,11 +19,12 @@ type Props = {
 export default function WorkPage({ data, allProjects }: Props) {
  // Set breakpoint for mobile/desktop (values are in constants.ts)
  const breakpoint = useMediaQuery(breakpoints.desktop);
+ const pageRef = useRef(null);
 
- useEnterTransitionDirection();
+ useEnterTransitionDirection(pageRef);
 
  return (
-  <div className='page work-page'>
+  <div ref={pageRef} className='page work-page'>
    <Title title={data.title} margin={true} />
    <p className='text-titleLarge md:text-headlineSmall mt-4 lg:mt-0 lg:w-4/6'>
     {data.description}

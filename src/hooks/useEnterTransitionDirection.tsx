@@ -1,17 +1,21 @@
-import { useEffect } from 'react';
+import { MutableRefObject, useLayoutEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
-import { animateToLeft, animateToRight } from '@/animations';
+import { animateToLeft, animateToRight, ctx } from '@/animations';
 
 import { navLinks } from '@/constants';
 import { usePageContext } from '@/context';
 
-export function useEnterTransitionDirection() {
+export function useEnterTransitionDirection(
+ enterElement: MutableRefObject<null>
+) {
  const pathname = usePathname();
  const { previousPage, updatePreviousPage } = usePageContext();
 
  //  Define the page transition direction based on the previous page + navLinks order
- useEffect(() => {
+ useLayoutEffect(() => {
+  if (!enterElement || !enterElement.current) return;
+
   const actualPage = navLinks.find(
    (element) => element.slug === pathname.slice(1)
   );
@@ -31,13 +35,16 @@ export function useEnterTransitionDirection() {
    previousPageLink &&
    actualPage?._key > previousPageLink?._key
   ) {
-   animateToLeft('page');
+   animateToLeft(enterElement.current);
+   // if actual page id is smaller than previous page id, animate to right
   } else {
-   animateToRight('page');
+   animateToRight(enterElement.current);
   }
 
   updatePreviousPage(pathname.slice(1));
 
-  return () => {};
- }, []);
+  return () => {
+   ctx.revert();
+  };
+ }, [enterElement]);
 }

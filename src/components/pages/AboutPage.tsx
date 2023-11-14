@@ -2,9 +2,11 @@
 
 import Image from 'next/image';
 
+import { useRef } from 'react';
 import { Footer, Services } from '@/components';
 import { Title } from '@/components/ui';
 import { useEnterTransitionDirection } from '@/hooks';
+import page from '@/app/page';
 
 type AboutData = {
  title: string;
@@ -16,12 +18,14 @@ type AboutData = {
 };
 
 export default function AboutPage({ data }: { data: AboutData }) {
- useEnterTransitionDirection();
+ const pageRef = useRef(null);
+
+ useEnterTransitionDirection(pageRef);
 
  return (
   <>
    {data ? (
-    <div className='page about-page pt-64'>
+    <div ref={pageRef} className='page about-page pt-64'>
      {/* Title */}
      <Title title={data.title} />
      <div className='lg:grid grid-cols-12'>

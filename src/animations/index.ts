@@ -12,6 +12,7 @@ import { animateMobileMenu } from './mobileMenu';
 import { animateProjectsMenu } from './projectsMenu';
 import { animateSplitText } from './animateSplitText';
 import { animateStaggerText } from './animateStaggerText';
+import { ctx } from './gsap-context';
 
 export {
    animateEnterHorizontal,
@@ -25,4 +26,5 @@ export {
    animateToRight,
    animateToRightTransition,
    animateSplitText,
+   ctx,
 };

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useLayoutEffect, useRef } from 'react';
 
 import { breakpoints } from '@/constants';
 import { usePageContext } from '@/context';
@@ -15,25 +15,32 @@ import {
  SectionTitle,
 } from '@/components';
 import { GridDiv } from '@/components/ui';
-import { animateToRight } from '@/animations';
+import { animateToRight, ctx } from '@/animations';
 import { Project } from '@/types';
 
 export default function HomePage({ allProjects }: { allProjects: Project[] }) {
  const { previousPage, updatePreviousPage } = usePageContext();
+ const pageRef = useRef(null);
 
  // Set breakpoint for mobile/desktop (values are in constants.ts)
  const breakpoint = useMediaQuery(breakpoints.desktop);
 
  //  Enter page animation
- useEffect(() => {
+ useLayoutEffect(() => {
+  if (!pageRef.current) return;
+
   if (!previousPage.includes('project-home')) {
-   animateToRight(`home-page`);
+   animateToRight(pageRef.current);
   }
   updatePreviousPage('home');
- }, []);
+
+  return () => {
+   ctx.revert();
+  };
+ }, [pageRef]);
 
  return (
-  <div className='page home-page main-page overflow-hidden'>
+  <div ref={pageRef} className='page home-page main-page overflow-hidden'>
    <GridDiv divClass='overflow-hidden min-h-screen' bottom={true}>
     {breakpoint === 'mobile' && <HeroMobile />}
     {breakpoint === 'desktop' && <HeroDesktop />}
