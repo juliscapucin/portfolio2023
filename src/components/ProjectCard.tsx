@@ -59,7 +59,7 @@ export default function ProjectCard(props: ProjectCardProps) {
 
    {/* Button action */}
    <button
-    className='h-full w-full p-8 group'
+    className='h-full w-full p-8 group cursor-none'
     onMouseEnter={() => updateIsHovering(true)}
     onMouseLeave={() => updateIsHovering(false)}
     onClick={() => {
@@ -101,7 +101,7 @@ export default function ProjectCard(props: ProjectCardProps) {
      }`}
     ></div>
     <button
-     className='h-full w-full group flex justify-center items-center absolute'
+     className='h-full w-full group flex justify-center items-center absolute cursor-none'
      onMouseEnter={() => {
       setIsHovering(true);
       updateIsHovering(true);
