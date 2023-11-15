@@ -29,7 +29,10 @@ export default function Footer() {
  }, []);
 
  return (
-  <GridDiv top={true} divClass='py-64 lg:grid grid-cols-12 max-w-desktop'>
+  <GridDiv
+   top={true}
+   divClass='pt-32 pb-16 lg:px-4 lg:grid grid-cols-12 max-w-desktop'
+  >
    <nav className='col-span-3'>
     {/* Nav Column */}
 
@@ -66,14 +69,12 @@ export default function Footer() {
    </nav>
 
    {/* Availability / Contact */}
-   <div className='col-start-9 col-span-4 flex flex-col items-start mt-32 lg:mt-0 gap-32'>
+   <div className='col-start-7 col-span-6 flex flex-col justify-between lg:items-end mt-32 lg:mt-0 gap-32'>
     <Availability />
 
-    <ThemeSwitcher />
+    {/* Copyright */}
+    <Copyright />
    </div>
-
-   {/* Copyright */}
-   <Copyright />
   </GridDiv>
  );
 }
