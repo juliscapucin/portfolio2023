@@ -5,8 +5,7 @@ import Image from 'next/image';
 import { useRef } from 'react';
 import { Footer, Services } from '@/components';
 import { Title } from '@/components/ui';
-import { useEnterTransitionDirection } from '@/hooks';
-import page from '@/app/page';
+import { useElementReveal, useEnterTransitionDirection } from '@/hooks';
 
 type AboutData = {
  title: string;
@@ -19,8 +18,10 @@ type AboutData = {
 
 export default function AboutPage({ data }: { data: AboutData }) {
  const pageRef = useRef(null);
+ const imageWrapperRef = useRef(null);
 
  useEnterTransitionDirection(pageRef);
+ useElementReveal(imageWrapperRef, 0.8);
 
  return (
   <>
@@ -29,7 +30,11 @@ export default function AboutPage({ data }: { data: AboutData }) {
      {/* Title */}
      <Title title={data.title} />
      <div className='lg:grid grid-cols-12'>
-      <div className='col-span-6 aspect-square overflow-hidden relative mt-4 mb-8 lg:mb-0'>
+      <div
+       ref={imageWrapperRef}
+       className='col-span-6 aspect-square overflow-hidden relative mt-4 mb-8 lg:mb-0'
+      >
+       <div className='mask absolute top-0 left-0 w-full h-full bg-primary z-20'></div>
        <Image
         src='/juli.avif'
         alt='photo'

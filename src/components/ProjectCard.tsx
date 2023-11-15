@@ -1,15 +1,13 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { CldImage } from 'next-cloudinary';
-
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import { ProjectLabel } from '@/components';
 import { AnimationGridDiv, GridDiv } from '@/components/ui';
 import { animateToFullScreen } from '@/animations';
+import { useElementReveal } from '@/hooks';
 
 interface ProjectCardProps {
  index?: number;
@@ -40,36 +38,9 @@ export default function ProjectCard(props: ProjectCardProps) {
  } = props;
  // local isHovering state for individual hover animation
  const [isHovering, setIsHovering] = useState(false);
- const imageViewRef = useRef(null);
+ const imageWrapperRef = useRef(null);
 
- useEffect(() => {
-  let ctx = gsap.context(() => {});
-
-  if (!imageViewRef || !imageViewRef.current) return;
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  ctx.add(() => {
-   let tl = gsap.timeline({
-    scrollTrigger: {
-     trigger: imageViewRef.current,
-     // as explained here: https://www.youtube.com/watch?v=SVjndrQ6v9I (min 7:20)
-     toggleActions: 'play complete reverse reset',
-     start: 'top 80%',
-    },
-   });
-
-   tl.to('.mask', {
-    yPercent: 100,
-    duration: 0.5,
-    ease: 'power1.in',
-   });
-  }, imageViewRef);
-
-  return () => {
-   ctx.revert();
-  };
- }, [imageViewRef]);
+ useElementReveal(imageWrapperRef);
 
  return variant === 'list' ? (
   ////----- LIST VIEW -----////
@@ -109,7 +80,7 @@ export default function ProjectCard(props: ProjectCardProps) {
  ) : (
   ////----- IMAGE VIEW + THUMBS VIEW -----////
   <div
-   ref={variant === 'image' ? imageViewRef : null}
+   ref={variant === 'image' ? imageWrapperRef : null}
    className={`custom-col-start-${imageStart} col-span-5 aspect-square relative overflow-hidden`}
   >
    {/* Div for animation */}
