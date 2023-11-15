@@ -1,42 +1,52 @@
-import { useEffect, useState } from 'react';
+'use client';
+
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 
 import { GridDiv } from '@/components/ui';
+import { useLinkReveal } from '@/hooks';
 
 type SocialsData = {
  title: string;
- items: [{ title: string; url: string; _key: string }];
+ items: [{ title: string; slug?: string; url?: string; _key: string }];
 };
 
-export default function SocialLinks() {
+export default function FooterLinks({ apiRoute }: { apiRoute: string }) {
  const [data, setData] = useState<SocialsData | null>(null);
+ const wrapperRef = useRef(null);
 
  //  Fetch data from api Route Handler (api/socials)
  useEffect(() => {
   const fetchData = async () => {
-   const response = await fetch('/api/socials');
+   const response = await fetch(`/api/${apiRoute}`);
    const data = await response.json();
+
    setData(data);
   };
 
   fetchData();
  }, []);
 
+ useLinkReveal(wrapperRef);
+
  return (
   <>
-   {data ? (
-    <>
+   {data && (
+    <div ref={wrapperRef} className='overflow-hidden'>
      <span>{data.title}</span>
      {data.items.map((link) => {
+      if (!link.slug && !link.url) return;
+      const url = link.slug ? link.slug : link.url;
+
       return (
        <GridDiv
         bottom={true}
-        divClass={`relative max-h-32 min-h-32 flex justify-start items-start`}
+        divClass='relative max-h-32 min-h-32 flex justify-start items-start'
         key={link._key}
        >
         <Link
          className='block h-11 group overflow-hidden'
-         href={link.url}
+         href={url!}
          target='_blank'
         >
          {/* Animated Label */}
@@ -52,9 +62,7 @@ export default function SocialLinks() {
        </GridDiv>
       );
      })}
-    </>
-   ) : (
-    <h1>Loading...</h1>
+    </div>
    )}
   </>
  );

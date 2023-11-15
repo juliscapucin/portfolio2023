@@ -19,7 +19,7 @@ export default function MenuDesktop({ navLinks, buttonAction }: NavLinksProps) {
 
  return (
   <>
-   {navLinks ? (
+   {navLinks && (
     <GridDiv
      divClass={'h-16 max-w-full mx-8 px-8 hidden lg:flex bg-primary'}
      bottom={true}
@@ -43,8 +43,6 @@ export default function MenuDesktop({ navLinks, buttonAction }: NavLinksProps) {
       <MenuLink label='Connect' action={updateModalOpen} />
      </nav>
     </GridDiv>
-   ) : (
-    <span>Loading...</span>
    )}
   </>
  );

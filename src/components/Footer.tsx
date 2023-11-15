@@ -2,12 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import {
- Availability,
- Copyright,
- SocialLinks,
- ThemeSwitcher,
-} from '@/components';
+import { Availability, Copyright, FooterLinks } from '@/components';
 import { GridDiv } from '@/components/ui';
 
 type NavbarData = {
@@ -15,19 +10,6 @@ type NavbarData = {
 };
 
 export default function Footer() {
- const [data, setData] = useState<NavbarData | null>(null);
-
- //  Fetch data from api Route Handler (api/navbar)
- useEffect(() => {
-  const fetchData = async () => {
-   const response = await fetch('/api/navbar');
-   const data = await response.json();
-   setData(data);
-  };
-
-  fetchData();
- }, []);
-
  return (
   <GridDiv
    top={true}
@@ -36,35 +18,12 @@ export default function Footer() {
    <nav className='col-span-3'>
     {/* Nav Column */}
 
-    {/* Nav Links */}
-    <div className='flex flex-col'>
-     <span>Explore</span>
-     {data &&
-      data.items.map((link) => {
-       return (
-        <GridDiv
-         bottom={true}
-         divClass={`relative max-h-32 min-h-32 flex justify-start items-start`}
-         key={link._key}
-        >
-         <Link className='block h-11 group overflow-hidden' href={link.slug}>
-          {/* Animated Label */}
-          <div className='flex flex-col justify-start items-start group-hover:-translate-y-1/2 transition'>
-           <span className='font-headline text-headlineSmall uppercase text-secondary'>
-            {link.title}
-           </span>
-           <span className='font-headline text-headlineSmall uppercase text-secondary'>
-            {link.title}
-           </span>
-          </div>
-         </Link>
-        </GridDiv>
-       );
-      })}
-    </div>
     {/* Social Column */}
     <div className='flex flex-col mt-16'>
-     <SocialLinks />
+     <FooterLinks apiRoute={'navbar'} />
+    </div>
+    <div className='flex flex-col mt-16'>
+     <FooterLinks apiRoute={'socials'} />
     </div>
    </nav>
 
