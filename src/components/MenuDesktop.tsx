@@ -19,12 +19,11 @@ export default function MenuDesktop({ navLinks, buttonAction }: NavLinksProps) {
 
  return (
   <>
-   {navLinks ? (
+   {navLinks && (
     <GridDiv
-     divClass={'h-16 max-w-full mx-8 px-8 hidden lg:flex bg-primary'}
+     divClass={'h-16 max-w-full mx-8 px-4 hidden lg:flex bg-primary'}
      bottom={true}
     >
-     <ThemeSwitcher variant='header' />
      {/* Menu links */}
      <nav className='w-full h-full hidden lg:flex justify-end items-center gap-8 mr-8'>
       {navLinks.map((link) => {
@@ -43,9 +42,9 @@ export default function MenuDesktop({ navLinks, buttonAction }: NavLinksProps) {
       {/* Contact button */}
       <MenuLink label='Connect' action={updateModalOpen} />
      </nav>
+
+     <ThemeSwitcher variant='header' />
     </GridDiv>
-   ) : (
-    <span>Loading...</span>
    )}
   </>
  );
