@@ -38,16 +38,18 @@ export default function MenuMobile({ navLinks, buttonAction }: NavLinksProps) {
       ref={mobileMenuRef}
      >
       {/* Close Button */}
-      <ButtonClose
-       action={(e) => {
-        if (mobileMenuRef.current) {
-         animateMobileMenu(mobileMenuRef.current);
-        }
-       }}
-      />
+      <div className='absolute top-8 right-8'>
+       <ButtonClose
+        action={(e) => {
+         if (mobileMenuRef.current) {
+          animateMobileMenu(mobileMenuRef.current);
+         }
+        }}
+       />
+      </div>
 
       {/* Nav Links */}
-      <nav className='flex flex-col border-solid border-b border-secondary mt-16 h-full'>
+      <nav className='flex flex-col border-solid border-b border-secondary mt-32 h-full'>
        {navLinks.map((link) => {
         return (
          <GridDiv

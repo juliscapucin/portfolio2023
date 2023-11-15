@@ -19,7 +19,7 @@ export default function Footer() {
     {/* Nav Column */}
 
     {/* Social Column */}
-    <div className='flex flex-col mt-16'>
+    <div className='flex flex-col'>
      <FooterLinks apiRoute={'navbar'} />
     </div>
     <div className='flex flex-col mt-16'>

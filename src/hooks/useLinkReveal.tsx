@@ -21,11 +21,7 @@ export function useLinkReveal(
      start: 'top 98%',
      //onEnter, onLeave, onEnterBack, onLeaveBack
      onEnter: () => {
-      console.log('enter');
       animateStaggerText(linkRef.current!, 0, 0.8);
-     },
-     onLeaveBack: () => {
-      console.log('leave back');
      },
     },
    });
