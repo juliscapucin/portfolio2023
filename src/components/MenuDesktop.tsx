@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 
-import { MenuLink } from '@/components';
+import { MenuLink, ThemeSwitcher } from '@/components';
 import { GridDiv } from '@/components/ui';
 import { useModalContext } from '@/context';
 
@@ -21,7 +21,7 @@ export default function MenuDesktop({ navLinks, buttonAction }: NavLinksProps) {
   <>
    {navLinks && (
     <GridDiv
-     divClass={'h-16 max-w-full mx-8 px-8 hidden lg:flex bg-primary'}
+     divClass={'h-16 max-w-full mx-8 px-4 hidden lg:flex bg-primary'}
      bottom={true}
     >
      {/* Menu links */}
@@ -42,6 +42,8 @@ export default function MenuDesktop({ navLinks, buttonAction }: NavLinksProps) {
       {/* Contact button */}
       <MenuLink label='Connect' action={updateModalOpen} />
      </nav>
+
+     <ThemeSwitcher variant='header' />
     </GridDiv>
    )}
   </>
