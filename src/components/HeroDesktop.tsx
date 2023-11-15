@@ -101,7 +101,7 @@ const HeroDesktop = () => {
     left={true}
     ref={themeRef}
    >
-    <ThemeSwitcher />
+    <ThemeSwitcher variant='body' />
    </GridDiv>
 
    {/* Arrow */}

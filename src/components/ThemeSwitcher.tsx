@@ -11,7 +11,11 @@ const themes = [
  { theme: 'green', color: 'bg-colorGreen' },
 ];
 
-export default function ThemeSwitcher() {
+interface Props {
+ variant: 'body' | 'header';
+}
+
+export default function ThemeSwitcher({ variant }: Props) {
  const { theme, setTheme } = useThemeStorage();
 
  const handleThemeChange = (
@@ -29,30 +33,61 @@ export default function ThemeSwitcher() {
  }, [theme]);
 
  return (
-  <div className='theme-switcher mt-4 lg:mt-8 flex flex-col items-center'>
-   <span className='mb-2 lg:mb-4'>Theme</span>
-   <div className='flex flex-col gap-2'>
-    {themes.map((item) => {
-     return (
-      <div className='flex gap-2 items-center' key={item.theme}>
-       <div
-        className={`arrow w-8 fill-secondary transition-opacity ${
-         theme !== item.theme && 'opacity-0'
-        }`}
-       >
-        <ButtonArrow />
-       </div>
-       <button
-        type='button'
-        className={`${item.color} ${
-         item.theme === theme && 'active'
-        } border border-colorFaded w-8 lg:w-10 h-8 lg:h-10`}
-        onClick={(e) => handleThemeChange(e, item.theme)}
-       ></button>
-      </div>
-     );
-    })}
-   </div>
-  </div>
+  <>
+   {variant === 'body' && (
+    <div className='theme-switcher mt-4 lg:mt-8 flex flex-col items-center'>
+     <span className='mb-2 lg:mb-4'>Theme</span>
+     <div className='flex flex-col gap-2'>
+      {themes.map((item) => {
+       return (
+        <div className='flex gap-2 items-center' key={item.theme}>
+         <div
+          className={`arrow w-8 fill-secondary transition-opacity ${
+           theme !== item.theme && 'opacity-0'
+          }`}
+         >
+          <ButtonArrow />
+         </div>
+         <button
+          type='button'
+          className={`${item.color} ${
+           item.theme === theme && 'active'
+          } border border-colorFaded w-8 lg:w-10 h-8 lg:h-10`}
+          onClick={(e) => handleThemeChange(e, item.theme)}
+         ></button>
+        </div>
+       );
+      })}
+     </div>
+    </div>
+   )}
+   {variant === 'header' && (
+    <div className='theme-switcher flex items-center'>
+     <span className='mb-2 lg:mb-4'>Theme</span>
+     <div className='flex gap-2'>
+      {themes.map((item) => {
+       return (
+        <div className='flex gap-2 items-center' key={item.theme}>
+         <div
+          className={`arrow w-8 fill-secondary transition-opacity ${
+           theme !== item.theme && 'opacity-0'
+          }`}
+         >
+          <ButtonArrow />
+         </div>
+         <button
+          type='button'
+          className={`${item.color} ${
+           item.theme === theme && 'active'
+          } border border-colorFaded w-8 lg:w-10 h-8 lg:h-10`}
+          onClick={(e) => handleThemeChange(e, item.theme)}
+         ></button>
+        </div>
+       );
+      })}
+     </div>
+    </div>
+   )}
+  </>
  );
 }

@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 
-import { MenuLink } from '@/components';
+import { MenuLink, ThemeSwitcher } from '@/components';
 import { GridDiv } from '@/components/ui';
 import { useModalContext } from '@/context';
 
@@ -24,6 +24,7 @@ export default function MenuDesktop({ navLinks, buttonAction }: NavLinksProps) {
      divClass={'h-16 max-w-full mx-8 px-8 hidden lg:flex bg-primary'}
      bottom={true}
     >
+     <ThemeSwitcher variant='header' />
      {/* Menu links */}
      <nav className='w-full h-full hidden lg:flex justify-end items-center gap-8 mr-8'>
       {navLinks.map((link) => {

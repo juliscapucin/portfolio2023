@@ -9,7 +9,7 @@ const HeroMobile = () => {
 
  useLayoutEffect(() => {
   if (!nameRef.current) return;
-  animateSplitText(nameRef.current, 200, 1);
+  animateSplitText(nameRef.current, 300, 1);
  }, [nameRef]);
 
  return (
@@ -33,7 +33,7 @@ const HeroMobile = () => {
 
    {/* Theme */}
    <GridDiv divClass='col-span-full row-span-1 flex justify-end' top={true}>
-    <ThemeSwitcher />
+    <ThemeSwitcher variant='body' />
    </GridDiv>
 
    {/* Number */}
