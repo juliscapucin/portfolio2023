@@ -3,7 +3,7 @@ import { MutableRefObject, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-export default function ElementReveal(
+export function useElementReveal(
  wrapperRef: MutableRefObject<null>,
  delay: number = 0
 ) {

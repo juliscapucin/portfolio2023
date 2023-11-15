@@ -1,4 +1,4 @@
-import useElementReveal from './useElementReveal';
+import { useElementReveal } from './useElementReveal';
 import { useEnterTransitionDirection } from './useEnterTransitionDirection';
 import { useFetch } from './useFetch';
 import { useMediaQuery } from './useMediaQuery';

@@ -90,7 +90,7 @@ export default function ProjectPage({
     </section>
 
     {/* Split Screen */}
-    {project.images.length && <ProjectSplitScreen project={project} />}
+    {project.images && <ProjectSplitScreen project={project} />}
    </ShallowPage>
   )
  );
