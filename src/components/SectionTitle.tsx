@@ -1,12 +1,9 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { SplitText } from 'gsap/dist/SplitText';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useRef } from 'react';
 
-import { animateSplitText } from '@/animations';
 import { GridDiv } from '@/components/ui';
+import { useTextReveal } from '@/hooks';
 
 interface SectionTitleProps {
  title: string;
@@ -15,32 +12,7 @@ interface SectionTitleProps {
 export default function SectionTitle({ title }: SectionTitleProps) {
  const textRef = useRef(null);
 
- useEffect(() => {
-  if (!textRef.current) return;
-
-  gsap.registerPlugin(SplitText);
-  gsap.registerPlugin(ScrollTrigger);
-
-  // Create a new SplitText instance
-  const splitText = new SplitText(textRef.current, {
-   type: 'words, chars, lines',
-  });
-
-  // Create timeline + start scrollTrigger
-  const tl = gsap.timeline({
-   scrollTrigger: {
-    trigger: textRef.current,
-    start: 'top 80%',
-    //onEnter, onLeave, onEnterBack, onLeaveBack
-    onEnter: () => {
-     animateSplitText(textRef.current!);
-    },
-    onLeaveBack: () => {
-     gsap.set(textRef.current, { opacity: 0 });
-    },
-   },
-  });
- }, [textRef]);
+ useTextReveal(textRef);
 
  return (
   <GridDiv divClass='h-full w-full overflow-hidden' top={true}>

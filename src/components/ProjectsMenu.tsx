@@ -5,7 +5,7 @@ import { CldImage } from 'next-cloudinary';
 
 import { gsap } from 'gsap';
 
-import { animateProjectsMenu } from '@/animations';
+import { animateProjectsMenu, ctx } from '@/animations';
 import { GridDiv } from '@/components/ui';
 import { CustomCursor, ProjectCard, ProjectsFilter } from '@/components';
 import { Project } from '@/types';
@@ -23,6 +23,7 @@ export default function ProjectsMenu({
  startVariant,
  startCategory,
 }: ProjectsMenuProps) {
+ let ctx = gsap.context(() => {});
  // Start component with startCategory projects
  const [projectItems, setProjectItems] = useState(
   startCategory === 'all'
@@ -41,11 +42,12 @@ export default function ProjectsMenu({
  // View options
  const [variant, setVariant] = useState(startVariant);
 
- // List View Refs
+ // Refs
+ const projectsMenuRef = useRef(null);
  const projectsImgsRef = useRef(null);
  const projectsLinksRef = useRef(null);
 
- //  Filter Projects + Transitions
+ //  Filter Projects + Fade Out Transitions
  const filterProjects = (filterString: string) => {
   if (!allProjects) return;
 
@@ -56,54 +58,66 @@ export default function ProjectsMenu({
        return project.category.includes(filterString);
       });
 
-  gsap.to('.filter-projects', {
-   opacity: 0,
-   duration: 0.5,
-   onComplete: () => {
-    setProjectItems(filteredProjects);
-   },
-  });
+  ctx.add(() => {
+   gsap.to('.filter-projects', {
+    opacity: 0,
+    duration: 0.5,
+    onComplete: () => {
+     setProjectItems(filteredProjects);
+    },
+   });
+  }, projectsMenuRef);
  };
 
- useEffect(() => {
-  gsap.to('.filter-projects', {
-   opacity: 1,
-   duration: 0.5,
-  });
+ useLayoutEffect(() => {
+  let ctx = gsap.context(() => {
+   gsap.to('.filter-projects', {
+    opacity: 1,
+    duration: 0.5,
+   });
+  }, projectsMenuRef);
  }, [projectItems]);
 
  //  Change view – fade out + change variant
  const editVariant = () => {
   if (variant === 'list') {
-   gsap.to('.list-view', {
-    opacity: 0,
-    duration: 0.5,
-    onComplete: () => {
-     setVariant('image');
-    },
-   });
+   ctx.add(() => {
+    gsap.to('.list-view', {
+     opacity: 0,
+     duration: 0.5,
+     onComplete: () => {
+      setVariant('image');
+     },
+    });
+   }, projectsMenuRef);
   } else if (variant === 'image') {
-   gsap.to('.image-view', {
-    opacity: 0,
-    duration: 0.5,
-    onComplete: () => {
-     setVariant('list');
-    },
-   });
+   ctx.add(() => {
+    gsap.to('.image-view', {
+     opacity: 0,
+     duration: 0.5,
+     onComplete: () => {
+      setVariant('list');
+     },
+    });
+   }, projectsMenuRef);
   }
  };
 
  //  Change view – fade in
- useEffect(() => {
+ useLayoutEffect(() => {
   if (variant === 'list') {
-   gsap.to('.list-view', {
-    opacity: 1,
-    duration: 0.5,
+   ctx.add(() => {
+    gsap.to('.list-view', {
+     opacity: 1,
+     duration: 0.5,
+    });
    });
   } else if (variant === 'image') {
-   gsap.to('.image-view', {
-    opacity: 1,
-    duration: 0.5,
+   ctx.add(() => {
+    gsap.to('.image-view', {
+     opacity: 1,
+     duration: 0.5,
+    });
    });
   }
  }, [variant]);
@@ -114,8 +128,14 @@ export default function ProjectsMenu({
    animateProjectsMenu(projectsImgsRef.current, projectsLinksRef.current);
  }, [projectsImgsRef.current, projectsLinksRef.current, variant, projectItems]);
 
+ useEffect(() => {
+  return () => {
+   ctx.revert();
+  };
+ }, []);
+
  return (
-  <section className='min-h-screen'>
+  <section ref={projectsMenuRef} className='min-h-screen'>
    {/* Custom Cursor */}
    {activeBreakpoint === 'desktop' && <CustomCursor isHovering={isHovering} />}
 

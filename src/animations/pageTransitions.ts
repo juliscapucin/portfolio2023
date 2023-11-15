@@ -1,5 +1,6 @@
 import { gsap } from 'gsap';
 import { Flip } from 'gsap/Flip';
+import { ctx } from '@/animations';
 
 gsap.registerPlugin(Flip);
 
@@ -24,22 +25,6 @@ export const animateToFullScreen = (
 
    // append clone to animationStart parent div
    animationStartParent.appendChild(animationStartClone);
-
-   const titleAnimation = () => {
-      const titleSpan = animationStartClone.querySelector(
-         '.page-transition-title'
-      );
-
-      return gsap.to(titleSpan, {
-         yPercent: -200,
-         duration: 0.3,
-         ease: 'expo.out',
-         onComplete: () => {
-            animationEnd.innerHTML = '';
-            animationEnd.classList.add('hidden');
-         },
-      });
-   };
 
    const translateXAnimation = () => {
       return gsap.to(animationStartClone, {
@@ -89,40 +74,28 @@ export const animateToFullScreen = (
 
 // animate to left
 // used to start pages after transitions
-export const animateToLeft = (enterElement: string) => {
-   const animateToLeftEnter = document.querySelector(`.${enterElement}`);
-
-   if (!animateToLeftEnter) return;
-
-   const tl = gsap.timeline();
-   tl.set(animateToLeftEnter, { autoAlpha: 1 }).fromTo(
-      animateToLeftEnter,
-      { xPercent: 100 },
-      {
+export const animateToLeft = (enterElement: HTMLDivElement | null) => {
+   ctx.add(() => {
+      gsap.set(enterElement, { autoAlpha: 1 });
+      gsap.from(enterElement, {
+         xPercent: 100,
          duration: 1,
-         xPercent: 0,
          ease: 'expo.inOut',
-      }
-   );
+      });
+   });
 };
 
 // animate to right
 // used to start pages after transitions
-export const animateToRight = (enterElement: string) => {
-   const animateToRightEnter = document.querySelector(`.${enterElement}`);
-
-   if (!animateToRightEnter) return;
-
-   const tl = gsap.timeline();
-   tl.set(animateToRightEnter, { autoAlpha: 1 }).fromTo(
-      animateToRightEnter,
-      { xPercent: -100 },
-      {
+export const animateToRight = (enterElement: HTMLDivElement | null) => {
+   ctx.add(() => {
+      gsap.set(enterElement, { autoAlpha: 1 });
+      gsap.from(enterElement, {
+         xPercent: -100,
          duration: 1,
-         xPercent: 0,
          ease: 'expo.inOut',
-      }
-   );
+      });
+   });
 };
 
 // animate horizontal

@@ -27,10 +27,16 @@ const HeroDesktop = () => {
    !themeRef.current
   )
    return;
-  animateSplitText(nameRef.current, 100, 0.7);
+
+  // Name
+  animateSplitText(nameRef.current, 200, 0.7);
+  // Description
   animateStaggerText(descriptionRef.current, 0.7);
+  // Number
   animateSplitText(numberRef.current, 100, 1.6);
+  // Theme
   animateEnterHorizontal(themeRef.current, -100, 1.5);
+  // Status
   animateEnterHorizontal(statusRef.current, -100, 1.5);
  }, [nameRef, numberRef, descriptionRef, statusRef]);
 
@@ -57,7 +63,7 @@ const HeroDesktop = () => {
    >
     <h1
      ref={nameRef}
-     className='text-displaySmall xl:text-displayMedium font-normal'
+     className='text-displaySmall xl:text-displayMedium font-normal whitespace-nowrap'
     >
      Juli Scapucin
     </h1>

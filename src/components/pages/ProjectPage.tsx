@@ -90,16 +90,7 @@ export default function ProjectPage({
     </section>
 
     {/* Split Screen */}
-    <ProjectSplitScreen project={project} />
-
-    {/* Text Content 2 */}
-    {/* <section className='grid grid-cols-12 my-64'>
-    <div className='lg:col-start-4 col-span-10 lg:col-span-6'>
-     {project.textContent2?.map((text) => {
-      return <p key={text.children._key}>{text.children.text}</p>;
-     })}
-    </div>
-   </section> */}
+    {project.images && <ProjectSplitScreen project={project} />}
    </ShallowPage>
   )
  );

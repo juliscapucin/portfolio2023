@@ -10,6 +10,7 @@ import Experience from './Experience';
 import ExperienceItem from './ExperienceItem';
 import FeedbackForm from './FeedbackForm';
 import Footer from './Footer';
+import FooterLinks from './FooterLinks';
 import Header from './header';
 import MenuLink from './MenuLink';
 import HeroDesktop from './HeroDesktop';
@@ -30,7 +31,6 @@ import ProjectSplitScreen from './ProjectSplitScreen';
 import RootLayout from './RootLayout';
 import Services from './Services';
 import SectionTitle from './SectionTitle';
-import SocialLinks from './SocialLinks';
 import Status from './Status';
 import ThemeSwitcher from './ThemeSwitcher';
 
@@ -45,6 +45,7 @@ export {
    ExperienceItem,
    FeedbackForm,
    Footer,
+   FooterLinks,
    Header,
    MenuLink,
    HeroDesktop,
@@ -65,7 +66,6 @@ export {
    RootLayout,
    SectionTitle,
    Services,
-   SocialLinks,
    Status,
    ThemeSwitcher,
 };

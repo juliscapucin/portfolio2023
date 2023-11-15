@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { CldImage } from 'next-cloudinary';
 
 import { ProjectLabel } from '@/components';
-import { AnimationGridDiv, GridDiv, ElementReveal } from '@/components/ui';
+import { AnimationGridDiv, GridDiv } from '@/components/ui';
 import { animateToFullScreen } from '@/animations';
 import { useElementReveal } from '@/hooks';
 
@@ -38,8 +38,9 @@ export default function ProjectCard(props: ProjectCardProps) {
  } = props;
  // local isHovering state for individual hover animation
  const [isHovering, setIsHovering] = useState(false);
- const imageRevealRef = useRef(null);
- const isVisible = useElementReveal(imageRevealRef);
+ const imageWrapperRef = useRef(null);
+
+ useElementReveal(imageWrapperRef);
 
  return variant === 'list' ? (
   ////----- LIST VIEW -----////
@@ -59,7 +60,7 @@ export default function ProjectCard(props: ProjectCardProps) {
 
    {/* Button action */}
    <button
-    className='h-full w-full p-8 group'
+    className='h-full w-full p-8 group cursor-none'
     onMouseEnter={() => updateIsHovering(true)}
     onMouseLeave={() => updateIsHovering(false)}
     onClick={() => {
@@ -79,6 +80,7 @@ export default function ProjectCard(props: ProjectCardProps) {
  ) : (
   ////----- IMAGE VIEW + THUMBS VIEW -----////
   <div
+   ref={variant === 'image' ? imageWrapperRef : null}
    className={`custom-col-start-${imageStart} col-span-5 aspect-square relative overflow-hidden`}
   >
    {/* Div for animation */}
@@ -91,17 +93,13 @@ export default function ProjectCard(props: ProjectCardProps) {
      </h1>
     </div>
    </div>
-   <div
-    ref={variant === 'image' ? imageRevealRef : null}
-    className='relative w-full h-full overflow-hidden z-0'
-   >
-    <div
-     className={`absolute top-0 left-0 w-full h-full bg-primary z-20 transition-transform duration-500 ease-in-out ${
-      isVisible || variant === 'thumbs' ? 'translate-y-full' : 'translate-y-0'
-     }`}
-    ></div>
+   <div className='relative w-full h-full overflow-hidden z-0'>
+    {/* Image Reveal Mask */}
+    {variant === 'image' && (
+     <div className='mask absolute top-0 left-0 w-full h-full bg-primary z-20'></div>
+    )}
     <button
-     className='h-full w-full group flex justify-center items-center absolute'
+     className='h-full w-full group flex justify-center items-center absolute cursor-none'
      onMouseEnter={() => {
       setIsHovering(true);
       updateIsHovering(true);

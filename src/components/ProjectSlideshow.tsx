@@ -6,10 +6,10 @@ type Props = {
  projectSlug: string;
 };
 
-const delay = 1000; // Delay in milliseconds
+const delay = 3000; // Delay in milliseconds
 
 export default function Slideshow({ projectImages, projectSlug }: Props) {
- const [index, setIndex] = useState(0);
+ const [index, setIndex] = useState(1);
  const [slide, setSlide] = useState(projectImages[index]);
 
  useEffect(() => {

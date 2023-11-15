@@ -1,7 +1,7 @@
 'use client';
 
 import { useModalContext } from '@/context';
-import { Copyright, SocialLinks } from '@/components';
+import { Copyright, FooterLinks } from '@/components';
 import { GridDiv } from '@/components/ui';
 import { ButtonClose } from '@buttons/.';
 import Availability from './Availability';
@@ -23,7 +23,7 @@ export default function ContactModal() {
      <ButtonClose action={() => updateModalOpen} />
     </div>
     <div className='lg:w-2/12'>
-     <SocialLinks />
+     <FooterLinks apiRoute={'socials'} />
     </div>
 
     <div className='mb-16 lg:mb-0 overflow-hidden'>

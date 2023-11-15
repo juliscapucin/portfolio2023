@@ -1,37 +1,39 @@
-import { MutableRefObject, useEffect, useRef, useState } from 'react';
+import { MutableRefObject, useLayoutEffect } from 'react';
 
-export default function ElementReveal(wrapperRef: MutableRefObject<null>) {
- const [isVisible, setIsVisible] = useState(false);
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
- useEffect(() => {
-  if (!wrapperRef.current) return;
+export function useElementReveal(
+ wrapperRef: MutableRefObject<null>,
+ delay: number = 0
+) {
+ useLayoutEffect(() => {
+  let ctx = gsap.context(() => {});
 
-  const observer = new IntersectionObserver(
-   (entries) => {
-    entries.forEach((entry) => {
-     if (entry.isIntersecting) {
-      setIsVisible(true);
-      // Stop observing after it's triggered
-      observer.unobserve(entry.target);
-     }
-    });
-   },
-   {
-    threshold: 0.5, // 50% of the item is visible
-   }
-  );
+  if (!wrapperRef || !wrapperRef.current) return;
 
-  const { current } = wrapperRef;
-  if (current) {
-   observer.observe(current);
-  }
+  gsap.registerPlugin(ScrollTrigger);
+
+  ctx.add(() => {
+   let tl = gsap.timeline({
+    scrollTrigger: {
+     trigger: wrapperRef.current,
+     // as explained here: https://www.youtube.com/watch?v=SVjndrQ6v9I (min 7:20)
+     toggleActions: 'play complete none reset',
+     start: 'top 80%',
+    },
+   });
+
+   tl.to('.mask', {
+    yPercent: 100,
+    duration: 0.5,
+    ease: 'power1.in',
+    delay: delay,
+   });
+  }, wrapperRef);
 
   return () => {
-   if (current) {
-    observer.unobserve(current);
-   }
+   ctx.revert();
   };
  }, [wrapperRef]);
-
- return isVisible;
 }

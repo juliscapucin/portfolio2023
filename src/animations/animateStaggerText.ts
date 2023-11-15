@@ -7,12 +7,11 @@ export const animateStaggerText = (
 ) => {
    gsap.fromTo(
       divElement.children,
-      { yPercent: 400, scaleY: 1.2 },
+      { yPercent: 400 },
       {
          duration: duration || 0.3,
          delay: delay || 0,
          yPercent: 0,
-         scaleY: 1,
          stagger: 0.1,
          ease: 'expo.out',
       }

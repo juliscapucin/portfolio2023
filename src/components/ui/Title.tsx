@@ -23,7 +23,7 @@ export default function Title({ title, margin }: TitleProps) {
     ref={titleRef}
     className={`${
      margin && 'mt-64'
-    } text-displaySmall md:text-displayLarge lg:text-displayLarge whitespace-nowrap`}
+    } text-displayMedium md:text-displayLarge lg:text-displayLarge whitespace-nowrap`}
    >
     {title}
    </h1>

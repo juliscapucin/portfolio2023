@@ -87,7 +87,7 @@ export default function ShallowPage({ children, isShallow }: Props) {
     onClick={onClick}
    >
     <div
-     className='wrapper max-w-desktop overflow-hidden m-auto mt-0 pt-32'
+     className='wrapper max-w-desktop overflow-hidden m-auto mt-0 py-32'
      ref={wrapper}
     >
      {/* Back button */}

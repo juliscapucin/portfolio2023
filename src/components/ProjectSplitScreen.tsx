@@ -38,7 +38,7 @@ export default function ProjectSplitScreen({ project }: { project: Project }) {
  }, [leftColumnRef, rightColumnRef, breakpoint]);
 
  return (
-  <section className='lg:grid grid-cols-12 w-full gap-1 mb-32'>
+  <section className='lg:grid grid-cols-12 w-full gap-1'>
    {/* Left */}
    <div
     ref={leftColumnRef}
