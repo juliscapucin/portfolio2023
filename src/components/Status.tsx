@@ -14,13 +14,17 @@ function Status() {
  }, []);
 
  const dayOfWeek = currentDate.toLocaleDateString('en-US', { weekday: 'long' });
+ const dayOfMonth = currentDate.toLocaleDateString('en-US', { day: 'numeric' });
+ const month = currentDate.toLocaleDateString('en-US', { month: 'long' });
  const time = currentDate.toLocaleTimeString('en-US');
 
  return (
   <div className='flex flex-col text-titleMedium mt-16 lg:mt-2 ml-2 col-span-2 xlg:col-span-1'>
-   <span>Amsterdam</span>
+   <span>Location: Amsterdam</span>
    <span className='h-[1px] bg-secondary'></span>
-   <span>{dayOfWeek}</span>
+   <span>
+    {dayOfWeek} | {dayOfMonth} {month}
+   </span>
    <span className='h-[1px] bg-secondary'></span>
    <span>{time}</span>
    <span className='h-[1px] bg-secondary'></span>
