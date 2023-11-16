@@ -99,7 +99,9 @@ export default function ProjectCard(props: ProjectCardProps) {
      <div className='mask absolute top-0 left-0 w-full h-full bg-primary z-20'></div>
     )}
     <button
-     className='h-full w-full group flex justify-center items-center absolute cursor-none'
+     className={`h-full w-full group flex justify-center items-center absolute ${
+      variant === 'image' && 'cursor-none'
+     }`}
      onMouseEnter={() => {
       setIsHovering(true);
       updateIsHovering(true);

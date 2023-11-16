@@ -15,7 +15,7 @@ const HeroMobile = () => {
  return (
   <div className='hero__mobile grid grid-cols-6 grid-rows-6 h-screen max-h-screen'>
    {/* Status */}
-   <GridDiv divClass='col-span-3 sm:col-span-2 md:col-span-1 row-span-1'>
+   <GridDiv divClass='col-span-4 sm:col-span-3 md:col-span-1 row-span-1'>
     <Status />
    </GridDiv>
 

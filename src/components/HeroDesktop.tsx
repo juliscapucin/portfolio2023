@@ -1,8 +1,6 @@
 import { useLayoutEffect, useRef } from 'react';
 
-import gsap from 'gsap';
-
-import { Status, ThemeSwitcher } from '@/components';
+import { Status } from '@/components';
 import { GridDiv } from '@/components/ui';
 import {
  animateEnterHorizontal,
@@ -33,9 +31,7 @@ const HeroDesktop = () => {
   // Description
   animateStaggerText(descriptionRef.current, 0.7);
   // Number
-  animateSplitText(numberRef.current, 100, 1.6);
-  // Theme
-  animateEnterHorizontal(themeRef.current, -100, 1.5);
+  animateSplitText(numberRef.current, 100, 1.4);
   // Status
   animateEnterHorizontal(statusRef.current, -100, 1.5);
  }, [nameRef, numberRef, descriptionRef, statusRef]);
@@ -106,9 +102,7 @@ const HeroDesktop = () => {
     right={true}
     left={true}
     ref={themeRef}
-   >
-    <ThemeSwitcher variant='body' />
-   </GridDiv>
+   ></GridDiv>
 
    {/* Arrow */}
    {/* <GridDiv divClass='col-span-2 row-span-1' top={true} left={true}></GridDiv> */}

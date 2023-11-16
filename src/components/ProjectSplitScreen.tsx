@@ -1,7 +1,6 @@
 'use client';
 
 import { useRef, useEffect } from 'react';
-import { CldImage } from 'next-cloudinary';
 
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -46,7 +45,7 @@ export default function ProjectSplitScreen({ project }: { project: Project }) {
    >
     {/* Text content 1 */}
     <div className='grid grid-cols-7'>
-     <div className='lg:col-start-2 col-span-6 lg:col-span-5 aspect-square flex flex-col justify-center'>
+     <div className='xl:col-start-2 col-span-6 md:col-span-5 lg:col-span-6 xl:col-span-5 lg:aspect-square flex flex-col justify-center'>
       {project.textContent1?.map((text) => {
        return <p key={text.children._key}>{text.children.text}</p>;
       })}

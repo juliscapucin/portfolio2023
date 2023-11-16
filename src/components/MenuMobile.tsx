@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { usePathname } from 'next/navigation';
 
 import { animateMobileMenu } from '@/animations';
 
@@ -15,6 +16,7 @@ type NavLinksProps = {
 
 export default function MenuMobile({ navLinks, buttonAction }: NavLinksProps) {
  const mobileMenuRef = useRef(null);
+ const pathname = usePathname();
 
  return (
   <>
@@ -34,7 +36,7 @@ export default function MenuMobile({ navLinks, buttonAction }: NavLinksProps) {
       />
      </GridDiv>
      <aside
-      className='absolute top-0 w-full min-h-screen p-8 bg-primary transition-transform -translate-y-full'
+      className='absolute top-0 w-full min-h-screen p-8 bg-primary transition-transform -translate-y-full duration-300'
       ref={mobileMenuRef}
      >
       {/* Close Button */}
@@ -57,17 +59,26 @@ export default function MenuMobile({ navLinks, buttonAction }: NavLinksProps) {
           divClass={`relative max-h-32 min-h-32 flex justify-start items-start`}
           key={link._key}
          >
-          <button
-           className='block'
-           onClick={() => {
-            if (mobileMenuRef.current)
-             buttonAction(link, mobileMenuRef.current);
-           }}
-          >
-           <span className='font-headline text-displaySmall uppercase text-secondary'>
+          {/* Inactive Link */}
+          {(pathname === '/' && link.slug === '/') ||
+          pathname.includes(`/${link.slug}`) ? (
+           <span className='font-headline text-displaySmall uppercase text-colorFaded opacity-70'>
             {link.label}
            </span>
-          </button>
+          ) : (
+           // Active Link
+           <button
+            className='block'
+            onClick={() => {
+             if (mobileMenuRef.current)
+              buttonAction(link, mobileMenuRef.current);
+            }}
+           >
+            <span className='font-headline text-displaySmall uppercase text-secondary'>
+             {link.label}
+            </span>
+           </button>
+          )}
          </GridDiv>
         );
        })}
