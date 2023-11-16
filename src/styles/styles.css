@@ -68,7 +68,7 @@
    }
 
    p {
-      @apply text-bodyMedium;
+      @apply text-bodyLarge;
       @apply mb-8;
    }
 }
