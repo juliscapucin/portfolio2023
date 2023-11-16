@@ -36,7 +36,7 @@ export default function MenuMobile({ navLinks, buttonAction }: NavLinksProps) {
       />
      </GridDiv>
      <aside
-      className='absolute top-0 w-full min-h-screen p-8 bg-primary transition-transform -translate-y-full'
+      className='absolute top-0 w-full min-h-screen p-8 bg-primary transition-transform -translate-y-full duration-300'
       ref={mobileMenuRef}
      >
       {/* Close Button */}
@@ -62,7 +62,7 @@ export default function MenuMobile({ navLinks, buttonAction }: NavLinksProps) {
           {/* Inactive Link */}
           {(pathname === '/' && link.slug === '/') ||
           pathname.includes(`/${link.slug}`) ? (
-           <span className='font-headline text-displaySmall uppercase text-colorFaded'>
+           <span className='font-headline text-displaySmall uppercase text-colorFaded opacity-70'>
             {link.label}
            </span>
           ) : (
