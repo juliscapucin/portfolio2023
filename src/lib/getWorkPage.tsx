@@ -7,7 +7,8 @@ export default async function getWorkPage() {
   groq`*[_type == "workPage"][0] {
 	title,
 	description,
-}`
+}`,
+  { next: { revalidate: 3600 } }
  );
 
  if (!res) return undefined;
