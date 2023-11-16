@@ -23,7 +23,7 @@ export default function ProjectsMenuThumbs({
  return (
   <div
    ref={projectsMenuRef}
-   className={`projects-thumbs fixed top-0 right-0 lg:right-8 flex z-40 ${
+   className={`projects-thumbs fixed top-0 right-0 lg:right-8 flex z-40 opacity-0 ${
     addBackground && 'bg-primary'
    }`}
   >
