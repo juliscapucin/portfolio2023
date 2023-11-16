@@ -71,7 +71,7 @@ export default function ThemeSwitcher({ variant }: Props) {
    {variant === 'header' && (
     <div
      className={`theme-switcher flex items-end h-full pb-[6px] transition-transform duration-200 ${
-      !menuOpen && 'translate-x-[90px]'
+      !menuOpen && 'translate-x-[80px]'
      }`}
     >
      {/* Open Theme Menu */}
@@ -85,7 +85,7 @@ export default function ThemeSwitcher({ variant }: Props) {
       </span>
       {/* Active State */}
       <div
-       className={`w-8 h-8 border border-secondary mb-2 ${
+       className={`w-6 h-6 border border-secondary mb-2 ${
         menuOpen && 'opacity-0'
        }
        }`}
@@ -96,6 +96,7 @@ export default function ThemeSwitcher({ variant }: Props) {
       </div>
      </button>
      <div className='flex gap-4'>
+      {/* Themes buttons */}
       {themes.map((item) => {
        return (
         <div className='relative' key={item.theme}>
@@ -109,7 +110,7 @@ export default function ThemeSwitcher({ variant }: Props) {
           type='button'
           className={`${item.color} ${
            item.theme === theme && 'active'
-          } border border-colorFaded w-8 h-8`}
+          } border border-colorFaded w-6 h-6 hover:scale-125 transition-transform duration-200`}
           onClick={(e) => handleThemeChange(e, item.theme)}
          ></button>
         </div>

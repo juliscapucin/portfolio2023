@@ -22,19 +22,19 @@
       --color-crimson: 220 20 60;
       --color-burgundy: 128 0 32;
       --dark-burgundy: 54 0 0;
-      --color-black: 6 6 7;
+      --color-black: 10 10 15;
       --color-white: 252 249 248;
       --color-green: 0 128 0;
    }
    :root[data-theme='dark'] {
-      --color-primary: 6 6 7;
+      --color-primary: 10 10 15;
       --color-secondary: 252 249 248;
       --color-faded: 154 152 152;
       --color-scroll: 252, 249, 248;
    }
    :root[data-theme='light'] {
       --color-primary: 252 249 248;
-      --color-secondary: 6 6 7;
+      --color-secondary: 10 10 15;
       --color-faded: 154 152 152;
       --color-scroll: 6, 6, 7;
    }
