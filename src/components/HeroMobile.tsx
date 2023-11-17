@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef } from 'react';
 
 import { Status, ThemeSwitcher } from '@/components';
-import { GridDiv } from '@/components/ui';
+import { GridDiv, Marquee } from '@/components/ui';
 import { animateSplitText } from '@/animations';
 
 const HeroMobile = () => {
@@ -26,9 +26,19 @@ const HeroMobile = () => {
     </h1>
    </GridDiv>
 
-   {/* Description */}
-   <GridDiv divClass='col-span-full row-span-1' top={true}>
-    <h2 className='text-headlineLarge mt-16'>Design & Web Development</h2>
+   {/* Marquee */}
+   <GridDiv divClass='col-span-full row-span-1 flex items-center' top={true}>
+    <Marquee speed={150}>
+     <h2 className='text-[11vw] whitespace-nowrap px-2'>
+      Design & Web Development
+     </h2>
+     <h2 className='text-[11vw] whitespace-nowrap px-2'>
+      Design & Web Development
+     </h2>
+     <h2 className='text-[11vw] whitespace-nowrap px-2'>
+      Design & Web Development
+     </h2>
+    </Marquee>
    </GridDiv>
 
    {/* Theme */}

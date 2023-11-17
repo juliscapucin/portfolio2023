@@ -52,15 +52,16 @@ export const animateToFullScreen = (
             document.documentElement.classList.add('overflow-hidden');
             // Change route
             routerFunction();
-            // titleAnimation();
             // Fade out + empty animationEnd div
-            gsap.to('.transition-fullscreen', {
+            gsap.to(animationEnd, {
                opacity: 0,
-               duration: 0.5,
+               duration: 1,
                delay: 0.5,
+               zIndex: 10,
                onComplete: () => {
                   animationEnd.innerHTML = '';
                   animationEnd.classList.add('hidden');
+                  animationEnd.style.zIndex = '20';
                },
             });
          },

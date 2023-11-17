@@ -1,5 +1,5 @@
-export const updateTheme = (theme: string) => {
-   sessionStorage.setItem('theme', theme);
+export const updateTheme = (theme: string | null) => {
+   sessionStorage.setItem('theme', theme ? theme : 'dark');
 };
 
 export const getTheme = () => {

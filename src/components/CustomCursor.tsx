@@ -11,8 +11,8 @@ export default function CustomCursor({ isHovering }: { isHovering: boolean }) {
 
   const moveCursor = (e: MouseEvent) => {
    gsap.to(cursorDiv, {
-    x: e.clientX + window.scrollX - cursorDiv.clientWidth / 2,
-    y: e.clientY + window.scrollY - cursorDiv.clientHeight / 2,
+    x: e.clientX + window.scrollX - cursorDiv.clientWidth,
+    y: e.clientY + window.scrollY - cursorDiv.clientHeight,
     duration: 0.3,
    });
   };
@@ -27,7 +27,7 @@ export default function CustomCursor({ isHovering }: { isHovering: boolean }) {
   <div
    className={`${
     !isHovering && 'hidden'
-   } fixed top-0 left-0 w-32 h-32 bg-secondary rounded-full flex items-center justify-center z-50 pointer-events-none cursor-pointer`}
+   } fixed top-0 left-0 w-28 h-28 bg-secondary rounded-full flex items-center justify-center z-50 pointer-events-none cursor-pointer`}
    ref={refCursor}
   >
    <div className='customcursor__follower__inner'>

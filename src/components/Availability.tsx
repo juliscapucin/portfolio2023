@@ -1,10 +1,15 @@
 import { useTextReveal } from '@/hooks';
 import { useRef } from 'react';
 
-export default function Availability() {
+type Props = {
+ variant?: string;
+ modalOpen?: boolean;
+};
+
+export default function Availability({ variant, modalOpen }: Props) {
  const textRef = useRef(null);
 
- useTextReveal(textRef);
+ useTextReveal(textRef, variant, modalOpen);
 
  return (
   <div className='flex flex-col justify-center items-center'>

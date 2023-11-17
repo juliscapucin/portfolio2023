@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, MouseEvent, useState } from 'react';
+import { useEffect, MouseEvent, useState, use } from 'react';
 
 import { ButtonArrow } from '@buttons/.';
 import { useThemeStorage } from '@/hooks';
@@ -20,6 +20,14 @@ export default function ThemeSwitcher({ variant }: Props) {
  const { theme, setTheme } = useThemeStorage();
  const [menuOpen, setMenuOpen] = useState(false);
 
+ useEffect(() => {
+  console.log('theme', theme);
+
+  if (theme && theme.length === 0) {
+   setTheme('dark');
+  }
+ }, []);
+
  const handleThemeChange = (
   e: MouseEvent<HTMLButtonElement>,
   color: string
@@ -36,7 +44,7 @@ export default function ThemeSwitcher({ variant }: Props) {
  //  Apply theme on theme change
  useEffect(() => {
   const documentDiv = document.querySelector('html');
-  documentDiv?.setAttribute('data-theme', theme);
+  documentDiv?.setAttribute('data-theme', theme ? theme : 'dark');
  }, [theme]);
 
  return (

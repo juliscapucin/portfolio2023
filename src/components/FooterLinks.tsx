@@ -11,11 +11,17 @@ type SocialsData = {
  items: [{ title: string; slug?: string; url?: string; _key: string }];
 };
 
-export default function FooterLinks({ apiRoute }: { apiRoute: string }) {
+type Props = {
+ apiRoute: string; //to fetch socials or navigation links
+ variant?: string; //to animate differently
+ modalOpen?: boolean;
+};
+
+export default function FooterLinks({ apiRoute, variant, modalOpen }: Props) {
  const [data, setData] = useState<SocialsData | null>(null);
  const wrapperRef = useRef(null);
 
- //  Fetch data from api Route Handler (api/socials)
+ //  Fetch data from api Route Handler (api/...)
  useEffect(() => {
   const fetchData = async () => {
    const response = await fetch(`/api/${apiRoute}`);
@@ -27,7 +33,7 @@ export default function FooterLinks({ apiRoute }: { apiRoute: string }) {
   fetchData();
  }, []);
 
- useLinkReveal(wrapperRef);
+ useLinkReveal(wrapperRef, variant, modalOpen);
 
  return (
   <>

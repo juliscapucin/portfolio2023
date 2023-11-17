@@ -70,6 +70,11 @@ export default function Header() {
      });
     }
 
+    if (projectPage)
+     animateToRightTransition('project-page', () => {
+      router.push(`/${link.slug}`);
+     });
+
     return;
    }
 

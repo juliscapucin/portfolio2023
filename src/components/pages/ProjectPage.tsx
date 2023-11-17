@@ -1,10 +1,11 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { useRef, useLayoutEffect } from 'react';
 
 import { CldImage } from 'next-cloudinary';
 import gsap from 'gsap';
 
+import { Loader } from '@/components/ui';
 import {
  ProjectInfo,
  ProjectSplitScreen,
@@ -12,7 +13,6 @@ import {
 } from '@/components';
 
 import { ShallowPage } from '@/components/pages';
-
 import { Project } from '@/types';
 
 type Props = {
@@ -29,69 +29,74 @@ export default function ProjectPage({
  const headerRef = useRef<HTMLHeadingElement | null>(null);
 
  // Animate header children on mount
- useEffect(() => {
+ useLayoutEffect(() => {
   if (!headerRef.current) return;
   const children = headerRef.current.children;
 
   if (!children) return;
 
-  gsap.fromTo(
-   children,
-   {
-    opacity: 0,
-    yPercent: 30,
-   },
-   {
-    opacity: 1,
-    yPercent: 0,
-    stagger: 0.05,
-    ease: 'expo.out',
-    duration: 0.2,
-    delay: 0.3,
-   }
-  );
+  let ctx = gsap.context(() => {
+   gsap.fromTo(
+    children,
+    {
+     opacity: 0,
+     yPercent: 30,
+    },
+    {
+     opacity: 1,
+     yPercent: 0,
+     stagger: 0.05,
+     ease: 'expo.out',
+     duration: 0.2,
+     delay: 0.3,
+    }
+   );
+  });
+
+  return () => ctx.revert();
  }, [headerRef]);
 
- return (
-  project && (
-   <ShallowPage isShallow={isShallow}>
-    <ProjectsMenuThumbs allProjects={allProjects} />
-    {/* Project header */}
-    <section className='relative w-full mt-32'>
-     {/* Title */}
-     <h1 className='text-displaySmall md:text-displayMedium lg:text-displayLarge mb-4'>
-      {project.title}
-     </h1>
+ return project ? (
+  <ShallowPage isShallow={isShallow}>
+   <ProjectsMenuThumbs allProjects={allProjects} />
 
-     <div ref={headerRef} className='md:grid grid-cols-12'>
-      {/* Cover Image */}
-      <div
-       className={`col-span-7 block overflow-hidden aspect-square relative`}
-      >
-       <CldImage
-        src={`portfolio2023/work/${project.slug}/01`}
-        alt={project.coverImage.alt}
-        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-        fill
-        priority
-       />
-      </div>
-      <div className='md:col-span-4 md:pl-16 mt-8'>
-       {/* Description */}
-       <div className='mb-16'>
-        <p className='text-titleLarge md:text-headlineSmall mt-16 md:mt-0'>
-         {project.description}
-        </p>
-       </div>
-       {/* Project Info */}
-       <ProjectInfo info={project.info} />
-      </div>
+   <section className='relative w-full mt-32'>
+    {/* Title */}
+    <h1 className='text-displaySmall md:text-displayMedium lg:text-displayLarge mb-4'>
+     {project.title}
+    </h1>
+
+    {/* Header */}
+    <div ref={headerRef} className='md:grid grid-cols-12'>
+     {/* Cover Image */}
+     <div className={`col-span-7 block overflow-hidden aspect-square relative`}>
+      <CldImage
+       src={`portfolio2023/work/${project.slug}/01`}
+       alt={project.coverImage.alt}
+       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+       fill
+       priority
+      />
      </div>
-    </section>
+     <div className='md:col-span-4 md:pl-16 mt-8'>
+      {/* Description */}
+      <div className='mb-16'>
+       <p className='text-titleLarge md:text-headlineSmall mt-16 md:mt-0'>
+        {project.description}
+       </p>
+      </div>
+      {/* Project Info */}
+      <ProjectInfo info={project.info} />
+     </div>
+    </div>
+   </section>
 
-    {/* Split Screen */}
-    {project.images && <ProjectSplitScreen project={project} />}
-   </ShallowPage>
-  )
+   {/* Split Screen */}
+   {project.images && <ProjectSplitScreen project={project} />}
+  </ShallowPage>
+ ) : (
+  <div className='w-full h-screen bg-red-500 flex items-center justify-center'>
+   <Loader />
+  </div>
  );
 }

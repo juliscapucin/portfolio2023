@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { getTheme, updateTheme } from '@/utils';
 
 export function useThemeStorage() {
- const [theme, setTheme] = useState(() => {
+ const [theme, setTheme] = useState<string | null>(() => {
   const storageTheme = getTheme();
   return storageTheme || 'dark'; // Default to 'dark' if storageTheme is not available
  });

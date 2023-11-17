@@ -29,13 +29,18 @@ export default function ShallowPage({ children, isShallow }: Props) {
 
  const { previousPage, updatePreviousPage } = usePageContext();
 
+ // update previous page + define if back button should be shown
  useEffect(() => {
   if (previousPage === 'home' && isShallow) {
    updatePreviousPage('project-home');
   } else if (previousPage === 'work' && isShallow) {
    updatePreviousPage('project-work');
+  } else if (!isShallow) {
+   setShowBackButton(false);
+   updatePreviousPage('project');
   } else if (previousPage.includes('project')) {
    setShowBackButton(false);
+   updatePreviousPage('project');
   } else {
    updatePreviousPage('work');
    setShowBackButton(false);

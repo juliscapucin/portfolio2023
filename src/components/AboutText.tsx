@@ -36,7 +36,7 @@ export default function AboutText() {
   <section className='lg:grid grid-cols-12 my-64'>
    <p
     ref={textRef}
-    className='col-start-3 col-span-8 text-titleLarge md:text-headlineSmall'
+    className='col-start-7 col-span-5 text-titleLarge md:text-headlineMedium'
    >
     I&apos;m a Front-End Developer with a broad background in Graphic and
     Digital Design. Commitment to visual excellence and engineering performance
