@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef } from 'react';
 
 import { Status } from '@/components';
-import { GridDiv } from '@/components/ui';
+import { GridDiv, Marquee } from '@/components/ui';
 import {
  animateEnterHorizontal,
  animateSplitText,
@@ -14,15 +14,13 @@ const HeroDesktop = () => {
  const numberRef = useRef(null);
  const descriptionRef = useRef(null);
  const statusRef = useRef(null);
- const themeRef = useRef(null);
 
  useLayoutEffect(() => {
   if (
    !nameRef.current ||
    !numberRef.current ||
    !descriptionRef.current ||
-   !statusRef.current ||
-   !themeRef.current
+   !statusRef.current
   )
    return;
 
@@ -44,7 +42,7 @@ const HeroDesktop = () => {
    {/* Status */}
    <GridDiv
     ref={statusRef}
-    divClass='col-span-full row-span-1 grid grid-cols-12'
+    divClass='status col-span-full row-span-1 grid grid-cols-12'
    >
     <Status />
    </GridDiv>
@@ -54,32 +52,31 @@ const HeroDesktop = () => {
 
    {/* Name */}
    <GridDiv
-    divClass='col-span-7 row-span-1 overflow-hidden flex items-center justify-start'
+    divClass='col-span-7 row-span-1 overflow-hidden flex items-center justify-end'
     top={true}
    >
     <h1
      ref={nameRef}
-     className='text-displaySmall xl:text-displayMedium font-normal whitespace-nowrap'
+     className='name text-displaySmall xl:text-displayMedium whitespace-nowrap'
     >
      Juli Scapucin
     </h1>
    </GridDiv>
 
-   {/* Blank Space */}
-   <GridDiv divClass='col-span-5 row-span-1' top={true}></GridDiv>
-
    {/* Description */}
    <GridDiv
-    divClass='col-span-7 row-span-1 flex flex-col items-start justify-center'
+    divClass='col-span-full row-span-1 flex items-center'
     top={true}
     ref={descriptionRef}
    >
-    <h2 className='text-headlineLarge xl:text-displaySmall font-normal'>
-     Design &
-    </h2>
-    <h2 className='text-headlineLarge xl:text-displaySmall font-normal'>
-     Web Development
-    </h2>
+    <Marquee>
+     <h2 className='text-displaySmall xl:text-displayMedium whitespace-nowrap px-4'>
+      Design & Web Development Design & Web Development
+     </h2>
+     <h2 className='text-displaySmall xl:text-displayMedium whitespace-nowrap'>
+      Design & Web Development Design & Web Development
+     </h2>
+    </Marquee>
    </GridDiv>
 
    {/* Number */}
@@ -89,7 +86,7 @@ const HeroDesktop = () => {
    >
     <h3
      ref={numberRef}
-     className='text-numberDesktop font-normal tracking-tighter flex'
+     className='number text-numberDesktop font-normal tracking-tighter flex'
     >
      23
     </h3>
@@ -101,7 +98,6 @@ const HeroDesktop = () => {
     top={true}
     right={true}
     left={true}
-    ref={themeRef}
    ></GridDiv>
 
    {/* Arrow */}
