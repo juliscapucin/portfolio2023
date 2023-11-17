@@ -25,12 +25,10 @@ const Marquee = ({ children, speed = 100 }: Props) => {
  useEffect(() => {
   const element = marqueeRef.current;
 
-  // Function to update window size
   function handleResize() {
    setElementWidth(elementWidth);
   }
 
-  // Add event listener to window resize
   window.addEventListener('resize', handleResize);
 
   // Calculate the duration based on the width of the element and the speed

@@ -14,7 +14,7 @@ type NavLinksProps = {
 };
 
 export default function MenuDesktop({ navLinks, buttonAction }: NavLinksProps) {
- const { updateModalOpen } = useModalContext();
+ const { modalOpen, updateModalOpen } = useModalContext();
  const pathname = usePathname();
 
  return (
@@ -40,7 +40,11 @@ export default function MenuDesktop({ navLinks, buttonAction }: NavLinksProps) {
       })}
 
       {/* Contact button */}
-      <MenuLink label='Connect' action={updateModalOpen} />
+      <MenuLink
+       label='Connect'
+       activeState={modalOpen && true}
+       action={updateModalOpen}
+      />
      </nav>
 
      <ThemeSwitcher variant='header' />

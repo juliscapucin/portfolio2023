@@ -19,7 +19,7 @@ export const ModalContextProvider = ({
  children: React.ReactNode;
 }) => {
  const [modalOpen, setModalOpen] = useState(false);
- const [mobileMenyOpen, setMobileMenuOpen] = useState(false);
+ const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
  const updateModalOpen = () => {
   setModalOpen(!modalOpen);
