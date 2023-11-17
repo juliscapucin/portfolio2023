@@ -48,7 +48,7 @@ export default function ContactModal() {
  return (
   <aside
    ref={modalRef}
-   className={`w-full max-w-desktop h-1/2 bg-primary fixed top-full mx-auto z-20 transition-transform ${
+   className={`w-full max-w-desktop h-1/2 bg-primary fixed top-full mx-auto px-8 z-20 transition-transform ${
     modalOpen ? '-translate-y-full' : ''
    }`}
   >
@@ -56,17 +56,20 @@ export default function ContactModal() {
     divClass='block lg:flex justify-between items-center h-full p-8 relative'
     top={true}
    >
-    <div className='absolute top-8 right-8' onClick={updateModalOpen}>
+    <div className='absolute top-8 right-0' onClick={updateModalOpen}>
      <ButtonClose action={() => updateModalOpen} />
     </div>
     <div className='lg:w-2/12'>
-     <FooterLinks apiRoute={'socials'} />
+     <FooterLinks
+      apiRoute={'socials'}
+      variant={'modal'}
+      modalOpen={modalOpen}
+     />
     </div>
 
     <div className='mb-16 lg:mb-0 overflow-hidden'>
-     <Availability />
+     <Availability variant='modal' modalOpen={modalOpen} />
     </div>
-    <Copyright />
    </GridDiv>
   </aside>
  );

@@ -57,7 +57,7 @@ const HeroDesktop = () => {
    >
     <h1
      ref={nameRef}
-     className='name text-displaySmall xl:text-displayMedium font-medium whitespace-nowrap'
+     className='name text-displaySmall xl:text-displayMedium font-thin whitespace-nowrap'
     >
      Juli Scapucin
     </h1>

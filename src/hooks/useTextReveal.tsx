@@ -6,8 +6,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { animateSplitText } from '@/animations';
 
 export function useTextReveal(
- textRef: React.MutableRefObject<HTMLHeadingElement | HTMLSpanElement | null>
+ textRef: React.MutableRefObject<HTMLHeadingElement | HTMLSpanElement | null>,
+ variant?: string,
+ modalOpen?: boolean
 ) {
+ // Default variant (footer)
  useLayoutEffect(() => {
   if (!textRef || !textRef.current) return;
 
@@ -34,4 +37,17 @@ export function useTextReveal(
    ctx.revert();
   };
  }, [textRef]);
+
+ // Modal variant
+ useLayoutEffect(() => {
+  if (!textRef || !textRef.current || !modalOpen) return;
+
+  let ctx = gsap.context(() => {
+   animateSplitText(textRef.current!, 200, 0);
+  });
+
+  return () => {
+   ctx.revert();
+  };
+ }, [modalOpen, textRef]);
 }
