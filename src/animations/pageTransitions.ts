@@ -55,12 +55,13 @@ export const animateToFullScreen = (
             // Fade out + empty animationEnd div
             gsap.to(animationEnd, {
                opacity: 0,
-               duration: 0.5,
+               duration: 1,
                delay: 0.5,
+               zIndex: 10,
                onComplete: () => {
-                  console.log('animationEnd');
                   animationEnd.innerHTML = '';
                   animationEnd.classList.add('hidden');
+                  animationEnd.style.zIndex = '20';
                },
             });
          },
