@@ -39,9 +39,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
  if (!project) return notFound();
 
  return (
-  <Suspense fallback={<h2>Loading...</h2>}>
-   <ProjectPage project={project} allProjects={allProjects} isShallow={true} />;
-  </Suspense>
+  <ProjectPage project={project} allProjects={allProjects} isShallow={true} />
  );
 }
 
@@ -56,4 +54,3 @@ export async function generateStaticParams() {
   };
  });
 }
-``;

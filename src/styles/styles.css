@@ -27,16 +27,16 @@
       --color-green: 0 128 0;
    }
    :root[data-theme='dark'] {
-      --color-primary: 10 10 15;
+      --color-primary: 18 12 15;
       --color-secondary: 252 249 248;
       --color-faded: 154 152 152;
       --color-scroll: 252, 249, 248;
    }
    :root[data-theme='light'] {
       --color-primary: 252 249 248;
-      --color-secondary: 10 10 15;
+      --color-secondary: 18 12 15;
       --color-faded: 154 152 152;
-      --color-scroll: 6, 6, 7;
+      --color-scroll: 18, 12, 15;
    }
    :root[data-theme='green'] {
       --color-primary: 0 40 0;
