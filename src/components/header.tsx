@@ -52,11 +52,6 @@ export default function Header() {
   } else {
    ///// TRANSITION TO RIGHT
 
-   // If regular page
-   animateToRightTransition(`${projectPage ? 'project-page' : 'page'}`, () => {
-    router.push(`/${link.slug}`);
-   });
-
    // Close shallow-page if open
    if (shallowPage) {
     //  Restore scroll on html div
@@ -75,8 +70,18 @@ export default function Header() {
      });
     }
 
+    if (projectPage)
+     animateToRightTransition('project-page', () => {
+      router.push(`/${link.slug}`);
+     });
+
     return;
    }
+
+   // If regular page
+   animateToRightTransition(`${projectPage ? 'project-page' : 'page'}`, () => {
+    router.push(`/${link.slug}`);
+   });
   }
  };
 
