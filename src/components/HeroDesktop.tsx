@@ -57,23 +57,23 @@ const HeroDesktop = () => {
    >
     <h1
      ref={nameRef}
-     className='name text-displaySmall xl:text-displayMedium whitespace-nowrap'
+     className='name text-displaySmall xl:text-displayMedium font-medium whitespace-nowrap'
     >
      Juli Scapucin
     </h1>
    </GridDiv>
 
-   {/* Description */}
+   {/* Marquee */}
    <GridDiv
     divClass='col-span-full row-span-1 flex items-center'
     top={true}
     ref={descriptionRef}
    >
-    <Marquee>
-     <h2 className='text-displaySmall xl:text-displayMedium whitespace-nowrap px-4'>
+    <Marquee speed={150}>
+     <h2 className='text-displaySmall xl:text-displayMedium font-thin whitespace-nowrap px-4'>
       Design & Web Development Design & Web Development
      </h2>
-     <h2 className='text-displaySmall xl:text-displayMedium whitespace-nowrap'>
+     <h2 className='text-displaySmall xl:text-displayMedium font-thin whitespace-nowrap px-4'>
       Design & Web Development Design & Web Development
      </h2>
     </Marquee>

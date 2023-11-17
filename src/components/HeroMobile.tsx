@@ -26,9 +26,9 @@ const HeroMobile = () => {
     </h1>
    </GridDiv>
 
-   {/* Description */}
+   {/* Marquee */}
    <GridDiv divClass='col-span-full row-span-1 flex items-center' top={true}>
-    <Marquee>
+    <Marquee speed={150}>
      <h2 className='text-[11vw] whitespace-nowrap px-2'>
       Design & Web Development
      </h2>
