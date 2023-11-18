@@ -57,7 +57,7 @@ const HeroDesktop = () => {
    >
     <h1
      ref={nameRef}
-     className='name text-displaySmall xl:text-displayMedium font-thin whitespace-nowrap'
+     className='name text-displaySmall xl:text-displayMedium font-normal whitespace-nowrap'
     >
      Juli Scapucin
     </h1>
@@ -70,10 +70,10 @@ const HeroDesktop = () => {
     ref={descriptionRef}
    >
     <Marquee speed={150}>
-     <h2 className='text-displaySmall xl:text-displayMedium font-thin whitespace-nowrap px-4'>
+     <h2 className='text-displaySmall xl:text-displayMedium font-normal whitespace-nowrap px-4'>
       Design & Web Development Design & Web Development
      </h2>
-     <h2 className='text-displaySmall xl:text-displayMedium font-thin whitespace-nowrap px-4'>
+     <h2 className='text-displaySmall xl:text-displayMedium font-normal whitespace-nowrap px-4'>
       Design & Web Development Design & Web Development
      </h2>
     </Marquee>

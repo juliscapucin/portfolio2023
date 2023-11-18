@@ -52,7 +52,7 @@ export default function AboutPage({ data }: { data: AboutData }) {
        </p>
 
        {/* Paragraphs */}
-       <div className='col-span-4 mt-32'>
+       <div className='col-span-4 mt-16'>
         {data.content1.map((paragraph) => (
          <p key={paragraph._key}>{paragraph.children[0].text}</p>
         ))}
