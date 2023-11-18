@@ -36,6 +36,7 @@ export default function ProjectPage({
   if (!children) return;
 
   let ctx = gsap.context(() => {
+   gsap.set(headerRef.current, { zIndex: 100 });
    gsap.fromTo(
     children,
     {
@@ -49,6 +50,9 @@ export default function ProjectPage({
      ease: 'expo.out',
      duration: 0.2,
      delay: 0.3,
+     onComplete: () => {
+      gsap.set(headerRef.current, { zIndex: 0 });
+     },
     }
    );
   });
@@ -95,7 +99,7 @@ export default function ProjectPage({
    {project.images && <ProjectSplitScreen project={project} />}
   </ShallowPage>
  ) : (
-  <div className='w-full h-screen bg-red-500 flex items-center justify-center'>
+  <div className='w-full h-screen bg-primary flex items-center justify-center'>
    <Loader />
   </div>
  );
