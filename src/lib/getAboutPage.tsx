@@ -16,7 +16,8 @@ export default async function getAboutPage() {
     content1,
     content2,
       services
-}`
+}`,
+  { next: { revalidate: 3600 } }
  );
 
  if (!res) return undefined;
