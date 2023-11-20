@@ -21,17 +21,17 @@ export default function ProjectsMenuThumbs({
  );
 
  return (
-  <div className='fixed top-0 right-0 w-screen h-screen z-40'>
-   <div className='relative w-full h-full max-w-desktop mx-auto flex justify-end overflow-hidden'>
+  <div className='fixed top-0 right-0 w-screen h-screen z-50 pointer-events-none'>
+   <div className='absolute z-50 w-full h-full max-w-desktop mx-auto flex justify-end overflow-hidden'>
     <div
      ref={projectsMenuRef}
-     className={`projects-thumbs flex mr-0 lg:mr-8 opacity-0 ${
+     className={`projects-thumbs h-screen flex mr-0 lg:mr-8 opacity-0 pointer-events-auto ${
       addBackground && 'bg-primary'
      }`}
     >
      {/* All projects button */}
      <GridDiv
-      divClass='relative w-16 bg-primary min-h-screen mt-16'
+      divClass='relative w-16 bg-primary h-screen mt-16'
       left={true}
       right={true}
      >
