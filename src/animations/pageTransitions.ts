@@ -52,15 +52,18 @@ export const animateToFullScreen = (
             document.documentElement.classList.add('overflow-hidden');
             // Change route
             routerFunction();
+            // Change z-index of animationEnd div so to avoid flashing of the page underneath
+            gsap.set(animationEnd, { zIndex: 10, delay: 0.5 });
             // Fade out + empty animationEnd div
             gsap.to(animationEnd, {
                opacity: 0,
                duration: 2,
-               delay: 0.5,
-               zIndex: 10,
+               delay: 3,
+               zIndex: 5,
                onComplete: () => {
                   animationEnd.innerHTML = '';
                   animationEnd.classList.add('hidden');
+                  // Change z-index of animationEnd div back to original
                   animationEnd.style.zIndex = '50';
                },
             });
