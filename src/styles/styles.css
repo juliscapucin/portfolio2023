@@ -118,7 +118,6 @@ button,
 a {
    text-transform: uppercase;
    font-family: var(--font-primary) sans-serif;
-   letter-spacing: -0.025em;
    overflow-wrap: break-word;
 }
 
@@ -130,6 +129,7 @@ h5,
 h6 {
    font-weight: 500;
    line-height: 0.8;
+   letter-spacing: -0.025em;
 }
 
 h4,
