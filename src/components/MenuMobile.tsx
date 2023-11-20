@@ -3,7 +3,7 @@ import { usePathname } from 'next/navigation';
 
 import { animateMobileMenu } from '@/animations';
 
-import { Availability } from '@/components';
+import { Availability, ThemeSwitcher } from '@/components';
 import { GridDiv } from '@/components/ui';
 import { ButtonBurger, ButtonClose } from '@/components/buttons';
 
@@ -83,6 +83,15 @@ export default function MenuMobile({ navLinks, buttonAction }: NavLinksProps) {
         );
        })}
       </nav>
+
+      {/* Theme Switcher */}
+      <GridDiv
+       divClass='col-span-full row-span-1 flex justify-end pt-4 pr-2 pb-10'
+       bottom={true}
+      >
+       <ThemeSwitcher variant='body' />
+      </GridDiv>
+
       {/* Availability / Contact */}
       <div className='w-full flex justify-center mt-32'>
        <Availability />

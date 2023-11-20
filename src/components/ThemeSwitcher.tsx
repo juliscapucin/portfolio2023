@@ -21,8 +21,6 @@ export default function ThemeSwitcher({ variant }: Props) {
  const [menuOpen, setMenuOpen] = useState(false);
 
  useEffect(() => {
-  console.log('theme', theme);
-
   if (theme && theme.length === 0) {
    setTheme('dark');
   }

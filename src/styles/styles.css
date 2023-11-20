@@ -33,7 +33,7 @@
       --color-scroll: 252, 249, 248;
    }
    :root[data-theme='light'] {
-      --color-primary: 252 249 248;
+      --color-primary: 249 246 238;
       --color-secondary: 18 12 15;
       --color-faded: 154 152 152;
       --color-scroll: 18, 12, 15;
@@ -129,6 +129,7 @@ h5,
 h6 {
    font-weight: 500;
    line-height: 0.8;
+   letter-spacing: -0.025em;
 }
 
 h4,
@@ -154,6 +155,14 @@ textarea {
 
 .page {
    display: hidden;
+}
+
+.number {
+   font-size: clamp(15rem, 80vw, 46rem);
+
+   @media (min-width: 768px) {
+      font-size: clamp(28rem, 30vw, 56rem);
+   }
 }
 
 /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */

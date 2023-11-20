@@ -17,6 +17,7 @@ module.exports = {
             headline: ['var(--font-primary) sans-serif'],
             text: ['var(--font-secondary)'],
          },
+         letterSpacing: { tightest: '-.075em' },
          colors: {
             colorBlack: 'rgb(var(--color-black) / <alpha-value>)',
             colorWhite: 'rgb(var(--color-white) / <alpha-value>)',
@@ -32,7 +33,7 @@ module.exports = {
             numberDesktop: '30vw',
             numberTablet: '40vw',
             numberMobile: '80vw',
-            huge: '100%',
+            huge: '32rem',
             displayLarge: '18rem',
             displayMedium: '10.3rem',
             displaySmall: '5.7rem',

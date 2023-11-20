@@ -14,14 +14,14 @@ export default function ProjectImage({ projectSlug, image }: Props) {
    <CldImage
     src={`portfolio2023/work/${projectSlug}/${image}`}
     alt='photo'
-    className='absolute w-full object-cover z-50'
+    className='absolute w-full object-cover z-20 border border-primary'
     sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
     fill
    />
    <CldImage
     src={`portfolio2023/work/bg-ipad`}
     alt='photo'
-    className='w-full object-cover'
+    className='w-full object-cover border border-primary'
     sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
     quality={100}
     fill

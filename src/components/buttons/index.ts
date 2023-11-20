@@ -4,6 +4,7 @@ import ButtonBurger from './ButtonBurger';
 import ButtonClose from './ButtonClose';
 import ButtonMinus from './ButtonMinus';
 import ButtonPlus from './ButtonPlus';
+import CopyEmailButton from './CopyEmailButton';
 
 export {
    ButtonArrow,
@@ -12,4 +13,5 @@ export {
    ButtonClose,
    ButtonMinus,
    ButtonPlus,
+   CopyEmailButton,
 };

@@ -1,5 +1,6 @@
 import { useTextReveal } from '@/hooks';
 import { useRef } from 'react';
+import { CopyEmailButton } from './buttons';
 
 type Props = {
  variant?: string;
@@ -14,12 +15,16 @@ export default function Availability({ variant, modalOpen }: Props) {
  return (
   <div className='flex flex-col justify-center items-center'>
    <span className='block text-headlineSmall'>Available December 2023</span>
-   <a
-    href='mailto:hello@juliscapucin.com'
-    className='text-displaySmall font-normal overflow-hidden'
-   >
-    <span ref={textRef}>Say Hi :)</span>
-   </a>
+   <div className='overflow-hidden h-28 group'>
+    <a
+     href='mailto:hello@juliscapucin.com'
+     className='flex flex-col text-displaySmall font-normal md:group-hover:-translate-y-1/2 transition-transform duration-200'
+    >
+     <span ref={textRef}>Say Hi :)</span>
+     <span>Say Hi :)</span>
+    </a>
+   </div>
+   <CopyEmailButton />
   </div>
  );
 }
