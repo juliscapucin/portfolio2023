@@ -21,7 +21,7 @@ export default function ProjectsMenuThumbs({
  );
 
  return (
-  <div className='fixed top-0 right-0 w-screen h-screen z-50 pointer-events-none'>
+  <div className='fixed top-0 right-0 w-screen h-screen z-40 pointer-events-none'>
    <div className='absolute z-50 w-full h-full max-w-desktop mx-auto flex justify-end overflow-hidden'>
     <div
      ref={projectsMenuRef}

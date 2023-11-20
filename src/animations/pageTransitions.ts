@@ -57,7 +57,7 @@ export const animateToFullScreen = (
             // Fade out + empty animationEnd div
             gsap.to(animationEnd, {
                opacity: 0,
-               duration: 2,
+               duration: 1,
                delay: 3,
                zIndex: 5,
                onComplete: () => {
