@@ -6,7 +6,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
  const { theme } = useThemeStorage();
 
  return (
-  <html lang='en' data-theme={theme}>
+  <html lang='en' data-theme={theme} className='max-w-desktop mx-auto'>
    {props.children}
   </html>
  );
