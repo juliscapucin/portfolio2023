@@ -64,7 +64,7 @@ export default function ProjectPage({
   <ShallowPage isShallow={isShallow}>
    <ProjectsMenuThumbs allProjects={allProjects} />
 
-   <section className='relative w-full mt-32 z-30 bg-primary'>
+   <section className='relative w-full pt-32 z-30 bg-primary'>
     {/* Title */}
     <h1 className='text-displaySmall md:text-displayMedium lg:text-displayLarge mb-4'>
      {project.title}

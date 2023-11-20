@@ -9,8 +9,6 @@ export default function CopyEmailButton() {
   navigator.clipboard
    .writeText('hello@juliscapucin.com')
    .then(() => {
-    // You can implement some feedback to the user here
-    console.log('Email address copied to clipboard!');
     setShowCopyFeedback(true);
     setTimeout(() => setShowCopyFeedback(false), 2000);
    })

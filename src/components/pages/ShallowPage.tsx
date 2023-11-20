@@ -1,12 +1,6 @@
 'use client';
 
-import {
- useCallback,
- useRef,
- MouseEventHandler,
- useEffect,
- useState,
-} from 'react';
+import { useCallback, useRef, useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
 import { usePageContext } from '@/context';
@@ -88,7 +82,7 @@ export default function ShallowPage({ children, isShallow }: Props) {
     ref={overlay}
    >
     <div
-     className='wrapper max-w-desktop overflow-hidden m-auto mt-0 py-32'
+     className='wrapper max-w-desktop overflow-hidden m-auto mt-0 py-32 bg-primary'
      ref={wrapper}
     >
      {/* Back button */}

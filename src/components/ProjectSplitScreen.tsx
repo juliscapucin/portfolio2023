@@ -1,6 +1,7 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, use } from 'react';
+import { usePathname } from 'next/navigation';
 
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -8,15 +9,18 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import { breakpoints } from '@/constants';
 import { useMediaQuery } from '@/hooks';
 import { Project } from '@/types';
-import ProjectImage from './ProjectImage';
-import { ProjectSlideshow } from '.';
+import { ProjectSlideshow, ProjectImage } from '@/components';
 
 export default function ProjectSplitScreen({ project }: { project: Project }) {
+ const pathname = usePathname();
+
  const leftColumnRef = useRef<HTMLDivElement | null>(null);
  const rightColumnRef = useRef<HTMLDivElement | null>(null);
 
  // Set breakpoint for mobile/desktop (values are in constants.ts)
  const breakpoint = useMediaQuery(breakpoints.desktop);
+
+ let ctx = gsap.context(() => {});
 
  // Create ScrollTrigger for desktop
  useEffect(() => {
@@ -33,11 +37,12 @@ export default function ProjectSplitScreen({ project }: { project: Project }) {
    end: `bottom ${featuredImageHeight}`,
    scrub: true,
    pin: rightColumnRef.current,
+   pinType: 'fixed',
   });
  }, [leftColumnRef, rightColumnRef, breakpoint]);
 
  return (
-  <section className='lg:grid grid-cols-12 w-full gap-1'>
+  <section className='lg:grid grid-cols-12 w-full gap-1 pointer-events-none'>
    {/* Left */}
    <div
     ref={leftColumnRef}
