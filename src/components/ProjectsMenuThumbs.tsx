@@ -41,7 +41,7 @@ export default function ProjectsMenuThumbs({
       {open ? <IconClose /> : <IconPlus />}
      </div>
      <span className='block whitespace-nowrap -rotate-90 mt-16'>
-      All Projects
+      More Projects
      </span>
     </button>
    </GridDiv>

@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import gsap from 'gsap';
+import React, { useState, useEffect, useRef } from 'react';
 
 import { CldImage } from 'next-cloudinary';
 
@@ -8,52 +7,32 @@ type Props = {
  projectSlug: string;
 };
 
+const delay = 5000;
+
 export default function Slideshow({ projectImages, projectSlug }: Props) {
  const [index, setIndex] = useState(1);
- const slideshowRef = React.useRef<HTMLDivElement | null>(null);
+ const slideshowRef = useRef<HTMLDivElement | null>(null);
+ const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
- //  useEffect(() => {
- //   if (!slideshowRef.current) return;
-
- //   const tl = gsap.timeline();
-
- //   tl
- //    .to(slideshowRef.current, { opacity: 1, duration: 0.5 })
- //    .to(slideshowRef.current, {
- //     opacity: 0,
- //     duration: 0.5,
- //     delay: 4,
- //     onComplete: () => {
- //      setIndex((prevIndex) =>
- //       prevIndex === projectImages.length - 1 ? 0 : prevIndex + 1
- //      );
- //     },
- //    });
- //  }, [index]);
+ const resetTimeout = () => {
+  if (timeoutRef.current) {
+   clearTimeout(timeoutRef.current);
+  }
+ };
 
  useEffect(() => {
-  if (!slideshowRef.current) return;
+  resetTimeout();
+  timeoutRef.current = setTimeout(
+   () =>
+    setIndex((prevIndex) =>
+     prevIndex === projectImages.length - 1 ? 0 : prevIndex + 1
+    ),
+   delay
+  );
 
-  const tl = gsap.timeline({ repeat: -1 }); // Infinite loop
-
-  tl.to(slideshowRef.current, {
-   opacity: 1,
-   duration: 1,
-   onComplete: () => {
-    // After fade in, wait for a delay (e.g., 4 seconds)
-    tl.to(slideshowRef.current, {
-     opacity: 0,
-     duration: 1,
-     delay: 4,
-     onComplete: () => {
-      // Update the index to show the next slide
-      setIndex((prevIndex) =>
-       prevIndex === projectImages.length - 1 ? 0 : prevIndex + 1
-      );
-     },
-    });
-   },
-  });
+  return () => {
+   resetTimeout();
+  };
  }, [index]);
 
  return (

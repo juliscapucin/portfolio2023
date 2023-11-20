@@ -82,6 +82,12 @@ export default function ShallowPage({ children, isShallow }: Props) {
   [onDismiss]
  );
 
+ useEffect(() => {
+  if (!isShallow) return;
+  document.addEventListener('keydown', onKeyDown);
+  return () => document.removeEventListener('keydown', onKeyDown);
+ }, [onKeyDown]);
+
  return (
   shouldShowShallowPage && (
    <div

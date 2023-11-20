@@ -48,8 +48,8 @@ export default function ProjectPage({
      yPercent: 0,
      stagger: 0.05,
      ease: 'expo.out',
-     duration: 0.2,
-     delay: 0.3,
+     duration: 0.5,
+     delay: 0.5,
      onComplete: () => {
       gsap.set(headerRef.current, { zIndex: 0 });
      },
@@ -64,7 +64,7 @@ export default function ProjectPage({
   <ShallowPage isShallow={isShallow}>
    <ProjectsMenuThumbs allProjects={allProjects} />
 
-   <section className='relative w-full mt-32'>
+   <section className='relative w-full mt-32 z-30 bg-primary'>
     {/* Title */}
     <h1 className='text-displaySmall md:text-displayMedium lg:text-displayLarge mb-4'>
      {project.title}
