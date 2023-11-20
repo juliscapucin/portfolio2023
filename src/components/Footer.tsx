@@ -13,7 +13,7 @@ export default function Footer() {
  return (
   <GridDiv
    top={true}
-   divClass='pt-32 pb-16 lg:px-4 lg:grid grid-cols-12 max-w-desktop z-50 bg-primary'
+   divClass='pt-32 pb-16 lg:px-16 lg:grid grid-cols-12 max-w-desktop z-50 bg-primary'
   >
    <nav className='col-span-3'>
     {/* Nav Column */}
