@@ -17,6 +17,7 @@ module.exports = {
             headline: ['var(--font-primary) sans-serif'],
             text: ['var(--font-secondary)'],
          },
+         letterSpacing: { tightest: '-.075em' },
          colors: {
             colorBlack: 'rgb(var(--color-black) / <alpha-value>)',
             colorWhite: 'rgb(var(--color-white) / <alpha-value>)',

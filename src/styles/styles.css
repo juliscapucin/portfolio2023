@@ -118,6 +118,7 @@ button,
 a {
    text-transform: uppercase;
    font-family: var(--font-primary) sans-serif;
+   letter-spacing: -0.025em;
    overflow-wrap: break-word;
 }
 
