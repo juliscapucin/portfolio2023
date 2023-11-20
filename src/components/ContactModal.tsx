@@ -59,7 +59,7 @@ export default function ContactModal() {
     <div className='absolute top-8 right-0' onClick={updateModalOpen}>
      <ButtonClose action={() => updateModalOpen} />
     </div>
-    <div className='lg:w-2/12'>
+    <div className='ml-16 lg:w-2/12'>
      <FooterLinks
       apiRoute={'socials'}
       variant={'modal'}
@@ -67,7 +67,7 @@ export default function ContactModal() {
      />
     </div>
 
-    <div className='mb-16 lg:mb-0 overflow-hidden'>
+    <div className='mb-16 lg:mb-0 mr-16 overflow-hidden'>
      <Availability variant='modal' modalOpen={modalOpen} />
     </div>
    </GridDiv>

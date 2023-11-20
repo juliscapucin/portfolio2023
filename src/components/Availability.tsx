@@ -1,5 +1,6 @@
 import { useTextReveal } from '@/hooks';
 import { useRef } from 'react';
+import { CopyEmailButton } from './buttons';
 
 type Props = {
  variant?: string;
@@ -23,6 +24,7 @@ export default function Availability({ variant, modalOpen }: Props) {
      <span>Say Hi :)</span>
     </a>
    </div>
+   <CopyEmailButton />
   </div>
  );
 }
