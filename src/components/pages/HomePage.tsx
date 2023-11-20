@@ -41,7 +41,7 @@ export default function HomePage({ allProjects }: { allProjects: Project[] }) {
 
  return (
   <div ref={pageRef} className='page home-page main-page overflow-hidden'>
-   <GridDiv divClass='overflow-hidden min-h-screen' bottom={true}>
+   <GridDiv divClass='overflow-hidden h-screen min-h-screen' bottom={true}>
     {breakpoint === 'mobile' && <HeroMobile />}
     {breakpoint === 'desktop' && <HeroDesktop />}
    </GridDiv>
