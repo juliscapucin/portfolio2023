@@ -30,6 +30,7 @@ export default function AboutPage({ data }: { data: AboutData }) {
      {/* Title */}
      <Title title={data.title} />
      <div className='lg:grid grid-cols-12'>
+      {/* Image */}
       <div
        ref={imageWrapperRef}
        className='col-span-6 aspect-square overflow-hidden relative mt-4 mb-8 lg:mb-0'
@@ -46,14 +47,14 @@ export default function AboutPage({ data }: { data: AboutData }) {
        />
       </div>
       <div className='col-span-1'></div>
-      <div className='col-span-5 md:grid grid-cols-5'>
+      <div className='col-span-4'>
        {/* Subtitle */}
-       <p className='text-titleLarge md:text-headlineSmall col-span-5 mt-4 lg:mt-0'>
+       <p className='text-titleLarge md:text-headlineSmall col-span-5 mt-4'>
         {data.description}
        </p>
 
        {/* Paragraphs */}
-       <div className='col-span-4 mt-16'>
+       <div className='mt-32'>
         {data.content1.map((paragraph) => (
          <p key={paragraph._key}>{paragraph.children[0].text}</p>
         ))}
