@@ -51,9 +51,7 @@ const HeroMobile = () => {
     divClass='col-span-6 row-span-2 overflow-hidden flex items-center'
     top={true}
    >
-    <span className='text-numberMobile sm:text-numberTablet font-normal tracking-tighter'>
-     23
-    </span>
+    <span className='number font-normal tracking-tighter'>23</span>
    </GridDiv>
   </div>
  );

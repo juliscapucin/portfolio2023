@@ -156,6 +156,14 @@ textarea {
    display: hidden;
 }
 
+.number {
+   font-size: clamp(15rem, 80vw, 46rem);
+
+   @media (min-width: 768px) {
+      font-size: clamp(28rem, 30vw, 56rem);
+   }
+}
+
 /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */
 
 .animation-grid-element .static-line:nth-child(1) {

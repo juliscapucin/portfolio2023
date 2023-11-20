@@ -32,7 +32,7 @@ module.exports = {
             numberDesktop: '30vw',
             numberTablet: '40vw',
             numberMobile: '80vw',
-            huge: '100%',
+            huge: '32rem',
             displayLarge: '18rem',
             displayMedium: '10.3rem',
             displaySmall: '5.7rem',
