@@ -34,11 +34,12 @@ export default function AboutPage({ data }: { data: AboutData }) {
        ref={imageWrapperRef}
        className='col-span-6 aspect-square overflow-hidden relative mt-4 mb-8 lg:mb-0'
       >
+       {/* Need to add mask class here for useElementReveal hook */}
        <div className='mask absolute top-0 left-0 w-full h-full bg-primary z-20'></div>
        <Image
         src='/juli.avif'
         alt='photo'
-        className='h-32 w-full object-cover'
+        className='h-32 w-full object-cover border border-primary' //add border to avoid halo around image
         sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
         fill
         priority
