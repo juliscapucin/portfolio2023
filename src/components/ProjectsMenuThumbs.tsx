@@ -21,36 +21,40 @@ export default function ProjectsMenuThumbs({
  );
 
  return (
-  <div
-   ref={projectsMenuRef}
-   className={`projects-thumbs fixed top-0 right-0 lg:right-8 flex z-40 opacity-0 ${
-    addBackground && 'bg-primary'
-   }`}
-  >
-   {/* All projects button */}
-   <GridDiv
-    divClass='relative fixed w-16 bg-primary min-h-screen mt-16'
-    left={true}
-    right={true}
-   >
-    <button
-     className='relative w-full h-full mt-8 flex flex-col items-center justify-start gap-8 overflow-hidden'
-     onClick={toggle}
+  <div className='fixed top-0 right-0 w-screen h-screen z-40'>
+   <div className='relative w-full h-full max-w-desktop mx-auto flex justify-end overflow-hidden'>
+    <div
+     ref={projectsMenuRef}
+     className={`projects-thumbs flex mr-0 lg:mr-8 opacity-0 ${
+      addBackground && 'bg-primary'
+     }`}
     >
-     <div className='relative flex items-center justify-center w-8 h-8 z-20'>
-      {open ? <IconClose /> : <IconPlus />}
-     </div>
-     <span className='block whitespace-nowrap -rotate-90 mt-16'>
-      More Projects
-     </span>
-    </button>
-   </GridDiv>
-   <ProjectsMenu
-    allProjects={allProjects}
-    activeBreakpoint={breakpoint}
-    startVariant='thumbs'
-    startCategory='all'
-   />
+     {/* All projects button */}
+     <GridDiv
+      divClass='relative w-16 bg-primary min-h-screen mt-16'
+      left={true}
+      right={true}
+     >
+      <button
+       className='relative w-full h-full mt-8 flex flex-col items-center justify-start gap-8 overflow-hidden'
+       onClick={toggle}
+      >
+       <div className='relative flex items-center justify-center w-8 h-8 z-20'>
+        {open ? <IconClose /> : <IconPlus />}
+       </div>
+       <span className='block whitespace-nowrap -rotate-90 mt-16'>
+        More Projects
+       </span>
+      </button>
+     </GridDiv>
+     <ProjectsMenu
+      allProjects={allProjects}
+      activeBreakpoint={breakpoint}
+      startVariant='thumbs'
+      startCategory='all'
+     />
+    </div>
+   </div>
   </div>
  );
 }

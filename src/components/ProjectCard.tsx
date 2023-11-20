@@ -85,9 +85,9 @@ export default function ProjectCard(props: ProjectCardProps) {
   >
    {/* Div for animation */}
    <div
-    className={`project-card-${id} overflow-hidden bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-full z-30 translate-x-full`}
+    className={`project-card-${id} overflow-hidden bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-screen z-30 translate-x-full`}
    >
-    <div className='m-auto mt-0 pt-48 overflow-hidden'>
+    <div className='m-auto mt-0 pt-48 max-w-desktop overflow-hidden'>
      <h1 className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge col-span-5 whitespace-nowrap'>
       {title}
      </h1>

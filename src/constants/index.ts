@@ -2,6 +2,8 @@ export const breakpoints = {
    desktop: 768,
 };
 
+export const maxWidth = 2000;
+
 export const navLinks = [
    { label: 'Home', slug: '/', _key: 0 },
    { label: 'Work', slug: 'work', _key: 1 },
