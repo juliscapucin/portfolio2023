@@ -34,6 +34,7 @@ export default function ProjectsMenu({
  );
 
  const [isHovering, setIsHovering] = useState(false);
+ const [category, setCategory] = useState(startCategory);
 
  const updateIsHovering = (state: boolean) => {
   setIsHovering(state);
@@ -48,7 +49,9 @@ export default function ProjectsMenu({
  const projectsLinksRef = useRef(null);
 
  //  Filter Projects + Fade Out Transitions
- const filterProjects = (filterString: string) => {
+ const filterProjects = (
+  filterString: 'all' | 'recent' | 'playground' | 'archive'
+ ) => {
   if (!allProjects) return;
 
   const filteredProjects =
@@ -64,6 +67,7 @@ export default function ProjectsMenu({
     duration: 0.5,
     onComplete: () => {
      setProjectItems(filteredProjects);
+     setCategory(filterString);
     },
    });
   }, projectsMenuRef);
@@ -198,19 +202,20 @@ export default function ProjectsMenu({
       ref={projectsLinksRef}
      >
       {projectItems &&
-       projectItems.map((link, index) => {
+       projectItems.map((link) => {
         if (!link.coverImage || !link.title || !link.slug) return;
         return (
-         <div key={`${link.slug}-${index}`}>
+         <div key={`${link.slug}-${category}`}>
           <ProjectCard
-           title={link.title}
-           scope={link.info.scope}
-           slug={link.slug}
-           id={link._id}
-           alt={link.coverImage.alt}
-           variant={variant}
-           updateIsHovering={updateIsHovering}
-           projectItems={projectItems}
+           {...{
+            title: link.title,
+            scope: link.info.scope,
+            slug: link.slug,
+            id: link._id,
+            alt: link.coverImage.alt,
+            variant,
+            updateIsHovering,
+           }}
           />
          </div>
         );
@@ -225,7 +230,10 @@ export default function ProjectsMenu({
      {projectItems &&
       projectItems.map((project, index) => {
        return (
-        <div className='lg:grid grid-cols-12 mb-32 lg:mb-64' key={project._id}>
+        <div
+         className='lg:grid grid-cols-12 mb-32 lg:mb-64'
+         key={`${project._id}-${category}`}
+        >
          {project.title &&
           project.slug &&
           project.imageSize &&
@@ -263,16 +271,18 @@ export default function ProjectsMenu({
           project.imageSize &&
           project.imageStart && (
            <ProjectCard
-            index={index}
-            title={project.title}
-            scope={project.info.scope}
-            slug={project.slug}
-            id={project._id}
-            alt={project.coverImage.alt}
-            variant={variant}
-            imageSize={project.imageSize}
-            imageStart={project.imageStart}
-            updateIsHovering={updateIsHovering}
+            {...{
+             index,
+             title: project.title,
+             scope: project.info.scope,
+             slug: project.slug,
+             id: project._id,
+             alt: project.coverImage.alt,
+             variant,
+             imageSize: project.imageSize,
+             imageStart: project.imageStart,
+             updateIsHovering,
+            }}
            />
           )}
         </div>

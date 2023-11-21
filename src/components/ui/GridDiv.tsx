@@ -2,7 +2,6 @@
 
 import { forwardRef, use, useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { Project } from '@/types';
 
 type GridDivProps = {
  top?: boolean;
@@ -11,11 +10,10 @@ type GridDivProps = {
  left?: boolean;
  children?: React.ReactNode;
  divClass?: string;
- projectItems?: Project[];
 };
 
 export const GridDiv = forwardRef(function GridDiv(
- { top, right, bottom, left, children, divClass, projectItems }: GridDivProps,
+ { top, right, bottom, left, children, divClass }: GridDivProps,
  ref: React.Ref<HTMLDivElement>
 ) {
  const lineTopRef = useRef<HTMLDivElement>(null);
@@ -63,7 +61,7 @@ export const GridDiv = forwardRef(function GridDiv(
   return () => {
    ctx.revert();
   };
- }, [lineTopRef, lineRightRef, lineBottomRef, lineLeftRef, projectItems]);
+ }, [lineTopRef, lineRightRef, lineBottomRef, lineLeftRef]);
 
  return (
   <div
