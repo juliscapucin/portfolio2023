@@ -76,6 +76,10 @@ export default function ProjectsMenu({
     duration: 0.5,
    });
   }, projectsMenuRef);
+
+  return () => {
+   ctx.revert();
+  };
  }, [projectItems]);
 
  //  Change view – fade out + change variant
@@ -120,6 +124,10 @@ export default function ProjectsMenu({
     });
    });
   }
+
+  return () => {
+   ctx.revert();
+  };
  }, [variant]);
 
  // Restart list view animation on resize, filter or variant change
@@ -160,7 +168,7 @@ export default function ProjectsMenu({
      {/* Render left side images only on desktop */}
      {activeBreakpoint === 'desktop' && (
       <div
-       className='col-span-4 aspect-square relative mt-8 overflow-hidden'
+       className='col-span-4 aspect-square max-h-[500px] relative mt-8 overflow-hidden'
        ref={projectsImgsRef}
       >
        {projectItems &&
