@@ -1,7 +1,8 @@
 'use client';
 
-import { forwardRef, useLayoutEffect, useRef } from 'react';
+import { forwardRef, use, useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { Project } from '@/types';
 
 type GridDivProps = {
  top?: boolean;
@@ -10,16 +11,19 @@ type GridDivProps = {
  left?: boolean;
  children?: React.ReactNode;
  divClass?: string;
+ projectItems?: Project[];
 };
 
 export const GridDiv = forwardRef(function GridDiv(
- { top, right, bottom, left, children, divClass }: GridDivProps,
+ { top, right, bottom, left, children, divClass, projectItems }: GridDivProps,
  ref: React.Ref<HTMLDivElement>
 ) {
  const lineTopRef = useRef<HTMLDivElement>(null);
  const lineRightRef = useRef<HTMLDivElement>(null);
  const lineBottomRef = useRef<HTMLDivElement>(null);
  const lineLeftRef = useRef<HTMLDivElement>(null);
+
+ let ctx = gsap.context(() => {});
 
  useLayoutEffect(() => {
   if (
@@ -30,11 +34,13 @@ export const GridDiv = forwardRef(function GridDiv(
   )
    return;
 
-  let ctx = gsap.context(() => {
+  ctx.revert();
+
+  ctx.add(() => {
    gsap.set(lineTopRef.current, { xPercent: -100 });
    gsap.set(lineBottomRef.current, { xPercent: -100 });
    gsap.set(lineLeftRef.current, { yPercent: -100 });
-   gsap.set(lineRightRef.current, { yPercent: 100 });
+   gsap.set(lineRightRef.current, { yPercent: -100 });
 
    const tl = gsap.timeline();
 
@@ -57,35 +63,55 @@ export const GridDiv = forwardRef(function GridDiv(
   return () => {
    ctx.revert();
   };
- }, [lineTopRef, lineRightRef, lineBottomRef, lineLeftRef]);
+ }, [lineTopRef, lineRightRef, lineBottomRef, lineLeftRef, projectItems]);
 
  return (
   <div
    className={`grid-element relative overflow-hidden ${divClass}`}
    ref={ref}
   >
-   {top && (
+   {top ? (
     <div
      ref={lineTopRef}
-     className='line absolute top-0 left-0 h-[1px] w-full bg-secondary'
+     className='line absolute top-0 left-0 h-[1px] w-full bg-secondary z-10'
+    ></div>
+   ) : (
+    <div
+     ref={lineTopRef}
+     className='line-transparent absolute top-0 left-0 h-[1px] w-full bg-primary z-0'
     ></div>
    )}
-   {right && (
+   {right ? (
     <div
      ref={lineRightRef}
-     className='line absolute top-0 right-0 w-[1px] h-full bg-secondary'
+     className='line absolute top-0 right-0 w-[1px] h-full bg-secondary z-10'
+    ></div>
+   ) : (
+    <div
+     ref={lineRightRef}
+     className='line-transparent absolute top-0 right-0 w-[1px] h-full bg-primary z-0'
     ></div>
    )}
-   {bottom && (
+   {bottom ? (
     <div
      ref={lineBottomRef}
-     className='line absolute bottom-0 left-0 h-[1px] w-full bg-secondary'
+     className='line absolute bottom-0 left-0 h-[1px] w-full bg-secondary z-10'
+    ></div>
+   ) : (
+    <div
+     ref={lineBottomRef}
+     className='line-transparent absolute bottom-0 left-0 h-[1px] w-full bg-primary z-0'
     ></div>
    )}
-   {left && (
+   {left ? (
     <div
      ref={lineLeftRef}
-     className='line absolute top-0 left-0 w-[1px] h-full bg-secondary'
+     className='line absolute top-0 left-0 w-[1px] h-full bg-secondary z-10'
+    ></div>
+   ) : (
+    <div
+     ref={lineLeftRef}
+     className='line-transparent absolute top-0 left-0 w-[1px] h-full bg-primary z-0'
     ></div>
    )}
    {children}

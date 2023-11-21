@@ -8,6 +8,7 @@ import { ProjectLabel } from '@/components';
 import { AnimationGridDiv, GridDiv } from '@/components/ui';
 import { animateToFullScreen } from '@/animations';
 import { useElementReveal } from '@/hooks';
+import { Project } from '@/types';
 
 interface ProjectCardProps {
  index?: number;
@@ -20,6 +21,7 @@ interface ProjectCardProps {
  imageSize?: number;
  imageStart?: number;
  updateIsHovering: (state: boolean) => void;
+ projectItems?: Project[];
 }
 
 export default function ProjectCard(props: ProjectCardProps) {
@@ -35,6 +37,7 @@ export default function ProjectCard(props: ProjectCardProps) {
   imageSize,
   imageStart,
   updateIsHovering,
+  projectItems,
  } = props;
  // local isHovering state for individual hover animation
  const [isHovering, setIsHovering] = useState(false);
@@ -44,7 +47,7 @@ export default function ProjectCard(props: ProjectCardProps) {
 
  return variant === 'list' ? (
   ////----- LIST VIEW -----////
-  <GridDiv bottom={true} divClass='relative h-32'>
+  <GridDiv bottom={true} projectItems={projectItems} divClass='relative h-32'>
    {/* Div for animation */}
    <AnimationGridDiv
     divClass={`project-card-${id} overflow-hidden bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-full z-10 translate-x-full`}

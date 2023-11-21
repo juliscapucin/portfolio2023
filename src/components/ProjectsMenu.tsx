@@ -201,7 +201,7 @@ export default function ProjectsMenu({
        projectItems.map((link, index) => {
         if (!link.coverImage || !link.title || !link.slug) return;
         return (
-         <div key={index}>
+         <div key={`${link.slug}-${index}`}>
           <ProjectCard
            title={link.title}
            scope={link.info.scope}
@@ -210,6 +210,7 @@ export default function ProjectsMenu({
            alt={link.coverImage.alt}
            variant={variant}
            updateIsHovering={updateIsHovering}
+           projectItems={projectItems}
           />
          </div>
         );
