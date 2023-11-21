@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 import { CldImage } from 'next-cloudinary';
+import ProjectImage from './ProjectImage';
 
 type Props = {
  projectImages: string[];
@@ -10,7 +11,7 @@ type Props = {
 const delay = 5000;
 
 export default function Slideshow({ projectImages, projectSlug }: Props) {
- const [index, setIndex] = useState(1);
+ const [slideIndex, setSlideIndex] = useState(1);
  const slideshowRef = useRef<HTMLDivElement | null>(null);
  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -20,11 +21,26 @@ export default function Slideshow({ projectImages, projectSlug }: Props) {
   }
  };
 
+ //  useEffect(() => {
+ //   resetTimeout();
+ //   timeoutRef.current = setTimeout(
+ //    () =>
+ //     setIndex((prevIndex) =>
+ //      prevIndex === projectImages.length - 1 ? 0 : prevIndex + 1
+ //     ),
+ //    delay
+ //   );
+
+ //   return () => {
+ //    resetTimeout();
+ //   };
+ //  }, [index]);
+
  useEffect(() => {
   resetTimeout();
   timeoutRef.current = setTimeout(
    () =>
-    setIndex((prevIndex) =>
+    setSlideIndex((prevIndex) =>
      prevIndex === projectImages.length - 1 ? 0 : prevIndex + 1
     ),
    delay
@@ -33,27 +49,24 @@ export default function Slideshow({ projectImages, projectSlug }: Props) {
   return () => {
    resetTimeout();
   };
- }, [index]);
+ }, [slideIndex]);
 
  return (
-  <div className='slideshow relative w-full aspect-square overflow-hidden'>
-   <div ref={slideshowRef} className='relative w-full aspect-square'>
-    <CldImage
-     src={`portfolio2023/work/${projectSlug}/${projectImages[index]}`}
-     alt='photo'
-     className='w-full object-cover z-50'
-     sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-     fill
-    />
-   </div>
-   <CldImage
-    src={`portfolio2023/work/bg-ipad`}
-    alt='photo'
-    className='absolute w-full object-cover top-0 left-0 z-0'
-    sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-    quality={100}
-    fill
-   />
+  <div
+   ref={slideshowRef}
+   className='slideshow relative w-full aspect-square flex flex-nowrap overflow-hidden'
+  >
+   {projectImages.map((index) => {
+    return (
+     <div
+      className='min-w-full transition-transform duration-200'
+      key={`projectSlideshow-${index}`}
+      style={{ transform: `translate3d(${-slideIndex * 100}%, 0, 0)` }}
+     >
+      <ProjectImage projectSlug={projectSlug} image={index} />
+     </div>
+    );
+   })}
   </div>
  );
 }

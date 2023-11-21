@@ -90,12 +90,7 @@ const HeroDesktop = () => {
    </GridDiv>
 
    {/* Theme */}
-   <GridDiv
-    divClass='col-span-1 row-span-3'
-    top={true}
-    right={true}
-    left={true}
-   ></GridDiv>
+   <GridDiv divClass='col-span-8 row-span-3' top={true} left={true}></GridDiv>
 
    {/* Arrow */}
    {/* <GridDiv divClass='col-span-2 row-span-1' top={true} left={true}></GridDiv> */}

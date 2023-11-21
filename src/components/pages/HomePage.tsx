@@ -1,6 +1,8 @@
 'use client';
 
 import { useLayoutEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
+import gsap from 'gsap';
 
 import { breakpoints } from '@/constants';
 import { usePageContext } from '@/context';
@@ -15,10 +17,11 @@ import {
  SectionTitle,
 } from '@/components';
 import { GridDiv } from '@/components/ui';
-import { animateToRight, ctx } from '@/animations';
+import { animateToRight } from '@/animations';
 import { Project } from '@/types';
 
 export default function HomePage({ allProjects }: { allProjects: Project[] }) {
+ const pathname = usePathname();
  const { previousPage, updatePreviousPage } = usePageContext();
  const pageRef = useRef(null);
 
@@ -27,17 +30,20 @@ export default function HomePage({ allProjects }: { allProjects: Project[] }) {
 
  //  Enter page animation
  useLayoutEffect(() => {
-  if (!pageRef.current) return;
+  if (!pageRef.current || pathname !== '/') return;
+  let ctx = gsap.context(() => {});
 
-  if (!previousPage.includes('project-home')) {
-   animateToRight(pageRef.current);
+  if (!previousPage.includes('project')) {
+   ctx.add(() => {
+    animateToRight(pageRef.current);
+   });
   }
   updatePreviousPage('home');
 
   return () => {
    ctx.revert();
   };
- }, [pageRef]);
+ }, [pathname]);
 
  return (
   <div ref={pageRef} className='page home-page main-page overflow-hidden'>

@@ -9,7 +9,7 @@ export default function ButtonBack({ action }: ButtonCloseProps) {
  return (
   <button
    onClick={action}
-   className='fixed z-20 h-8 flex gap-4 items-center group'
+   className='fixed z-50 h-8 flex gap-4 items-center group'
    aria-label='back'
   >
    <div className='text-secondary h-4'>

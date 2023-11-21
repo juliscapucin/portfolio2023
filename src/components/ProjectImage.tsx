@@ -1,4 +1,5 @@
 import { CldImage } from 'next-cloudinary';
+import { Loader } from '@/components/ui';
 
 type Props = {
  projectSlug: string;
@@ -8,9 +9,7 @@ type Props = {
 export default function ProjectImage({ projectSlug, image }: Props) {
  return (
   <div className='w-full aspect-square overflow-hidden relative mt-1'>
-   {/* <div className='absolute top-0 left-0 min-w-full min-h-full bg-red-500'>
-    cacete
-   </div> */}
+   <div className='absolute top-0 left-0 min-w-full min-h-full z-20 opacity-5 bg-primary'></div>
    <CldImage
     src={`portfolio2023/work/${projectSlug}/${image}`}
     alt='photo'
@@ -18,6 +17,9 @@ export default function ProjectImage({ projectSlug, image }: Props) {
     sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
     fill
    />
+   <div className='absolute top-0 left-0 min-w-full min-h-full flex items-center justify-center z-10'>
+    <Loader />
+   </div>
    <CldImage
     src={`portfolio2023/work/bg-ipad`}
     alt='photo'
