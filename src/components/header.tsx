@@ -24,6 +24,7 @@ export default function Header() {
 
   const shallowPage = document.querySelector('.shallow-page');
   const projectPage = document.querySelector('.project-page');
+  const homePage = document.querySelector('.home-page');
 
   const previousPageLink = previousPage.includes('project')
    ? previousPage.includes('home')
@@ -45,9 +46,9 @@ export default function Header() {
     animateHorizontal('shallow-page', 0, -200);
    }
 
-   // Transition regular page to left and push new page
+   // If regular page
    animateToLeftTransition(`${projectPage ? 'project-page' : 'page'}`, () => {
-    router.push(`/${link.slug}`);
+    router.push(`/${link.slug}`, { scroll: true });
    });
   } else {
    ///// TRANSITION TO RIGHT
@@ -59,7 +60,7 @@ export default function Header() {
      document.documentElement.classList.remove('overflow-hidden');
 
     // If coming from project page which was preceded by home page
-    if (previousPage.includes('project-home')) {
+    if (homePage) {
      animateToRightTransition('shallow-page', () => {
       router.push(`/${link.slug}`, { scroll: false });
      });
@@ -69,11 +70,6 @@ export default function Header() {
       router.push(`/${link.slug}`);
      });
     }
-
-    if (projectPage)
-     animateToRightTransition('project-page', () => {
-      router.push(`/${link.slug}`);
-     });
 
     return;
    }

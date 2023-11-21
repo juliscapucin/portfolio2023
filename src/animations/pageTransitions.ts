@@ -92,14 +92,16 @@ export const animateToLeft = (enterElement: HTMLDivElement | null) => {
 // animate to right
 // used to start pages after transitions
 export const animateToRight = (enterElement: HTMLDivElement | null) => {
-   ctx.add(() => {
-      gsap.set(enterElement, { autoAlpha: 1 });
-      gsap.from(enterElement, {
-         xPercent: -100,
+   gsap.set(enterElement, { autoAlpha: 1 });
+   gsap.fromTo(
+      enterElement,
+      { xPercent: -100 },
+      {
+         xPercent: 0,
          duration: 1,
          ease: 'expo.inOut',
-      });
-   });
+      }
+   );
 };
 
 // animate horizontal
