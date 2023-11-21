@@ -25,8 +25,6 @@ export default function ShallowPage({ children, isShallow }: Props) {
 
  // update previous page + define if back button should be shown
  useEffect(() => {
-  console.log('previousPage', previousPage);
-
   if (previousPage === 'home' && isShallow) {
    updatePreviousPage('project-home');
   } else if (previousPage === 'work' && isShallow) {
@@ -41,8 +39,6 @@ export default function ShallowPage({ children, isShallow }: Props) {
    updatePreviousPage('work');
    setShowBackButton(false);
   }
-
-  console.log('previousPage', previousPage);
  }, []);
 
  // this is used as a workaround to prevent the intercepted route of showing in all pages
