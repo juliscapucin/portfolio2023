@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect, use } from 'react';
+import { useRef, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
 import gsap from 'gsap';
@@ -64,6 +64,7 @@ export default function ProjectSplitScreen({ project }: { project: Project }) {
        key={`${project.slug}-${index}}`}
        projectSlug={project.slug}
        image={image}
+       isWeb={project.isWeb}
       />
      );
     })}
@@ -77,6 +78,7 @@ export default function ProjectSplitScreen({ project }: { project: Project }) {
     <ProjectSlideshow
      projectImages={project.images}
      projectSlug={project.slug}
+     isWeb={project.isWeb}
     />
    </div>
   </section>
