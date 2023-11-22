@@ -17,6 +17,7 @@ export default async function getProject(slug: string) {
    thumbnailSize,
    url,
    images,
+   isWeb,
    category,
    "textContent1": content1[]{
       children[0]{

@@ -9,6 +9,7 @@ export type Project = {
    imageSize: number;
    imageStart: number;
    images: string[];
+   isWeb: boolean;
    info: { tech: string; scope: string; link: string };
    textContent1?: { children: { text: string; _key: string } }[];
    textContent2?: { children: { text: string; _key: string } }[];

@@ -50,6 +50,7 @@ const projectSchema = {
          type: 'array',
          of: [{ type: 'string' }],
       },
+      { name: 'isWeb', title: 'Is Web Project', type: 'boolean' },
       {
          name: 'category',
          title: 'Category',

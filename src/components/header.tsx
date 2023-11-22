@@ -64,6 +64,11 @@ export default function Header() {
      animateToRightTransition('shallow-page', () => {
       router.push(`/${link.slug}`, { scroll: false });
      });
+    } else if (projectPage) {
+     animateHorizontal('shallow-page', 0, 200);
+     animateToRightTransition('project-page', () => {
+      router.push(`/${link.slug}`);
+     });
     } else {
      animateHorizontal('shallow-page', 0, 200);
      animateToRightTransition('page', () => {

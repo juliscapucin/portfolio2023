@@ -77,8 +77,8 @@ export default function ShallowPage({ children, isShallow }: Props) {
   shouldShowShallowPage && (
    <div
     className={`${
-     isShallow ? 'shallow-page' : 'project-page'
-    } scroll-trigger fixed top-0 left-0 bottom-0 right-0 mx-auto pl-8 pr-16 lg:pr-8 bg-primary max-w-desktop overflow-y-scroll overflow-x-hidden z-10`}
+     isShallow && 'shallow-page'
+    } project-page scroll-trigger fixed top-0 left-0 bottom-0 right-0 mx-auto pl-8 pr-16 lg:pr-8 bg-primary max-w-desktop overflow-y-scroll overflow-x-hidden z-10`}
     ref={overlay}
    >
     <div

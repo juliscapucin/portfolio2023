@@ -6,11 +6,16 @@ import ProjectImage from './ProjectImage';
 type Props = {
  projectImages: string[];
  projectSlug: string;
+ isWeb: boolean;
 };
 
 const delay = 5000;
 
-export default function Slideshow({ projectImages, projectSlug }: Props) {
+export default function Slideshow({
+ projectImages,
+ projectSlug,
+ isWeb,
+}: Props) {
  const [slideIndex, setSlideIndex] = useState(1);
  const slideshowRef = useRef<HTMLDivElement | null>(null);
  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -20,21 +25,6 @@ export default function Slideshow({ projectImages, projectSlug }: Props) {
    clearTimeout(timeoutRef.current);
   }
  };
-
- //  useEffect(() => {
- //   resetTimeout();
- //   timeoutRef.current = setTimeout(
- //    () =>
- //     setIndex((prevIndex) =>
- //      prevIndex === projectImages.length - 1 ? 0 : prevIndex + 1
- //     ),
- //    delay
- //   );
-
- //   return () => {
- //    resetTimeout();
- //   };
- //  }, [index]);
 
  useEffect(() => {
   resetTimeout();
@@ -63,7 +53,7 @@ export default function Slideshow({ projectImages, projectSlug }: Props) {
       key={`projectSlideshow-${index}`}
       style={{ transform: `translate3d(${-slideIndex * 100}%, 0, 0)` }}
      >
-      <ProjectImage projectSlug={projectSlug} image={index} />
+      <ProjectImage projectSlug={projectSlug} image={index} isWeb={isWeb} />
      </div>
     );
    })}
