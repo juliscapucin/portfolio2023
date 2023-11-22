@@ -62,7 +62,7 @@ export default function ProjectsFilter({
  };
 
  return (
-  <div className='flex justify-between items-end mt-16 mr-4 mb-16 lg:mb-4 lg:h-32'>
+  <div className='w-full flex justify-between items-end mr-4 mb-16 lg:mb-4'>
    {/* View buttons */}
    <div className='hidden md:flex gap-8 align-bottom '>
     {variant === 'list' ? (

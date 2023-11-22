@@ -23,8 +23,6 @@ export default function WorkPage({ data, allProjects }: Props) {
 
  useEnterTransitionDirection(pageRef);
 
- console.log(allProjects);
-
  return (
   <div ref={pageRef} className='page work-page'>
    <Title title={data.title} margin={true} />
