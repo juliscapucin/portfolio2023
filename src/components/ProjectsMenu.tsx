@@ -1,15 +1,15 @@
 'use client';
 
-import { use, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { CldImage } from 'next-cloudinary';
 
 import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
 
 import { animateProjectsMenu } from '@/animations';
 import { GridDiv } from '@/components/ui';
 import { CustomCursor, ProjectCard, ProjectsFilter } from '@/components';
 import { Project } from '@/types';
+import { set } from 'sanity';
 
 interface ProjectsMenuProps {
  activeBreakpoint: string | undefined;
@@ -36,6 +36,7 @@ export default function ProjectsMenu({
 
  const [isHovering, setIsHovering] = useState(false);
  const [category, setCategory] = useState(startCategory);
+ const [scrollDirection, setScrollDirection] = useState('');
 
  const updateIsHovering = (state: boolean) => {
   setIsHovering(state);
@@ -49,6 +50,7 @@ export default function ProjectsMenu({
  const projectsImgsRef = useRef(null);
  const projectsLinksRef = useRef(null);
  const filterRef = useRef(null);
+ const filterContainerRef = useRef(null);
 
  //  Filter Projects + Fade Out Transitions
  const filterProjects = (
@@ -148,105 +150,113 @@ export default function ProjectsMenu({
   };
  }, []);
 
- // Create ScrollTrigger for filter pinning
- //  useLayoutEffect(() => {
- //   if (!filterRef.current) return;
-
- //   gsap.registerPlugin(ScrollTrigger);
-
- //   ScrollTrigger.create({
- //    trigger: filterRef.current,
- //    pin: true,
- //    start: 'top 400px',
- //    scrub: true,
- //    endTrigger: '.projects-menu',
- //    end: 'bottom bottom',
- //    pinSpacing: false,
- //    pinType: 'fixed',
- //   });
- //  }, [filterRef]);
-
+ // Filter menu scroll functionality
  useEffect(() => {
-  // TO TO: Fix this
-  // if (variant === 'list') {
-  //  window.removeEventListener('scroll', () => {
-  //   handleScroll();
-  //  });
-  //  return;
-  // }
+  if (!filterRef.current || !filterContainerRef.current) return;
+  const filterContainerDiv = filterContainerRef.current as HTMLDivElement;
 
-  if (!filterRef.current) return;
-  const filterDiv = filterRef.current as HTMLDivElement;
-
-  const inicialDistanceTop = filterDiv.getBoundingClientRect().top;
+  const inicialDistanceTop = filterContainerDiv.getBoundingClientRect().top;
+  let lastScrollTop = 0;
+  // let scrollDirection = 'down';
 
   const handleScroll = () => {
    const scrollY = window.scrollY;
 
    if (inicialDistanceTop < scrollY) {
-    filterDiv.style.transform = `translateY(${
+    filterContainerDiv.style.transform = `translateY(${
      window.scrollY - inicialDistanceTop
     }px)`;
    } else {
-    filterDiv.style.transform = `translateY(0px)`;
+    filterContainerDiv.style.transform = 'translateY(0px)';
    }
+
+   // Define scroll direction
+   if (scrollY > lastScrollTop && inicialDistanceTop < scrollY) {
+    setScrollDirection('down');
+   } else if (scrollY < lastScrollTop && inicialDistanceTop > scrollY) {
+    setScrollDirection('up');
+   }
+
+   lastScrollTop = scrollY <= 0 ? 0 : scrollY;
   };
 
   window.addEventListener('scroll', () => {
    handleScroll();
   });
 
-  // TO TO: Fix this
-  // if (variant === 'list') {
-  //  window.removeEventListener('scroll', () => {
-  //   handleScroll();
-  //  });
-  //  filterDiv.style.transform = '';
-  //  return;
-  // }
-
   return () => {
    window.removeEventListener('scroll', () => {
     handleScroll();
+    filterContainerDiv.style.transform = '';
    });
   };
- }, [filterRef, variant]);
+ }, [filterRef, filterContainerRef, variant]);
+
+ // Hide filter on scroll down
+ //  useLayoutEffect(() => {
+ //   if (!filterRef.current || !filterContainerRef.current) return;
+ //   const filterDiv = filterRef.current as HTMLDivElement;
+
+ //   if (scrollDirection === 'up') {
+ //    filterDiv.style.transform = 'translateY(0)';
+ //     filterDiv.classList.remove('transition-transform', 'ease-in-out');
+ //    return;
+ //   } else if (scrollDirection === 'down') {
+ //     filterDiv.classList.add('transition-transform', 'ease-in-out');
+ //    filterDiv.style.transform = 'translateY(-300%)';
+ //   }
+
+ //   return () => {
+ //    filterDiv.style.transform = '';
+ //   };
+ //  }, [scrollDirection]);
 
  return (
   <>
+   {/* Project Filter */}
    {variant !== 'thumbs' && (
-    <div className='w-full z-100'>
-     <GridDiv
-      divClass={`absolute top-0 pt-32 z-100 ${variant === 'image' && 'mb-8'}`}
-      ref={filterRef}
-      bottom={variant === 'image' && true}
+    <div className='relative block w-full bg-primary pt-8 z-100'>
+     <div
+      ref={filterContainerRef}
+      className={`absolute w-full top-0 h-32 z-100`}
      >
-      <ProjectsFilter
-       {...{
-        filterProjects,
-        editVariant,
-        variant,
-        activeBreakpoint,
-        startCategory,
-       }}
-      />
-     </GridDiv>
+      <div className='bg-primary'>
+       <h2
+        className={`block pt-24 pb-8 text-displaySmall transition-transform duration-300 ease-in-out ${
+         scrollDirection !== 'down' && '-translate-x-full'
+        }`}
+       >
+        Work
+       </h2>
+       <GridDiv divClass='bg-primary' ref={filterRef} bottom={true}>
+        <ProjectsFilter
+         {...{
+          filterProjects,
+          editVariant,
+          variant,
+          activeBreakpoint,
+          startCategory,
+         }}
+        />
+       </GridDiv>
+      </div>
+     </div>
     </div>
    )}
 
+   {/* Projects Menu */}
    <section
     ref={projectsMenuRef}
-    className='projects-menu min-h-screen relative'
+    className={`projects-menu min-h-screen relative ${
+     variant === 'image' && 'mt-16'
+    }`}
    >
     {/* Custom Cursor */}
     {activeBreakpoint === 'desktop' && <CustomCursor isHovering={isHovering} />}
 
     {/* List View */}
     {variant === 'list' && (
-     <GridDiv
-      divClass='list-view filter-projects grid grid-cols-12 w-full h-[500px] overflow-hidden'
-      top={true}
-     >
+     <GridDiv divClass='list-view filter-projects grid grid-cols-12 w-full h-[500px] overflow-hidden'>
       {/* Render left side images only on desktop */}
       {activeBreakpoint === 'desktop' && (
        <div
