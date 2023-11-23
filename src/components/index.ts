@@ -33,6 +33,7 @@ import Services from './Services';
 import SectionTitle from './SectionTitle';
 import Status from './Status';
 import ThemeSwitcher from './ThemeSwitcher';
+import ShowreelSlideshow from './ShowreelSlideshow';
 
 export {
    AboutText,
@@ -66,6 +67,7 @@ export {
    RootLayout,
    SectionTitle,
    Services,
+   ShowreelSlideshow,
    Status,
    ThemeSwitcher,
 };

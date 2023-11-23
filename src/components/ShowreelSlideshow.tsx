@@ -10,7 +10,7 @@ type Props = {
 
 const delay = 5000;
 
-export default function Slideshow({
+export default function ShowreelSlideshow({
  projectImages,
  projectSlug,
  isWeb,
