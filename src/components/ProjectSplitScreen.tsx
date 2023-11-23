@@ -54,7 +54,7 @@ export default function ProjectSplitScreen({ project }: { project: Project }) {
    >
     {/* Text content 1 */}
     <div className='grid grid-cols-7'>
-     <div className='xl:col-start-2 col-span-6 md:col-span-5 lg:col-span-6 xl:col-span-5 lg:aspect-square flex flex-col justify-center'>
+     <div className='xl:col-start-2 col-span-6 md:col-span-5 lg:col-span-6 xl:col-span-5 lg:aspect-square flex flex-col justify-center mt-24 mb-16'>
       {project.textContent1?.map((text) => {
        return <p key={text.children._key}>{text.children.text}</p>;
       })}
