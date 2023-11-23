@@ -151,46 +151,45 @@ export default function ProjectsMenu({
  }, []);
 
  // Filter menu scroll functionality
- useEffect(() => {
-  if (!filterRef.current || !filterContainerRef.current) return;
-  const filterContainerDiv = filterContainerRef.current as HTMLDivElement;
+ //  useEffect(() => {
+ //   if (!filterRef.current || !filterContainerRef.current) return;
+ //   const filterContainerDiv = filterContainerRef.current as HTMLDivElement;
 
-  const inicialDistanceTop = filterContainerDiv.getBoundingClientRect().top;
-  let lastScrollTop = 0;
-  // let scrollDirection = 'down';
+ //   const inicialDistanceTop = filterContainerDiv.getBoundingClientRect().top;
+ //   let lastScrollTop = 0;
 
-  const handleScroll = () => {
-   const scrollY = window.scrollY;
+ //   const handleScroll = () => {
+ //    const scrollY = window.scrollY;
 
-   if (inicialDistanceTop < scrollY) {
-    filterContainerDiv.style.transform = `translateY(${
-     window.scrollY - inicialDistanceTop
-    }px)`;
-   } else {
-    filterContainerDiv.style.transform = 'translateY(0px)';
-   }
+ //    if (inicialDistanceTop < scrollY) {
+ //     filterContainerDiv.style.transform = `translateY(${
+ //      window.scrollY - inicialDistanceTop
+ //     }px)`;
+ //    } else {
+ //     filterContainerDiv.style.transform = 'translateY(0px)';
+ //    }
 
-   // Define scroll direction
-   if (scrollY > lastScrollTop && inicialDistanceTop < scrollY) {
-    setScrollDirection('down');
-   } else if (scrollY < lastScrollTop && inicialDistanceTop > scrollY) {
-    setScrollDirection('up');
-   }
+ //    // Define scroll direction
+ //    if (scrollY > lastScrollTop && inicialDistanceTop < scrollY) {
+ //     setScrollDirection('down');
+ //    } else if (scrollY < lastScrollTop && inicialDistanceTop > scrollY) {
+ //     setScrollDirection('up');
+ //    }
 
-   lastScrollTop = scrollY <= 0 ? 0 : scrollY;
-  };
+ //    lastScrollTop = scrollY <= 0 ? 0 : scrollY;
+ //   };
 
-  window.addEventListener('scroll', () => {
-   handleScroll();
-  });
+ //   window.addEventListener('scroll', () => {
+ //    handleScroll();
+ //   });
 
-  return () => {
-   window.removeEventListener('scroll', () => {
-    handleScroll();
-    filterContainerDiv.style.transform = '';
-   });
-  };
- }, [filterRef, filterContainerRef, variant]);
+ //   return () => {
+ //    window.removeEventListener('scroll', () => {
+ //     handleScroll();
+ //     filterContainerDiv.style.transform = '';
+ //    });
+ //   };
+ //  }, [filterRef, filterContainerRef, variant]);
 
  // Hide filter on scroll down
  //  useLayoutEffect(() => {
@@ -215,10 +214,10 @@ export default function ProjectsMenu({
   <>
    {/* Project Filter */}
    {variant !== 'thumbs' && (
-    <div className='relative block w-full h-64 bg-primary z-100'>
+    <div className='relative block w-full h-64 bg-primary z-50'>
      <div
       ref={filterContainerRef}
-      className={`absolute w-full h-32 top-0 z-100`}
+      className={`absolute w-full h-32 top-0 z-50`}
      >
       <div className='bg-primary'>
        <h2
