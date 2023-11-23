@@ -214,14 +214,11 @@ export default function ProjectsMenu({
   <>
    {/* Project Filter */}
    {variant !== 'thumbs' && (
-    <div className='relative block w-full h-64 bg-primary z-50'>
-     <div
-      ref={filterContainerRef}
-      className={`absolute w-full h-32 top-0 z-50`}
-     >
+    <div className='relative block w-full bg-primary z-20'>
+     <div ref={filterContainerRef} className={`w-full top-0 z-20`}>
       <div className='bg-primary overflow-x-clip'>
        <h2
-        className={`block pt-24 pb-8 text-displaySmall transition-transform duration-300 ease-in-out ${
+        className={`block pb-8 text-displaySmall transition-transform duration-300 ease-in-out ${
          scrollDirection !== 'down' && '-translate-x-full'
         }`}
        >
