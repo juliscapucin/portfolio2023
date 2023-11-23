@@ -215,10 +215,10 @@ export default function ProjectsMenu({
   <>
    {/* Project Filter */}
    {variant !== 'thumbs' && (
-    <div className='relative block w-full bg-primary pt-8 z-100'>
+    <div className='relative block w-full h-64 bg-primary z-100'>
      <div
       ref={filterContainerRef}
-      className={`absolute w-full top-0 h-32 z-100`}
+      className={`absolute w-full h-32 top-0 z-100`}
      >
       <div className='bg-primary'>
        <h2
@@ -228,7 +228,7 @@ export default function ProjectsMenu({
        >
         Work
        </h2>
-       <GridDiv divClass='bg-primary' ref={filterRef} bottom={true}>
+       <GridDiv divClass='bg-primary mb-8' ref={filterRef} bottom={true}>
         <ProjectsFilter
          {...{
           filterProjects,
