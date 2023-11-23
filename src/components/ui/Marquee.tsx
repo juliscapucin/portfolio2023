@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect, useState, use } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 
 type Props = {

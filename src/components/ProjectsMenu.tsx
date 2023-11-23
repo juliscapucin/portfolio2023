@@ -219,7 +219,7 @@ export default function ProjectsMenu({
       ref={filterContainerRef}
       className={`absolute w-full h-32 top-0 z-50`}
      >
-      <div className='bg-primary'>
+      <div className='bg-primary overflow-x-clip'>
        <h2
         className={`block pt-24 pb-8 text-displaySmall transition-transform duration-300 ease-in-out ${
          scrollDirection !== 'down' && '-translate-x-full'
