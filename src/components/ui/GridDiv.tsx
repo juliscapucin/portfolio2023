@@ -50,12 +50,16 @@ export const GridDiv = forwardRef(function GridDiv(
      ease: 'expo.out',
      stagger: 0.5,
     })
-    .to([lineLeftRef.current, lineRightRef.current], {
-     yPercent: 0,
-     duration: 1,
-     ease: 'expo.out',
-     stagger: 0.5,
-    });
+    .to(
+     [lineLeftRef.current, lineRightRef.current],
+     {
+      yPercent: 0,
+      duration: 1,
+      ease: 'expo.out',
+      stagger: 0.5,
+     },
+     '-=1'
+    );
   });
 
   return () => {
