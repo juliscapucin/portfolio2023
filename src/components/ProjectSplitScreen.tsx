@@ -20,8 +20,6 @@ export default function ProjectSplitScreen({ project }: { project: Project }) {
  // Set breakpoint for mobile/desktop (values are in constants.ts)
  const breakpoint = useMediaQuery(breakpoints.desktop);
 
- let ctx = gsap.context(() => {});
-
  // Create ScrollTrigger for desktop
  useEffect(() => {
   if (breakpoint !== 'desktop' || !leftColumnRef || !rightColumnRef) return;
@@ -30,15 +28,21 @@ export default function ProjectSplitScreen({ project }: { project: Project }) {
 
   const featuredImageHeight = rightColumnRef.current?.clientHeight;
 
-  ScrollTrigger.create({
-   scroller: '.scroll-trigger',
-   trigger: leftColumnRef.current,
-   start: 'top top',
-   end: `bottom ${featuredImageHeight}`,
-   scrub: true,
-   pin: rightColumnRef.current,
-   pinType: 'fixed',
+  let ctx = gsap.context(() => {
+   ScrollTrigger.create({
+    scroller: '.scroll-trigger',
+    trigger: leftColumnRef.current,
+    start: 'top top',
+    end: `bottom ${featuredImageHeight}`,
+    scrub: true,
+    pin: rightColumnRef.current,
+    pinType: 'fixed',
+   });
   });
+
+  return () => {
+   ctx.revert();
+  };
  }, [leftColumnRef, rightColumnRef, breakpoint]);
 
  return (
