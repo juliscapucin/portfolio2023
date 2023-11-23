@@ -9,7 +9,6 @@ import { animateProjectsMenu } from '@/animations';
 import { GridDiv } from '@/components/ui';
 import { CustomCursor, ProjectCard, ProjectsFilter } from '@/components';
 import { Project } from '@/types';
-import { set } from 'sanity';
 
 interface ProjectsMenuProps {
  activeBreakpoint: string | undefined;
@@ -36,7 +35,7 @@ export default function ProjectsMenu({
 
  const [isHovering, setIsHovering] = useState(false);
  const [category, setCategory] = useState(startCategory);
- const [scrollDirection, setScrollDirection] = useState('');
+ const [scrollDirection, setScrollDirection] = useState('down');
 
  const updateIsHovering = (state: boolean) => {
   setIsHovering(state);
@@ -157,7 +156,6 @@ export default function ProjectsMenu({
 
   const inicialDistanceTop = filterContainerDiv.getBoundingClientRect().top;
   let lastScrollTop = 0;
-  // let scrollDirection = 'down';
 
   const handleScroll = () => {
    const scrollY = window.scrollY;
@@ -173,7 +171,7 @@ export default function ProjectsMenu({
    // Define scroll direction
    if (scrollY > lastScrollTop && inicialDistanceTop < scrollY) {
     setScrollDirection('down');
-   } else if (scrollY < lastScrollTop && inicialDistanceTop > scrollY) {
+   } else if (scrollY < lastScrollTop && inicialDistanceTop < scrollY) {
     setScrollDirection('up');
    }
 
@@ -193,23 +191,23 @@ export default function ProjectsMenu({
  }, [filterRef, filterContainerRef, variant]);
 
  // Hide filter on scroll down
- //  useLayoutEffect(() => {
- //   if (!filterRef.current || !filterContainerRef.current) return;
- //   const filterDiv = filterRef.current as HTMLDivElement;
+ useLayoutEffect(() => {
+  if (!filterRef.current || !filterContainerRef.current) return;
+  const filterDiv = filterRef.current as HTMLDivElement;
 
- //   if (scrollDirection === 'up') {
- //    filterDiv.style.transform = 'translateY(0)';
- //     filterDiv.classList.remove('transition-transform', 'ease-in-out');
- //    return;
- //   } else if (scrollDirection === 'down') {
- //     filterDiv.classList.add('transition-transform', 'ease-in-out');
- //    filterDiv.style.transform = 'translateY(-300%)';
- //   }
+  console.log(scrollDirection);
 
- //   return () => {
- //    filterDiv.style.transform = '';
- //   };
- //  }, [scrollDirection]);
+  if (scrollDirection === 'up') {
+   filterDiv.style.transform = 'translateY(0)';
+   return;
+  } else if (scrollDirection === 'down') {
+   filterDiv.style.transform = 'translateY(-100%)';
+  }
+
+  return () => {
+   filterDiv.style.transform = '';
+  };
+ }, [scrollDirection]);
 
  return (
   <>
@@ -220,15 +218,18 @@ export default function ProjectsMenu({
       ref={filterContainerRef}
       className={`absolute w-full h-32 top-0 z-100`}
      >
-      <div className='bg-primary'>
+      <div
+       ref={filterRef}
+       className='bg-primary overflow-x-clip transition-transform'
+      >
        <h2
         className={`block pt-24 pb-8 text-displaySmall transition-transform duration-300 ease-in-out ${
-         scrollDirection !== 'down' && '-translate-x-full'
+         scrollDirection !== 'up' && '-translate-x-full'
         }`}
        >
         Work
        </h2>
-       <GridDiv divClass='bg-primary mb-8' ref={filterRef} bottom={true}>
+       <GridDiv divClass='bg-primary mb-8' bottom={true}>
         <ProjectsFilter
          {...{
           filterProjects,
