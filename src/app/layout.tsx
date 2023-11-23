@@ -42,13 +42,13 @@ export default function Layout(props: {
    <RootLayout>
     <ModalContextProvider>
      <body
-      className={`${myFont.className} relative mt-0 max-w-desktop font-text font-extralight text-bodyMedium bg-primary text-secondary mx-auto overflow-x-hidden`}
+      className={`${myFont.className} relative mt-0 max-w-desktop font-text font-extralight text-bodyMedium bg-primary text-secondary mx-auto overflow-x-clip`}
      >
       <Header />
 
-      <main className={`mt-16 mx-8 overflow-x-hidden`}>
+      <main className={`mt-16 mx-8`}>
        {/* Transition Overlay */}
-       <div className='transition-fullscreen hidden h-screen top-16 left-8 right-8 fixed z-50 overflow-hidden pointer-events-none'></div>
+       <div className='transition-fullscreen fixed hidden h-screen top-16 left-8 right-8 z-50 overflow-hidden pointer-events-none'></div>
        {props.children}
        {props.shallowPage}
       </main>

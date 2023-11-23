@@ -19,7 +19,7 @@ function Status() {
  const time = currentDate.toLocaleTimeString('en-US');
 
  return (
-  <div className='flex flex-col text-titleMedium mt-16 lg:mt-2 ml-2 md:col-span-4 lg:col-span-3 xlg:col-span-1 max-w-[250px]'>
+  <div className='flex flex-col text-titleMedium my-16 lg:mt-2 ml-2 md:col-span-4 lg:col-span-3 xlg:col-span-1 max-w-[250px]'>
    <span>Location: Amsterdam</span>
    <span className='h-[1px] bg-secondary'></span>
    <span>
