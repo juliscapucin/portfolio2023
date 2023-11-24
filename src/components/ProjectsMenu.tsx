@@ -195,7 +195,7 @@ export default function ProjectsMenu({
      className={`w-full mt-16 ${variant === 'image' && 'mb-8'}`}
     >
      <GridDiv
-      divClass='w-full bg-primary pt-8 pb-1 z-10'
+      divClass='w-full bg-primary pt-8 pb-1 z-8'
       ref={filterRef}
       bottom={true}
      >
