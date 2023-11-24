@@ -19,7 +19,7 @@ export function useElementReveal(
     scrollTrigger: {
      trigger: wrapperRef.current,
      // as explained here: https://www.youtube.com/watch?v=SVjndrQ6v9I (min 7:20)
-     toggleActions: 'play complete none reset',
+     toggleActions: 'play complete none none',
      start: 'top 80%',
     },
    });

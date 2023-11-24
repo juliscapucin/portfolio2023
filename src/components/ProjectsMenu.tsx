@@ -36,7 +36,6 @@ export default function ProjectsMenu({
 
  const [isHovering, setIsHovering] = useState(false);
  const [category, setCategory] = useState(startCategory);
- const [scrollDirection, setScrollDirection] = useState('');
 
  const updateIsHovering = (state: boolean) => {
   setIsHovering(state);
@@ -186,7 +185,7 @@ export default function ProjectsMenu({
    className='projects-menu min-h-screen relative'
   >
    {/* Custom Cursor */}
-   {activeBreakpoint === 'desktop' && <CustomCursor isHovering={isHovering} />}
+   {/* {activeBreakpoint === 'desktop' && <CustomCursor isHovering={isHovering} />} */}
 
    {/* Project Filter */}
    {variant !== 'thumbs' && (
