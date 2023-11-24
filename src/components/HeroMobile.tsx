@@ -38,7 +38,7 @@ const HeroMobile = () => {
     </GridDiv>
 
     {/* Name */}
-    <GridDiv divClass='overflow-hidden h-32 flex items-center' top={true}>
+    <GridDiv divClass='overflow-clip h-32 flex items-center' top={true}>
      <h1 ref={nameRef} className='text-[11vw] whitespace-nowrap'>
       Juli Scapucin
      </h1>
@@ -46,7 +46,7 @@ const HeroMobile = () => {
 
     {/* Number */}
     <GridDiv
-     divClass='h-fit overflow-hidden flex items-center'
+     divClass='h-fit overflow-clip flex items-center'
      top={true}
      bottom={true}
     >

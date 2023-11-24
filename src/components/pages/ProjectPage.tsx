@@ -73,7 +73,7 @@ export default function ProjectPage({
     {/* Header */}
     <div ref={headerRef} className='md:grid grid-cols-12'>
      {/* Cover Image */}
-     <div className={`col-span-7 block overflow-hidden aspect-square relative`}>
+     <div className={`col-span-7 block overflow-clip aspect-square relative`}>
       <CldImage
        src={`portfolio2023/work/${project.slug}/01`}
        alt={project.coverImage.alt}

@@ -13,7 +13,7 @@ export default function ShowreelPage() {
    <Title title='Showreel' />
    <div className='lg:grid grid-cols-12'>
     {/* Image */}
-    <div className='col-span-6 aspect-square overflow-hidden relative mt-4 mb-8 lg:mb-0'>
+    <div className='col-span-6 aspect-square overflow-clip relative mt-4 mb-8 lg:mb-0'>
      <ProjectSlideshow
       {...{
        projectImages: ['01', '02', '03'],

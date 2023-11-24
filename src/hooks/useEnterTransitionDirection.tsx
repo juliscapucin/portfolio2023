@@ -1,7 +1,9 @@
 import { MutableRefObject, useLayoutEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
-import { animateToLeft, animateToRight, ctx } from '@/animations';
+import gsap from 'gsap';
+
+import { animateToLeft, animateToRight } from '@/animations';
 
 import { navLinks } from '@/constants';
 import { usePageContext } from '@/context';
@@ -20,14 +22,13 @@ export function useEnterTransitionDirection(
    (element) => element.slug === pathname.slice(1)
   );
 
+  let ctx = gsap.context(() => {});
+
   const previousPageLink = previousPage.includes('project')
    ? previousPage.includes('home')
      ? navLinks.find((el) => el.label.toLowerCase() === 'home')
      : navLinks.find((el) => el.label.toLowerCase() === 'work')
    : navLinks.find((el) => el.label.toLowerCase() === previousPage);
-
-  // console.log('actual page link', actualPage);
-  // console.log('previous page link', previousPageLink);
 
   // if actual page id is greater than previous page id, animate to left
   if (
@@ -35,10 +36,10 @@ export function useEnterTransitionDirection(
    previousPageLink &&
    actualPage?._key > previousPageLink?._key
   ) {
-   animateToLeft(enterElement.current);
+   ctx.add(() => animateToLeft(enterElement.current));
    // if actual page id is smaller than previous page id, animate to right
   } else {
-   animateToRight(enterElement.current);
+   ctx.add(() => animateToRight(enterElement.current));
   }
 
   updatePreviousPage(pathname.slice(1));

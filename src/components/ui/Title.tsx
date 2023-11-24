@@ -18,7 +18,7 @@ export default function Title({ title, margin }: TitleProps) {
  }, [titleRef]);
 
  return (
-  <div className='overflow-hidden col-span-5'>
+  <div className='overflow-clip col-span-5'>
    <h1
     ref={titleRef}
     className={`${

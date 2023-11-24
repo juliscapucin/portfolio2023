@@ -49,11 +49,11 @@ export default function ShallowPage({ children, isShallow }: Props) {
   //  Remove scroll from wrapper div
   if (overlay.current) {
    overlay.current.classList.remove('overflow-y-scroll');
-   overlay.current.classList.add('overflow-hidden');
+   overlay.current.classList.add('overflow-clip');
   }
 
   //  Add scroll on html div
-  document.documentElement.classList.remove('overflow-hidden');
+  document.documentElement.classList.remove('overflow-clip');
 
   animateToLeftTransition('shallow-page', () => {
    router.back();
@@ -78,11 +78,11 @@ export default function ShallowPage({ children, isShallow }: Props) {
    <div
     className={`${
      isShallow && 'shallow-page'
-    } project-page scroll-trigger fixed top-0 left-0 bottom-0 right-0 mx-auto pl-8 pr-16 lg:pr-8 bg-primary max-w-desktop overflow-y-scroll overflow-x-hidden z-10`}
+    } project-page scroll-trigger fixed top-0 left-0 bottom-0 right-0 mx-auto pl-8 pr-16 lg:pr-8 bg-primary max-w-desktop overflow-y-scroll overflow-x-clip z-10`}
     ref={overlay}
    >
     <div
-     className='wrapper max-w-desktop overflow-hidden m-auto mt-0 py-32 bg-primary'
+     className='wrapper max-w-desktop overflow-clip m-auto mt-0 py-32 bg-primary'
      ref={wrapper}
     >
      {/* Back button */}

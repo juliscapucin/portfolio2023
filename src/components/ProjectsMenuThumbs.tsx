@@ -22,7 +22,7 @@ export default function ProjectsMenuThumbs({
 
  return (
   <div className='fixed top-0 right-0 w-screen h-screen z-40 pointer-events-none'>
-   <div className='w-full h-full max-w-desktop mx-auto flex justify-end overflow-hidden'>
+   <div className='w-full h-full max-w-desktop mx-auto flex justify-end overflow-clip'>
     <div
      ref={projectsMenuRef}
      className={`projects-thumbs h-screen flex mr-0 lg:mr-8 opacity-0 pointer-events-auto ${
@@ -36,7 +36,7 @@ export default function ProjectsMenuThumbs({
       right={true}
      >
       <button
-       className='relative w-full h-full mt-8 flex flex-col items-center justify-start gap-8 overflow-hidden'
+       className='relative w-full h-full mt-8 flex flex-col items-center justify-start gap-8 overflow-clip'
        onClick={toggle}
       >
        <div className='relative flex items-center justify-center w-8 h-8 z-20'>

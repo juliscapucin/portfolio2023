@@ -32,7 +32,7 @@ export default function AboutPage({ data }: { data: AboutData }) {
      {/* Image */}
      <div
       ref={imageWrapperRef}
-      className='col-span-6 aspect-square overflow-hidden relative mt-4 mb-8 lg:mb-0'
+      className='col-span-6 aspect-square overflow-clip relative mt-4 mb-8 lg:mb-0'
      >
       {/* Need to add mask class here for useElementReveal hook */}
       <div className='mask absolute top-0 left-0 w-full h-full bg-primary z-20'></div>

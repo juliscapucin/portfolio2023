@@ -68,10 +68,7 @@ export const GridDiv = forwardRef(function GridDiv(
  }, [lineTopRef, lineRightRef, lineBottomRef, lineLeftRef]);
 
  return (
-  <div
-   className={`grid-element relative overflow-hidden ${divClass}`}
-   ref={ref}
-  >
+  <div className={`grid-element relative overflow-clip ${divClass}`} ref={ref}>
    {top ? (
     <div
      ref={lineTopRef}

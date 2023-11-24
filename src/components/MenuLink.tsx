@@ -25,7 +25,7 @@ export default function MenuLink({
      <div className='absolute -bottom-1 w-full h-[1px] bg-secondary'></div>
     </div>
    ) : (
-    <div className='overflow-hidden max-h-8'>
+    <div className='overflow-clip max-h-8'>
      <button
       className={`flex flex-col justify-center items-center hover:-translate-y-1/2 transition-transform ${
        label === 'Home' &&

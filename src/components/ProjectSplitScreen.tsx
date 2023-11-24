@@ -50,7 +50,7 @@ export default function ProjectSplitScreen({ project }: { project: Project }) {
    {/* Left */}
    <div
     ref={leftColumnRef}
-    className='lg:col-span-7 relative gap-8 lg:gap-1 overflow-hidden'
+    className='lg:col-span-7 relative gap-8 lg:gap-1 overflow-clip'
    >
     {/* Text content 1 */}
     <div className='grid grid-cols-7'>
