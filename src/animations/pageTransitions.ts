@@ -58,8 +58,8 @@ export const animateToFullScreen = (
             gsap.to(animationEnd, {
                opacity: 0,
                duration: 1,
-               delay: 3,
-               zIndex: 5,
+               delay: 2,
+               zIndex: 9,
                onComplete: () => {
                   animationEnd.innerHTML = '';
                   animationEnd.classList.add('hidden');

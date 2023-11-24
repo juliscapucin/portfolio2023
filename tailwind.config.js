@@ -19,6 +19,7 @@ module.exports = {
          },
          zIndex: {
             5: '5',
+            8: '8',
             100: '100',
          },
          letterSpacing: { tightest: '-.075em' },
