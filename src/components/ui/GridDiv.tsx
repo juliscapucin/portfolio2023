@@ -68,14 +68,11 @@ export const GridDiv = forwardRef(function GridDiv(
  }, [lineTopRef, lineRightRef, lineBottomRef, lineLeftRef]);
 
  return (
-  <div
-   className={`grid-element relative overflow-hidden ${divClass}`}
-   ref={ref}
-  >
+  <div className={`grid-element relative overflow-clip ${divClass}`} ref={ref}>
    {top ? (
     <div
      ref={lineTopRef}
-     className='line absolute top-0 left-0 h-[1px] w-full bg-secondary z-10'
+     className='line absolute top-0 left-0 h-[1px] w-full bg-secondary z-5'
     ></div>
    ) : (
     <div
@@ -86,7 +83,7 @@ export const GridDiv = forwardRef(function GridDiv(
    {right ? (
     <div
      ref={lineRightRef}
-     className='line absolute top-0 right-0 w-[1px] h-full bg-secondary z-10'
+     className='line absolute top-0 right-0 w-[1px] h-full bg-secondary z-5'
     ></div>
    ) : (
     <div
@@ -97,7 +94,7 @@ export const GridDiv = forwardRef(function GridDiv(
    {bottom ? (
     <div
      ref={lineBottomRef}
-     className='line absolute bottom-0 left-0 h-[1px] w-full bg-secondary z-10'
+     className='line absolute bottom-0 left-0 h-[1px] w-full bg-secondary z-5'
     ></div>
    ) : (
     <div
@@ -108,7 +105,7 @@ export const GridDiv = forwardRef(function GridDiv(
    {left ? (
     <div
      ref={lineLeftRef}
-     className='line absolute top-0 left-0 w-[1px] h-full bg-secondary z-10'
+     className='line absolute top-0 left-0 w-[1px] h-full bg-secondary z-5'
     ></div>
    ) : (
     <div

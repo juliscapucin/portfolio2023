@@ -4,12 +4,12 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { CldImage } from 'next-cloudinary';
 
 import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 
 import { animateProjectsMenu } from '@/animations';
 import { GridDiv } from '@/components/ui';
 import { CustomCursor, ProjectCard, ProjectsFilter } from '@/components';
 import { Project } from '@/types';
-import { set } from 'sanity';
 
 interface ProjectsMenuProps {
  activeBreakpoint: string | undefined;
@@ -50,6 +50,7 @@ export default function ProjectsMenu({
  const projectsImgsRef = useRef(null);
  const projectsLinksRef = useRef(null);
  const filterRef = useRef(null);
+ const filterTitleRef = useRef(null);
  const filterContainerRef = useRef(null);
 
  //  Filter Projects + Fade Out Transitions
@@ -150,233 +151,202 @@ export default function ProjectsMenu({
   };
  }, []);
 
- // Filter menu scroll functionality
- //  useEffect(() => {
- //   if (!filterRef.current || !filterContainerRef.current) return;
- //   const filterContainerDiv = filterContainerRef.current as HTMLDivElement;
+ // Create ScrollTrigger for filter
+ useEffect(() => {
+  if (!filterRef.current || !projectsMenuRef.current) return;
 
- //   const inicialDistanceTop = filterContainerDiv.getBoundingClientRect().top;
- //   let lastScrollTop = 0;
+  gsap.registerPlugin(ScrollTrigger);
 
- //   const handleScroll = () => {
- //    const scrollY = window.scrollY;
+  let timeoutId = setTimeout(() => {
+   let ctx = gsap.context(() => {
+    ScrollTrigger.create({
+     trigger: filterRef.current,
+     start: 'top 30px',
+     endTrigger: projectsMenuRef.current,
+     end: 'bottom',
+     pin: filterRef.current,
+     pinSpacing: false,
+     toggleClass: {
+      targets: filterTitleRef.current,
+      className: 'translate-x-0', // to hide / show small title
+     },
+    });
+   });
+  }, 1000); // 1000 milliseconds delay to avoid triggering on page load === causes bug with page transition animation
 
- //    if (inicialDistanceTop < scrollY) {
- //     filterContainerDiv.style.transform = `translateY(${
- //      window.scrollY - inicialDistanceTop
- //     }px)`;
- //    } else {
- //     filterContainerDiv.style.transform = 'translateY(0px)';
- //    }
-
- //    // Define scroll direction
- //    if (scrollY > lastScrollTop && inicialDistanceTop < scrollY) {
- //     setScrollDirection('down');
- //    } else if (scrollY < lastScrollTop && inicialDistanceTop > scrollY) {
- //     setScrollDirection('up');
- //    }
-
- //    lastScrollTop = scrollY <= 0 ? 0 : scrollY;
- //   };
-
- //   window.addEventListener('scroll', () => {
- //    handleScroll();
- //   });
-
- //   return () => {
- //    window.removeEventListener('scroll', () => {
- //     handleScroll();
- //     filterContainerDiv.style.transform = '';
- //    });
- //   };
- //  }, [filterRef, filterContainerRef, variant]);
-
- // Hide filter on scroll down
- //  useLayoutEffect(() => {
- //   if (!filterRef.current || !filterContainerRef.current) return;
- //   const filterDiv = filterRef.current as HTMLDivElement;
-
- //   if (scrollDirection === 'up') {
- //    filterDiv.style.transform = 'translateY(0)';
- //     filterDiv.classList.remove('transition-transform', 'ease-in-out');
- //    return;
- //   } else if (scrollDirection === 'down') {
- //     filterDiv.classList.add('transition-transform', 'ease-in-out');
- //    filterDiv.style.transform = 'translateY(-300%)';
- //   }
-
- //   return () => {
- //    filterDiv.style.transform = '';
- //   };
- //  }, [scrollDirection]);
+  return () => {
+   clearTimeout(timeoutId);
+   if (ctx) ctx.revert();
+  };
+ }, [filterRef, projectsMenuRef]);
 
  return (
-  <>
+  <section
+   ref={projectsMenuRef}
+   className='projects-menu min-h-screen relative'
+  >
+   {/* Custom Cursor */}
+   {activeBreakpoint === 'desktop' && <CustomCursor isHovering={isHovering} />}
+
    {/* Project Filter */}
    {variant !== 'thumbs' && (
-    <div className='relative block w-full bg-primary z-20'>
-     <div ref={filterContainerRef} className={`w-full top-0 z-20`}>
+    <div
+     ref={filterContainerRef}
+     className={`w-full mt-16 ${variant === 'image' && 'mb-8'}`}
+    >
+     <GridDiv
+      divClass='w-full bg-primary pt-8 pb-1 z-10'
+      ref={filterRef}
+      bottom={true}
+     >
+      {/* Hidden Title on scroll */}
       <div className='bg-primary overflow-x-clip'>
        <h2
-        className={`block pb-8 text-displaySmall transition-transform duration-300 ease-in-out ${
-         scrollDirection !== 'down' && '-translate-x-full'
-        }`}
+        ref={filterTitleRef}
+        className={`${
+         activeBreakpoint !== 'desktop' && 'absolute'
+        } pb-8 text-displaySmall transition-transform duration-200 ease-in-out -translate-x-full`}
        >
         Work
        </h2>
-       <GridDiv divClass='bg-primary mb-8' ref={filterRef} bottom={true}>
-        <ProjectsFilter
-         {...{
-          filterProjects,
-          editVariant,
-          variant,
-          activeBreakpoint,
-          startCategory,
-         }}
-        />
-       </GridDiv>
       </div>
-     </div>
+      <ProjectsFilter
+       {...{
+        filterProjects,
+        editVariant,
+        variant,
+        activeBreakpoint,
+        startCategory,
+       }}
+      />
+     </GridDiv>
     </div>
    )}
 
-   {/* Projects Menu */}
-   <section
-    ref={projectsMenuRef}
-    className={`projects-menu min-h-screen relative ${
-     variant === 'image' && 'mt-16'
-    }`}
-   >
-    {/* Custom Cursor */}
-    {activeBreakpoint === 'desktop' && <CustomCursor isHovering={isHovering} />}
-
-    {/* List View */}
-    {variant === 'list' && (
-     <GridDiv divClass='list-view filter-projects grid grid-cols-12 w-full h-[500px] overflow-hidden'>
-      {/* Render left side images only on desktop */}
-      {activeBreakpoint === 'desktop' && (
-       <div
-        className='col-span-4 aspect-square max-h-[500px] relative mt-8 overflow-hidden'
-        ref={projectsImgsRef}
-       >
-        {projectItems &&
-         projectItems.map((project, index) => {
-          if (!project.coverImage.fileName) return;
-          return (
-           <CldImage
-            src={`portfolio2023/work/${project.slug}/${project.coverImage.fileName}`}
-            key={index}
-            alt={project.coverImage.alt}
-            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-            fill
-           />
-          );
-         })}
-       </div>
-      )}
-      {/* White space */}
+   {/* List View */}
+   {variant === 'list' && (
+    <GridDiv divClass='list-view filter-projects grid grid-cols-12 w-full h-[500px] overflow-clip'>
+     {/* Render left side images only on desktop */}
+     {activeBreakpoint === 'desktop' && (
       <div
-       className={`col-span-${
-        activeBreakpoint === 'mobile' ? 3 : 2
-       } row-span-6`}
-      ></div>
-      {/* Render right side links */}
-      <div
-       className={`col-span-${
-        activeBreakpoint === 'mobile' ? 9 : 6
-       } row-span-6 overflow-y-auto`}
-       ref={projectsLinksRef}
+       className='col-span-4 aspect-square max-h-[500px] relative mt-8 overflow-clip'
+       ref={projectsImgsRef}
       >
        {projectItems &&
-        projectItems.map((link) => {
-         if (!link.coverImage || !link.title || !link.slug) return;
+        projectItems.map((project, index) => {
+         if (!project.coverImage.fileName) return;
          return (
-          <div key={`${link.slug}-${category}`}>
+          <CldImage
+           src={`portfolio2023/work/${project.slug}/${project.coverImage.fileName}`}
+           key={index}
+           alt={project.coverImage.alt}
+           sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+           fill
+          />
+         );
+        })}
+      </div>
+     )}
+     {/* White space */}
+     <div
+      className={`col-span-${activeBreakpoint === 'mobile' ? 3 : 2} row-span-6`}
+     ></div>
+     {/* Render right side links */}
+     <div
+      className={`col-span-${
+       activeBreakpoint === 'mobile' ? 9 : 6
+      } row-span-6 overflow-y-auto`}
+      ref={projectsLinksRef}
+     >
+      {projectItems &&
+       projectItems.map((link) => {
+        if (!link.coverImage || !link.title || !link.slug) return;
+        return (
+         <div key={`${link.slug}-${category}`}>
+          <ProjectCard
+           {...{
+            title: link.title,
+            scope: link.info.scope,
+            slug: link.slug,
+            id: link._id,
+            alt: link.coverImage.alt,
+            variant,
+            updateIsHovering,
+           }}
+          />
+         </div>
+        );
+       })}
+     </div>
+    </GridDiv>
+   )}
+
+   {/* Image View */}
+   {variant === 'image' && (
+    <GridDiv divClass='image-view filter-projects w-full'>
+     {projectItems &&
+      projectItems.map((project, index) => {
+       return (
+        <div
+         className='lg:grid grid-cols-12 mb-32 lg:mb-64'
+         key={`${project._id}-${category}`}
+        >
+         {project.title &&
+          project.slug &&
+          project.imageSize &&
+          project.imageStart && (
            <ProjectCard
             {...{
-             title: link.title,
-             scope: link.info.scope,
-             slug: link.slug,
-             id: link._id,
-             alt: link.coverImage.alt,
+             title: project.title,
+             slug: project.slug,
+             id: project._id,
+             imageSize: project.imageSize,
+             imageStart: project.imageStart,
+             scope: project.info.scope,
+             alt: project.coverImage.alt,
+             index,
              variant,
              updateIsHovering,
             }}
            />
-          </div>
-         );
-        })}
-      </div>
-     </GridDiv>
-    )}
+          )}
+        </div>
+       );
+      })}
+    </GridDiv>
+   )}
 
-    {/* Image View */}
-    {variant === 'image' && (
-     <GridDiv divClass='image-view filter-projects w-full'>
-      {projectItems &&
-       projectItems.map((project, index) => {
-        return (
-         <div
-          className='lg:grid grid-cols-12 mb-32 lg:mb-64'
-          key={`${project._id}-${category}`}
-         >
-          {project.title &&
-           project.slug &&
-           project.imageSize &&
-           project.imageStart && (
-            <ProjectCard
-             {...{
-              title: project.title,
-              slug: project.slug,
-              id: project._id,
-              imageSize: project.imageSize,
-              imageStart: project.imageStart,
-              scope: project.info.scope,
-              alt: project.coverImage.alt,
-              index,
-              variant,
-              updateIsHovering,
-             }}
-            />
-           )}
-         </div>
-        );
-       })}
-     </GridDiv>
-    )}
-
-    {/* Thumb View */}
-    {variant === 'thumbs' && (
-     <div className='thumb-view filter-projects flex flex-col gap-8 p-8 pt-24 h-screen overflow-y-scroll'>
-      {projectItems &&
-       projectItems.map((project, index) => {
-        return (
-         <div className='w-56 h-56' key={project._id}>
-          {project.title &&
-           project.slug &&
-           project.imageSize &&
-           project.imageStart && (
-            <ProjectCard
-             {...{
-              index,
-              title: project.title,
-              scope: project.info.scope,
-              slug: project.slug,
-              id: project._id,
-              alt: project.coverImage.alt,
-              variant,
-              imageSize: project.imageSize,
-              imageStart: project.imageStart,
-              updateIsHovering,
-             }}
-            />
-           )}
-         </div>
-        );
-       })}
-     </div>
-    )}
-   </section>
-  </>
+   {/* Thumb View */}
+   {variant === 'thumbs' && (
+    <div className='thumb-view filter-projects flex flex-col gap-8 p-8 pt-24 h-screen overflow-y-scroll'>
+     {projectItems &&
+      projectItems.map((project, index) => {
+       return (
+        <div className='w-56 h-56' key={project._id}>
+         {project.title &&
+          project.slug &&
+          project.imageSize &&
+          project.imageStart && (
+           <ProjectCard
+            {...{
+             index,
+             title: project.title,
+             scope: project.info.scope,
+             slug: project.slug,
+             id: project._id,
+             alt: project.coverImage.alt,
+             variant,
+             imageSize: project.imageSize,
+             imageStart: project.imageStart,
+             updateIsHovering,
+            }}
+           />
+          )}
+        </div>
+       );
+      })}
+    </div>
+   )}
+  </section>
  );
 }

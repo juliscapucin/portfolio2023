@@ -52,7 +52,7 @@ const HeroDesktop = () => {
 
    {/* Name */}
    <GridDiv
-    divClass='col-span-7 row-span-1 overflow-hidden flex items-center justify-end'
+    divClass='col-span-7 row-span-1 overflow-clip flex items-center justify-end'
     top={true}
    >
     <h1
@@ -81,7 +81,7 @@ const HeroDesktop = () => {
 
    {/* Number */}
    <GridDiv
-    divClass='col-span-4 row-span-3 overflow-hidden flex flex-nowrap items-center justify-center'
+    divClass='col-span-4 row-span-3 overflow-clip flex flex-nowrap items-center justify-center'
     top={true}
    >
     <h3 ref={numberRef} className='number font-normal tracking-tightest flex'>

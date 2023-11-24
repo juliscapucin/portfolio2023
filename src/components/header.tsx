@@ -39,8 +39,8 @@ export default function Header() {
    // Close shallow-page if open
    if (shallowPage) {
     //  Restore scroll on html div
-    if (document.documentElement.classList.contains('overflow-hidden'))
-     document.documentElement.classList.remove('overflow-hidden');
+    if (document.documentElement.classList.contains('overflow-clip'))
+     document.documentElement.classList.remove('overflow-clip');
 
     // Animate shallow page to left
     animateHorizontal('shallow-page', 0, -200);
@@ -56,8 +56,8 @@ export default function Header() {
    // Close shallow-page if open
    if (shallowPage) {
     //  Restore scroll on html div
-    if (document.documentElement.classList.contains('overflow-hidden'))
-     document.documentElement.classList.remove('overflow-hidden');
+    if (document.documentElement.classList.contains('overflow-clip'))
+     document.documentElement.classList.remove('overflow-clip');
 
     // If coming from project page which was preceded by home page
     if (homePage) {

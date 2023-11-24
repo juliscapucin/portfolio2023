@@ -18,6 +18,7 @@ module.exports = {
             text: ['var(--font-secondary)'],
          },
          zIndex: {
+            5: '5',
             100: '100',
          },
          letterSpacing: { tightest: '-.075em' },

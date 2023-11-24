@@ -49,7 +49,7 @@ export const animateToFullScreen = (
          ease: 'expo.out',
          onComplete: () => {
             // Remove scrollbar from html div
-            document.documentElement.classList.add('overflow-hidden');
+            document.documentElement.classList.add('overflow-clip');
             // Change route
             routerFunction();
             // Change z-index of animationEnd div so to avoid flashing of the page underneath
@@ -79,29 +79,35 @@ export const animateToFullScreen = (
 // animate to left
 // used to start pages after transitions
 export const animateToLeft = (enterElement: HTMLDivElement | null) => {
-   ctx.add(() => {
-      gsap.set(enterElement, { autoAlpha: 1 });
-      gsap.from(enterElement, {
-         xPercent: 100,
-         duration: 1,
-         ease: 'expo.inOut',
-      });
+   if (!enterElement) return;
+
+   const tl = gsap.timeline();
+   tl.set(enterElement, { autoAlpha: 1 });
+   tl.from(enterElement, {
+      xPercent: 10,
+      duration: 1,
+      ease: 'expo.inOut',
+      onComplete: () => {
+         // reset transform to avoid issues with scrolltrigger
+         tl.revert();
+      },
    });
 };
 
 // animate to right
 // used to start pages after transitions
 export const animateToRight = (enterElement: HTMLDivElement | null) => {
-   gsap.set(enterElement, { autoAlpha: 1 });
-   gsap.fromTo(
-      enterElement,
-      { xPercent: -100 },
-      {
-         xPercent: 0,
-         duration: 1,
-         ease: 'expo.inOut',
-      }
-   );
+   if (!enterElement) return;
+   const tl = gsap.timeline();
+   tl.set(enterElement, { autoAlpha: 1 }).from(enterElement, {
+      xPercent: -10,
+      duration: 1,
+      ease: 'expo.inOut',
+      onComplete: () => {
+         // reset transform to avoid issues with scrolltrigger
+         tl.revert();
+      },
+   });
 };
 
 // animate horizontal
@@ -111,20 +117,26 @@ export const animateHorizontal = (
    startPos: number,
    endPos: number
 ) => {
-   const animateHorizontalEnter = document.querySelector(`.${enterElement}`);
+   const animateHorizontalEnter = document.querySelector(
+      `.${enterElement}`
+   ) as HTMLDivElement;
 
    if (!animateHorizontalEnter) return;
 
-   const timeline = gsap.timeline();
+   const tl = gsap.timeline();
 
-   timeline.set(animateHorizontalEnter, {
+   tl.set(animateHorizontalEnter, {
       xPercent: startPos,
    });
 
-   timeline.to(animateHorizontalEnter, {
+   tl.to(animateHorizontalEnter, {
       duration: 1,
       xPercent: endPos,
       ease: 'expo.inOut',
+      onComplete: () => {
+         // reset transform to avoid issues with scrolltrigger
+         tl.revert();
+      },
    });
 };
 

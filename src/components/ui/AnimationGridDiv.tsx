@@ -17,7 +17,7 @@ export default function AnimationGridDiv({
 }: AnimationGridDivProps) {
  return (
   <div
-   className={`animation-grid-element w-full h-full overflow-hidden ${divClass}`}
+   className={`animation-grid-element w-full h-full overflow-clip ${divClass}`}
   >
    {top ? (
     <div className='static-line absolute bg-secondary'></div>

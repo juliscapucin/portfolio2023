@@ -90,8 +90,6 @@ html {
 
 html,
 body {
-   max-width: 100vw;
-   overflow-x: hidden;
    font-weight: 200;
    -webkit-font-smoothing: antialiased;
    transition: background-color 0.2s linear;

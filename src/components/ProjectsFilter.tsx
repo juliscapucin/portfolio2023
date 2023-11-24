@@ -62,11 +62,12 @@ export default function ProjectsFilter({
  };
 
  return (
-  <div className='w-full flex justify-between items-end mr-4 mb-16 lg:mb-4'>
+  <div className='w-full flex justify-between items-end mr-4 mb-4'>
    {/* View buttons */}
-   <div className='hidden md:flex gap-8 align-bottom '>
+   <div className='hidden lg:flex gap-8 align-bottom '>
+    <span>View:</span>
     {variant === 'list' ? (
-     <ActiveButton label='List View' />
+     <ActiveButton label='List' />
     ) : (
      <button
       className='hover:text-colorFaded transition-colors duration-200'
@@ -74,12 +75,12 @@ export default function ProjectsFilter({
        editVariant();
       }}
      >
-      List View
+      List
      </button>
     )}
     <span>/</span>
     {variant === 'image' ? (
-     <ActiveButton label='Image View' />
+     <ActiveButton label='Image' />
     ) : (
      <button
       className='hover:text-colorFaded transition-colors duration-200'
@@ -87,16 +88,16 @@ export default function ProjectsFilter({
        editVariant();
       }}
      >
-      Image View
+      Image
      </button>
     )}
    </div>
-
    {/* Filter buttons */}
    <div
     ref={filterButtonsRef}
-    className='flex flex-col lg:flex-row gap-2 lg:gap-8 items-start lg:items-center align-bottom '
+    className='flex flex-col w-full md:w-fit md:flex-row gap-2 lg:gap-8 items-end md:items-start lg:items-center align-bottom '
    >
+    <span className='hidden md:block'>Filter:</span>
     {filterOptions.map((label, index) => {
      return (
       <div key={label} className='flex gap-8'>
