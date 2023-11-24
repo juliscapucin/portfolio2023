@@ -15,7 +15,7 @@ export default function SectionTitle({ title }: SectionTitleProps) {
  useTextReveal(textRef);
 
  return (
-  <GridDiv divClass='h-full w-full overflow-clip' top={true}>
+  <GridDiv divClass='h-full w-full overflow-clip pt-1' top={true}>
    <h2
     ref={textRef}
     className='text-displaySmall md:text-displayMedium lg:text-displayLarge mt-16 lg:mt-64 lg:ml-4 opacity-0'

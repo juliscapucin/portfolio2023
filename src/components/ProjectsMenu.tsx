@@ -50,6 +50,7 @@ export default function ProjectsMenu({
  const projectsImgsRef = useRef(null);
  const projectsLinksRef = useRef(null);
  const filterRef = useRef(null);
+ const filterTitleRef = useRef(null);
  const filterContainerRef = useRef(null);
 
  //  Filter Projects + Fade Out Transitions
@@ -150,66 +151,6 @@ export default function ProjectsMenu({
   };
  }, []);
 
- // Filter menu scroll functionality
- //  useEffect(() => {
- //   if (!filterRef.current || !filterContainerRef.current) return;
- //   const filterContainerDiv = filterContainerRef.current as HTMLDivElement;
-
- //   const inicialDistanceTop = filterContainerDiv.getBoundingClientRect().top;
- //   let lastScrollTop = 0;
-
- //   const handleScroll = () => {
- //    const scrollY = window.scrollY;
-
- //    if (inicialDistanceTop < scrollY) {
- //     filterContainerDiv.style.transform = `translateY(${
- //      window.scrollY - inicialDistanceTop
- //     }px)`;
- //    } else {
- //     filterContainerDiv.style.transform = 'translateY(0px)';
- //    }
-
- //    // Define scroll direction
- //    if (scrollY > lastScrollTop && inicialDistanceTop < scrollY) {
- //     setScrollDirection('down');
- //    } else if (scrollY < lastScrollTop && inicialDistanceTop > scrollY) {
- //     setScrollDirection('up');
- //    }
-
- //    lastScrollTop = scrollY <= 0 ? 0 : scrollY;
- //   };
-
- //   window.addEventListener('scroll', () => {
- //    handleScroll();
- //   });
-
- //   return () => {
- //    window.removeEventListener('scroll', () => {
- //     handleScroll();
- //     filterContainerDiv.style.transform = '';
- //    });
- //   };
- //  }, [filterRef, filterContainerRef, variant]);
-
- // Hide filter on scroll down
- //  useLayoutEffect(() => {
- //   if (!filterRef.current || !filterContainerRef.current) return;
- //   const filterDiv = filterRef.current as HTMLDivElement;
-
- //   if (scrollDirection === 'up') {
- //    filterDiv.style.transform = 'translateY(0)';
- //     filterDiv.classList.remove('transition-transform', 'ease-in-out');
- //    return;
- //   } else if (scrollDirection === 'down') {
- //     filterDiv.classList.add('transition-transform', 'ease-in-out');
- //    filterDiv.style.transform = 'translateY(-300%)';
- //   }
-
- //   return () => {
- //    filterDiv.style.transform = '';
- //   };
- //  }, [scrollDirection]);
-
  // Create ScrollTrigger for filter
  useEffect(() => {
   if (!filterRef.current || !projectsMenuRef.current) return;
@@ -220,11 +161,15 @@ export default function ProjectsMenu({
    let ctx = gsap.context(() => {
     ScrollTrigger.create({
      trigger: filterRef.current,
-     start: 'top 60px',
+     start: 'top 30px',
      endTrigger: projectsMenuRef.current,
      end: 'bottom',
      pin: filterRef.current,
      pinSpacing: false,
+     toggleClass: {
+      targets: filterTitleRef.current,
+      className: 'translate-x-0', // to hide / show small title
+     },
     });
    });
   }, 1000); // 1000 milliseconds delay to avoid triggering on page load === causes bug with page transition animation
@@ -238,26 +183,33 @@ export default function ProjectsMenu({
  return (
   <section
    ref={projectsMenuRef}
-   className={`projects-menu min-h-screen relative ${
-    variant === 'image' && 'mt-16'
-   }`}
+   className='projects-menu min-h-screen relative'
   >
    {/* Custom Cursor */}
    {activeBreakpoint === 'desktop' && <CustomCursor isHovering={isHovering} />}
 
    {/* Project Filter */}
    {variant !== 'thumbs' && (
-    <div className='w-full mb-8'>
-     {/* <div ref={filterContainerRef} className={`w-full top-0 z-20`}>
+    <div
+     ref={filterContainerRef}
+     className={`w-full mt-16 ${variant === 'image' && 'mb-8'}`}
+    >
+     <GridDiv
+      divClass='w-full bg-primary pt-8 pb-1 z-10'
+      ref={filterRef}
+      bottom={true}
+     >
+      {/* Hidden Title on scroll */}
       <div className='bg-primary overflow-x-clip'>
        <h2
-        className={`block pb-8 text-displaySmall transition-transform duration-300 ease-in-out ${
-         scrollDirection !== 'down' && '-translate-x-full'
-        }`}
+        ref={filterTitleRef}
+        className={`${
+         activeBreakpoint !== 'desktop' && 'absolute'
+        } pb-8 text-displaySmall transition-transform duration-200 ease-in-out -translate-x-full`}
        >
         Work
-       </h2> */}
-     <GridDiv divClass='w-full' ref={filterRef} bottom={true}>
+       </h2>
+      </div>
       <ProjectsFilter
        {...{
         filterProjects,
@@ -268,8 +220,6 @@ export default function ProjectsMenu({
        }}
       />
      </GridDiv>
-     {/* </div>
-     </div> */}
     </div>
    )}
 
