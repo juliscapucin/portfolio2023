@@ -161,7 +161,7 @@ export default function ProjectsMenu({
    let ctx = gsap.context(() => {
     ScrollTrigger.create({
      trigger: filterRef.current,
-     start: 'top 30px',
+     start: 'top 40px',
      endTrigger: projectsMenuRef.current,
      end: 'bottom',
      pin: filterRef.current,
@@ -205,7 +205,7 @@ export default function ProjectsMenu({
         ref={filterTitleRef}
         className={`${
          activeBreakpoint !== 'desktop' && 'absolute'
-        } pb-8 text-displaySmall transition-transform duration-200 ease-in-out -translate-x-full`}
+        } pb-8 pr-2 text-displaySmall transition-transform duration-200 ease-in-out -translate-x-full`}
        >
         Work
        </h2>

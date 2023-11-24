@@ -84,7 +84,7 @@ export const animateToLeft = (enterElement: HTMLDivElement | null) => {
    const tl = gsap.timeline();
    tl.set(enterElement, { autoAlpha: 1 });
    tl.from(enterElement, {
-      xPercent: 10,
+      xPercent: 100,
       duration: 1,
       ease: 'expo.inOut',
       onComplete: () => {
@@ -100,7 +100,7 @@ export const animateToRight = (enterElement: HTMLDivElement | null) => {
    if (!enterElement) return;
    const tl = gsap.timeline();
    tl.set(enterElement, { autoAlpha: 1 }).from(enterElement, {
-      xPercent: -10,
+      xPercent: -100,
       duration: 1,
       ease: 'expo.inOut',
       onComplete: () => {
