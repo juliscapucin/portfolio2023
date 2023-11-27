@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
-import { Footer, ProjectSlideshow } from '@/components';
+import { ProjectSlideshow, ShowreelSlideshow } from '@/components';
 import { Title } from '@/components/ui';
 
 type Props = {};
@@ -14,16 +14,9 @@ export default function ShowreelPage() {
    <div className='lg:grid grid-cols-12'>
     {/* Image */}
     <div className='col-span-6 aspect-square overflow-clip relative mt-4 mb-8 lg:mb-0'>
-     <ProjectSlideshow
-      {...{
-       projectImages: ['01', '02', '03'],
-       projectSlug: 'showreel',
-       isWeb: false,
-      }}
-     />
+     <ShowreelSlideshow />
     </div>
    </div>
-   <Footer />
   </div>
  );
 }

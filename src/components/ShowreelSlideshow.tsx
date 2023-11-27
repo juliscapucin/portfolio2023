@@ -1,58 +1,65 @@
 import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 
-import ProjectImage from './ProjectImage';
+import { CldImage, CldVideoPlayer } from 'next-cloudinary';
 
-type Props = {
- projectImages: string[];
- projectSlug: string;
- isWeb: boolean;
-};
+const projectImages = [
+ '01',
+ '02',
+ '03',
+ '04',
+ '05',
+ '06',
+ '07',
+ '08',
+ '09',
+ '10',
+];
 
 const delay = 5000;
 
-export default function ShowreelSlideshow({
- projectImages,
- projectSlug,
- isWeb,
-}: Props) {
+export default function ShowreelSlideshow() {
  const [slideIndex, setSlideIndex] = useState(1);
  const slideshowRef = useRef<HTMLDivElement | null>(null);
  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
- const resetTimeout = () => {
-  if (timeoutRef.current) {
-   clearTimeout(timeoutRef.current);
-  }
- };
+ //  const resetTimeout = () => {
+ //   if (timeoutRef.current) {
+ //    clearTimeout(timeoutRef.current);
+ //   }
+ //  };
 
- useEffect(() => {
-  resetTimeout();
-  timeoutRef.current = setTimeout(
-   () =>
-    setSlideIndex((prevIndex) =>
-     prevIndex === projectImages.length - 1 ? 0 : prevIndex + 1
-    ),
-   delay
-  );
+ //  useEffect(() => {
+ //   resetTimeout();
+ //   timeoutRef.current = setTimeout(
+ //    () =>
+ //     setSlideIndex((prevIndex) =>
+ //      prevIndex === projectImages.length - 1 ? 0 : prevIndex + 1
+ //     ),
+ //    delay
+ //   );
 
-  return () => {
-   resetTimeout();
-  };
- }, [slideIndex]);
+ //   return () => {
+ //    resetTimeout();
+ //   };
+ //  }, [slideIndex]);
 
  return (
-  <div
-   ref={slideshowRef}
-   className='slideshow relative w-full aspect-square flex flex-nowrap overflow-hidden'
-  >
-   {projectImages.map((index) => {
+  <div ref={slideshowRef} className='slideshow relative w-full'>
+   {projectImages.map((image, index) => {
     return (
      <div
-      className='min-w-full transition-transform duration-200'
-      key={`projectSlideshow-${index}`}
-      style={{ transform: `translate3d(${-slideIndex * 100}%, 0, 0)` }}
+      key={`showreel-${index}`}
+      className='w-[500px] aspect-square overflow-clip relative mt-1'
      >
-      <ProjectImage projectSlug={projectSlug} image={index} isWeb={isWeb} />
+      <Image
+       className='absolute top-0 left-0 z-10'
+       src='/ipad-vazado.png'
+       width={500}
+       height={500}
+       alt='Picture of the author'
+      />
+      <video src='/showreel-01.mov' controls autoPlay />
      </div>
     );
    })}

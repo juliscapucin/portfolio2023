@@ -6,16 +6,17 @@
     xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/"
     xmlns:stEvt="http://ns.adobe.com/xap/1.0/sType/ResourceEvent#"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:xmp="http://ns.adobe.com/xap/1.0/"
     xmlns:crs="http://ns.adobe.com/camera-raw-settings/1.0/"
     xmlns:photoshop="http://ns.adobe.com/photoshop/1.0/"
-    xmlns:xmp="http://ns.adobe.com/xap/1.0/"
    exif:ExifVersion="0231"
    tiff:Orientation="1"
    xmpMM:DocumentID="07BB1D0BA0CB85E97733B1023D69C51E"
    xmpMM:OriginalDocumentID="07BB1D0BA0CB85E97733B1023D69C51E"
-   xmpMM:InstanceID="xmp.iid:97512cda-97ac-499d-b890-5001c45c1b5f"
+   xmpMM:InstanceID="xmp.iid:b8ac394c-d69e-4dbc-a45d-f165bba22053"
    dc:format="image/avif"
-   crs:Version="15.5"
+   xmp:MetadataDate="2023-11-25T19:47:50+01:00"
+   crs:Version="16.0.1"
    crs:ProcessVersion="15.4"
    crs:WhiteBalance="As Shot"
    crs:IncrementalTemperature="0"
@@ -106,6 +107,7 @@
    crs:GreenSaturation="0"
    crs:BlueHue="0"
    crs:BlueSaturation="0"
+   crs:HDREditMode="0"
    crs:ConvertToGrayscale="False"
    crs:OverrideLookVignette="False"
    crs:ToneCurveName2012="Linear"
@@ -115,8 +117,7 @@
    crs:HasCrop="False"
    crs:AlreadyApplied="False"
    photoshop:SidecarForExtension="AVIF"
-   photoshop:EmbeddedXMPDigest="00000000000000000000000000000000"
-   xmp:MetadataDate="2023-09-05T19:53:22+02:00">
+   photoshop:EmbeddedXMPDigest="00000000000000000000000000000000">
    <xmpMM:History>
     <rdf:Seq>
      <rdf:li
@@ -124,6 +125,12 @@
       stEvt:instanceID="xmp.iid:97512cda-97ac-499d-b890-5001c45c1b5f"
       stEvt:when="2023-09-05T19:53:22+02:00"
       stEvt:softwareAgent="Adobe Photoshop Camera Raw 15.5 (Macintosh)"
+      stEvt:changed="/metadata"/>
+     <rdf:li
+      stEvt:action="saved"
+      stEvt:instanceID="xmp.iid:b8ac394c-d69e-4dbc-a45d-f165bba22053"
+      stEvt:when="2023-11-25T19:47:50+01:00"
+      stEvt:softwareAgent="Adobe Photoshop Camera Raw 16.0.1 (Macintosh)"
       stEvt:changed="/metadata"/>
     </rdf:Seq>
    </xmpMM:History>
