@@ -48,7 +48,7 @@ export default function HomePage({ allProjects }: { allProjects: Project[] }) {
  return (
   <div ref={pageRef} className='page home-page main-page overflow-clip'>
    <GridDiv
-    divClass='overflow-clip h-screen min-h-screen'
+    divClass='overflow-clip lg:h-screen lg:min-h-screen'
     bottom={breakpoint === 'desktop' && true}
    >
     {breakpoint === 'mobile' && <HeroMobile />}

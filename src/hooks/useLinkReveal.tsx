@@ -4,11 +4,10 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import { animateStaggerText } from '@/animations';
-import { link } from 'fs';
 
 export function useLinkReveal(
  linkRef: React.MutableRefObject<HTMLHeadingElement | HTMLSpanElement | null>,
- variant?: string,
+ variant: string,
  modalOpen?: boolean
 ) {
  // Default variant (footer)
@@ -16,6 +15,8 @@ export function useLinkReveal(
   if (!linkRef.current && variant === 'modal') return;
 
   gsap.registerPlugin(ScrollTrigger);
+
+  console.log(variant);
 
   // Create timeline + start scrollTrigger
   let ctx = gsap.context(() => {

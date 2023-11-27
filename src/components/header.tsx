@@ -34,6 +34,7 @@ export default function Header() {
 
   if (!previousPageLink) return;
 
+  // setTimeout(() => {
   ///// TRANSITION TO LEFT
   if (link._key > previousPageLink._key) {
    // Close shallow-page if open
@@ -84,6 +85,7 @@ export default function Header() {
     router.push(`/${link.slug}`);
    });
   }
+  // }, 5000);
  };
 
  return (

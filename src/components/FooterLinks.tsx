@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 
 import { GridDiv } from '@/components/ui';
@@ -13,7 +13,7 @@ type SocialsData = {
 
 type Props = {
  apiRoute: string; //to fetch socials or navigation links
- variant?: string; //to animate differently
+ variant: string; //to animate differently
  modalOpen?: boolean;
 };
 

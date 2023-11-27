@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef } from 'react';
 
-import { Status, ThemeSwitcher } from '@/components';
+import { Status } from '@/components';
 import { GridDiv, Marquee } from '@/components/ui';
 import { animateSplitText } from '@/animations';
 
