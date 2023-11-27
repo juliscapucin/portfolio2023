@@ -59,7 +59,7 @@ export default function ShowreelSlideshow() {
        height={500}
        alt='Picture of the author'
       />
-      <video src='/showreel-01.mov' controls autoPlay />
+      {/* <video src='/showreel-01.mov' controls autoPlay /> */}
      </div>
     );
    })}
