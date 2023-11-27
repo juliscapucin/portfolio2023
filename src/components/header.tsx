@@ -34,58 +34,58 @@ export default function Header() {
 
   if (!previousPageLink) return;
 
-  setTimeout(() => {
-   ///// TRANSITION TO LEFT
-   if (link._key > previousPageLink._key) {
-    // Close shallow-page if open
-    if (shallowPage) {
-     //  Restore scroll on html div
-     if (document.documentElement.classList.contains('overflow-clip'))
-      document.documentElement.classList.remove('overflow-clip');
+  // setTimeout(() => {
+  ///// TRANSITION TO LEFT
+  if (link._key > previousPageLink._key) {
+   // Close shallow-page if open
+   if (shallowPage) {
+    //  Restore scroll on html div
+    if (document.documentElement.classList.contains('overflow-clip'))
+     document.documentElement.classList.remove('overflow-clip');
 
-     // Animate shallow page to left
-     animateHorizontal('shallow-page', 0, -200);
-    }
-
-    // If regular page
-    animateToLeftTransition(`${projectPage ? 'project-page' : 'page'}`, () => {
-     router.push(`/${link.slug}`, { scroll: true });
-    });
-   } else {
-    ///// TRANSITION TO RIGHT
-
-    // Close shallow-page if open
-    if (shallowPage) {
-     //  Restore scroll on html div
-     if (document.documentElement.classList.contains('overflow-clip'))
-      document.documentElement.classList.remove('overflow-clip');
-
-     // If coming from project page which was preceded by home page
-     if (homePage) {
-      animateToRightTransition('shallow-page', () => {
-       router.push(`/${link.slug}`, { scroll: false });
-      });
-     } else if (projectPage) {
-      animateHorizontal('shallow-page', 0, 200);
-      animateToRightTransition('project-page', () => {
-       router.push(`/${link.slug}`);
-      });
-     } else {
-      animateHorizontal('shallow-page', 0, 200);
-      animateToRightTransition('page', () => {
-       router.push(`/${link.slug}`);
-      });
-     }
-
-     return;
-    }
-
-    // If regular page
-    animateToRightTransition(`${projectPage ? 'project-page' : 'page'}`, () => {
-     router.push(`/${link.slug}`);
-    });
+    // Animate shallow page to left
+    animateHorizontal('shallow-page', 0, -200);
    }
-  }, 5000);
+
+   // If regular page
+   animateToLeftTransition(`${projectPage ? 'project-page' : 'page'}`, () => {
+    router.push(`/${link.slug}`, { scroll: true });
+   });
+  } else {
+   ///// TRANSITION TO RIGHT
+
+   // Close shallow-page if open
+   if (shallowPage) {
+    //  Restore scroll on html div
+    if (document.documentElement.classList.contains('overflow-clip'))
+     document.documentElement.classList.remove('overflow-clip');
+
+    // If coming from project page which was preceded by home page
+    if (homePage) {
+     animateToRightTransition('shallow-page', () => {
+      router.push(`/${link.slug}`, { scroll: false });
+     });
+    } else if (projectPage) {
+     animateHorizontal('shallow-page', 0, 200);
+     animateToRightTransition('project-page', () => {
+      router.push(`/${link.slug}`);
+     });
+    } else {
+     animateHorizontal('shallow-page', 0, 200);
+     animateToRightTransition('page', () => {
+      router.push(`/${link.slug}`);
+     });
+    }
+
+    return;
+   }
+
+   // If regular page
+   animateToRightTransition(`${projectPage ? 'project-page' : 'page'}`, () => {
+    router.push(`/${link.slug}`);
+   });
+  }
+  // }, 5000);
  };
 
  return (

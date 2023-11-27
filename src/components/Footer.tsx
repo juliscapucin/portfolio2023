@@ -1,29 +1,31 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
 import { Availability, Copyright, FooterLinks } from '@/components';
 import { GridDiv } from '@/components/ui';
 
-type NavbarData = {
- items: { title: string; slug: string; _key: string }[];
-};
-
 export default function Footer() {
+ const pathname = usePathname();
+
+ const isProjectPage = pathname.includes('/work/');
+
  return (
   <GridDiv
    top={true}
-   divClass='pt-32 pb-16 lg:px-16 lg:grid grid-cols-12 max-w-desktop z-50 bg-primary'
+   divClass={`pt-32 pb-16 lg:pl-16 ${
+    isProjectPage ? 'lg:pr-64' : 'lg:pr-16'
+   } lg:grid grid-cols-12 max-w-desktop bg-primary`}
   >
    <nav className='col-span-3'>
     {/* Nav Column */}
 
     {/* Social Column */}
     <div className='flex flex-col'>
-     <FooterLinks apiRoute={'navbar'} />
+     <FooterLinks apiRoute={'navbar'} variant={'footer'} />
     </div>
     <div className='flex flex-col mt-16'>
-     <FooterLinks apiRoute={'socials'} />
+     <FooterLinks apiRoute={'socials'} variant={'footer'} />
     </div>
    </nav>
 
