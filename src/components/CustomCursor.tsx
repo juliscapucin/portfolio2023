@@ -11,8 +11,8 @@ export default function CustomCursor({ isHovering }: { isHovering: boolean }) {
 
   const moveCursor = (e: MouseEvent) => {
    gsap.to(cursorDiv, {
-    x: e.clientX + window.scrollX - cursorDiv.clientWidth,
-    y: e.clientY + window.scrollY - cursorDiv.clientHeight,
+    x: e.clientX - cursorDiv.clientWidth / 1.5,
+    y: e.clientY - cursorDiv.clientHeight / 1.5,
     duration: 0.3,
    });
   };
