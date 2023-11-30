@@ -185,7 +185,7 @@ export default function ProjectsMenu({
    className='projects-menu min-h-screen relative'
   >
    {/* Custom Cursor */}
-   {/* {activeBreakpoint === 'desktop' && <CustomCursor isHovering={isHovering} />} */}
+   {activeBreakpoint === 'desktop' && <CustomCursor isHovering={isHovering} />}
 
    {/* Project Filter */}
    {variant !== 'thumbs' && (
