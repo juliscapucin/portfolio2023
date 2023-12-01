@@ -11,7 +11,7 @@ type NavLink = { label: string; slug: string; _key: number };
 
 type NavLinksProps = {
  navLinks: NavLink[];
- buttonAction: (link: NavLink, mobileMenuRef: HTMLDivElement) => void;
+ buttonAction: (link: NavLink, mobileMenuRef?: HTMLDivElement) => void;
 };
 
 export default function MenuMobile({ navLinks, buttonAction }: NavLinksProps) {

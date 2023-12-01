@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
 
 import { Project } from '@/types';
@@ -41,16 +40,4 @@ export default async function Page({ params }: { params: { slug: string } }) {
  return (
   <ProjectPage project={project} allProjects={allProjects} isShallow={true} />
  );
-}
-
-// SSG – Static Site Generation
-export async function generateStaticParams() {
- const projectData = getProjects();
- const projects: Project[] = await projectData;
-
- return projects.map((project) => {
-  return {
-   projectSlug: project.slug,
-  };
- });
 }
