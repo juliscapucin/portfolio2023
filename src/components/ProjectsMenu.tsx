@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { CldImage } from 'next-cloudinary';
 
 import gsap from 'gsap';
@@ -53,29 +53,30 @@ export default function ProjectsMenu({
  const filterContainerRef = useRef(null);
 
  //  Filter Projects + Fade Out Transitions
- const filterProjects = (
-  filterString: 'all' | 'recent' | 'playground' | 'archive'
- ) => {
-  if (!allProjects) return;
+ const filterProjects = useMemo(
+  () => (filterString: 'all' | 'recent' | 'playground' | 'archive') => {
+   if (!allProjects) return;
 
-  const filteredProjects =
-   filterString === 'all'
-    ? allProjects
-    : allProjects.filter((project: Project) => {
-       return project.category.includes(filterString);
-      });
+   const filteredProjects =
+    filterString === 'all'
+     ? allProjects
+     : allProjects.filter((project: Project) => {
+        return project.category.includes(filterString);
+       });
 
-  ctx.add(() => {
-   gsap.to('.filter-projects', {
-    opacity: 0,
-    duration: 0.5,
-    onComplete: () => {
-     setProjectItems(filteredProjects);
-     setCategory(filterString);
-    },
-   });
-  }, projectsMenuRef);
- };
+   ctx.add(() => {
+    gsap.to('.filter-projects', {
+     opacity: 0,
+     duration: 0.5,
+     onComplete: () => {
+      setProjectItems(filteredProjects);
+      setCategory(filterString);
+     },
+    });
+   }, projectsMenuRef);
+  },
+  [allProjects]
+ );
 
  useLayoutEffect(() => {
   let ctx = gsap.context(() => {
@@ -91,29 +92,32 @@ export default function ProjectsMenu({
  }, [projectItems]);
 
  //  Change view – fade out + change variant
- const editVariant = () => {
-  if (variant === 'list') {
-   ctx.add(() => {
-    gsap.to('.list-view', {
-     opacity: 0,
-     duration: 0.5,
-     onComplete: () => {
-      setVariant('image');
-     },
-    });
-   }, projectsMenuRef);
-  } else if (variant === 'image') {
-   ctx.add(() => {
-    gsap.to('.image-view', {
-     opacity: 0,
-     duration: 0.5,
-     onComplete: () => {
-      setVariant('list');
-     },
-    });
-   }, projectsMenuRef);
-  }
- };
+ const editVariant = useMemo(
+  () => () => {
+   if (variant === 'list') {
+    ctx.add(() => {
+     gsap.to('.list-view', {
+      opacity: 0,
+      duration: 0.5,
+      onComplete: () => {
+       setVariant('image');
+      },
+     });
+    }, projectsMenuRef);
+   } else if (variant === 'image') {
+    ctx.add(() => {
+     gsap.to('.image-view', {
+      opacity: 0,
+      duration: 0.5,
+      onComplete: () => {
+       setVariant('list');
+      },
+     });
+    }, projectsMenuRef);
+   }
+  },
+  [variant]
+ );
 
  //  Change view – fade in
  useLayoutEffect(() => {

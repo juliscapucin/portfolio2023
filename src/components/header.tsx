@@ -18,11 +18,8 @@ export default function Header() {
  const router = useRouter();
  const { previousPage } = usePageContext();
 
- const buttonAction = useMemo(() => {
-  const memoizedButtonAction = (
-   link: NavLink,
-   mobileMenuRef?: HTMLDivElement
-  ) => {
+ const buttonAction = useMemo(
+  () => (link: NavLink, mobileMenuRef?: HTMLDivElement) => {
    // Toggle mobile menu
    if (mobileMenuRef) {
     animateMobileMenu(mobileMenuRef);
@@ -90,9 +87,9 @@ export default function Header() {
      router.push(`/${link.slug}`);
     });
    }
-  };
-  return memoizedButtonAction;
- }, [previousPage]);
+  },
+  [previousPage]
+ );
 
  return (
   navLinks && (

@@ -16,7 +16,7 @@ export async function generateMetadata({ params: { slug } }: Params) {
  const project = await projectData;
 
  if (!project) {
-  return { title: 'User Not Found', description: 'User not found' };
+  return { title: 'Project Not Found', description: 'Project not found' };
  }
 
  return {

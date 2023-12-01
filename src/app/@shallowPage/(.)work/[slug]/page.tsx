@@ -1,7 +1,5 @@
 import { notFound } from 'next/navigation';
 
-import { Project } from '@/types';
-
 import { getProject, getProjects } from '@/lib';
 import { ProjectPage } from '@/components/pages';
 
