@@ -1,4 +1,4 @@
-import { use, useMemo } from 'react';
+import { useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { navLinks } from '@/constants';
@@ -18,7 +18,7 @@ export default function Header() {
  const router = useRouter();
  const { previousPage } = usePageContext();
 
- const buttonAction = useMemo(
+ const buttonAction = useCallback(
   () => (link: NavLink, mobileMenuRef?: HTMLDivElement) => {
    // Toggle mobile menu
    if (mobileMenuRef) {

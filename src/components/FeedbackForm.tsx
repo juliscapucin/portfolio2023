@@ -56,7 +56,7 @@ export default function FeedbackForm() {
       Message:
      </label>
      <textarea
-      className='appearance-none bg-transparent border-none w-full'
+      className='appearance-none bg-transparent w-full border focus:border-colorFaded'
       id={'message'}
       name='message'
       placeholder={'Message'}

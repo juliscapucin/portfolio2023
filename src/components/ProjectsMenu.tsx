@@ -1,6 +1,12 @@
 'use client';
 
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import {
+ useCallback,
+ useEffect,
+ useLayoutEffect,
+ useRef,
+ useState,
+} from 'react';
 import { CldImage } from 'next-cloudinary';
 
 import gsap from 'gsap';
@@ -53,7 +59,7 @@ export default function ProjectsMenu({
  const filterContainerRef = useRef(null);
 
  //  Filter Projects + Fade Out Transitions
- const filterProjects = useMemo(
+ const filterProjects = useCallback(
   () => (filterString: 'all' | 'recent' | 'playground' | 'archive') => {
    if (!allProjects) return;
 
@@ -92,7 +98,7 @@ export default function ProjectsMenu({
  }, [projectItems]);
 
  //  Change view – fade out + change variant
- const editVariant = useMemo(
+ const editVariant = useCallback(
   () => () => {
    if (variant === 'list') {
     ctx.add(() => {
