@@ -21,29 +21,39 @@ export default function ShallowPage({ children, isShallow }: Props) {
  const router = useRouter();
  const pathname = usePathname();
 
- const { previousPage, updatePreviousPage } = usePageContext();
+ const { previousPage, updatePreviousPage, setIsShallowPage } =
+  usePageContext();
 
- // update previous page + define if back button should be shown
- useEffect(() => {
-  if (previousPage === 'home' && isShallow) {
-   updatePreviousPage('project-home');
-  } else if (previousPage === 'work' && isShallow) {
-   updatePreviousPage('project-work');
-  } else if (!isShallow) {
-   setShowBackButton(false);
-   updatePreviousPage('project');
-  } else if (previousPage.includes('project')) {
-   setShowBackButton(false);
-   updatePreviousPage('project');
-  } else {
-   updatePreviousPage('work');
-   setShowBackButton(false);
-  }
- }, []);
+ console.log('shallow page', isShallow);
+ console.log('previous page', previousPage);
 
  // this is used as a workaround to prevent the intercepted route of showing in all pages
  // Next 13 bug
  const shouldShowShallowPage = pathname.includes('/work/');
+
+ // update previous page + define if back button should be shown
+ useEffect(() => {
+  setIsShallowPage(false);
+  if (!shouldShowShallowPage) {
+   return;
+  }
+
+  if (previousPage === 'home' && isShallow) {
+   updatePreviousPage('project-home');
+   setIsShallowPage(true);
+  } else if (previousPage === 'work' && isShallow) {
+   updatePreviousPage('project-work');
+   setIsShallowPage(true);
+  } else if (previousPage.includes('project') && isShallow) {
+   updatePreviousPage('project-shallow');
+   setIsShallowPage(true);
+   setShowBackButton(false);
+  } else if (!isShallow) {
+   setShowBackButton(false);
+   updatePreviousPage('project');
+   setIsShallowPage(false);
+  }
+ }, []);
 
  const onDismiss = useCallback(() => {
   //  Remove scroll from wrapper div
@@ -78,7 +88,7 @@ export default function ShallowPage({ children, isShallow }: Props) {
    <div
     className={`${
      isShallow && 'shallow-page'
-    } project-page scroll-trigger fixed top-0 left-0 bottom-0 right-0 mx-auto pl-8 pr-16 lg:pr-8 bg-primary max-w-desktop overflow-y-scroll overflow-x-clip z-10`}
+    } page scroll-trigger fixed top-0 left-0 bottom-0 right-0 mx-auto pl-8 pr-16 lg:pr-8 bg-primary max-w-desktop overflow-y-scroll overflow-x-clip z-10`}
     ref={overlay}
    >
     <div

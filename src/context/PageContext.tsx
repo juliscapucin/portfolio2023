@@ -7,6 +7,8 @@ import { createContext, useContext, useEffect, useState } from 'react';
 interface ContextProps {
  previousPage: string;
  updatePreviousPage: (page: string) => void;
+ isShallowPage: boolean;
+ setIsShallowPage: (state: boolean) => void;
 }
 
 // CREATE CONTEXT
@@ -19,17 +21,19 @@ export const PageContextProvider = ({
  children: React.ReactNode;
 }) => {
  const [previousPage, setPreviousPage] = useState('home');
+ const [isShallowPage, setIsShallowPage] = useState(false);
  const pathname = usePathname();
 
  const updatePreviousPage = (page: string) => {
   setPreviousPage(page);
  };
 
- // Set previous page when using shallow page back button
+ // Set previousPage && isShallowPage when using shallow page back button
  useEffect(() => {
   if (!previousPage.includes('project')) return;
   if (pathname === '/') setPreviousPage('home');
   if (pathname === '/work') setPreviousPage('work');
+  setIsShallowPage(false);
  }, [pathname]);
 
  return (
@@ -37,6 +41,8 @@ export const PageContextProvider = ({
    value={{
     previousPage,
     updatePreviousPage,
+    isShallowPage,
+    setIsShallowPage,
    }}
   >
    {children}

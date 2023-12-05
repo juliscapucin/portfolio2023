@@ -15,7 +15,7 @@ type NavLink = { label: string; slug: string; _key: number };
 
 export default function Header() {
  const router = useRouter();
- const { previousPage } = usePageContext();
+ const { previousPage, isShallowPage, setIsShallowPage } = usePageContext();
 
  const buttonAction = (link: NavLink, mobileMenuRef?: HTMLDivElement) => {
   // Toggle mobile menu
@@ -23,9 +23,7 @@ export default function Header() {
    animateMobileMenu(mobileMenuRef);
   }
 
-  const shallowPage = document.querySelector('.shallow-page');
-  const projectPage = document.querySelector('.project-page');
-  const homePage = document.querySelector('.home-page');
+  console.log('header', isShallowPage);
 
   const previousPageLink = previousPage.includes('project')
    ? previousPage.includes('home')
@@ -38,7 +36,9 @@ export default function Header() {
   ///// TRANSITION TO LEFT
   if (link._key > previousPageLink._key) {
    // Close shallow-page if open
-   if (shallowPage) {
+   if (isShallowPage) {
+    setIsShallowPage(false);
+
     //  Restore scroll on html div
     if (document.documentElement.classList.contains('overflow-clip'))
      document.documentElement.classList.remove('overflow-clip');
@@ -48,27 +48,24 @@ export default function Header() {
    }
 
    // If regular page
-   animateToLeftTransition(`${projectPage ? 'project-page' : 'page'}`, () => {
+   animateToLeftTransition('page', () => {
     router.push(`/${link.slug}`, { scroll: true });
    });
   } else {
    ///// TRANSITION TO RIGHT
 
    // Close shallow-page if open
-   if (shallowPage) {
+   if (isShallowPage) {
+    setIsShallowPage(false);
+
     //  Restore scroll on html div
     if (document.documentElement.classList.contains('overflow-clip'))
      document.documentElement.classList.remove('overflow-clip');
 
     // If coming from project page which was preceded by home page
-    if (homePage) {
+    if (previousPage.includes('home') || previousPage.includes('project')) {
      animateToRightTransition('shallow-page', () => {
       router.push(`/${link.slug}`, { scroll: false });
-     });
-    } else if (projectPage) {
-     animateHorizontal('shallow-page', 0, 200);
-     animateToRightTransition('project-page', () => {
-      router.push(`/${link.slug}`);
      });
     } else {
      animateHorizontal('shallow-page', 0, 200);
@@ -81,8 +78,8 @@ export default function Header() {
    }
 
    // If regular page
-   animateToRightTransition(`${projectPage ? 'project-page' : 'page'}`, () => {
-    router.push(`/${link.slug}`);
+   animateToRightTransition('page', () => {
+    router.push(`/${link.slug}`, { scroll: true });
    });
   }
  };
