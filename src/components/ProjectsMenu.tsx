@@ -189,7 +189,7 @@ export default function ProjectsMenu({
  return (
   <section
    ref={projectsMenuRef}
-   className='projects-menu min-h-screen relative'
+   className='projects-menu custom-min-h-screen relative'
   >
    {/* Custom Cursor */}
    {activeBreakpoint === 'desktop' && <CustomCursor isHovering={isHovering} />}

@@ -1,6 +1,5 @@
 'use client';
 
-import { useThemeStorage } from '@/hooks';
 import { useEffect, useState } from 'react';
 
 export default function RootLayout(props: { children: React.ReactNode }) {

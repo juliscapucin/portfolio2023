@@ -36,7 +36,7 @@ export default function MenuMobile({ navLinks, buttonAction }: NavLinksProps) {
       />
      </GridDiv>
      <aside
-      className='absolute top-0 w-full min-h-screen p-8 bg-primary transition-transform -translate-y-full duration-300'
+      className='absolute top-0 w-full custom-min-h-screen p-8 bg-primary transition-transform -translate-y-full duration-300'
       ref={mobileMenuRef}
      >
       {/* Close Button */}

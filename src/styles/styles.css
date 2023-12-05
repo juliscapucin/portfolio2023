@@ -193,6 +193,13 @@ textarea {
    height: 100%;
 }
 
+/* WORKAROUND FOR vh */
+
+.custom-min-h-screen {
+   min-height: 100vh;
+   min-height: 100svh;
+}
+
 /* WORKAROUND FOR COL-START BUG */
 
 .custom-col-start-1 {
