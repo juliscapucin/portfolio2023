@@ -1,4 +1,3 @@
-import { useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { navLinks } from '@/constants';
@@ -18,78 +17,75 @@ export default function Header() {
  const router = useRouter();
  const { previousPage } = usePageContext();
 
- const buttonAction = useCallback(
-  () => (link: NavLink, mobileMenuRef?: HTMLDivElement) => {
-   // Toggle mobile menu
-   if (mobileMenuRef) {
-    animateMobileMenu(mobileMenuRef);
+ const buttonAction = (link: NavLink, mobileMenuRef?: HTMLDivElement) => {
+  // Toggle mobile menu
+  if (mobileMenuRef) {
+   animateMobileMenu(mobileMenuRef);
+  }
+
+  const shallowPage = document.querySelector('.shallow-page');
+  const projectPage = document.querySelector('.project-page');
+  const homePage = document.querySelector('.home-page');
+
+  const previousPageLink = previousPage.includes('project')
+   ? previousPage.includes('home')
+     ? navLinks.find((el) => el.label.toLowerCase() === 'home')
+     : navLinks.find((el) => el.label.toLowerCase() === 'work')
+   : navLinks.find((el) => el.label.toLowerCase() === previousPage);
+
+  if (!previousPageLink) return;
+
+  ///// TRANSITION TO LEFT
+  if (link._key > previousPageLink._key) {
+   // Close shallow-page if open
+   if (shallowPage) {
+    //  Restore scroll on html div
+    if (document.documentElement.classList.contains('overflow-clip'))
+     document.documentElement.classList.remove('overflow-clip');
+
+    // Animate shallow page to left
+    animateHorizontal('shallow-page', 0, -200);
    }
 
-   const shallowPage = document.querySelector('.shallow-page');
-   const projectPage = document.querySelector('.project-page');
-   const homePage = document.querySelector('.home-page');
+   // If regular page
+   animateToLeftTransition(`${projectPage ? 'project-page' : 'page'}`, () => {
+    router.push(`/${link.slug}`, { scroll: true });
+   });
+  } else {
+   ///// TRANSITION TO RIGHT
 
-   const previousPageLink = previousPage.includes('project')
-    ? previousPage.includes('home')
-      ? navLinks.find((el) => el.label.toLowerCase() === 'home')
-      : navLinks.find((el) => el.label.toLowerCase() === 'work')
-    : navLinks.find((el) => el.label.toLowerCase() === previousPage);
+   // Close shallow-page if open
+   if (shallowPage) {
+    //  Restore scroll on html div
+    if (document.documentElement.classList.contains('overflow-clip'))
+     document.documentElement.classList.remove('overflow-clip');
 
-   if (!previousPageLink) return;
-
-   ///// TRANSITION TO LEFT
-   if (link._key > previousPageLink._key) {
-    // Close shallow-page if open
-    if (shallowPage) {
-     //  Restore scroll on html div
-     if (document.documentElement.classList.contains('overflow-clip'))
-      document.documentElement.classList.remove('overflow-clip');
-
-     // Animate shallow page to left
-     animateHorizontal('shallow-page', 0, -200);
+    // If coming from project page which was preceded by home page
+    if (homePage) {
+     animateToRightTransition('shallow-page', () => {
+      router.push(`/${link.slug}`, { scroll: false });
+     });
+    } else if (projectPage) {
+     animateHorizontal('shallow-page', 0, 200);
+     animateToRightTransition('project-page', () => {
+      router.push(`/${link.slug}`);
+     });
+    } else {
+     animateHorizontal('shallow-page', 0, 200);
+     animateToRightTransition('page', () => {
+      router.push(`/${link.slug}`);
+     });
     }
 
-    // If regular page
-    animateToLeftTransition(`${projectPage ? 'project-page' : 'page'}`, () => {
-     router.push(`/${link.slug}`, { scroll: true });
-    });
-   } else {
-    ///// TRANSITION TO RIGHT
-
-    // Close shallow-page if open
-    if (shallowPage) {
-     //  Restore scroll on html div
-     if (document.documentElement.classList.contains('overflow-clip'))
-      document.documentElement.classList.remove('overflow-clip');
-
-     // If coming from project page which was preceded by home page
-     if (homePage) {
-      animateToRightTransition('shallow-page', () => {
-       router.push(`/${link.slug}`, { scroll: false });
-      });
-     } else if (projectPage) {
-      animateHorizontal('shallow-page', 0, 200);
-      animateToRightTransition('project-page', () => {
-       router.push(`/${link.slug}`);
-      });
-     } else {
-      animateHorizontal('shallow-page', 0, 200);
-      animateToRightTransition('page', () => {
-       router.push(`/${link.slug}`);
-      });
-     }
-
-     return;
-    }
-
-    // If regular page
-    animateToRightTransition(`${projectPage ? 'project-page' : 'page'}`, () => {
-     router.push(`/${link.slug}`);
-    });
+    return;
    }
-  },
-  [previousPage]
- );
+
+   // If regular page
+   animateToRightTransition(`${projectPage ? 'project-page' : 'page'}`, () => {
+    router.push(`/${link.slug}`);
+   });
+  }
+ };
 
  return (
   navLinks && (
