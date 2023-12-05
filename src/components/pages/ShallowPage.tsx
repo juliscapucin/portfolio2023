@@ -38,18 +38,17 @@ export default function ShallowPage({ children, isShallow }: Props) {
    return;
   }
 
-  if (previousPage === 'home' && isShallow) {
-   updatePreviousPage('project-home');
+  if (isShallow) {
    setIsShallowPage(true);
-  } else if (previousPage === 'work' && isShallow) {
-   updatePreviousPage('project-work');
-   setIsShallowPage(true);
-  } else if (previousPage.includes('project') && isShallow) {
-   updatePreviousPage('project-shallow');
-   setIsShallowPage(true);
-   setShowBackButton(false);
-  } else if (!isShallow) {
-   setShowBackButton(false);
+
+   if (previousPage === 'home') {
+    updatePreviousPage('project-home');
+   } else if (previousPage === 'work') {
+    updatePreviousPage('project-work');
+   } else if (previousPage.includes('project')) {
+    updatePreviousPage('project-shallow');
+   }
+  } else {
    updatePreviousPage('project');
    setIsShallowPage(false);
   }
