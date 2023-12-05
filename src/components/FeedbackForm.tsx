@@ -36,7 +36,7 @@ export default function FeedbackForm() {
       Name:
      </label>
      <input
-      className='appearance-none bg-transparent border-none w-full'
+      className='custom-focus-visible bg-transparent border-none w-full'
       type='text'
       id={'name'}
       name='name'
@@ -56,7 +56,7 @@ export default function FeedbackForm() {
       Message:
      </label>
      <textarea
-      className='appearance-none bg-transparent w-full border focus:border-colorFaded'
+      className='custom-focus-visible bg-transparent w-full ml-[2px] outline-none border border-secondary'
       id={'message'}
       name='message'
       placeholder={'Message'}
