@@ -6,6 +6,7 @@ import {
  useLayoutEffect,
  useRef,
  useState,
+ Fragment,
 } from 'react';
 import { CldImage } from 'next-cloudinary';
 
@@ -271,7 +272,7 @@ export default function ProjectsMenu({
        projectItems.map((link) => {
         if (!link.coverImage || !link.title || !link.slug) return;
         return (
-         <div key={`${link.slug}-${category}`}>
+         <Fragment key={`${link.slug}-${category}`}>
           <ProjectCard
            {...{
             title: link.title,
@@ -283,7 +284,7 @@ export default function ProjectsMenu({
             updateIsHovering,
            }}
           />
-         </div>
+         </Fragment>
         );
        })}
      </div>
