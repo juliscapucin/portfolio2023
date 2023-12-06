@@ -37,7 +37,7 @@ export default async function getProject(slug: string) {
       link
    }
 }`,
-  { slug, cache: 'no-cache' }
+  { slug, next: { revalidate: 3600 } }
  );
 
  if (!res) return undefined;
