@@ -1,13 +1,6 @@
 'use client';
 
-import {
- useCallback,
- useEffect,
- useLayoutEffect,
- useRef,
- useState,
- Fragment,
-} from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, Fragment } from 'react';
 import { CldImage } from 'next-cloudinary';
 
 import gsap from 'gsap';
@@ -150,12 +143,6 @@ export default function ProjectsMenu({
   if (projectsImgsRef.current && projectsLinksRef.current)
    animateProjectsMenu(projectsImgsRef.current, projectsLinksRef.current);
  }, [projectsImgsRef.current, projectsLinksRef.current, variant, projectItems]);
-
- useEffect(() => {
-  return () => {
-   ctx.revert();
-  };
- }, []);
 
  // Create ScrollTrigger for filter
  useEffect(() => {

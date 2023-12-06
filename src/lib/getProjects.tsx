@@ -23,7 +23,7 @@ export default async function getWorkPage() {
       scope,
    }
 }`,
-  { next: { revalidate: 3600 } }
+  { cache: 'no-cache' }
  );
 
  if (!res) return undefined;
