@@ -3,6 +3,7 @@
 import Image from 'next/image';
 
 import { useRef } from 'react';
+import { usePageContext } from '@/context';
 import { Footer, Services } from '@/components';
 import { Title } from '@/components/ui';
 import { useElementReveal, useEnterTransitionDirection } from '@/hooks';
@@ -17,7 +18,7 @@ type AboutData = {
 };
 
 export default function AboutPage({ data }: { data: AboutData }) {
- const pageRef = useRef(null);
+ const { pageRef } = usePageContext();
  const imageWrapperRef = useRef(null);
 
  useEnterTransitionDirection(pageRef);

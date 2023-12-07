@@ -21,11 +21,7 @@ export default function ShallowPage({ children, isShallow }: Props) {
  const router = useRouter();
  const pathname = usePathname();
 
- const { previousPage, updatePreviousPage, setIsShallowPage } =
-  usePageContext();
-
- console.log('shallow page', isShallow);
- console.log('previous page', previousPage);
+ const { previousPage, updatePreviousPage, shallowPageRef } = usePageContext();
 
  // this is used as a workaround to prevent the intercepted route of showing in all pages
  // Next 13 bug
@@ -38,33 +34,30 @@ export default function ShallowPage({ children, isShallow }: Props) {
   }
 
   if (isShallow) {
-   setIsShallowPage(true);
-
    if (previousPage === 'home') {
     updatePreviousPage('project-home');
    } else if (previousPage === 'work') {
     updatePreviousPage('project-work');
    } else if (previousPage.includes('project')) {
-    updatePreviousPage('project-shallow');
     setShowBackButton(false);
    }
   } else {
    updatePreviousPage('project');
-   setIsShallowPage(false);
   }
  }, []);
 
  const onDismiss = useCallback(() => {
   //  Remove scroll from wrapper div
-  if (overlay.current) {
-   overlay.current.classList.remove('overflow-y-scroll');
-   overlay.current.classList.add('overflow-clip');
+  if (shallowPageRef.current) {
+   shallowPageRef.current.classList.remove('overflow-y-scroll');
+   shallowPageRef.current.classList.add('overflow-clip');
   }
 
-  //  Add scroll on html div
-  document.documentElement.classList.remove('overflow-clip');
+  //  Restore scroll on html div
+  if (document.documentElement.classList.contains('overflow-clip'))
+   document.documentElement.classList.remove('overflow-clip');
 
-  animateToLeftTransition('shallow-page', () => {
+  animateToLeftTransition(shallowPageRef.current, () => {
    router.back();
   });
  }, [router]);
@@ -85,10 +78,10 @@ export default function ShallowPage({ children, isShallow }: Props) {
  return (
   shouldShowShallowPage && (
    <div
+    ref={shallowPageRef}
     className={`${
      isShallow && 'shallow-page'
     } page scroll-trigger fixed top-0 left-0 bottom-0 right-0 mx-auto pl-8 pr-16 lg:pr-8 bg-primary max-w-desktop overflow-y-scroll overflow-x-clip z-10`}
-    ref={overlay}
    >
     <div
      className='wrapper max-w-desktop overflow-clip m-auto mt-0 py-32 bg-primary'
