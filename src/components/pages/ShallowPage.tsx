@@ -33,7 +33,6 @@ export default function ShallowPage({ children, isShallow }: Props) {
 
  // update previous page + define if back button should be shown
  useEffect(() => {
-  setIsShallowPage(false);
   if (!shouldShowShallowPage) {
    return;
   }
@@ -47,6 +46,7 @@ export default function ShallowPage({ children, isShallow }: Props) {
     updatePreviousPage('project-work');
    } else if (previousPage.includes('project')) {
     updatePreviousPage('project-shallow');
+    setShowBackButton(false);
    }
   } else {
    updatePreviousPage('project');
