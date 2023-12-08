@@ -22,7 +22,6 @@ import ProjectImage from './ProjectImage';
 import ProjectInfo from './ProjectInfo';
 import ProjectLabel from './ProjectLabel';
 import ProjectLabelMarquee from './ProjectLabelMarquee';
-import ProjectNext from './ProjectNext';
 import ProjectsFilter from './ProjectsFilter';
 import ProjectsMenu from './ProjectsMenu';
 import ProjectsMenuThumbs from './ProjectsMenuThumbs';
@@ -58,7 +57,6 @@ export {
    ProjectInfo,
    ProjectLabel,
    ProjectLabelMarquee,
-   ProjectNext,
    ProjectsFilter,
    ProjectsMenu,
    ProjectsMenuThumbs,
