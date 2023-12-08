@@ -6,9 +6,8 @@ import { navLinks } from '@/constants';
 
 import {
  animateHorizontal,
+ animateHorizontalTransition,
  animateMobileMenu,
- animateToLeftTransition,
- animateToRightTransition,
 } from '@/animations';
 
 // TYPE
@@ -75,7 +74,7 @@ export const PageContextProvider = ({
 
     //  Animate shallow page to left
     animateHorizontal(shallowPageRef.current, 0, -200);
-    animateToLeftTransition(pageRef.current, () => {
+    animateHorizontalTransition(pageRef.current, 0, -100, () => {
      router.push(`/${link.slug}`, { scroll: false });
     });
 
@@ -83,7 +82,7 @@ export const PageContextProvider = ({
    }
 
    // If regular page
-   animateToLeftTransition(pageRef.current, () => {
+   animateHorizontalTransition(pageRef.current, 0, -100, () => {
     router.push(`/${link.slug}`);
    });
   } else {
@@ -99,12 +98,12 @@ export const PageContextProvider = ({
 
     // If coming from project page which was preceded by home page
     if (previousPage.includes('home')) {
-     animateToRightTransition(shallowPageRef.current, () => {
+     animateHorizontalTransition(shallowPageRef.current, 0, 100, () => {
       router.push(`/${link.slug}`, { scroll: false });
      });
     } else {
      animateHorizontal(shallowPageRef.current, 0, 200);
-     animateToRightTransition(pageRef.current, () => {
+     animateHorizontalTransition(pageRef.current, 0, 100, () => {
       router.push(`/${link.slug}`, { scroll: false });
      });
     }
@@ -113,7 +112,7 @@ export const PageContextProvider = ({
    }
 
    // If regular page
-   animateToRightTransition(pageRef.current, () => {
+   animateHorizontalTransition(pageRef.current, 0, 100, () => {
     router.push(`/${link.slug}`);
    });
   }

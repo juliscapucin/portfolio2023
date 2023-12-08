@@ -1,10 +1,7 @@
 import {
    animateHorizontal,
+   animateHorizontalTransition,
    animateToFullScreen,
-   animateToLeft,
-   animateToLeftTransition,
-   animateToRight,
-   animateToRightTransition,
 } from './pageTransitions';
 
 import { animateEnterHorizontal } from './animateEnterHorizontal';
@@ -17,14 +14,11 @@ import { ctx } from './gsap-context';
 export {
    animateEnterHorizontal,
    animateHorizontal,
+   animateHorizontalTransition,
    animateStaggerText,
    animateMobileMenu,
    animateProjectsMenu,
    animateToFullScreen,
-   animateToLeft,
-   animateToLeftTransition,
-   animateToRight,
-   animateToRightTransition,
    animateSplitText,
    ctx,
 };

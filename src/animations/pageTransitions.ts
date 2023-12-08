@@ -76,42 +76,6 @@ export const animateToFullScreen = (
    tl.add(translateXAnimation());
 };
 
-// animate to left
-// used to start pages after transitions
-export const animateToLeft = (enterElement: HTMLDivElement | string | null) => {
-   if (!enterElement) return;
-
-   const tl = gsap.timeline();
-   tl.set(enterElement, { autoAlpha: 1 });
-   tl.from(enterElement, {
-      xPercent: 100,
-      duration: 1,
-      ease: 'expo.inOut',
-      onComplete: () => {
-         // reset transform to avoid issues with scrolltrigger
-         tl.revert();
-      },
-   });
-};
-
-// animate to right
-// used to start pages after transitions
-export const animateToRight = (
-   enterElement: HTMLDivElement | string | null
-) => {
-   if (!enterElement) return;
-   const tl = gsap.timeline();
-   tl.set(enterElement, { autoAlpha: 1 }).from(enterElement, {
-      xPercent: -100,
-      duration: 1,
-      ease: 'expo.inOut',
-      onComplete: () => {
-         // reset transform to avoid issues with scrolltrigger
-         tl.revert();
-      },
-   });
-};
-
 // animate horizontal
 // used to start pages after transitions
 export const animateHorizontal = (
@@ -140,9 +104,11 @@ export const animateHorizontal = (
    );
 };
 
-// animate to left + router
-export const animateToLeftTransition = (
+// animate horizontal + router
+export const animateHorizontalTransition = (
    element: HTMLDivElement | null,
+   startPos: number,
+   endPos: number,
    routerFunction: () => void
 ) => {
    if (!element) return;
@@ -152,34 +118,12 @@ export const animateToLeftTransition = (
    });
 
    timeline.set(element, {
-      x: '0%',
+      xPercent: startPos,
    });
 
    timeline.to(element, {
       duration: 0.3,
-      x: '-100%',
-      ease: 'power1.in',
-   });
-};
-
-// animate to right + router
-export const animateToRightTransition = (
-   element: HTMLDivElement | null,
-   routerFunction: () => void
-) => {
-   if (!element) return;
-
-   const timeline = gsap.timeline({
-      onComplete: routerFunction,
-   });
-
-   timeline.set(element, {
-      x: '0%',
-   });
-
-   timeline.to(element, {
-      duration: 0.3,
-      x: '100%',
+      xPercent: endPos,
       ease: 'power1.in',
    });
 };
