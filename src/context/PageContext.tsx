@@ -15,7 +15,7 @@ import {
 interface ContextProps {
  previousPage: string;
  updatePreviousPage: (page: string) => void;
- buttonAction: (link: NavLink, mobileMenuRef?: HTMLDivElement) => void;
+ transitionOnClick: (link: NavLink, mobileMenuRef?: HTMLDivElement) => void;
  shallowPageRef: React.MutableRefObject<HTMLDivElement | null>;
  pageRef: React.MutableRefObject<HTMLDivElement | null>;
 }
@@ -41,7 +41,7 @@ export const PageContextProvider = ({
   setPreviousPage(page);
  };
 
- const buttonAction = (link: NavLink, mobileMenuRef?: HTMLDivElement) => {
+ const transitionOnClick = (link: NavLink, mobileMenuRef?: HTMLDivElement) => {
   // Toggle mobile menu
   if (mobileMenuRef) {
    animateMobileMenu(mobileMenuRef);
@@ -131,7 +131,7 @@ export const PageContextProvider = ({
    value={{
     previousPage,
     updatePreviousPage,
-    buttonAction,
+    transitionOnClick,
     shallowPageRef,
     pageRef,
    }}

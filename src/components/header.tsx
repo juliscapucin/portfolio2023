@@ -4,13 +4,13 @@ import { MenuDesktop, MenuMobile } from '@/components';
 import { usePageContext } from '@/context';
 
 export default function Header() {
- const { buttonAction } = usePageContext();
+ const { transitionOnClick } = usePageContext();
 
  return (
   navLinks && (
    <header className='fixed top-0 z-100 w-full max-w-desktop'>
-    <MenuDesktop navLinks={navLinks} buttonAction={buttonAction} />
-    <MenuMobile navLinks={navLinks} buttonAction={buttonAction} />
+    <MenuDesktop navLinks={navLinks} transitionOnClick={transitionOnClick} />
+    <MenuMobile navLinks={navLinks} transitionOnClick={transitionOnClick} />
    </header>
   )
  );
