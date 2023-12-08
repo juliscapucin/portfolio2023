@@ -61,7 +61,7 @@ export default function ProjectPage({
  }, [headerRef]);
 
  return project ? (
-  <ShallowPage isShallow={isShallow}>
+  <ShallowPage isShallow={isShallow} key={project.slug}>
    <ProjectsMenuThumbs allProjects={allProjects} />
 
    <section className='relative w-full pt-32 z-30 bg-primary'>

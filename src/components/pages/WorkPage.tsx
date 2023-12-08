@@ -1,9 +1,8 @@
 'use client';
 
-import { useRef } from 'react';
-
 import { breakpoints } from '@/constants';
 
+import { usePageContext } from '@/context';
 import { useMediaQuery } from '@/hooks';
 import { Footer, ProjectsMenu } from '@/components';
 import { Title } from '@/components/ui';
@@ -19,7 +18,7 @@ type Props = {
 export default function WorkPage({ data, allProjects }: Props) {
  // Set breakpoint for mobile/desktop (values are in constants.ts)
  const breakpoint = useMediaQuery(breakpoints.desktop);
- const pageRef = useRef(null);
+ const { pageRef } = usePageContext();
 
  useEnterTransitionDirection(pageRef);
 

@@ -2,20 +2,28 @@ import { useRef, useState } from 'react';
 
 const filterOptions = ['all', 'recent', 'playground', 'archive'];
 
-const ActiveButton = ({ label }: { label: string }) => {
+type FilterButtonProps = {
+ filterProjects: (filter: any) => void;
+ handleActiveButton: (label: string) => void;
+ active: boolean;
+ label: string;
+};
+
+type ProjectsFilterProps = {
+ filterProjects: (filter: any) => void;
+ editVariant: () => void;
+ variant?: string;
+ activeBreakpoint: string | undefined;
+ startCategory: 'all' | 'recent' | 'playground' | 'archive';
+};
+
+const ActiveFilterButton = ({ label }: { label: string }) => {
  return (
   <div className='relative'>
    <span>{label}</span>
    <div className='w-full h-[1px] bg-secondary bottom-0'></div>
   </div>
  );
-};
-
-type FilterButtonProps = {
- filterProjects: (filter: any) => void;
- handleActiveButton: (label: string) => void;
- active: boolean;
- label: string;
 };
 
 const FilterButton = ({
@@ -25,7 +33,10 @@ const FilterButton = ({
  label,
 }: FilterButtonProps) => {
  return active ? (
-  <ActiveButton label={label} />
+  <div className='relative'>
+   <span>{label}</span>
+   <div className='w-full h-[1px] bg-secondary bottom-0'></div>
+  </div>
  ) : (
   <button
    className='hover:text-colorFaded duration-200'
@@ -37,14 +48,6 @@ const FilterButton = ({
    {label}
   </button>
  );
-};
-
-type ProjectsFilterProps = {
- filterProjects: (filter: any) => void;
- editVariant: () => void;
- variant?: string;
- activeBreakpoint: string | undefined;
- startCategory: 'all' | 'recent' | 'playground' | 'archive';
 };
 
 export default function ProjectsFilter({
@@ -67,7 +70,7 @@ export default function ProjectsFilter({
    <div className='hidden lg:flex gap-8 align-bottom '>
     <span>View:</span>
     {variant === 'list' ? (
-     <ActiveButton label='List' />
+     <ActiveFilterButton label='List' />
     ) : (
      <button
       className='hover:text-colorFaded transition-colors duration-200'
@@ -80,7 +83,7 @@ export default function ProjectsFilter({
     )}
     <span>/</span>
     {variant === 'image' ? (
-     <ActiveButton label='Image' />
+     <ActiveFilterButton label='Image' />
     ) : (
      <button
       className='hover:text-colorFaded transition-colors duration-200'

@@ -26,7 +26,7 @@ export default function FeedbackForm() {
  return (
   <section className='grid grid-cols-12'>
    <form onSubmit={handleSubmit} className='col-span-4'>
-    <div className='flex flex-col border-b border-secondary mt-16 relative'>
+    <div className='mt-16 relative'>
      <label
       className={`absolute top-0 left-0 transition-transform duration-200 ease-in-out ${
        formData.name ? '-translate-y-10' : 'opacity-0'
@@ -36,7 +36,7 @@ export default function FeedbackForm() {
       Name:
      </label>
      <input
-      className='appearance-none bg-transparent border-none w-full'
+      className='bg-transparent w-full p-2 border border-colorFaded focus:border-secondary'
       type='text'
       id={'name'}
       name='name'
@@ -46,7 +46,7 @@ export default function FeedbackForm() {
      />
     </div>
 
-    <div className='flex flex-col border-b border-secondary mt-16 relative'>
+    <div className='mt-16 relative'>
      <label
       className={`absolute top-0 left-0 transition-transform duration-200 ease-in-out ${
        formData.message ? '-translate-y-10' : 'opacity-0'
@@ -56,7 +56,7 @@ export default function FeedbackForm() {
       Message:
      </label>
      <textarea
-      className='appearance-none bg-transparent border-none w-full'
+      className='bg-transparent w-full p-2 border border-colorFaded focus:border-secondary'
       id={'message'}
       name='message'
       placeholder={'Message'}

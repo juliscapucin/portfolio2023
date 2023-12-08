@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, Fragment } from 'react';
 import { CldImage } from 'next-cloudinary';
 
 import gsap from 'gsap';
@@ -144,12 +144,6 @@ export default function ProjectsMenu({
    animateProjectsMenu(projectsImgsRef.current, projectsLinksRef.current);
  }, [projectsImgsRef.current, projectsLinksRef.current, variant, projectItems]);
 
- useEffect(() => {
-  return () => {
-   ctx.revert();
-  };
- }, []);
-
  // Create ScrollTrigger for filter
  useEffect(() => {
   if (!filterRef.current || !projectsMenuRef.current) return;
@@ -182,7 +176,7 @@ export default function ProjectsMenu({
  return (
   <section
    ref={projectsMenuRef}
-   className='projects-menu min-h-screen relative'
+   className='projects-menu custom-min-h-screen relative'
   >
    {/* Custom Cursor */}
    {activeBreakpoint === 'desktop' && <CustomCursor isHovering={isHovering} />}
@@ -261,7 +255,7 @@ export default function ProjectsMenu({
        projectItems.map((link) => {
         if (!link.coverImage || !link.title || !link.slug) return;
         return (
-         <div key={`${link.slug}-${category}`}>
+         <Fragment key={`${link.slug}-${category}`}>
           <ProjectCard
            {...{
             title: link.title,
@@ -273,7 +267,7 @@ export default function ProjectsMenu({
             updateIsHovering,
            }}
           />
-         </div>
+         </Fragment>
         );
        })}
      </div>

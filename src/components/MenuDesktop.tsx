@@ -10,10 +10,13 @@ type NavLink = { label: string; slug: string; _key: number };
 
 type NavLinksProps = {
  navLinks: NavLink[];
- buttonAction: (link: NavLink) => void;
+ transitionOnClick: (link: NavLink) => void;
 };
 
-export default function MenuDesktop({ navLinks, buttonAction }: NavLinksProps) {
+export default function MenuDesktop({
+ navLinks,
+ transitionOnClick,
+}: NavLinksProps) {
  const { modalOpen, updateModalOpen } = useModalContext();
  const pathname = usePathname();
 
@@ -33,7 +36,7 @@ export default function MenuDesktop({ navLinks, buttonAction }: NavLinksProps) {
          key={link._key}
          activeState={pathname.includes(`/${link.slug}`) ? true : false}
          action={() => {
-          buttonAction(link);
+          transitionOnClick(link);
          }}
         />
        );

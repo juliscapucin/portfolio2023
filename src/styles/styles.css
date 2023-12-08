@@ -31,18 +31,21 @@
       --color-secondary: 252 249 248;
       --color-faded: 154 152 152;
       --color-scroll: 252, 249, 248;
+      --color-focus: 154, 152, 152;
    }
    :root[data-theme='light'] {
       --color-primary: 249 246 238;
       --color-secondary: 18 12 15;
       --color-faded: 154 152 152;
       --color-scroll: 18, 12, 15;
+      --color-focus: 154, 152, 152;
    }
    :root[data-theme='green'] {
       --color-primary: 0 40 0;
       --color-secondary: 0 255 0;
       --color-faded: 0 100 0;
       --color-scroll: 0, 255, 0;
+      --color-focus: 0, 100, 0;
    }
 
    ::-webkit-scrollbar {
@@ -71,17 +74,36 @@
       @apply text-bodyLarge;
       @apply mb-8;
    }
+
+   /* KEYBOARD FOCUS */
+
+   *:focus-visible {
+      background-color: rgba(var(--color-focus), 1);
+      outline: none;
+   }
+
+   button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 4px solid rgba(var(--color-focus), 1);
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+   }
+
+   button:focus-visible::before {
+      opacity: 1;
+   }
 }
 
 * {
    box-sizing: border-box;
    padding: 0;
    margin: 0;
-}
-
-* > :focus-visible {
-   background-color: var(--color-faded);
-   outline: none;
 }
 
 html {
@@ -191,6 +213,13 @@ textarea {
    left: 0;
    width: 1px;
    height: 100%;
+}
+
+/* WORKAROUND FOR vh */
+
+.custom-min-h-screen {
+   min-height: 100vh;
+   min-height: 100svh;
 }
 
 /* WORKAROUND FOR COL-START BUG */

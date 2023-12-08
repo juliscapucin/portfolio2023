@@ -2,18 +2,32 @@
 
 import { useEffect, useState } from 'react';
 
-import { getTheme, updateTheme } from '@/utils';
-
 export function useThemeStorage() {
- const [theme, setTheme] = useState<string | null>(() => {
-  const storageTheme = getTheme();
-  return storageTheme || 'dark'; // Default to 'dark' if storageTheme is not available
- });
+   const [theme, setTheme] = useState<string | null>(null);
+   const [mounted, setMounted] = useState(false);
 
- // Update theme in session storage on change
- useEffect(() => {
-  updateTheme(theme);
- }, [theme]);
+   const updateTheme = (theme: string) => {
+      localStorage.setItem('theme', theme);
+   };
 
- return { theme, setTheme };
+   // Get theme from session storage on mount
+   useEffect(() => {
+      const storageTheme = localStorage.getItem('theme');
+      if (storageTheme) {
+         setTheme(theme);
+      } else {
+         setTheme('dark');
+      }
+   }, []);
+
+   // Update theme in session storage on change
+   useEffect(() => {
+      if (!mounted) {
+         setMounted(true);
+         return;
+      }
+      updateTheme(theme!);
+   }, [theme]);
+
+   return { theme, setTheme };
 }

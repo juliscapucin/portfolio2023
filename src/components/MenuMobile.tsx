@@ -11,10 +11,13 @@ type NavLink = { label: string; slug: string; _key: number };
 
 type NavLinksProps = {
  navLinks: NavLink[];
- buttonAction: (link: NavLink, mobileMenuRef?: HTMLDivElement) => void;
+ transitionOnClick: (link: NavLink, mobileMenuRef?: HTMLDivElement) => void;
 };
 
-export default function MenuMobile({ navLinks, buttonAction }: NavLinksProps) {
+export default function MenuMobile({
+ navLinks,
+ transitionOnClick,
+}: NavLinksProps) {
  const mobileMenuRef = useRef(null);
  const pathname = usePathname();
 
@@ -36,7 +39,7 @@ export default function MenuMobile({ navLinks, buttonAction }: NavLinksProps) {
       />
      </GridDiv>
      <aside
-      className='absolute top-0 w-full min-h-screen p-8 bg-primary transition-transform -translate-y-full duration-300'
+      className='absolute top-0 w-full custom-min-h-screen p-8 bg-primary transition-transform -translate-y-full duration-300'
       ref={mobileMenuRef}
      >
       {/* Close Button */}
@@ -71,7 +74,7 @@ export default function MenuMobile({ navLinks, buttonAction }: NavLinksProps) {
             className='block'
             onClick={() => {
              if (mobileMenuRef.current)
-              buttonAction(link, mobileMenuRef.current);
+              transitionOnClick(link, mobileMenuRef.current);
             }}
            >
             <span className='font-headline text-displaySmall uppercase text-secondary'>

@@ -22,15 +22,14 @@ import { Project } from '@/types';
 
 export default function HomePage({ allProjects }: { allProjects: Project[] }) {
  const pathname = usePathname();
- const { previousPage, updatePreviousPage } = usePageContext();
- const pageRef = useRef(null);
+ const { previousPage, updatePreviousPage, pageRef } = usePageContext();
 
  // Set breakpoint for mobile/desktop (values are in constants.ts)
  const breakpoint = useMediaQuery(breakpoints.desktop);
 
  //  Enter page animation
  useLayoutEffect(() => {
-  if (!pageRef.current || pathname !== '/') return;
+  if (!pageRef || !pageRef.current || pathname !== '/') return;
   let ctx = gsap.context(() => {});
 
   if (!previousPage.includes('project')) {
@@ -48,7 +47,7 @@ export default function HomePage({ allProjects }: { allProjects: Project[] }) {
  return (
   <div ref={pageRef} className='page home-page main-page overflow-clip'>
    <GridDiv
-    divClass='overflow-clip lg:h-screen lg:min-h-screen'
+    divClass='overflow-clip lg:h-screen custom-min-h-screen'
     bottom={breakpoint === 'desktop' && true}
    >
     {breakpoint === 'mobile' && <HeroMobile />}

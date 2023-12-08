@@ -1,6 +1,5 @@
 import { gsap } from 'gsap';
 import { Flip } from 'gsap/Flip';
-import { ctx } from '@/animations';
 
 gsap.registerPlugin(Flip);
 
@@ -49,7 +48,8 @@ export const animateToFullScreen = (
          ease: 'expo.out',
          onComplete: () => {
             // Remove scrollbar from html div
-            document.documentElement.classList.add('overflow-clip');
+            if (!document.documentElement.classList.contains('overflow-clip'))
+               document.documentElement.classList.add('overflow-clip');
             // Change route
             routerFunction();
             // Change z-index of animationEnd div so to avoid flashing of the page underneath
@@ -78,7 +78,7 @@ export const animateToFullScreen = (
 
 // animate to left
 // used to start pages after transitions
-export const animateToLeft = (enterElement: HTMLDivElement | null) => {
+export const animateToLeft = (enterElement: HTMLDivElement | string | null) => {
    if (!enterElement) return;
 
    const tl = gsap.timeline();
@@ -96,7 +96,9 @@ export const animateToLeft = (enterElement: HTMLDivElement | null) => {
 
 // animate to right
 // used to start pages after transitions
-export const animateToRight = (enterElement: HTMLDivElement | null) => {
+export const animateToRight = (
+   enterElement: HTMLDivElement | string | null
+) => {
    if (!enterElement) return;
    const tl = gsap.timeline();
    tl.set(enterElement, { autoAlpha: 1 }).from(enterElement, {
@@ -113,51 +115,47 @@ export const animateToRight = (enterElement: HTMLDivElement | null) => {
 // animate horizontal
 // used to start pages after transitions
 export const animateHorizontal = (
-   enterElement: string,
+   elementRef: HTMLDivElement | null,
    startPos: number,
    endPos: number
 ) => {
-   const animateHorizontalEnter = document.querySelector(
-      `.${enterElement}`
-   ) as HTMLDivElement;
-
-   if (!animateHorizontalEnter) return;
+   if (!elementRef) return;
 
    const tl = gsap.timeline();
 
-   tl.set(animateHorizontalEnter, {
-      xPercent: startPos,
-   });
-
-   tl.to(animateHorizontalEnter, {
-      duration: 1,
-      xPercent: endPos,
-      ease: 'expo.inOut',
-      onComplete: () => {
-         // reset transform to avoid issues with scrolltrigger
-         tl.revert();
-      },
-   });
+   tl.set(elementRef, {
+      overflow: 'hidden',
+   }).fromTo(
+      elementRef,
+      { xPercent: startPos },
+      {
+         duration: 1,
+         xPercent: endPos,
+         ease: 'expo.inOut',
+         onComplete: () => {
+            // reset transform to avoid issues with scrolltrigger
+            tl.revert();
+         },
+      }
+   );
 };
 
 // animate to left + router
 export const animateToLeftTransition = (
-   leaveElement: string,
+   element: HTMLDivElement | null,
    routerFunction: () => void
 ) => {
-   const animateToLeftLeave = document.querySelector(`.${leaveElement}`);
-
-   if (!animateToLeftLeave) return;
+   if (!element) return;
 
    const timeline = gsap.timeline({
       onComplete: routerFunction,
    });
 
-   timeline.set(animateToLeftLeave, {
+   timeline.set(element, {
       x: '0%',
    });
 
-   timeline.to(animateToLeftLeave, {
+   timeline.to(element, {
       duration: 0.3,
       x: '-100%',
       ease: 'power1.in',
@@ -166,25 +164,20 @@ export const animateToLeftTransition = (
 
 // animate to right + router
 export const animateToRightTransition = (
-   leaveElement: string,
+   element: HTMLDivElement | null,
    routerFunction: () => void
 ) => {
-   const animateToRightLeave =
-      leaveElement === 'shallow-page'
-         ? document.querySelector('.shallow-page')
-         : document.querySelector(`.${leaveElement}`);
-
-   if (!animateToRightLeave) return;
+   if (!element) return;
 
    const timeline = gsap.timeline({
       onComplete: routerFunction,
    });
 
-   timeline.set(animateToRightLeave, {
+   timeline.set(element, {
       x: '0%',
    });
 
-   timeline.to(animateToRightLeave, {
+   timeline.to(element, {
       duration: 0.3,
       x: '100%',
       ease: 'power1.in',
