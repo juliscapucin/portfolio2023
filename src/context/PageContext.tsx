@@ -40,6 +40,7 @@ export const PageContextProvider = ({
   setPreviousPage(page);
  };
 
+ // Page transition on button header click
  const transitionOnClick = (link: NavLink, mobileMenuRef?: HTMLDivElement) => {
   // Toggle mobile menu
   if (mobileMenuRef) {
@@ -118,14 +119,12 @@ export const PageContextProvider = ({
   }
  };
 
- //  Set previousPage for when using shallow page back button
+ //  Set previousPage on back button click
  useEffect(() => {
   if (pathname === '/' && previousPage === 'project-home')
    updatePreviousPage('home');
   if (pathname === '/work' && previousPage === 'project-work')
    updatePreviousPage('work');
-
-  console.log(previousPage);
  }, [pathname]);
 
  return (

@@ -81,7 +81,8 @@ export const animateToFullScreen = (
 export const animateHorizontal = (
    elementRef: HTMLDivElement | null,
    startPos: number,
-   endPos: number
+   endPos: number,
+   delay?: number
 ) => {
    if (!elementRef) return;
 
@@ -94,6 +95,7 @@ export const animateHorizontal = (
       { xPercent: startPos },
       {
          duration: 1,
+         delay: delay || 0,
          xPercent: endPos,
          ease: 'expo.inOut',
          onComplete: () => {

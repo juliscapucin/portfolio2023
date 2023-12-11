@@ -3,7 +3,7 @@ import { useLayoutEffect, useRef } from 'react';
 import { Status } from '@/components';
 import { GridDiv, Marquee } from '@/components/ui';
 import {
- animateEnterHorizontal,
+ animateHorizontal,
  animateSplitText,
  animateStaggerText,
 } from '@/animations';
@@ -31,7 +31,7 @@ const HeroDesktop = () => {
   // Number
   animateSplitText(numberRef.current, 100, 1.4);
   // Status
-  animateEnterHorizontal(statusRef.current, -100, 1.5);
+  animateHorizontal(statusRef.current, -100, 0, 1.5);
  }, [nameRef, numberRef, descriptionRef, statusRef]);
 
  return (
