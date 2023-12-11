@@ -118,11 +118,14 @@ export const PageContextProvider = ({
   }
  };
 
- // Set previousPage && isShallowPage when using shallow page back button
+ //  Set previousPage for when using shallow page back button
  useEffect(() => {
-  if (pathname === '/') setPreviousPage('home');
-  if (pathname === '/work') setPreviousPage('work');
-  if (pathname === '/about') setPreviousPage('about');
+  if (pathname === '/' && previousPage === 'project-home')
+   updatePreviousPage('home');
+  if (pathname === '/work' && previousPage === 'project-work')
+   updatePreviousPage('work');
+
+  console.log(previousPage);
  }, [pathname]);
 
  return (

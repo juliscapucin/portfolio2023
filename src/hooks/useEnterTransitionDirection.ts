@@ -3,7 +3,7 @@ import { usePathname } from 'next/navigation';
 
 import gsap from 'gsap';
 
-import { animateToLeft, animateToRight } from '@/animations';
+import { animateHorizontal } from '@/animations';
 
 import { navLinks } from '@/constants';
 import { usePageContext } from '@/context';
@@ -12,7 +12,7 @@ export function useEnterTransitionDirection(
    enterElement: MutableRefObject<HTMLDivElement | null>
 ) {
    const pathname = usePathname();
-   const { previousPage } = usePageContext();
+   const { previousPage, updatePreviousPage } = usePageContext();
 
    //  Define the page transition direction based on the previous page + navLinks order
    useLayoutEffect(() => {
@@ -33,17 +33,21 @@ export function useEnterTransitionDirection(
       // if actual page id is greater than previous page id, animate to left
       if (
          actualPage?.slug === 'about' ||
+         previousPage === 'home' ||
          (actualPage &&
             previousPageLink &&
             actualPage?._key > previousPageLink?._key)
       ) {
-         ctx.add(() => animateToLeft(enterElement.current));
-         window.scrollTo(0, 0);
+         ctx.add(() => animateHorizontal(enterElement.current, 100, 0));
+         // window.scrollTo(0, 0);
          // if actual page id is smaller than previous page id, animate to right
       } else {
-         ctx.add(() => animateToRight(enterElement.current));
-         window.scrollTo(0, 0);
+         ctx.add(() => animateHorizontal(enterElement.current, -100, 0));
+         // window.scrollTo(0, 0);
       }
+
+      // Update previous page for next transition
+      updatePreviousPage(actualPage?.label.toLowerCase() || 'home');
 
       return () => {
          ctx.revert();
