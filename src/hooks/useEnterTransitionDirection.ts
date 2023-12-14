@@ -39,11 +39,11 @@ export function useEnterTransitionDirection(
             actualPage?._key > previousPageLink?._key)
       ) {
          ctx.add(() => animateHorizontal(enterElement.current, 100, 0));
-         // window.scrollTo(0, 0);
+         window.scrollTo(0, 0);
          // if actual page id is smaller than previous page id, animate to right
       } else {
          ctx.add(() => animateHorizontal(enterElement.current, -100, 0));
-         // window.scrollTo(0, 0);
+         window.scrollTo(0, 0);
       }
 
       // Update previous page for next transition

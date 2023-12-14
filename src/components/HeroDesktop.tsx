@@ -1,5 +1,7 @@
 import { useLayoutEffect, useRef } from 'react';
 
+import gsap from 'gsap';
+
 import { Status } from '@/components';
 import { GridDiv, Marquee } from '@/components/ui';
 import {
@@ -24,14 +26,18 @@ const HeroDesktop = () => {
   )
    return;
 
-  // Name
-  animateSplitText(nameRef.current, 200, 0.7);
-  // Description
-  animateStaggerText(descriptionRef.current, 0.7);
-  // Number
-  animateSplitText(numberRef.current, 100, 1.4);
-  // Status
-  animateHorizontal(statusRef.current, -100, 0, 1.5);
+  let ctx = gsap.context(() => {
+   // Name
+   animateSplitText(nameRef.current!, 200, 0.7);
+   // Description
+   animateStaggerText(descriptionRef.current!, 0.7);
+   // Number
+   animateSplitText(numberRef.current!, 100, 1.4);
+   // Status
+   animateHorizontal(statusRef.current, -100, 0, 1.5);
+  });
+
+  return () => ctx.revert();
  }, [nameRef, numberRef, descriptionRef, statusRef]);
 
  return (
@@ -47,13 +53,11 @@ const HeroDesktop = () => {
     <Status />
    </GridDiv>
 
-   {/* Blank Space */}
-   <GridDiv divClass='col-span-5 row-span-1' top={true}></GridDiv>
-
    {/* Name */}
    <GridDiv
-    divClass='col-span-7 row-span-1 overflow-clip flex items-center justify-end'
+    divClass='col-span-full row-span-1 overflow-clip flex items-center justify-end'
     top={true}
+    bottom={true}
    >
     <h1
      ref={nameRef}
@@ -66,7 +70,6 @@ const HeroDesktop = () => {
    {/* Marquee */}
    <GridDiv
     divClass='col-span-full row-span-1 flex items-center'
-    top={true}
     ref={descriptionRef}
    >
     <Marquee speed={150}>

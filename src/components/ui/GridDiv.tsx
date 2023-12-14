@@ -32,8 +32,6 @@ export const GridDiv = forwardRef(function GridDiv(
   )
    return;
 
-  ctx.revert();
-
   ctx.add(() => {
    gsap.set(lineTopRef.current, { xPercent: -100 });
    gsap.set(lineBottomRef.current, { xPercent: -100 });
