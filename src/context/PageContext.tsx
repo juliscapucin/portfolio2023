@@ -1,7 +1,14 @@
 'use client';
 
 import { usePathname, useRouter } from 'next/navigation';
-import { createContext, useContext, useEffect, useRef, useState } from 'react';
+import {
+ createContext,
+ useCallback,
+ useContext,
+ useEffect,
+ useRef,
+ useState,
+} from 'react';
 import { navLinks } from '@/constants';
 
 import {
@@ -41,83 +48,85 @@ export const PageContextProvider = ({
  };
 
  // Page transition on button header click
- const transitionOnClick = (link: NavLink, mobileMenuRef?: HTMLDivElement) => {
-  // Toggle mobile menu
-  if (mobileMenuRef) {
-   animateMobileMenu(mobileMenuRef);
-  }
-
-  const previousPageLink = previousPage.includes('project')
-   ? previousPage.includes('home')
-     ? navLinks.find((el) => el.label.toLowerCase() === 'home')
-     : navLinks.find((el) => el.label.toLowerCase() === 'work')
-   : navLinks.find((el) => el.label.toLowerCase() === previousPage);
-
-  if (!previousPageLink) return;
-
-  const scrollWorkaround = () => {
-   if (!shallowPageRef.current) return;
-
-   const scrollTop = `${shallowPageRef.current.scrollTop}px`;
-   shallowPageRef.current.classList.remove('overflow-y-scroll');
-   shallowPageRef.current.style.top = `-${scrollTop}`;
-  };
-
-  ///// TRANSITION TO LEFT
-  if (link._key > previousPageLink._key) {
-   // Close shallow-page if open
-   if (shallowPageRef.current) {
-    //  Restore scroll on html div
-    if (document.documentElement.classList.contains('overflow-clip'))
-     document.documentElement.classList.remove('overflow-clip');
-
-    scrollWorkaround();
-
-    //  Animate shallow page to left
-    animateHorizontal(shallowPageRef.current, 0, -200);
-    animateHorizontalTransition(pageRef.current, 0, -100, () => {
-     router.push(`/${link.slug}`, { scroll: false });
-    });
-
-    return;
+ const transitionOnClick = useCallback(() => {
+  (link: NavLink, mobileMenuRef?: HTMLDivElement) => {
+   // Toggle mobile menu
+   if (mobileMenuRef) {
+    animateMobileMenu(mobileMenuRef);
    }
 
-   // If regular page
-   animateHorizontalTransition(pageRef.current, 0, -100, () => {
-    router.push(`/${link.slug}`);
-   });
-  } else {
-   ///// TRANSITION TO RIGHT
+   const previousPageLink = previousPage.includes('project')
+    ? previousPage.includes('home')
+      ? navLinks.find((el) => el.label.toLowerCase() === 'home')
+      : navLinks.find((el) => el.label.toLowerCase() === 'work')
+    : navLinks.find((el) => el.label.toLowerCase() === previousPage);
 
-   // Close shallow-page if open
-   if (shallowPageRef.current) {
-    //  Restore scroll on html div
-    if (document.documentElement.classList.contains('overflow-clip'))
-     document.documentElement.classList.remove('overflow-clip');
+   if (!previousPageLink) return;
 
-    scrollWorkaround();
+   const scrollWorkaround = () => {
+    if (!shallowPageRef.current) return;
 
-    // If coming from project page which was preceded by home page
-    if (previousPage.includes('home')) {
-     animateHorizontalTransition(shallowPageRef.current, 0, 100, () => {
+    const scrollTop = `${shallowPageRef.current.scrollTop}px`;
+    shallowPageRef.current.classList.remove('overflow-y-scroll');
+    shallowPageRef.current.style.top = `-${scrollTop}`;
+   };
+
+   ///// TRANSITION TO LEFT
+   if (link._key > previousPageLink._key) {
+    // Close shallow-page if open
+    if (shallowPageRef.current) {
+     //  Restore scroll on html div
+     if (document.documentElement.classList.contains('overflow-clip'))
+      document.documentElement.classList.remove('overflow-clip');
+
+     scrollWorkaround();
+
+     //  Animate shallow page to left
+     animateHorizontal(shallowPageRef.current, 0, -200);
+     animateHorizontalTransition(pageRef.current, 0, -100, () => {
       router.push(`/${link.slug}`, { scroll: false });
      });
-    } else {
-     animateHorizontal(shallowPageRef.current, 0, 200);
-     animateHorizontalTransition(pageRef.current, 0, 100, () => {
-      router.push(`/${link.slug}`, { scroll: false });
-     });
+
+     return;
     }
 
-    return;
-   }
+    // If regular page
+    animateHorizontalTransition(pageRef.current, 0, -100, () => {
+     router.push(`/${link.slug}`);
+    });
+   } else {
+    ///// TRANSITION TO RIGHT
 
-   // If regular page
-   animateHorizontalTransition(pageRef.current, 0, 100, () => {
-    router.push(`/${link.slug}`);
-   });
-  }
- };
+    // Close shallow-page if open
+    if (shallowPageRef.current) {
+     //  Restore scroll on html div
+     if (document.documentElement.classList.contains('overflow-clip'))
+      document.documentElement.classList.remove('overflow-clip');
+
+     scrollWorkaround();
+
+     // If coming from project page which was preceded by home page
+     if (previousPage.includes('home')) {
+      animateHorizontalTransition(shallowPageRef.current, 0, 100, () => {
+       router.push(`/${link.slug}`, { scroll: false });
+      });
+     } else {
+      animateHorizontal(shallowPageRef.current, 0, 200);
+      animateHorizontalTransition(pageRef.current, 0, 100, () => {
+       router.push(`/${link.slug}`, { scroll: false });
+      });
+     }
+
+     return;
+    }
+
+    // If regular page
+    animateHorizontalTransition(pageRef.current, 0, 100, () => {
+     router.push(`/${link.slug}`);
+    });
+   }
+  };
+ }, []);
 
  //  Set previousPage on back button click
  useEffect(() => {

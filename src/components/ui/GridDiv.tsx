@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef, use, useLayoutEffect, useRef } from 'react';
+import { forwardRef, useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 
 type GridDivProps = {

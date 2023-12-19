@@ -154,7 +154,6 @@ export default function ProjectsMenu({
    let ctx = gsap.context(() => {
     ScrollTrigger.create({
      trigger: filterRef.current,
-     start: 'top 40px',
      endTrigger: projectsMenuRef.current,
      end: 'bottom',
      pin: filterRef.current,

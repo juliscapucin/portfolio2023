@@ -8,7 +8,7 @@
    "javascript.updateImportsOnFileMove.enabled": "always",
    "typescript.updateImportsOnFileMove.enabled": "always",
    "editor.codeActionsOnSave": {
-      "source.organizeImports": false
+      "source.organizeImports": "never"
    },
    "files.trimTrailingWhitespace": true,
    "[markdown]": {
