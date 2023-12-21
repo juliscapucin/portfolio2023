@@ -48,7 +48,7 @@ export const PageContextProvider = ({
  };
 
  // Page transition on button header click
- const transitionOnClick = useCallback(() => {
+ const transitionOnClick = () => {
   (link: NavLink, mobileMenuRef?: HTMLDivElement) => {
    // Toggle mobile menu
    if (mobileMenuRef) {
@@ -126,7 +126,7 @@ export const PageContextProvider = ({
     });
    }
   };
- }, []);
+ };
 
  //  Set previousPage on back button click
  useEffect(() => {
