@@ -1,10 +1,26 @@
-import { navLinks } from '@/constants';
+import { useEffect, useState } from 'react';
 
 import { MenuDesktop, MenuMobile } from '@/components';
 import { usePageContext } from '@/context';
 
+import { NavLink } from '@/types';
+
 export default function Header() {
+ const [navLinks, setNavLinks] = useState<NavLink[] | null>(null);
  const { transitionOnClick } = usePageContext();
+
+ //  Fetch data from api Route Handler (api/...)
+ useEffect(() => {
+  const fetchData = async () => {
+   const response = await fetch(`/api/navbar`);
+   const data = await response.json();
+
+   console.log(data.items);
+   setNavLinks(data.items);
+  };
+
+  fetchData();
+ }, []);
 
  return (
   navLinks && (

@@ -17,6 +17,8 @@ import {
  animateMobileMenu,
 } from '@/animations';
 
+import { NavLink } from '@/types';
+
 // TYPE
 interface ContextProps {
  previousPage: string;
@@ -25,8 +27,6 @@ interface ContextProps {
  shallowPageRef: React.MutableRefObject<HTMLDivElement | null>;
  pageRef: React.MutableRefObject<HTMLDivElement | null>;
 }
-
-type NavLink = { label: string; slug: string; _key: number };
 
 // CREATE CONTEXT
 const PageContext = createContext<ContextProps | null>(null);
@@ -72,7 +72,7 @@ export const PageContextProvider = ({
    };
 
    ///// TRANSITION TO LEFT
-   if (link._key > previousPageLink._key) {
+   if (link.order && link.order > previousPageLink.order) {
     // Close shallow-page if open
     if (shallowPageRef.current) {
      //  Restore scroll on html div

@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 
-import { Availability, Copyright, FooterLinks } from '@/components';
+import { Availability, Copyright, FooterNav, SocialLinks } from '@/components';
 import { GridDiv } from '@/components/ui';
 
 export default function Footer() {
@@ -18,14 +18,12 @@ export default function Footer() {
    } lg:grid grid-cols-12 max-w-desktop bg-primary`}
   >
    <nav className='col-span-3'>
-    {/* Nav Column */}
-
-    {/* Social Column */}
+    {/* Links Column */}
     <div className='flex flex-col'>
-     <FooterLinks apiRoute={'navbar'} variant={'footer'} />
+     <FooterNav variant={'footer'} />
     </div>
     <div className='flex flex-col mt-16'>
-     <FooterLinks apiRoute={'socials'} variant={'footer'} />
+     <SocialLinks variant={'footer'} />
     </div>
    </nav>
 

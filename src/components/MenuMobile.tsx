@@ -7,7 +7,7 @@ import { Availability, ThemeSwitcher } from '@/components';
 import { GridDiv } from '@/components/ui';
 import { ButtonBurger, ButtonClose } from '@/components/buttons';
 
-type NavLink = { label: string; slug: string; _key: number };
+import { NavLink } from '@/types';
 
 type NavLinksProps = {
  navLinks: NavLink[];

@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 
 import { useModalContext } from '@/context';
-import { Availability, Copyright, FooterLinks } from '@/components';
+import { Availability, Copyright, SocialLinks } from '@/components';
 import { GridDiv } from '@/components/ui';
 import { ButtonClose } from '@buttons/.';
 
@@ -60,11 +60,7 @@ export default function ContactModal() {
      <ButtonClose action={() => updateModalOpen} />
     </div>
     <div className='ml-16 lg:w-2/12'>
-     <FooterLinks
-      apiRoute={'socials'}
-      variant={'modal'}
-      modalOpen={modalOpen}
-     />
+     <SocialLinks variant={'modal'} modalOpen={modalOpen} />
     </div>
 
     <div className='mb-16 lg:mb-0 mr-16 overflow-hidden'>

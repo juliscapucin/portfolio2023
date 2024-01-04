@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 
-import { GridDiv } from '@/components/ui';
+import { AnimatedLinkLabel, GridDiv } from '@/components/ui';
 import { useLinkReveal } from '@/hooks';
 
 type SocialsData = {
@@ -12,19 +12,18 @@ type SocialsData = {
 };
 
 type Props = {
- apiRoute: string; //to fetch socials or navigation links
  variant: string; //to animate differently
  modalOpen?: boolean;
 };
 
-export default function FooterLinks({ apiRoute, variant, modalOpen }: Props) {
+export default function SocialLinks({ variant, modalOpen }: Props) {
  const [data, setData] = useState<SocialsData | null>(null);
  const wrapperRef = useRef(null);
 
  //  Fetch data from api Route Handler (api/...)
  useEffect(() => {
   const fetchData = async () => {
-   const response = await fetch(`/api/${apiRoute}`);
+   const response = await fetch(`/api/socials`);
    const data = await response.json();
 
    setData(data);
@@ -33,6 +32,7 @@ export default function FooterLinks({ apiRoute, variant, modalOpen }: Props) {
   fetchData();
  }, []);
 
+ // Animation on scroll
  useLinkReveal(wrapperRef, variant, modalOpen);
 
  return (
@@ -55,15 +55,7 @@ export default function FooterLinks({ apiRoute, variant, modalOpen }: Props) {
          href={url!}
          target='_blank'
         >
-         {/* Animated Label */}
-         <div className='flex flex-col justify-start items-start group-hover:-translate-y-1/2 transition'>
-          <span className='font-headline text-headlineSmall uppercase text-secondary'>
-           {link.title}
-          </span>
-          <span className='font-headline text-headlineSmall uppercase text-secondary'>
-           {link.title}
-          </span>
-         </div>
+         <AnimatedLinkLabel title={link.title} />
         </Link>
        </GridDiv>
       );

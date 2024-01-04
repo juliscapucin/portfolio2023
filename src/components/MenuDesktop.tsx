@@ -6,11 +6,11 @@ import { MenuLink, ThemeSwitcher } from '@/components';
 import { GridDiv } from '@/components/ui';
 import { useModalContext } from '@/context';
 
-type NavLink = { label: string; slug: string; _key: number };
+import { NavLink } from '@/types';
 
 type NavLinksProps = {
  navLinks: NavLink[];
- transitionOnClick: (link: NavLink) => void;
+ transitionOnClick: (link: NavLink, mobileMenuRef?: HTMLDivElement) => void;
 };
 
 export default function MenuDesktop({

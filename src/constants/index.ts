@@ -5,9 +5,9 @@ export const breakpoints = {
 export const maxWidth = 2000;
 
 export const navLinks = [
-   { label: 'Home', slug: '/', _key: 0 },
-   { label: 'Work', slug: 'work', _key: 1 },
-   { label: 'About', slug: 'about', _key: 2 },
+   { label: 'Home', slug: '/', order: 0 },
+   { label: 'Work', slug: 'work', order: 1 },
+   { label: 'About', slug: 'about', order: 2 },
 ];
 
 export const work = {
