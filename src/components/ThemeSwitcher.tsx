@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, MouseEvent, useState, use } from 'react';
+import { useEffect, MouseEvent, useState, useRef } from 'react';
 
 import { ButtonArrow } from '@buttons/.';
 import { useThemeStorage } from '@/hooks';
@@ -19,6 +19,8 @@ interface Props {
 export default function ThemeSwitcher({ variant }: Props) {
  const { theme, setTheme } = useThemeStorage();
  const [menuOpen, setMenuOpen] = useState(false);
+ const translateXButtons = 80;
+ const translateXSample = 38;
 
  useEffect(() => {
   if (theme && theme.length === 0) {
@@ -77,14 +79,14 @@ export default function ThemeSwitcher({ variant }: Props) {
    {variant === 'header' && (
     <div
      className={`theme-switcher flex items-center h-full pb-[6px] transition-transform duration-200 ${
-      !menuOpen && 'translate-x-[80px]'
+      !menuOpen && `translate-x-[${translateXButtons}px]`
      }`}
     >
      {/* Open Theme Menu */}
      <button className='flex gap-2 h-full items-end mr-4' onClick={toggleMenu}>
       <span
        className={`mr-4 transition-transform duration-200 ${
-        menuOpen && 'translate-x-[38px]'
+        menuOpen && `translate-x-[${translateXSample}px]`
        }`}
       >
        Theme
