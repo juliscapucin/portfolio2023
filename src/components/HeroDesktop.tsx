@@ -13,14 +13,15 @@ import {
 const HeroDesktop = () => {
  const heroRef = useRef(null);
  const nameRef = useRef(null);
- const numberRef = useRef(null);
+ const yearRef = useRef(null);
  const descriptionRef = useRef(null);
  const statusRef = useRef(null);
+ const year = new Date().getFullYear().toString().slice(-2);
 
  useLayoutEffect(() => {
   if (
    !nameRef.current ||
-   !numberRef.current ||
+   !yearRef.current ||
    !descriptionRef.current ||
    !statusRef.current
   )
@@ -32,13 +33,13 @@ const HeroDesktop = () => {
    // Description
    animateStaggerText(descriptionRef.current!, 0.7);
    // Number
-   animateSplitText(numberRef.current!, 100, 1.4);
+   animateSplitText(yearRef.current!, 150, 1.4);
    // Status
    animateHorizontal(statusRef.current, -100, 0, 1.5);
   });
 
   return () => ctx.revert();
- }, [nameRef, numberRef, descriptionRef, statusRef]);
+ }, [nameRef, yearRef, descriptionRef, statusRef]);
 
  return (
   <div
@@ -82,13 +83,16 @@ const HeroDesktop = () => {
     </Marquee>
    </GridDiv>
 
-   {/* Number */}
+   {/* Year */}
    <GridDiv
     divClass='col-span-4 row-span-3 overflow-clip flex flex-nowrap items-center justify-center'
     top={true}
    >
-    <h3 ref={numberRef} className='number font-normal tracking-tightest flex'>
-     24
+    <h3
+     ref={yearRef}
+     className='year font-normal tracking-tightest flex -ml-16'
+    >
+     {year}
     </h3>
    </GridDiv>
 
