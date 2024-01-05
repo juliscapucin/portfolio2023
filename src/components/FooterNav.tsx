@@ -49,7 +49,7 @@ export default function FooterNav({ variant, modalOpen }: Props) {
        >
         <button
          className='block h-11 group overflow-hidden'
-         // onClick={() => transitionOnClick(link)}
+         onClick={() => transitionOnClick(link)}
         >
          <AnimatedLinkLabel title={link.label} />
         </button>
