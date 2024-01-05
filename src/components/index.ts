@@ -8,6 +8,7 @@ import CustomCursor from './CustomCursor';
 import CustomImage from './CustomImage';
 import Experience from './Experience';
 import ExperienceItem from './ExperienceItem';
+import Expertise from './Expertise';
 import FeedbackForm from './FeedbackForm';
 import Footer from './Footer';
 import FooterNav from './FooterNav';
@@ -28,7 +29,6 @@ import ProjectsMenuThumbs from './ProjectsMenuThumbs';
 import ProjectSlideshow from './ProjectSlideshow';
 import ProjectSplitScreen from './ProjectSplitScreen';
 import RootLayout from './RootLayout';
-import Services from './Services';
 import SectionTitle from './SectionTitle';
 import SocialLinks from './SocialLinks';
 import Status from './Status';
@@ -44,6 +44,7 @@ export {
    CustomImage,
    Experience,
    ExperienceItem,
+   Expertise,
    FeedbackForm,
    Footer,
    FooterNav,
@@ -65,7 +66,6 @@ export {
    ProjectSplitScreen,
    RootLayout,
    SectionTitle,
-   Services,
    ShowreelSlideshow,
    SocialLinks,
    Status,
