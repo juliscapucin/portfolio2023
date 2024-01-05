@@ -47,8 +47,10 @@ export const PageContextProvider = ({
   setPreviousPage(page);
  };
 
- // Page transition on button header click
- const transitionOnClick = () => {
+ /////////////////////////////////
+ // Exit page transitions
+ /////////////////////////////////
+ const transitionOnClick = useCallback(
   (link: NavLink, mobileMenuRef?: HTMLDivElement) => {
    // Toggle mobile menu
    if (mobileMenuRef) {
@@ -70,8 +72,6 @@ export const PageContextProvider = ({
     shallowPageRef.current.classList.remove('overflow-y-scroll');
     shallowPageRef.current.style.top = `-${scrollTop}`;
    };
-
-   console.log();
 
    ///// TRANSITION TO LEFT
    if (link.order && link.order > previousPageLink.order) {
@@ -127,8 +127,9 @@ export const PageContextProvider = ({
      router.push(`/${link.slug}`);
     });
    }
-  };
- };
+  },
+  [previousPage]
+ );
 
  //  Set previousPage on back button click
  useEffect(() => {

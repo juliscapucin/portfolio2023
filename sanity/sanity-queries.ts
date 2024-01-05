@@ -104,7 +104,12 @@ export async function getSocialLinks() {
 export async function getNavbarLinks() {
    return client.fetch(
       groq`*[_type == "navigation" && title == "Navbar"][0] {
-      items
+         items[] {
+            label,
+            "slug": slug.current,
+            _key,
+            order
+          }
    }`
    );
 }
