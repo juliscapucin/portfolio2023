@@ -43,7 +43,7 @@ export default function MenuMobile({
       ref={mobileMenuRef}
      >
       {/* Close Button */}
-      <div className='absolute top-8 right-8'>
+      <div className='absolute top-2 right-4'>
        <ButtonClose
         action={(e) => {
          if (mobileMenuRef.current) {
