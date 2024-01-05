@@ -7,7 +7,7 @@ import { Availability, ThemeSwitcher } from '@/components';
 import { GridDiv } from '@/components/ui';
 import { ButtonBurger, ButtonClose } from '@/components/buttons';
 
-type NavLink = { label: string; slug: string; _key: number };
+import { NavLink } from '@/types';
 
 type NavLinksProps = {
  navLinks: NavLink[];
@@ -43,7 +43,7 @@ export default function MenuMobile({
       ref={mobileMenuRef}
      >
       {/* Close Button */}
-      <div className='absolute top-8 right-8'>
+      <div className='absolute top-2 right-4'>
        <ButtonClose
         action={(e) => {
          if (mobileMenuRef.current) {

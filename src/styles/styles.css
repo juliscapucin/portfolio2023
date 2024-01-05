@@ -177,7 +177,7 @@ textarea {
    display: hidden;
 }
 
-.number {
+.year {
    font-size: clamp(15rem, 80vw, 46rem);
 
    @media (min-width: 768px) {

@@ -5,7 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 
 import { usePageContext } from '@/context';
 
-import { animateToLeftTransition } from '@/animations/pageTransitions';
+import { animateHorizontalTransition } from '@/animations/pageTransitions';
 import { Footer } from '@/components';
 import { ButtonBack } from '@buttons/.';
 
@@ -57,7 +57,7 @@ export default function ShallowPage({ children, isShallow }: Props) {
   if (document.documentElement.classList.contains('overflow-clip'))
    document.documentElement.classList.remove('overflow-clip');
 
-  animateToLeftTransition(shallowPageRef.current, () => {
+  animateHorizontalTransition(shallowPageRef.current, 0, -100, () => {
    router.back();
   });
  }, [router]);

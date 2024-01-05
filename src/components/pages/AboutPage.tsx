@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 import { useRef } from 'react';
 import { usePageContext } from '@/context';
-import { Footer, Services } from '@/components';
+import { Footer, Expertise } from '@/components';
 import { Title } from '@/components/ui';
 import { useElementReveal, useEnterTransitionDirection } from '@/hooks';
 
@@ -60,12 +60,15 @@ export default function AboutPage({ data }: { data: AboutData }) {
        ))}
       </div>
      </div>
+
+     {/* Expertise */}
+     <Expertise />
+
      {/* Heads up */}
      <p className='col-start-4 col-span-6 my-64 text-titleLarge md:text-headlineSmall text-center'>
       {data.content2[0].children[0].text}
      </p>
     </div>
-    {/* <Services services={data.services} /> */}
     {/* <Experience experience={experience} /> */}
     <Footer />
    </div>

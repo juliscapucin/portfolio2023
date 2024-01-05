@@ -12,7 +12,6 @@ module.exports = {
          minHeight: {
             '1/2': '50vh',
          },
-         gridTemplateColumns: { fluid: 'repeat(auto-fit, minmax(15rem, 1fr))' },
          fontFamily: {
             headline: ['var(--font-primary) sans-serif'],
             text: ['var(--font-secondary)'],

@@ -21,6 +21,7 @@ export default function AboutText() {
     trigger: textRef.current,
     start: 'top 80%',
     toggleActions: 'play none none reverse',
+    invalidateOnRefresh: true,
    },
   });
 

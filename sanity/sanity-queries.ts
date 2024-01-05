@@ -105,9 +105,10 @@ export async function getNavbarLinks() {
    return client.fetch(
       groq`*[_type == "navigation" && title == "Navbar"][0] {
          items[] {
-            title,
+            label,
             "slug": slug.current,
-            _key
+            _key,
+            order
           }
    }`
    );

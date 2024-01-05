@@ -17,7 +17,7 @@ import {
  SectionTitle,
 } from '@/components';
 import { GridDiv } from '@/components/ui';
-import { animateToRight } from '@/animations';
+import { animateHorizontal } from '@/animations';
 import { Project } from '@/types';
 
 export default function HomePage({ allProjects }: { allProjects: Project[] }) {
@@ -34,7 +34,7 @@ export default function HomePage({ allProjects }: { allProjects: Project[] }) {
 
   if (!previousPage.includes('project')) {
    ctx.add(() => {
-    animateToRight(pageRef.current);
+    animateHorizontal(pageRef.current, -100, 0);
    });
   }
   updatePreviousPage('home');

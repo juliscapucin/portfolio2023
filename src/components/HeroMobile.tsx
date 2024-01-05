@@ -6,14 +6,15 @@ import { animateSplitText } from '@/animations';
 
 const HeroMobile = () => {
  const nameRef = useRef(null);
- const numberRef = useRef(null);
+ const yearRef = useRef(null);
+ const year = new Date().getFullYear().toString().slice(-2);
 
  useLayoutEffect(() => {
-  if (!nameRef.current || !numberRef.current) return;
+  if (!nameRef.current || !yearRef.current) return;
   // Name
   animateSplitText(nameRef.current, 300, 1);
   // Number
-  animateSplitText(numberRef.current, 100, 1.4);
+  animateSplitText(yearRef.current, 100, 1.4);
  }, [nameRef]);
 
  return (
@@ -44,17 +45,17 @@ const HeroMobile = () => {
      </h1>
     </GridDiv>
 
-    {/* Number */}
+    {/* Year */}
     <GridDiv
      divClass='h-fit overflow-clip flex items-center'
      top={true}
      bottom={true}
     >
      <h3
-      ref={numberRef}
-      className='number font-normal tracking-tightest leading-none'
+      ref={yearRef}
+      className='year font-normal tracking-tightest leading-none'
      >
-      23
+      {year}
      </h3>
     </GridDiv>
    </div>

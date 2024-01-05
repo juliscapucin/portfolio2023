@@ -154,8 +154,8 @@ export default function ProjectsMenu({
    let ctx = gsap.context(() => {
     ScrollTrigger.create({
      trigger: filterRef.current,
-     start: 'top 40px',
      endTrigger: projectsMenuRef.current,
+     start: 'top-=40',
      end: 'bottom',
      pin: filterRef.current,
      pinSpacing: false,
@@ -188,11 +188,11 @@ export default function ProjectsMenu({
      className={`w-full mt-16 ${variant === 'image' && 'mb-8'}`}
     >
      <GridDiv
-      divClass='w-full bg-primary pt-8 pb-1 z-8'
+      divClass='w-full bg-primary pt-10 pb-1 z-8'
       ref={filterRef}
       bottom={true}
      >
-      {/* Hidden Title on scroll */}
+      {/* Hidden Work Title on scroll */}
       <div className='bg-primary overflow-x-clip'>
        <h2
         ref={filterTitleRef}

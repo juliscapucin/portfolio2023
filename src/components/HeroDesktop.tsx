@@ -1,9 +1,11 @@
 import { useLayoutEffect, useRef } from 'react';
 
+import gsap from 'gsap';
+
 import { Status } from '@/components';
 import { GridDiv, Marquee } from '@/components/ui';
 import {
- animateEnterHorizontal,
+ animateHorizontal,
  animateSplitText,
  animateStaggerText,
 } from '@/animations';
@@ -11,28 +13,33 @@ import {
 const HeroDesktop = () => {
  const heroRef = useRef(null);
  const nameRef = useRef(null);
- const numberRef = useRef(null);
+ const yearRef = useRef(null);
  const descriptionRef = useRef(null);
  const statusRef = useRef(null);
+ const year = new Date().getFullYear().toString().slice(-2);
 
  useLayoutEffect(() => {
   if (
    !nameRef.current ||
-   !numberRef.current ||
+   !yearRef.current ||
    !descriptionRef.current ||
    !statusRef.current
   )
    return;
 
-  // Name
-  animateSplitText(nameRef.current, 200, 0.7);
-  // Description
-  animateStaggerText(descriptionRef.current, 0.7);
-  // Number
-  animateSplitText(numberRef.current, 100, 1.4);
-  // Status
-  animateEnterHorizontal(statusRef.current, -100, 1.5);
- }, [nameRef, numberRef, descriptionRef, statusRef]);
+  let ctx = gsap.context(() => {
+   // Name
+   animateSplitText(nameRef.current!, 200, 0.7);
+   // Description
+   animateStaggerText(descriptionRef.current!, 0.7);
+   // Number
+   animateSplitText(yearRef.current!, 150, 1.4);
+   // Status
+   animateHorizontal(statusRef.current, -100, 0, 1.5);
+  });
+
+  return () => ctx.revert();
+ }, [nameRef, yearRef, descriptionRef, statusRef]);
 
  return (
   <div
@@ -47,13 +54,11 @@ const HeroDesktop = () => {
     <Status />
    </GridDiv>
 
-   {/* Blank Space */}
-   <GridDiv divClass='col-span-5 row-span-1' top={true}></GridDiv>
-
    {/* Name */}
    <GridDiv
-    divClass='col-span-7 row-span-1 overflow-clip flex items-center justify-end'
+    divClass='col-span-full row-span-1 overflow-clip flex items-center justify-end'
     top={true}
+    bottom={true}
    >
     <h1
      ref={nameRef}
@@ -66,7 +71,6 @@ const HeroDesktop = () => {
    {/* Marquee */}
    <GridDiv
     divClass='col-span-full row-span-1 flex items-center'
-    top={true}
     ref={descriptionRef}
    >
     <Marquee speed={150}>
@@ -79,13 +83,16 @@ const HeroDesktop = () => {
     </Marquee>
    </GridDiv>
 
-   {/* Number */}
+   {/* Year */}
    <GridDiv
     divClass='col-span-4 row-span-3 overflow-clip flex flex-nowrap items-center justify-center'
     top={true}
    >
-    <h3 ref={numberRef} className='number font-normal tracking-tightest flex'>
-     23
+    <h3
+     ref={yearRef}
+     className='year font-normal tracking-tightest flex -ml-16'
+    >
+     {year}
     </h3>
    </GridDiv>
 

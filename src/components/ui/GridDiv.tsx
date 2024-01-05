@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef, use, useLayoutEffect, useRef } from 'react';
+import { forwardRef, useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 
 type GridDivProps = {
@@ -31,8 +31,6 @@ export const GridDiv = forwardRef(function GridDiv(
    !lineLeftRef.current
   )
    return;
-
-  ctx.revert();
 
   ctx.add(() => {
    gsap.set(lineTopRef.current, { xPercent: -100 });
