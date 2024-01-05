@@ -54,7 +54,7 @@ const HeroMobile = () => {
       ref={numberRef}
       className='number font-normal tracking-tightest leading-none'
      >
-      23
+      24
      </h3>
     </GridDiv>
    </div>

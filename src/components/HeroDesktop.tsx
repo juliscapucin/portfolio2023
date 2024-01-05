@@ -88,7 +88,7 @@ const HeroDesktop = () => {
     top={true}
    >
     <h3 ref={numberRef} className='number font-normal tracking-tightest flex'>
-     23
+     24
     </h3>
    </GridDiv>
 
