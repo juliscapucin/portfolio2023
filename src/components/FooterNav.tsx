@@ -25,8 +25,6 @@ export default function FooterNav({ variant, modalOpen }: Props) {
    const response = await fetch(`/api/navbar`);
    const data = await response.json();
 
-   // console.log(data);
-
    setData(data.items);
   };
 
@@ -47,7 +45,7 @@ export default function FooterNav({ variant, modalOpen }: Props) {
        <GridDiv
         bottom={true}
         divClass='relative max-h-32 min-h-32 flex justify-start items-start'
-        key={link._key}
+        key={link.order}
        >
         <button
          className='block h-11 group overflow-hidden'

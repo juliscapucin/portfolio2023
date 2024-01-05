@@ -15,7 +15,6 @@ export default function Header() {
    const response = await fetch(`/api/navbar`);
    const data = await response.json();
 
-   console.log(data.items);
    setNavLinks(data.items);
   };
 

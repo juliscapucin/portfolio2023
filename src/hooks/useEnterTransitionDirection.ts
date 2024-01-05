@@ -36,7 +36,7 @@ export function useEnterTransitionDirection(
          previousPage === 'home' ||
          (actualPage &&
             previousPageLink &&
-            actualPage?._key > previousPageLink?._key)
+            actualPage?.order > previousPageLink?.order)
       ) {
          ctx.add(() => animateHorizontal(enterElement.current, 100, 0));
          window.scrollTo(0, 0);

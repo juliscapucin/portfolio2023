@@ -71,6 +71,8 @@ export const PageContextProvider = ({
     shallowPageRef.current.style.top = `-${scrollTop}`;
    };
 
+   console.log();
+
    ///// TRANSITION TO LEFT
    if (link.order && link.order > previousPageLink.order) {
     // Close shallow-page if open
