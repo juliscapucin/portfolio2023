@@ -40,6 +40,10 @@ export default function ProjectsMenu({
  const [category, setCategory] = useState<FilterCategoryKey>(startCategory);
  const [filterScrollOffset, setFilterScrollOffset] = useState(0);
 
+ const scrollToFilterOffset = () => {
+  window.scrollTo({ top: filterScrollOffset - 30, behavior: 'smooth' });
+ };
+
  const updateIsHovering = (state: boolean) => {
   setIsHovering(state);
  };
@@ -81,6 +85,7 @@ export default function ProjectsMenu({
     onComplete: () => {
      setProjectItems(filteredProjects);
      setCategory(filterString);
+     scrollToFilterOffset();
     },
    });
   }, projectsMenuRef);
@@ -108,7 +113,7 @@ export default function ProjectsMenu({
      duration: 0.5,
      onComplete: () => {
       setVariant('image');
-      window.scrollTo({ top: filterScrollOffset - 30, behavior: 'smooth' });
+      scrollToFilterOffset();
      },
     });
    }, projectsMenuRef);
@@ -119,7 +124,7 @@ export default function ProjectsMenu({
      duration: 0.5,
      onComplete: () => {
       setVariant('list');
-      window.scrollTo({ top: filterScrollOffset - 30, behavior: 'smooth' });
+      scrollToFilterOffset();
      },
     });
    }, projectsMenuRef);
