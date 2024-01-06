@@ -81,7 +81,7 @@ export default function ProjectCard(props: ProjectCardProps) {
   ////----- IMAGE VIEW + THUMBS VIEW -----////
   <div
    ref={variant === 'image' ? imageWrapperRef : null}
-   className={`custom-col-start-${imageStart} col-span-5 aspect-square relative overflow-hidden`}
+   className={`custom-col-start-${imageStart} aspect-square relative overflow-hidden`}
   >
    {/* Div for animation */}
    <div

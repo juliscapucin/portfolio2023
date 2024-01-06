@@ -152,7 +152,7 @@ export default function ProjectsMenu({
    animateProjectsMenu(projectsImgsRef.current, projectsLinksRef.current);
  }, [projectsImgsRef.current, projectsLinksRef.current, variant, projectItems]);
 
- // Create ScrollTrigger for filter
+ // Create ScrollTrigger to pin filter menu
  useEffect(() => {
   if (!filterRef.current || !projectsMenuRef.current) return;
 
@@ -290,7 +290,7 @@ export default function ProjectsMenu({
       projectItems.map((project, index) => {
        return (
         <div
-         className='lg:grid grid-cols-12 mb-32 lg:mb-64'
+         className='sm:grid grid-cols-20 lg:grid-cols-12 mb-32 md:mb-64'
          key={`${project._id}-${category}`}
         >
          {project.title &&

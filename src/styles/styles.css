@@ -8,13 +8,6 @@
    --max-width: 1100px;
    --border-radius: 12px;
    --font-secondary: 'ff-real-text-pro', sans-serif;
-
-   --delay1: 0.7s;
-   --delay2: 1s;
-   --delay3: 1.5s;
-
-   --duration1: 0.5s;
-   --duration2: 1s;
 }
 
 @layer base {
@@ -225,33 +218,65 @@ textarea {
 /* WORKAROUND FOR COL-START BUG */
 
 .custom-col-start-1 {
-   grid-column-start: 1;
+   grid-column: 1 / 12;
+
+   @media (min-width: 1024px) {
+      grid-column: 1 / 5;
+   }
 }
 
 .custom-col-start-2 {
-   grid-column-start: 2;
+   grid-column: 2 / 13;
+
+   @media (min-width: 1024px) {
+      grid-column: 2 / 5;
+   }
 }
 
 .custom-col-start-3 {
-   grid-column-start: 3;
+   grid-column: 3 / 14;
+
+   @media (min-width: 1024px) {
+      grid-column: 3 / 7;
+   }
 }
 
 .custom-col-start-4 {
-   grid-column-start: 4;
+   grid-column: 4 / 15;
+
+   @media (min-width: 1024px) {
+      grid-column: 4 / 8;
+   }
 }
 
 .custom-col-start-5 {
-   grid-column-start: 5;
+   grid-column: 5 / 16;
+
+   @media (min-width: 1024px) {
+      grid-column: 5 / 9;
+   }
 }
 
 .custom-col-start-6 {
-   grid-column-start: 6;
+   grid-column: 6 / 17;
+
+   @media (min-width: 1024px) {
+      grid-column: 6 / 10;
+   }
 }
 
 .custom-col-start-7 {
-   grid-column-start: 7;
+   grid-column: 7 / 18;
+
+   @media (min-width: 1024px) {
+      grid-column: 7 / 11;
+   }
 }
 
 .custom-col-start-8 {
-   grid-column-start: 8;
+   grid-column: 8 / 19;
+
+   @media (min-width: 1024px) {
+      grid-column: 8 / 12;
+   }
 }
