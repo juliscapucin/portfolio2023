@@ -38,6 +38,7 @@ export default function ProjectsMenu({
 
  const [isHovering, setIsHovering] = useState(false);
  const [category, setCategory] = useState<FilterCategoryKey>(startCategory);
+ const [filterScrollOffset, setFilterScrollOffset] = useState(0);
 
  const updateIsHovering = (state: boolean) => {
   setIsHovering(state);
@@ -50,7 +51,7 @@ export default function ProjectsMenu({
  const projectsMenuRef = useRef(null);
  const projectsImgsRef = useRef(null);
  const projectsLinksRef = useRef(null);
- const filterRef = useRef(null);
+ const filterRef = useRef<HTMLDivElement>(null);
  const filterTitleRef = useRef(null);
  const filterContainerRef = useRef(null);
 
@@ -107,6 +108,7 @@ export default function ProjectsMenu({
      duration: 0.5,
      onComplete: () => {
       setVariant('image');
+      window.scrollTo({ top: filterScrollOffset - 30, behavior: 'smooth' });
      },
     });
    }, projectsMenuRef);
@@ -117,6 +119,7 @@ export default function ProjectsMenu({
      duration: 0.5,
      onComplete: () => {
       setVariant('list');
+      window.scrollTo({ top: filterScrollOffset - 30, behavior: 'smooth' });
      },
     });
    }, projectsMenuRef);
@@ -153,8 +156,11 @@ export default function ProjectsMenu({
  }, [projectsImgsRef.current, projectsLinksRef.current, variant, projectItems]);
 
  // Create ScrollTrigger to pin filter menu
+ // Define offset for filter menu
  useEffect(() => {
   if (!filterRef.current || !projectsMenuRef.current) return;
+
+  setFilterScrollOffset(filterRef.current.getBoundingClientRect().top);
 
   gsap.registerPlugin(ScrollTrigger);
 
