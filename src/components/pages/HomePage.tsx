@@ -32,6 +32,8 @@ export default function HomePage({ allProjects }: { allProjects: Project[] }) {
   if (!pageRef || !pageRef.current || pathname !== '/') return;
   let ctx = gsap.context(() => {});
 
+  window.scrollTo(0, 0);
+
   if (!previousPage.includes('project')) {
    ctx.add(() => {
     animateHorizontal(pageRef.current, -100, 0);
