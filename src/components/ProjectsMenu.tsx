@@ -1,6 +1,13 @@
 'use client';
 
-import { useEffect, useLayoutEffect, useRef, useState, Fragment } from 'react';
+import {
+ useEffect,
+ useLayoutEffect,
+ useRef,
+ useState,
+ Fragment,
+ use,
+} from 'react';
 import { CldImage } from 'next-cloudinary';
 
 import gsap from 'gsap';
@@ -39,7 +46,9 @@ export default function ProjectsMenu({
  const [isHovering, setIsHovering] = useState(false);
  const [category, setCategory] = useState<FilterCategoryKey>(startCategory);
  const [filterScrollOffset, setFilterScrollOffset] = useState(0);
+ const [projectsMenuHeight, setProjectsMenuHeight] = useState(0);
 
+ // Scroll to filter offset on filter change
  const scrollToFilterOffset = () => {
   window.scrollTo({ top: filterScrollOffset - 30, behavior: 'smooth' });
  };
@@ -52,7 +61,7 @@ export default function ProjectsMenu({
  const [variant, setVariant] = useState(startVariant);
 
  // Refs
- const projectsMenuRef = useRef(null);
+ const projectsMenuRef = useRef<HTMLDivElement>(null);
  const projectsImgsRef = useRef(null);
  const projectsLinksRef = useRef(null);
  const filterRef = useRef<HTMLDivElement>(null);
@@ -91,6 +100,7 @@ export default function ProjectsMenu({
   }, projectsMenuRef);
  };
 
+ // Change category – fade in
  useLayoutEffect(() => {
   let ctx = gsap.context(() => {
    gsap.to('.filter-projects', {
@@ -154,30 +164,43 @@ export default function ProjectsMenu({
   };
  }, [variant]);
 
+ // Set projects menu height on variant or view change
+ useEffect(() => {
+  if (!projectsMenuRef.current) return;
+  setProjectsMenuHeight(projectsMenuRef.current.offsetHeight);
+ }, [variant, projectItems]);
+
  // Restart list view animation on resize, filter or variant change
  useLayoutEffect(() => {
   if (projectsImgsRef.current && projectsLinksRef.current)
    animateProjectsMenu(projectsImgsRef.current, projectsLinksRef.current);
  }, [projectsImgsRef.current, projectsLinksRef.current, variant, projectItems]);
 
- // Create ScrollTrigger to pin filter menu
  // Define offset for filter menu
+ // Define initial height of projects menu
  useEffect(() => {
   if (!filterRef.current || !projectsMenuRef.current) return;
-
   setFilterScrollOffset(filterRef.current.getBoundingClientRect().top);
+  setProjectsMenuHeight(projectsMenuRef.current.getBoundingClientRect().height);
+ }, [filterRef, projectsMenuRef]);
+
+ // Create ScrollTrigger to pin filter menu
+ useEffect(() => {
+  console.log('projectsMenuHeight', projectsMenuHeight);
 
   gsap.registerPlugin(ScrollTrigger);
 
+  let ctx = gsap.context(() => {});
+
   let timeoutId = setTimeout(() => {
-   let ctx = gsap.context(() => {
+   ctx.add(() => {
     ScrollTrigger.create({
      trigger: filterRef.current,
-     endTrigger: projectsMenuRef.current,
      start: 'top-=40',
-     end: 'bottom',
+     end: `top+=${projectsMenuHeight - 40}`,
      pin: filterRef.current,
      pinSpacing: false,
+     markers: true,
      toggleClass: {
       targets: filterTitleRef.current,
       className: 'translate-x-0', // to hide / show small title
@@ -190,7 +213,7 @@ export default function ProjectsMenu({
    clearTimeout(timeoutId);
    if (ctx) ctx.revert();
   };
- }, [filterRef, projectsMenuRef]);
+ }, [projectsMenuHeight]);
 
  return (
   <section
@@ -238,11 +261,11 @@ export default function ProjectsMenu({
 
    {/* List View */}
    {variant === 'list' && (
-    <GridDiv divClass='list-view filter-projects grid grid-cols-12 w-full h-[500px] overflow-clip'>
+    <GridDiv divClass='list-view filter-projects grid grid-cols-12 w-full mb-32'>
      {/* Render left side images only on desktop */}
      {activeBreakpoint === 'desktop' && (
       <div
-       className='col-span-4 aspect-square max-h-[500px] relative mt-8 overflow-clip'
+       className='relative w-full h-full col-span-4 aspect-square max-h-[500px] overflow-clip mt-8'
        ref={projectsImgsRef}
       >
        {projectItems &&
@@ -266,9 +289,7 @@ export default function ProjectsMenu({
      ></div>
      {/* Render right side links */}
      <div
-      className={`col-span-${
-       activeBreakpoint === 'mobile' ? 9 : 6
-      } row-span-6 overflow-y-auto`}
+      className={`col-span-${activeBreakpoint === 'mobile' ? 9 : 6} row-span-6`}
       ref={projectsLinksRef}
      >
       {projectItems &&
