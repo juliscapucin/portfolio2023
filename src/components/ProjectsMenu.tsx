@@ -9,13 +9,15 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import { animateProjectsMenu } from '@/animations';
 import { GridDiv } from '@/components/ui';
 import { CustomCursor, ProjectCard, ProjectsFilter } from '@/components';
-import { Project } from '@/types';
+import { Project, FilterCategoryKey } from '@/types';
+
+import { filterCategories } from '@/constants';
 
 interface ProjectsMenuProps {
  activeBreakpoint: string | undefined;
  allProjects: Project[];
  startVariant: 'list' | 'image' | 'thumbs';
- startCategory: 'all' | 'recent' | 'playground' | 'archive';
+ startCategory: FilterCategoryKey;
 }
 
 export default function ProjectsMenu({
@@ -35,7 +37,7 @@ export default function ProjectsMenu({
  );
 
  const [isHovering, setIsHovering] = useState(false);
- const [category, setCategory] = useState(startCategory);
+ const [category, setCategory] = useState<FilterCategoryKey>(startCategory);
 
  const updateIsHovering = (state: boolean) => {
   setIsHovering(state);
@@ -52,18 +54,24 @@ export default function ProjectsMenu({
  const filterTitleRef = useRef(null);
  const filterContainerRef = useRef(null);
 
- //  Filter Projects + Fade Out Transitions
- const filterProjects = (
-  filterString: 'all' | 'recent' | 'playground' | 'archive'
- ) => {
+ // Get projects by category
+ const getProjectsByCategory = (category: FilterCategoryKey) => {
+  return category === 'all'
+   ? allProjects
+   : allProjects.filter((project) => project.category.includes(category));
+ };
+
+ // Get number of projects in each category for badge
+ const numberOfProjectsByCategory = filterCategories.reduce((acc, category) => {
+  acc[category] = getProjectsByCategory(category).length;
+  return acc;
+ }, {} as Record<FilterCategoryKey, number>);
+
+ // Filter projects
+ const filterProjects = (filterString: FilterCategoryKey) => {
   if (!allProjects) return;
 
-  const filteredProjects =
-   filterString === 'all'
-    ? allProjects
-    : allProjects.filter((project: Project) => {
-       return project.category.includes(filterString);
-      });
+  const filteredProjects = getProjectsByCategory(filterString);
 
   ctx.add(() => {
    gsap.to('.filter-projects', {
@@ -210,6 +218,7 @@ export default function ProjectsMenu({
         variant,
         activeBreakpoint,
         startCategory,
+        numberOfProjectsByCategory,
        }}
       />
      </GridDiv>

@@ -4,6 +4,15 @@ export const breakpoints = {
 
 export const maxWidth = 2000;
 
+import { FilterCategoryKey } from '@/types';
+
+export const filterCategories: FilterCategoryKey[] = [
+   'all',
+   'recent',
+   'playground',
+   'archive',
+];
+
 export const navLinks = [
    { label: 'Home', slug: '/', order: 0 },
    { label: 'Work', slug: 'work', order: 1 },
