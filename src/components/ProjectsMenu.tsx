@@ -186,8 +186,6 @@ export default function ProjectsMenu({
 
  // Create ScrollTrigger to pin filter menu
  useEffect(() => {
-  console.log('projectsMenuHeight', projectsMenuHeight);
-
   gsap.registerPlugin(ScrollTrigger);
 
   let ctx = gsap.context(() => {});
@@ -200,7 +198,6 @@ export default function ProjectsMenu({
      end: `top+=${projectsMenuHeight - 40}`,
      pin: filterRef.current,
      pinSpacing: false,
-     markers: true,
      toggleClass: {
       targets: filterTitleRef.current,
       className: 'translate-x-0', // to hide / show small title
@@ -264,23 +261,22 @@ export default function ProjectsMenu({
     <GridDiv divClass='list-view filter-projects grid grid-cols-12 w-full mb-32'>
      {/* Render left side images only on desktop */}
      {activeBreakpoint === 'desktop' && (
-      <div
-       className='relative w-full h-full col-span-4 aspect-square max-h-[500px] overflow-clip mt-8'
-       ref={projectsImgsRef}
-      >
-       {projectItems &&
-        projectItems.map((project, index) => {
-         if (!project.coverImage.fileName) return;
-         return (
-          <CldImage
-           src={`portfolio2023/work/${project.slug}/${project.coverImage.fileName}`}
-           key={index}
-           alt={project.coverImage.alt}
-           sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-           fill
-          />
-         );
-        })}
+      <div className='sticky top-[188px] col-span-4 aspect-square max-h-[500px] overflow-clip mt-8'>
+       <div className='relative w-full h-full' ref={projectsImgsRef}>
+        {projectItems &&
+         projectItems.map((project, index) => {
+          if (!project.coverImage.fileName) return;
+          return (
+           <CldImage
+            src={`portfolio2023/work/${project.slug}/${project.coverImage.fileName}`}
+            key={index}
+            alt={project.coverImage.alt}
+            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+            fill
+           />
+          );
+         })}
+       </div>
       </div>
      )}
      {/* White space */}
