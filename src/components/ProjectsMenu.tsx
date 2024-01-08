@@ -63,7 +63,7 @@ export default function ProjectsMenu({
  const projectsImgsRef = useRef(null);
  const projectsLinksRef = useRef(null);
  const filterRef = useRef<HTMLDivElement>(null);
- const filterTitleRef = useRef(null);
+ const filterTitleRef = useRef<HTMLDivElement>(null);
  const filterContainerRef = useRef(null);
 
  // Get projects by category
