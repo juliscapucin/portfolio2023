@@ -139,6 +139,8 @@ export default function ProjectsMenu({
 
  //  Change view – fade in
  useLayoutEffect(() => {
+  if (variant === 'thumbs') return;
+
   ctx.add(() => {
    gsap.to(`.${variant}-view`, {
     opacity: 1,
