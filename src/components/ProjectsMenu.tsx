@@ -49,10 +49,7 @@ export default function ProjectsMenu({
  const [filterScrollOffset, setFilterScrollOffset] = useState(0);
  const [projectsMenuHeight, setProjectsMenuHeight] = useState(0);
 
- // Scroll to filter offset on filter change
- const scrollToFilterOffset = () => {
-  window.scrollTo({ top: filterScrollOffset - 30, behavior: 'smooth' });
- };
+ const pinFilterOffset = 40;
 
  const updateIsHovering = (state: boolean) => {
   setIsHovering(state);
@@ -86,6 +83,11 @@ export default function ProjectsMenu({
    return acc;
   }, {} as Record<FilterCategoryKey, number>);
  }, [getProjectsByCategory]);
+
+ // Scroll to filter offset on filter or view change
+ const scrollToFilterOffset = () => {
+  window.scrollTo({ top: filterScrollOffset - pinFilterOffset });
+ };
 
  // Filter projects
  const filterProjects = useCallback(
@@ -123,48 +125,26 @@ export default function ProjectsMenu({
 
  //  Change view – fade out + change variant
  const editVariant = () => {
-  if (variant === 'list') {
-   ctx.add(() => {
-    gsap.to('.list-view', {
-     opacity: 0,
-     duration: 0.5,
-     onComplete: () => {
-      setVariant('image');
-      scrollToFilterOffset();
-     },
-    });
-   }, projectsMenuRef);
-  } else if (variant === 'image') {
-   ctx.add(() => {
-    gsap.to('.image-view', {
-     opacity: 0,
-     duration: 0.5,
-     onComplete: () => {
-      setVariant('list');
-      scrollToFilterOffset();
-     },
-    });
-   }, projectsMenuRef);
-  }
+  ctx.add(() => {
+   gsap.to(`.${variant}-view`, {
+    opacity: 0,
+    duration: 0.5,
+    onComplete: () => {
+     setVariant(variant === 'list' ? 'image' : 'list');
+     scrollToFilterOffset();
+    },
+   });
+  }, projectsMenuRef);
  };
 
  //  Change view – fade in
  useLayoutEffect(() => {
-  if (variant === 'list') {
-   ctx.add(() => {
-    gsap.to('.list-view', {
-     opacity: 1,
-     duration: 0.5,
-    });
+  ctx.add(() => {
+   gsap.to(`.${variant}-view`, {
+    opacity: 1,
+    duration: 0.5,
    });
-  } else if (variant === 'image') {
-   ctx.add(() => {
-    gsap.to('.image-view', {
-     opacity: 1,
-     duration: 0.5,
-    });
-   });
-  }
+  }, projectsMenuRef);
 
   return () => {
    ctx.revert();
@@ -201,13 +181,18 @@ export default function ProjectsMenu({
    ctx.add(() => {
     ScrollTrigger.create({
      trigger: filterRef.current,
-     start: 'top-=40',
-     end: `top+=${projectsMenuHeight - 40}`,
+     start: `top-=${pinFilterOffset + 1}`,
+     end: `top+=${projectsMenuHeight - pinFilterOffset}`,
      pin: filterRef.current,
      pinSpacing: false,
-     toggleClass: {
-      targets: filterTitleRef.current,
-      className: 'translate-x-0', // to hide / show small title
+     onEnterBack: () => {
+      filterTitleRef.current?.classList.remove('-translate-x-full');
+     },
+     onEnter: () => {
+      filterTitleRef.current?.classList.remove('-translate-x-full');
+     },
+     onLeaveBack: () => {
+      filterTitleRef.current?.classList.add('-translate-x-full');
      },
     });
    });
