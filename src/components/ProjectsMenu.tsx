@@ -6,7 +6,8 @@ import {
  useRef,
  useState,
  Fragment,
- use,
+ useCallback,
+ useMemo,
 } from 'react';
 import { CldImage } from 'next-cloudinary';
 
@@ -69,36 +70,42 @@ export default function ProjectsMenu({
  const filterContainerRef = useRef(null);
 
  // Get projects by category
- const getProjectsByCategory = (category: FilterCategoryKey) => {
-  return category === 'all'
-   ? allProjects
-   : allProjects.filter((project) => project.category.includes(category));
- };
+ const getProjectsByCategory = useCallback(
+  (category: FilterCategoryKey) => {
+   return category === 'all'
+    ? allProjects
+    : allProjects.filter((project) => project.category.includes(category));
+  },
+  [allProjects]
+ );
 
  // Get number of projects in each category for badge
- const numberOfProjectsByCategory = filterCategories.reduce((acc, category) => {
-  acc[category] = getProjectsByCategory(category).length;
-  return acc;
- }, {} as Record<FilterCategoryKey, number>);
+ const numberOfProjectsByCategory = useMemo(() => {
+  return filterCategories.reduce((acc, category) => {
+   acc[category] = getProjectsByCategory(category).length;
+   return acc;
+  }, {} as Record<FilterCategoryKey, number>);
+ }, [getProjectsByCategory]);
 
  // Filter projects
- const filterProjects = (filterString: FilterCategoryKey) => {
-  if (!allProjects) return;
+ const filterProjects = useCallback(
+  (filterString: FilterCategoryKey) => {
+   const filteredProjects = getProjectsByCategory(filterString);
 
-  const filteredProjects = getProjectsByCategory(filterString);
-
-  ctx.add(() => {
-   gsap.to('.filter-projects', {
-    opacity: 0,
-    duration: 0.5,
-    onComplete: () => {
-     setProjectItems(filteredProjects);
-     setCategory(filterString);
-     scrollToFilterOffset();
-    },
-   });
-  }, projectsMenuRef);
- };
+   ctx.add(() => {
+    gsap.to('.filter-projects', {
+     opacity: 0,
+     duration: 0.5,
+     onComplete: () => {
+      setProjectItems(filteredProjects);
+      setCategory(filterString);
+      scrollToFilterOffset();
+     },
+    });
+   }, projectsMenuRef);
+  },
+  [getProjectsByCategory, scrollToFilterOffset]
+ );
 
  // Change category – fade in
  useLayoutEffect(() => {
