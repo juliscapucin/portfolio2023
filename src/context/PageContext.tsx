@@ -47,9 +47,9 @@ export const PageContextProvider = ({
   setPreviousPage(page);
  };
 
- /////////////////////////////////
+ //
  // Exit page transitions
- /////////////////////////////////
+ //
  const transitionOnClick = useCallback(
   (link: NavLink, mobileMenuRef?: HTMLDivElement) => {
    // Toggle mobile menu
@@ -73,7 +73,9 @@ export const PageContextProvider = ({
     shallowPageRef.current.style.top = `-${scrollTop}`;
    };
 
-   ///// TRANSITION TO LEFT
+   //
+   // TRANSITION TO LEFT
+   //
    if (link.order && link.order > previousPageLink.order) {
     // Close shallow-page if open
     if (shallowPageRef.current) {
@@ -97,8 +99,9 @@ export const PageContextProvider = ({
      router.push(`/${link.slug}`);
     });
    } else {
-    ///// TRANSITION TO RIGHT
-
+    //
+    // TRANSITION TO RIGHT
+    //
     // Close shallow-page if open
     if (shallowPageRef.current) {
      //  Restore scroll on html div
