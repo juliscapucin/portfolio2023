@@ -1,6 +1,14 @@
 'use client';
 
-import { useEffect, useLayoutEffect, useRef, useState, Fragment } from 'react';
+import {
+ useEffect,
+ useLayoutEffect,
+ useRef,
+ useState,
+ Fragment,
+ useCallback,
+ useMemo,
+} from 'react';
 import { CldImage } from 'next-cloudinary';
 
 import gsap from 'gsap';
@@ -9,13 +17,15 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import { animateProjectsMenu } from '@/animations';
 import { GridDiv } from '@/components/ui';
 import { CustomCursor, ProjectCard, ProjectsFilter } from '@/components';
-import { Project } from '@/types';
+import { Project, FilterCategoryKey } from '@/types';
+
+import { filterCategories } from '@/constants';
 
 interface ProjectsMenuProps {
  activeBreakpoint: string | undefined;
  allProjects: Project[];
  startVariant: 'list' | 'image' | 'thumbs';
- startCategory: 'all' | 'recent' | 'playground' | 'archive';
+ startCategory: FilterCategoryKey;
 }
 
 export default function ProjectsMenu({
@@ -35,7 +45,11 @@ export default function ProjectsMenu({
  );
 
  const [isHovering, setIsHovering] = useState(false);
- const [category, setCategory] = useState(startCategory);
+ const [category, setCategory] = useState<FilterCategoryKey>(startCategory);
+ const [filterScrollOffset, setFilterScrollOffset] = useState(0);
+ const [projectsMenuHeight, setProjectsMenuHeight] = useState(0);
+
+ const pinFilterOffset = 40;
 
  const updateIsHovering = (state: boolean) => {
   setIsHovering(state);
@@ -45,38 +59,57 @@ export default function ProjectsMenu({
  const [variant, setVariant] = useState(startVariant);
 
  // Refs
- const projectsMenuRef = useRef(null);
+ const projectsMenuRef = useRef<HTMLDivElement>(null);
  const projectsImgsRef = useRef(null);
  const projectsLinksRef = useRef(null);
- const filterRef = useRef(null);
- const filterTitleRef = useRef(null);
+ const filterRef = useRef<HTMLDivElement>(null);
+ const filterTitleRef = useRef<HTMLDivElement>(null);
  const filterContainerRef = useRef(null);
 
- //  Filter Projects + Fade Out Transitions
- const filterProjects = (
-  filterString: 'all' | 'recent' | 'playground' | 'archive'
- ) => {
-  if (!allProjects) return;
-
-  const filteredProjects =
-   filterString === 'all'
+ // Get projects by category
+ const getProjectsByCategory = useCallback(
+  (category: FilterCategoryKey) => {
+   return category === 'all'
     ? allProjects
-    : allProjects.filter((project: Project) => {
-       return project.category.includes(filterString);
-      });
+    : allProjects.filter((project) => project.category.includes(category));
+  },
+  [allProjects]
+ );
 
-  ctx.add(() => {
-   gsap.to('.filter-projects', {
-    opacity: 0,
-    duration: 0.5,
-    onComplete: () => {
-     setProjectItems(filteredProjects);
-     setCategory(filterString);
-    },
-   });
-  }, projectsMenuRef);
+ // Get number of projects in each category for badge
+ const numberOfProjectsByCategory = useMemo(() => {
+  return filterCategories.reduce((acc, category) => {
+   acc[category] = getProjectsByCategory(category).length;
+   return acc;
+  }, {} as Record<FilterCategoryKey, number>);
+ }, [getProjectsByCategory]);
+
+ // Scroll to filter offset on filter or view change
+ const scrollToFilterOffset = () => {
+  window.scrollTo({ top: filterScrollOffset - pinFilterOffset });
  };
 
+ // Filter projects
+ const filterProjects = useCallback(
+  (filterString: FilterCategoryKey) => {
+   const filteredProjects = getProjectsByCategory(filterString);
+
+   ctx.add(() => {
+    gsap.to('.filter-projects', {
+     opacity: 0,
+     duration: 0.5,
+     onComplete: () => {
+      setProjectItems(filteredProjects);
+      setCategory(filterString);
+      scrollToFilterOffset();
+     },
+    });
+   }, projectsMenuRef);
+  },
+  [getProjectsByCategory, scrollToFilterOffset]
+ );
+
+ // Change category – fade in
  useLayoutEffect(() => {
   let ctx = gsap.context(() => {
    gsap.to('.filter-projects', {
@@ -92,51 +125,39 @@ export default function ProjectsMenu({
 
  //  Change view – fade out + change variant
  const editVariant = () => {
-  if (variant === 'list') {
-   ctx.add(() => {
-    gsap.to('.list-view', {
-     opacity: 0,
-     duration: 0.5,
-     onComplete: () => {
-      setVariant('image');
-     },
-    });
-   }, projectsMenuRef);
-  } else if (variant === 'image') {
-   ctx.add(() => {
-    gsap.to('.image-view', {
-     opacity: 0,
-     duration: 0.5,
-     onComplete: () => {
-      setVariant('list');
-     },
-    });
-   }, projectsMenuRef);
-  }
+  ctx.add(() => {
+   gsap.to(`.${variant}-view`, {
+    opacity: 0,
+    duration: 0.5,
+    onComplete: () => {
+     setVariant(variant === 'list' ? 'image' : 'list');
+     scrollToFilterOffset();
+    },
+   });
+  }, projectsMenuRef);
  };
 
  //  Change view – fade in
  useLayoutEffect(() => {
-  if (variant === 'list') {
-   ctx.add(() => {
-    gsap.to('.list-view', {
-     opacity: 1,
-     duration: 0.5,
-    });
+  if (variant === 'thumbs') return;
+
+  ctx.add(() => {
+   gsap.to(`.${variant}-view`, {
+    opacity: 1,
+    duration: 0.5,
    });
-  } else if (variant === 'image') {
-   ctx.add(() => {
-    gsap.to('.image-view', {
-     opacity: 1,
-     duration: 0.5,
-    });
-   });
-  }
+  }, projectsMenuRef);
 
   return () => {
    ctx.revert();
   };
  }, [variant]);
+
+ // Set projects menu height on variant or view change
+ useEffect(() => {
+  if (!projectsMenuRef.current) return;
+  setProjectsMenuHeight(projectsMenuRef.current.offsetHeight);
+ }, [variant, projectItems]);
 
  // Restart list view animation on resize, filter or variant change
  useLayoutEffect(() => {
@@ -144,24 +165,36 @@ export default function ProjectsMenu({
    animateProjectsMenu(projectsImgsRef.current, projectsLinksRef.current);
  }, [projectsImgsRef.current, projectsLinksRef.current, variant, projectItems]);
 
- // Create ScrollTrigger for filter
+ // Define offset for filter menu
+ // Define initial height of projects menu
  useEffect(() => {
   if (!filterRef.current || !projectsMenuRef.current) return;
+  setFilterScrollOffset(filterRef.current.getBoundingClientRect().top);
+  setProjectsMenuHeight(projectsMenuRef.current.getBoundingClientRect().height);
+ }, [filterRef, projectsMenuRef]);
 
+ // Create ScrollTrigger to pin filter menu
+ useEffect(() => {
   gsap.registerPlugin(ScrollTrigger);
 
+  let ctx = gsap.context(() => {});
+
   let timeoutId = setTimeout(() => {
-   let ctx = gsap.context(() => {
+   ctx.add(() => {
     ScrollTrigger.create({
      trigger: filterRef.current,
-     endTrigger: projectsMenuRef.current,
-     start: 'top-=40',
-     end: 'bottom',
+     start: `top-=${pinFilterOffset + 1}`,
+     end: `top+=${projectsMenuHeight - pinFilterOffset}`,
      pin: filterRef.current,
      pinSpacing: false,
-     toggleClass: {
-      targets: filterTitleRef.current,
-      className: 'translate-x-0', // to hide / show small title
+     onEnterBack: () => {
+      filterTitleRef.current?.classList.remove('-translate-x-full');
+     },
+     onEnter: () => {
+      filterTitleRef.current?.classList.remove('-translate-x-full');
+     },
+     onLeaveBack: () => {
+      filterTitleRef.current?.classList.add('-translate-x-full');
      },
     });
    });
@@ -171,7 +204,7 @@ export default function ProjectsMenu({
    clearTimeout(timeoutId);
    if (ctx) ctx.revert();
   };
- }, [filterRef, projectsMenuRef]);
+ }, [projectsMenuHeight]);
 
  return (
   <section
@@ -210,6 +243,7 @@ export default function ProjectsMenu({
         variant,
         activeBreakpoint,
         startCategory,
+        numberOfProjectsByCategory,
        }}
       />
      </GridDiv>
@@ -218,26 +252,25 @@ export default function ProjectsMenu({
 
    {/* List View */}
    {variant === 'list' && (
-    <GridDiv divClass='list-view filter-projects grid grid-cols-12 w-full h-[500px] overflow-clip'>
+    <GridDiv divClass='list-view filter-projects grid grid-cols-12 w-full mb-32'>
      {/* Render left side images only on desktop */}
      {activeBreakpoint === 'desktop' && (
-      <div
-       className='col-span-4 aspect-square max-h-[500px] relative mt-8 overflow-clip'
-       ref={projectsImgsRef}
-      >
-       {projectItems &&
-        projectItems.map((project, index) => {
-         if (!project.coverImage.fileName) return;
-         return (
-          <CldImage
-           src={`portfolio2023/work/${project.slug}/${project.coverImage.fileName}`}
-           key={index}
-           alt={project.coverImage.alt}
-           sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-           fill
-          />
-         );
-        })}
+      <div className='sticky top-[188px] col-span-4 aspect-square max-h-[500px] overflow-clip mt-8'>
+       <div className='relative w-full h-full' ref={projectsImgsRef}>
+        {projectItems &&
+         projectItems.map((project, index) => {
+          if (!project.coverImage.fileName) return;
+          return (
+           <CldImage
+            src={`portfolio2023/work/${project.slug}/${project.coverImage.fileName}`}
+            key={index}
+            alt={project.coverImage.alt}
+            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+            fill
+           />
+          );
+         })}
+       </div>
       </div>
      )}
      {/* White space */}
@@ -246,9 +279,7 @@ export default function ProjectsMenu({
      ></div>
      {/* Render right side links */}
      <div
-      className={`col-span-${
-       activeBreakpoint === 'mobile' ? 9 : 6
-      } row-span-6 overflow-y-auto`}
+      className={`col-span-${activeBreakpoint === 'mobile' ? 9 : 6} row-span-6`}
       ref={projectsLinksRef}
      >
       {projectItems &&
@@ -281,7 +312,7 @@ export default function ProjectsMenu({
       projectItems.map((project, index) => {
        return (
         <div
-         className='lg:grid grid-cols-12 mb-32 lg:mb-64'
+         className='sm:grid grid-cols-20 lg:grid-cols-12 mb-32 md:mb-64'
          key={`${project._id}-${category}`}
         >
          {project.title &&

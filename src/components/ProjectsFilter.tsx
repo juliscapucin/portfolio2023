@@ -1,12 +1,14 @@
 import { useRef, useState } from 'react';
 
-const filterOptions = ['all', 'recent', 'playground', 'archive'];
+import { filterCategories } from '@/constants';
+import { FilterCategoryKey } from '@/types';
 
 type FilterButtonProps = {
  filterProjects: (filter: any) => void;
- handleActiveButton: (label: string) => void;
+ handleActiveButton: (label: FilterCategoryKey) => void;
  active: boolean;
- label: string;
+ label: FilterCategoryKey;
+ numberOfProjectsByCategory: Record<FilterCategoryKey, number>;
 };
 
 type ProjectsFilterProps = {
@@ -14,14 +16,23 @@ type ProjectsFilterProps = {
  editVariant: () => void;
  variant?: string;
  activeBreakpoint: string | undefined;
- startCategory: 'all' | 'recent' | 'playground' | 'archive';
+ startCategory: FilterCategoryKey;
+ numberOfProjectsByCategory: Record<FilterCategoryKey, number>;
 };
 
-const ActiveFilterButton = ({ label }: { label: string }) => {
+const ActiveViewButton = ({ label }: { label: FilterCategoryKey }) => {
  return (
   <div className='relative'>
    <span>{label}</span>
    <div className='w-full h-[1px] bg-secondary bottom-0'></div>
+  </div>
+ );
+};
+
+const FilterBadge = ({ projectsTotal }: { projectsTotal: number }) => {
+ return (
+  <div className='absolute w-6 h-6 -top-[4px] -right-[18px] flex justify-center items-center'>
+   <span className='text-labelSmall font-medium z-5'>({projectsTotal})</span>
   </div>
  );
 };
@@ -31,22 +42,28 @@ const FilterButton = ({
  handleActiveButton,
  active,
  label,
+ numberOfProjectsByCategory,
 }: FilterButtonProps) => {
- return active ? (
+ return (
   <div className='relative'>
-   <span>{label}</span>
-   <div className='w-full h-[1px] bg-secondary bottom-0'></div>
+   <FilterBadge projectsTotal={numberOfProjectsByCategory[label]} />
+   {active ? (
+    <>
+     <span>{label}</span>
+     <div className='w-full h-[1px] bg-secondary bottom-0'></div>
+    </>
+   ) : (
+    <button
+     className='hover:text-colorFaded duration-200'
+     onClick={(e) => {
+      filterProjects(label);
+      handleActiveButton(label);
+     }}
+    >
+     {label}
+    </button>
+   )}
   </div>
- ) : (
-  <button
-   className='hover:text-colorFaded duration-200'
-   onClick={(e) => {
-    filterProjects(label);
-    handleActiveButton(label);
-   }}
-  >
-   {label}
-  </button>
  );
 };
 
@@ -56,12 +73,13 @@ export default function ProjectsFilter({
  variant,
  activeBreakpoint,
  startCategory,
+ numberOfProjectsByCategory,
 }: ProjectsFilterProps) {
  const filterButtonsRef = useRef(null);
  const [activeButton, setActiveButton] = useState(startCategory);
 
- const handleActiveButton = (label: string) => {
-  setActiveButton(label as 'all' | 'recent' | 'playground' | 'archive');
+ const handleActiveButton = (label: FilterCategoryKey) => {
+  setActiveButton(label);
  };
 
  return (
@@ -70,7 +88,7 @@ export default function ProjectsFilter({
    <div className='hidden lg:flex gap-8 align-bottom '>
     <span>View:</span>
     {variant === 'list' ? (
-     <ActiveFilterButton label='List' />
+     <ActiveViewButton label='List' />
     ) : (
      <button
       className='hover:text-colorFaded transition-colors duration-200'
@@ -83,7 +101,7 @@ export default function ProjectsFilter({
     )}
     <span>/</span>
     {variant === 'image' ? (
-     <ActiveFilterButton label='Image' />
+     <ActiveViewButton label='Image' />
     ) : (
      <button
       className='hover:text-colorFaded transition-colors duration-200'
@@ -98,10 +116,10 @@ export default function ProjectsFilter({
    {/* Filter buttons */}
    <div
     ref={filterButtonsRef}
-    className='flex flex-col w-full md:w-fit md:flex-row gap-2 lg:gap-8 items-end md:items-start lg:items-center align-bottom '
+    className='flex flex-col w-full md:w-fit md:flex-row gap-2 lg:gap-8 items-end md:items-start lg:items-center align-bottom mr-8'
    >
     <span className='hidden md:block'>Filter:</span>
-    {filterOptions.map((label, index) => {
+    {filterCategories.map((label, index) => {
      return (
       <div key={label} className='flex gap-8'>
        {index !== 0 && activeBreakpoint === 'desktop' && <span>/</span>}
@@ -110,6 +128,7 @@ export default function ProjectsFilter({
         filterProjects={filterProjects}
         handleActiveButton={handleActiveButton}
         active={activeButton === label ? true : false}
+        numberOfProjectsByCategory={numberOfProjectsByCategory}
        />
       </div>
      );
