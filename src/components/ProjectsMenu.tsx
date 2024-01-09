@@ -48,8 +48,9 @@ export default function ProjectsMenu({
  const [category, setCategory] = useState<FilterCategoryKey>(startCategory);
  const [filterScrollOffset, setFilterScrollOffset] = useState(0);
  const [projectsMenuHeight, setProjectsMenuHeight] = useState(0);
+ const [isFilterMenuPinned, setIsFilterMenuPinned] = useState(false);
 
- const pinFilterOffset = 40;
+ const pinFilterOffset = 36;
 
  const updateIsHovering = (state: boolean) => {
   setIsHovering(state);
@@ -63,8 +64,6 @@ export default function ProjectsMenu({
  const projectsImgsRef = useRef(null);
  const projectsLinksRef = useRef(null);
  const filterRef = useRef<HTMLDivElement>(null);
- const filterTitleRef = useRef<HTMLDivElement>(null);
- const filterContainerRef = useRef(null);
 
  // Get projects by category
  const getProjectsByCategory = useCallback(
@@ -188,13 +187,13 @@ export default function ProjectsMenu({
      pin: filterRef.current,
      pinSpacing: false,
      onEnterBack: () => {
-      filterTitleRef.current?.classList.remove('-translate-x-full');
+      setIsFilterMenuPinned(true);
      },
      onEnter: () => {
-      filterTitleRef.current?.classList.remove('-translate-x-full');
+      setIsFilterMenuPinned(true);
      },
      onLeaveBack: () => {
-      filterTitleRef.current?.classList.add('-translate-x-full');
+      setIsFilterMenuPinned(false);
      },
     });
    });
@@ -216,26 +215,12 @@ export default function ProjectsMenu({
 
    {/* Project Filter */}
    {variant !== 'thumbs' && (
-    <div
-     ref={filterContainerRef}
-     className={`w-full mt-16 ${variant === 'image' && 'mb-8'}`}
-    >
+    <div className={`w-full mt-16 ${variant === 'image' && 'mb-8'}`}>
      <GridDiv
       divClass='w-full bg-primary pt-10 pb-1 z-8'
       ref={filterRef}
       bottom={true}
      >
-      {/* Hidden Work Title on scroll */}
-      <div className='bg-primary overflow-x-clip'>
-       <h2
-        ref={filterTitleRef}
-        className={`${
-         activeBreakpoint !== 'desktop' && 'absolute'
-        } pb-8 pr-2 text-displaySmall transition-transform duration-200 ease-in-out -translate-x-full`}
-       >
-        Work
-       </h2>
-      </div>
       <ProjectsFilter
        {...{
         filterProjects,
@@ -244,6 +229,7 @@ export default function ProjectsMenu({
         activeBreakpoint,
         startCategory,
         numberOfProjectsByCategory,
+        isFilterMenuPinned,
        }}
       />
      </GridDiv>
@@ -315,25 +301,21 @@ export default function ProjectsMenu({
          className='sm:grid grid-cols-20 lg:grid-cols-12 mb-32 md:mb-64'
          key={`${project._id}-${category}`}
         >
-         {project.title &&
-          project.slug &&
-          project.imageSize &&
-          project.imageStart && (
-           <ProjectCard
-            {...{
-             title: project.title,
-             slug: project.slug,
-             id: project._id,
-             imageSize: project.imageSize,
-             imageStart: project.imageStart,
-             scope: project.info.scope,
-             alt: project.coverImage.alt,
-             index,
-             variant,
-             updateIsHovering,
-            }}
-           />
-          )}
+         {project.title && project.slug && project.imageStart && (
+          <ProjectCard
+           {...{
+            title: project.title,
+            slug: project.slug,
+            id: project._id,
+            imageStart: project.imageStart,
+            scope: project.info.scope,
+            alt: project.coverImage.alt,
+            index,
+            variant,
+            updateIsHovering,
+           }}
+          />
+         )}
         </div>
        );
       })}

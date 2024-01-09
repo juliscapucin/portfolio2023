@@ -17,7 +17,6 @@ interface ProjectCardProps {
  slug: string;
  alt: string;
  variant: 'list' | 'image' | 'thumbs';
- imageSize?: number;
  imageStart?: number;
  updateIsHovering: (state: boolean) => void;
 }
@@ -32,7 +31,6 @@ export default function ProjectCard(props: ProjectCardProps) {
   slug,
   alt,
   variant,
-  imageSize,
   imageStart,
   updateIsHovering,
  } = props;
