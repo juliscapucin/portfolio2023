@@ -22,7 +22,7 @@ export default function AboutPage({ data }: { data: AboutData }) {
  const imageWrapperRef = useRef(null);
 
  useEnterTransitionDirection(pageRef);
- useElementReveal(imageWrapperRef, 0.8);
+ useElementReveal(imageWrapperRef.current, false, 0.8);
 
  return (
   data && (

@@ -10,7 +10,7 @@ import { animateToFullScreen } from '@/animations';
 import { useElementReveal } from '@/hooks';
 
 interface ProjectCardProps {
- index?: number;
+ index: number;
  id: string;
  title: string;
  scope: string;
@@ -38,14 +38,16 @@ export default function ProjectCard(props: ProjectCardProps) {
  const [isHovering, setIsHovering] = useState(false);
  const imageWrapperRef = useRef(null);
 
- useElementReveal(imageWrapperRef);
+ useElementReveal(imageWrapperRef.current, true);
 
  return variant === 'list' ? (
-  ////----- LIST VIEW -----////
+  //
+  //----- LIST VIEW -----//
+  //
   <GridDiv bottom={true} divClass='relative h-32'>
    {/* Div for animation */}
    <AnimationGridDiv
-    divClass={`project-card-${id} overflow-hidden bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-screen pr-16 z-10 translate-x-full`}
+    divClass={`project-card-${id} overflow-clip bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-screen pr-16 z-10 translate-x-full`}
     top={true}
     bottom={true}
    >
@@ -76,23 +78,25 @@ export default function ProjectCard(props: ProjectCardProps) {
    </button>
   </GridDiv>
  ) : (
-  ////----- IMAGE VIEW + THUMBS VIEW -----////
+  //
+  //----- IMAGE VIEW + THUMBS VIEW -----//
+  //
   <div
-   ref={variant === 'image' ? imageWrapperRef : null}
-   className={`custom-col-start-${imageStart} aspect-square relative overflow-hidden`}
+   ref={variant === 'image' ? imageWrapperRef : null} // for useElementReveal hook
+   className={`custom-col-start-${imageStart} aspect-square relative overflow-clip`}
   >
    {/* Div for animation */}
    <div
-    className={`project-card-${id} overflow-hidden bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-screen pr-16 z-30 translate-x-full`}
+    className={`project-card-${id} overflow-clip bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-screen pr-16 z-30 translate-x-full`}
    >
-    <div className='m-auto mt-0 pt-48 max-w-desktop overflow-hidden'>
+    <div className='m-auto mt-0 pt-48 max-w-desktop overflow-clip'>
      <h1 className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge col-span-5'>
       {title}
      </h1>
     </div>
    </div>
-   <div className='relative w-full h-full overflow-hidden z-0'>
-    {/* Image Reveal Mask */}
+   <div className='relative w-full h-full overflow-clip z-0'>
+    {/* Element Reveal Mask */}
     {variant === 'image' && (
      <div className='mask absolute top-0 left-0 w-full h-full bg-primary z-20'></div>
     )}
@@ -122,7 +126,7 @@ export default function ProjectCard(props: ProjectCardProps) {
       variant={variant}
      />
      <div
-      className={`relative w-full h-full overflow-hidden transition-transform duration-300 ease-in-out ${
+      className={`relative w-full h-full overflow-clip transition-transform duration-300 ease-in-out ${
        // Hover animation
        isHovering && 'scale-[115%] -rotate-2'
       }`}

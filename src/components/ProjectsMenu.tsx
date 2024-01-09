@@ -269,7 +269,7 @@ export default function ProjectsMenu({
       ref={projectsLinksRef}
      >
       {projectItems &&
-       projectItems.map((link) => {
+       projectItems.map((link, index) => {
         if (!link.coverImage || !link.title || !link.slug) return;
         return (
          <Fragment key={`${link.slug}-${category}`}>
@@ -282,6 +282,7 @@ export default function ProjectsMenu({
             alt: link.coverImage.alt,
             variant,
             updateIsHovering,
+            index,
            }}
           />
          </Fragment>
@@ -293,7 +294,7 @@ export default function ProjectsMenu({
 
    {/* Image View */}
    {variant === 'image' && (
-    <GridDiv divClass='image-view filter-projects w-full'>
+    <div className='image-view filter-projects w-full'>
      {projectItems &&
       projectItems.map((project, index) => {
        return (
@@ -319,7 +320,7 @@ export default function ProjectsMenu({
         </div>
        );
       })}
-    </GridDiv>
+    </div>
    )}
 
    {/* Thumb View */}

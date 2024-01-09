@@ -23,7 +23,7 @@ export default function Header() {
 
  return (
   navLinks && (
-   <header className='fixed top-0 z-100 w-full max-w-desktop'>
+   <header className='fixed top-0 z-100 w-full max-w-desktop overflow-clip'>
     <MenuDesktop navLinks={navLinks} transitionOnClick={transitionOnClick} />
     <MenuMobile navLinks={navLinks} transitionOnClick={transitionOnClick} />
    </header>
