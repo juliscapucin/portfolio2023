@@ -4,4 +4,5 @@ export type FilterCategoryKey =
    | 'playground'
    | 'archive'
    | 'List'
-   | 'Image';
+   | 'Image'
+   | 'Images';

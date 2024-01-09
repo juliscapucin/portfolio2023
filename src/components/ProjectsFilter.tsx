@@ -18,6 +18,7 @@ type ProjectsFilterProps = {
  activeBreakpoint: string | undefined;
  startCategory: FilterCategoryKey;
  numberOfProjectsByCategory: Record<FilterCategoryKey, number>;
+ isFilterMenuPinned: boolean;
 };
 
 const ActiveViewButton = ({ label }: { label: FilterCategoryKey }) => {
@@ -74,6 +75,7 @@ export default function ProjectsFilter({
  activeBreakpoint,
  startCategory,
  numberOfProjectsByCategory,
+ isFilterMenuPinned,
 }: ProjectsFilterProps) {
  const filterButtonsRef = useRef(null);
  const [activeButton, setActiveButton] = useState(startCategory);
@@ -83,42 +85,22 @@ export default function ProjectsFilter({
  };
 
  return (
-  <div className='w-full flex justify-between items-end mr-4 mb-4'>
-   {/* View buttons */}
-   <div className='hidden lg:flex gap-8 align-bottom '>
-    <span>View:</span>
-    {variant === 'list' ? (
-     <ActiveViewButton label='List' />
-    ) : (
-     <button
-      className='hover:text-colorFaded transition-colors duration-200'
-      onClick={() => {
-       editVariant();
-      }}
-     >
-      List
-     </button>
-    )}
-    <span>/</span>
-    {variant === 'image' ? (
-     <ActiveViewButton label='Image' />
-    ) : (
-     <button
-      className='hover:text-colorFaded transition-colors duration-200'
-      onClick={() => {
-       editVariant();
-      }}
-     >
-      Image
-     </button>
-    )}
-   </div>
+  <div className='w-full flex gap-16 bg-primary overflow-x-clip justify-between items-end mr-4 mb-4 lg:mb-8'>
+   {/* Hidden Work Title on scroll */}
+   <h2
+    className={`${
+     activeBreakpoint !== 'desktop' && 'absolute'
+    } pr-2 text-displaySmall transition-transform duration-200 ease-in-out ${
+     isFilterMenuPinned ? '' : '-translate-x-full'
+    }`}
+   >
+    Work
+   </h2>
    {/* Filter buttons */}
    <div
     ref={filterButtonsRef}
-    className='flex flex-col w-full md:w-fit md:flex-row gap-2 lg:gap-8 items-end md:items-start lg:items-center align-bottom mr-8'
+    className={`flex flex-col w-full md:w-fit md:flex-row gap-2 md:gap-8 items-end md:items-start lg:items-center align-bottom`}
    >
-    <span className='hidden md:block'>Filter:</span>
     {filterCategories.map((label, index) => {
      return (
       <div key={label} className='flex gap-8'>
@@ -133,6 +115,35 @@ export default function ProjectsFilter({
       </div>
      );
     })}
+   </div>
+
+   {/* View buttons */}
+   <div className='hidden lg:flex gap-8 align-bottom mr-4'>
+    {variant === 'list' ? (
+     <ActiveViewButton label='List' />
+    ) : (
+     <button
+      className='hover:text-colorFaded transition-colors duration-200'
+      onClick={() => {
+       editVariant();
+      }}
+     >
+      List
+     </button>
+    )}
+    <span>/</span>
+    {variant === 'image' ? (
+     <ActiveViewButton label='Images' />
+    ) : (
+     <button
+      className='hover:text-colorFaded transition-colors duration-200'
+      onClick={() => {
+       editVariant();
+      }}
+     >
+      Images
+     </button>
+    )}
    </div>
   </div>
  );
