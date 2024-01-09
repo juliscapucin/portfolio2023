@@ -329,25 +329,20 @@ export default function ProjectsMenu({
       projectItems.map((project, index) => {
        return (
         <div className='w-56 h-56' key={project._id}>
-         {project.title &&
-          project.slug &&
-          project.imageSize &&
-          project.imageStart && (
-           <ProjectCard
-            {...{
-             index,
-             title: project.title,
-             scope: project.info.scope,
-             slug: project.slug,
-             id: project._id,
-             alt: project.coverImage.alt,
-             variant,
-             imageSize: project.imageSize,
-             imageStart: project.imageStart,
-             updateIsHovering,
-            }}
-           />
-          )}
+         {project.title && project.slug && (
+          <ProjectCard
+           {...{
+            index,
+            title: project.title,
+            scope: project.info.scope,
+            slug: project.slug,
+            id: project._id,
+            alt: project.coverImage.alt,
+            variant,
+            updateIsHovering,
+           }}
+          />
+         )}
         </div>
        );
       })}
