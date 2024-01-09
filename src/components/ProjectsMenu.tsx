@@ -315,25 +315,21 @@ export default function ProjectsMenu({
          className='sm:grid grid-cols-20 lg:grid-cols-12 mb-32 md:mb-64'
          key={`${project._id}-${category}`}
         >
-         {project.title &&
-          project.slug &&
-          project.imageSize &&
-          project.imageStart && (
-           <ProjectCard
-            {...{
-             title: project.title,
-             slug: project.slug,
-             id: project._id,
-             imageSize: project.imageSize,
-             imageStart: project.imageStart,
-             scope: project.info.scope,
-             alt: project.coverImage.alt,
-             index,
-             variant,
-             updateIsHovering,
-            }}
-           />
-          )}
+         {project.title && project.slug && project.imageStart && (
+          <ProjectCard
+           {...{
+            title: project.title,
+            slug: project.slug,
+            id: project._id,
+            imageStart: project.imageStart,
+            scope: project.info.scope,
+            alt: project.coverImage.alt,
+            index,
+            variant,
+            updateIsHovering,
+           }}
+          />
+         )}
         </div>
        );
       })}

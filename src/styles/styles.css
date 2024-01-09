@@ -280,3 +280,11 @@ textarea {
       grid-column: 8 / 12;
    }
 }
+
+.custom-col-start-9 {
+   grid-column: 9 / 20;
+
+   @media (min-width: 1024px) {
+      grid-column: 9 / 13;
+   }
+}
