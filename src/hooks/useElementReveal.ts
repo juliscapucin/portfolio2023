@@ -1,4 +1,4 @@
-import { MutableRefObject, useLayoutEffect } from 'react';
+import { useLayoutEffect } from 'react';
 
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -22,31 +22,30 @@ export function useElementReveal(
                // as explained here: https://www.youtube.com/watch?v=SVjndrQ6v9I (min 7:20)
                toggleActions: 'play complete none none',
                start: 'top 80%',
+               scrub: 1,
+               // onEnterBack: () => {
+               //    maskRevealAnimation.play();
+               // },
+               onEnter: () => {
+                  maskRevealAnimation.play();
+               },
+               // onLeaveBack: () => {
+               //    maskRevealAnimation.reverse();
+               // },
             },
          });
 
-         tl.to('.mask', {
+         tl.from(wrapperDiv, {
+            yPercent: hasParallax ? 50 : 0,
+            duration: 0.5,
+            ease: 'power1.out',
+         });
+
+         const maskRevealAnimation = gsap.to('.mask', {
             yPercent: 100,
             duration: 0.5,
             ease: 'power1.in',
             delay: delay,
-         });
-
-         if (!hasParallax) return;
-
-         let tl2 = gsap.timeline({
-            scrollTrigger: {
-               trigger: wrapperDiv,
-               toggleActions: 'play complete none none',
-               start: 'top 80%',
-               scrub: 1,
-            },
-         });
-
-         tl2.from(wrapperDiv, {
-            yPercent: 50,
-            duration: 0.5,
-            ease: 'power1.out',
          });
       }, wrapperDiv);
 
