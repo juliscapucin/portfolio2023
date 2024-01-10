@@ -10,7 +10,9 @@ import {
  useElementReveal,
  useEnterTransitionDirection,
  useFakeParallax,
+ useMediaQuery,
 } from '@/hooks';
+import { breakpoints } from '@/constants';
 
 type AboutData = {
  title: string;
@@ -26,9 +28,12 @@ export default function AboutPage({ data }: { data: AboutData }) {
  const imageWrapperRef = useRef(null);
  const parallaxRef = useRef(null);
 
+ // Set breakpoint for mobile/desktop (values are in constants.ts)
+ const breakpoint = useMediaQuery(breakpoints.desktop);
+
  useEnterTransitionDirection(pageRef);
  useElementReveal(imageWrapperRef.current, false, 0.8);
- //  useFakeParallax(parallaxRef.current);
+ useFakeParallax(parallaxRef.current, breakpoint);
 
  return (
   data && (

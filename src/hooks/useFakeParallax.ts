@@ -2,13 +2,21 @@ import { useLayoutEffect } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
-export default function useFakeParallax(wrapperDiv: HTMLDivElement | null) {
-   // if (wrapperDiv === null) return;
-
+export default function useFakeParallax(
+   wrapperDiv: HTMLDivElement | null,
+   breakpoint: string | undefined
+) {
+   console.log(breakpoint);
    useLayoutEffect(() => {
-      let ctx = gsap.context(() => {});
+      // Only run this effect on desktop
+      if (breakpoint !== 'desktop') return;
 
-      if (!wrapperDiv) return;
+      console.log('running effect');
+
+      let ctx = gsap.context(() => {});
+      const parentDiv = wrapperDiv?.parentElement;
+
+      if (!wrapperDiv || !parentDiv) return;
 
       gsap.registerPlugin(ScrollTrigger);
 
@@ -18,21 +26,17 @@ export default function useFakeParallax(wrapperDiv: HTMLDivElement | null) {
                trigger: wrapperDiv,
                toggleActions: 'play complete none none',
                start: 'top 80%',
-               scrub: 1,
+               scrub: 1.5,
             },
          });
 
-         tl.fromTo(
-            wrapperDiv,
-            {
-               yPercent: 5,
-            },
-            { yPercent: 1 }
-         ).to(wrapperDiv, { yPercent: 5 });
+         tl.to(wrapperDiv, {
+            y: -200,
+         });
       }, wrapperDiv);
 
       return () => {
          ctx.revert();
       };
-   }, [wrapperDiv]);
+   }, [wrapperDiv, breakpoint]);
 }

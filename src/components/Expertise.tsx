@@ -49,7 +49,7 @@ export default function Expertise() {
     const tl = gsap.timeline({
      scrollTrigger: {
       trigger: service,
-      start: 'top 80%',
+      start: 'top 100%',
       end: 'bottom 20%',
       // markers: true,
       toggleActions: 'play none none reverse',
