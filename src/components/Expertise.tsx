@@ -6,6 +6,7 @@ import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { useTextReveal } from '@/hooks';
 import SectionTitle from './SectionTitle';
+import { GridDiv } from './ui';
 
 const expertise = [
  {
@@ -82,15 +83,12 @@ export default function Expertise() {
       </h3>
       <ul className='col-start-6 col-span-7 mt-8'>
        {service.items.map((item) => (
-        <div className='mt-8 h-16 overflow-clip'>
+        <div key={item} className='mt-8 h-16 overflow-clip'>
          <div className='service-wrapper'>
-          <li key={item} className='text-titleLarge font-light'>
-           {item}
-          </li>
-          <li key={item} className='text-titleLarge font-light'>
-           {item}
-          </li>
-          <div className='h-[1px] w-full bg-secondary'></div>
+          <GridDiv bottom={true}>
+           <li className='text-titleLarge font-light'>{item}</li>
+           <li className='text-titleLarge font-light'>{item}</li>
+          </GridDiv>
          </div>
         </div>
        ))}

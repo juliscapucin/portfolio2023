@@ -1,5 +1,6 @@
 import { useElementReveal } from './useElementReveal';
 import { useEnterTransitionDirection } from './useEnterTransitionDirection';
+import useFakeParallax from './useFakeParallax';
 import { useFetch } from './useFetch';
 import { useLinkReveal } from './useLinkReveal';
 import { useMediaQuery } from './useMediaQuery';
@@ -13,6 +14,7 @@ import { useWindowResize } from './useWindowResize';
 export {
    useElementReveal,
    useEnterTransitionDirection,
+   useFakeParallax,
    useFetch,
    useLinkReveal,
    useMediaQuery,
