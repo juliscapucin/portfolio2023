@@ -63,7 +63,7 @@ export default function AboutPage({ data }: { data: AboutData }) {
 
      {/* Marquee */}
      <GridDiv
-      divClass='col-span-full row-span-1 flex items-center p-16'
+      divClass='col-span-full row-span-1 flex items-center py-16 mt-64'
       top={true}
      >
       <Marquee speed={150}>

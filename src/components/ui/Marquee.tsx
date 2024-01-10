@@ -36,7 +36,7 @@ const Marquee = ({ children, speed = 100 }: Props) => {
 
   const tl = gsap.timeline({ repeat: -1, defaults: { ease: 'linear' } });
 
-  tl.fromTo(element, { x: 0 }, { x: -elementWidth / 2, duration: duration });
+  tl.fromTo(element, { xPercent: 0 }, { xPercent: -50, duration: duration });
 
   // Cleanup the GSAP animation on component unmount
   // Remove event listener on component unmount

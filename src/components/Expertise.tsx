@@ -1,6 +1,6 @@
 'use client';
 
-import { useLayoutEffect, useRef } from 'react';
+import { Fragment, useLayoutEffect, useRef } from 'react';
 
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -51,13 +51,14 @@ export default function Expertise() {
       start: 'top 80%',
       end: 'bottom 20%',
       // markers: true,
+      toggleActions: 'play none none reverse',
      },
     });
 
     tl.fromTo(
      service,
-     { opacity: 0, x: 100 },
-     { opacity: 1, x: 0, duration: 1 }
+     { yPercent: 100 },
+     { yPercent: -50, duration: 0.3, ease: 'power4.out' }
     );
    });
   });
@@ -75,21 +76,26 @@ export default function Expertise() {
    </div>
    {expertise &&
     expertise.map((service) => (
-     <>
+     <Fragment key={service.title}>
       <h3 className='col-start-6 col-span-7 text-displaySmall mt-64'>
        {service.title}
       </h3>
       <ul className='col-start-6 col-span-7 mt-8'>
        {service.items.map((item) => (
-        <li
-         key={item}
-         className='service-wrapper mt-8 text-titleLarge font-light'
-        >
-         {item}
-        </li>
+        <div className='mt-8 h-16 overflow-clip'>
+         <div className='service-wrapper'>
+          <li key={item} className='text-titleLarge font-light'>
+           {item}
+          </li>
+          <li key={item} className='text-titleLarge font-light'>
+           {item}
+          </li>
+          <div className='h-[1px] w-full bg-secondary'></div>
+         </div>
+        </div>
        ))}
       </ul>
-     </>
+     </Fragment>
     ))}
   </section>
  );
