@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useRef } from 'react';
 import { usePageContext } from '@/context';
 import { Footer, Expertise } from '@/components';
-import { Title } from '@/components/ui';
+import { GridDiv, Marquee, Title } from '@/components/ui';
 import { useElementReveal, useEnterTransitionDirection } from '@/hooks';
 
 type AboutData = {
@@ -60,6 +60,21 @@ export default function AboutPage({ data }: { data: AboutData }) {
        ))}
       </div>
      </div>
+
+     {/* Marquee */}
+     <GridDiv
+      divClass='col-span-full row-span-1 flex items-center p-16'
+      top={true}
+     >
+      <Marquee speed={150}>
+       <h2 className='text-displaySmall xl:text-displayMedium font-normal whitespace-nowrap px-4'>
+        Design & Web Development Design & Web Development
+       </h2>
+       <h2 className='text-displaySmall xl:text-displayMedium font-normal whitespace-nowrap px-4'>
+        Design & Web Development Design & Web Development
+       </h2>
+      </Marquee>
+     </GridDiv>
 
      {/* Expertise */}
      <Expertise />
