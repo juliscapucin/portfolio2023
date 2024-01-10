@@ -34,16 +34,16 @@ export default function CopyEmailButton() {
  }, [showCopyFeedback]);
 
  return (
-  <div className='relative h-16 mt-16'>
+  <div className='relative h-16 mt-8'>
    {showCopyFeedback && (
     <div ref={labelRef} className='absolute -top-8 w-full flex justify-center'>
-     <span className='bg-secondary px-2 text-primary text-labelSmall uppercase'>
+     <span className='bg-secondary px-2 text-primary text-labelSmall uppercase whitespace-nowrap'>
       Copied to clipboard!
      </span>
     </div>
    )}
-   <button className='group overflow-hidden h-11' onClick={copyToClipboard}>
-    <div className='flex flex-col group-hover:-translate-y-1/2 transition-transform duration-200'>
+   <button className='group overflow-hidden h-8' onClick={copyToClipboard}>
+    <div className='flex flex-col text-labelSmall group-hover:-translate-y-1/2 transition-transform duration-200'>
      <span>Copy email address</span>
      <span>Copy email address</span>
     </div>

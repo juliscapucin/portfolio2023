@@ -1,39 +1,56 @@
-import { MutableRefObject, useLayoutEffect } from 'react';
+import { useLayoutEffect } from 'react';
 
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export function useElementReveal(
- wrapperRef: MutableRefObject<null>,
- delay: number = 0
+   wrapperDiv: HTMLDivElement | null,
+   hasParallax: boolean,
+   delay: number = 0
 ) {
- useLayoutEffect(() => {
-  let ctx = gsap.context(() => {});
+   useLayoutEffect(() => {
+      let ctx = gsap.context(() => {});
 
-  if (!wrapperRef || !wrapperRef.current) return;
+      if (!wrapperDiv) return;
 
-  gsap.registerPlugin(ScrollTrigger);
+      gsap.registerPlugin(ScrollTrigger);
 
-  ctx.add(() => {
-   let tl = gsap.timeline({
-    scrollTrigger: {
-     trigger: wrapperRef.current,
-     // as explained here: https://www.youtube.com/watch?v=SVjndrQ6v9I (min 7:20)
-     toggleActions: 'play complete none none',
-     start: 'top 80%',
-    },
-   });
+      ctx.add(() => {
+         let tl = gsap.timeline({
+            scrollTrigger: {
+               trigger: wrapperDiv,
+               // as explained here: https://www.youtube.com/watch?v=SVjndrQ6v9I (min 7:20)
+               toggleActions: 'play complete none none',
+               start: 'top 80%',
+               scrub: 1,
+               // onEnterBack: () => {
+               //    maskRevealAnimation.play();
+               // },
+               onEnter: () => {
+                  maskRevealAnimation.play();
+               },
+               // onLeaveBack: () => {
+               //    maskRevealAnimation.reverse();
+               // },
+            },
+         });
 
-   tl.to('.mask', {
-    yPercent: 100,
-    duration: 0.5,
-    ease: 'power1.in',
-    delay: delay,
-   });
-  }, wrapperRef);
+         tl.from(wrapperDiv, {
+            yPercent: hasParallax ? 50 : 0,
+            duration: 0.5,
+            ease: 'power1.out',
+         });
 
-  return () => {
-   ctx.revert();
-  };
- }, [wrapperRef]);
+         const maskRevealAnimation = gsap.to('.mask', {
+            yPercent: 100,
+            duration: 0.5,
+            ease: 'power1.in',
+            delay: delay,
+         });
+      }, wrapperDiv);
+
+      return () => {
+         ctx.revert();
+      };
+   }, [wrapperDiv]);
 }
