@@ -34,7 +34,7 @@ export default function ProjectCard(props: ProjectCardProps) {
   imageStart,
   updateIsHovering,
  } = props;
- // local isHovering state for individual hover animation
+ // need a local isHovering state for individual hover animation
  const [isHovering, setIsHovering] = useState(false);
  const imageWrapperRef = useRef(null);
 
@@ -81,67 +81,85 @@ export default function ProjectCard(props: ProjectCardProps) {
   //
   //----- IMAGE VIEW + THUMBS VIEW -----//
   //
+
+  // If image, ref is passed to useElementReveal hook
+
   <div
-   ref={variant === 'image' ? imageWrapperRef : null} // for useElementReveal hook
-   className={`custom-col-start-${imageStart} aspect-square relative overflow-clip`}
+   ref={variant === 'image' ? imageWrapperRef : null}
+   className='sm:col-span-20 md:col-span-12 sm:grid sm:grid-cols-20 md:grid-cols-12 w-full'
   >
-   {/* Div for animation */}
    <div
-    className={`project-card-${id} overflow-clip bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-screen pr-16 z-30 translate-x-full`}
+    className={`custom-col-start-${imageStart} aspect-square relative overflow-clip`}
    >
-    <div className='m-auto mt-0 pt-48 max-w-desktop overflow-clip'>
-     <h1 className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge col-span-5'>
-      {title}
-     </h1>
-    </div>
-   </div>
-   <div className='relative w-full h-full overflow-clip z-0'>
-    {/* Element Reveal Mask for useElementReveal hook */}
-    {variant === 'image' && (
-     <div className='mask absolute top-0 left-0 w-full h-full bg-primary text-secondary z-20'></div>
-    )}
-    <button
-     className='h-full w-full group flex justify-center items-center absolute'
-     onMouseEnter={() => {
-      setIsHovering(true);
-      updateIsHovering(true);
-     }}
-     onMouseLeave={() => {
-      setIsHovering(false);
-      updateIsHovering(false);
-     }}
-     onClick={() => {
-      animateToFullScreen(`.project-card-${id}`, () =>
-       router.push(`/work/${slug}`, { scroll: false })
-      );
-     }}
+    {/* Div for animation */}
+    <div
+     className={`project-card-${id} overflow-clip bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-screen pr-16 z-30 translate-x-full`}
     >
-     <ProjectLabel
-      title={title}
-      scope={scope}
-      divClass={`absolute ${
-       variant === 'image' ? 'bottom-4 left-0' : 'bottom-0 left-4'
-      } z-10`}
-      textSize={variant === 'image' ? 'text-titleMedium' : 'text-titleSmall'}
-      variant={variant}
-     />
-     <div
-      className={`relative w-full h-full overflow-clip transition-transform duration-300 ease-in-out ${
-       // Hover animation
-       isHovering && 'scale-[115%] -rotate-2'
-      }`}
-     >
-      <CldImage
-       src={`portfolio2023/work/${slug}/01`}
-       key={id}
-       alt={alt}
-       sizes='100vw (max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-       fill
-       priority={index === 1 ? true : false}
-      />
+     <div className='m-auto mt-0 pt-48 max-w-desktop overflow-clip'>
+      <h1 className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge col-span-5'>
+       {title}
+      </h1>
      </div>
-    </button>
+    </div>
+    <div className='relative w-full h-full overflow-clip z-0'>
+     {/* Element Reveal Mask for useElementReveal hook */}
+     {variant === 'image' && (
+      <div className='mask absolute top-0 left-0 w-full h-full bg-primary text-secondary z-20'></div>
+     )}
+     <button
+      className='h-full w-full group flex justify-center items-center absolute'
+      onMouseEnter={() => {
+       setIsHovering(true);
+       updateIsHovering(true);
+      }}
+      onMouseLeave={() => {
+       setIsHovering(false);
+       updateIsHovering(false);
+      }}
+      onClick={() => {
+       animateToFullScreen(`.project-card-${id}`, () =>
+        router.push(`/work/${slug}`, { scroll: false })
+       );
+      }}
+     >
+      {variant === 'thumbs' && (
+       <ProjectLabel
+        title={title}
+        scope={scope}
+        divClass='absolute bottom-0 left-4 z-10'
+        textSize='text-titleSmall'
+        variant={variant}
+       />
+      )}
+      <div
+       className={`relative w-full h-full overflow-clip transition-transform duration-300 ease-in-out ${
+        // Hover animation
+        isHovering && 'scale-[115%] -rotate-2'
+       }`}
+      >
+       <CldImage
+        src={`portfolio2023/work/${slug}/01`}
+        key={id}
+        alt={alt}
+        sizes='100vw (max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+        fill
+        priority={index === 1 ? true : false}
+       />
+      </div>
+     </button>
+    </div>
+    -
    </div>
+   {variant === 'image' && imageStart && (
+    <ProjectLabel
+     title={title}
+     scope={scope}
+     divClass={`custom-col-start-${imageStart === 1 ? 5 : imageStart - 4}`}
+     textSize={`textHeadingLarge text-right`}
+     variant={variant}
+     index={index + 1}
+    />
+   )}
   </div>
  );
 }
