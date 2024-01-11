@@ -299,7 +299,7 @@ export default function ProjectsMenu({
       projectItems.map((project, index) => {
        return (
         <div
-         className='sm:grid grid-cols-20 lg:grid-cols-12 mb-32 md:mb-64'
+         className='sm:grid sm:grid-cols-20 md:grid-cols-12 mb-32 md:mb-64'
          key={`${project._id}-${category}`}
         >
          {project.title && project.slug && project.imageStart && (
