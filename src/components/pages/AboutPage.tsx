@@ -92,15 +92,15 @@ export default function AboutPage({ data }: { data: AboutData }) {
       <Expertise />
 
       {/* Heads up */}
-      <GridDiv divClass='col-span-12 mt-64 py-64' top={true}>
+      <GridDiv divClass='col-span-12 mt-64 py-64 md:pb-0' top={true}>
        <p className='md:w-1/2 m-auto text-titleLarge md:text-headlineSmall md:text-center'>
         {data.content2[0].children[0].text}
        </p>
       </GridDiv>
      </div>
      {/* <Experience experience={experience} /> */}
-     <Footer />
     </div>
+    <Footer />
    </div>
   )
  );

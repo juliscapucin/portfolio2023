@@ -11,6 +11,7 @@ export default function Footer() {
  const isProjectPage = pathname.includes('/work/');
 
  return (
+  //   <div className='absolute bottom-0'>
   <GridDiv
    top={true}
    divClass={`pt-32 pb-16 lg:pl-16 ${
@@ -35,5 +36,6 @@ export default function Footer() {
     <Copyright />
    </div>
   </GridDiv>
+  //   </div>
  );
 }
