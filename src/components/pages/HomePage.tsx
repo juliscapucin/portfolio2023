@@ -28,7 +28,7 @@ export default function HomePage({ allProjects }: { allProjects: Project[] }) {
  // Set breakpoint for mobile/desktop (values are in constants.ts)
  const breakpoint = useMediaQuery(breakpoints.desktop);
 
- useFakeParallax(parallaxRef.current, breakpoint);
+ //  useFakeParallax(parallaxRef.current, breakpoint);
 
  //  Enter page animation
  useLayoutEffect(() => {

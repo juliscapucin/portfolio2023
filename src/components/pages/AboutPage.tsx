@@ -61,7 +61,7 @@ export default function AboutPage({ data }: { data: AboutData }) {
       <div className='col-span-1'></div>
       <div className='col-span-4'>
        {/* Subtitle */}
-       <p className='text-titleLarge md:text-headlineSmall col-span-5 mt-4'>
+       <p className='text-titleLarge md:text-headlineSmall col-span-5 mt-16 lg:mt-4'>
         {data.description}
        </p>
 
@@ -75,7 +75,7 @@ export default function AboutPage({ data }: { data: AboutData }) {
 
       {/* Marquee */}
       <GridDiv
-       divClass='col-span-full row-span-1 flex items-center py-16 mt-64'
+       divClass='col-span-full row-span-1 flex items-center py-16 mt-48 lg:mt-64'
        top={true}
       >
        <Marquee speed={150}>
