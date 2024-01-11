@@ -20,33 +20,40 @@ export default function AboutText() {
    type: 'lines',
   });
 
-  // Create timeline + start scrollTrigger
-  const tl = gsap.timeline({
-   scrollTrigger: {
-    trigger: textRef.current,
-    start: 'top 80%',
-    toggleActions: 'play none none reverse',
-    //  scrub: 1,
-   },
+  let ctx = gsap.context(() => {});
+
+  ctx.add(() => {
+   // Create timeline + start scrollTrigger
+   let tl = gsap.timeline({
+    scrollTrigger: {
+     trigger: textRef.current,
+     start: 'top 50%',
+     toggleActions: 'play none none reverse',
+    },
+    onComplete: () => {
+     tl.revert();
+    },
+   });
+
+   // Animate each line
+   tl.fromTo(
+    splitText.lines,
+    { opacity: 0, yPercent: 200 },
+    { opacity: 1, yPercent: 0, stagger: 0.2 }
+   );
   });
 
-  // Animate each line
-  tl.fromTo(
-   splitText.lines,
-   { opacity: 1, y: 50 },
-   { opacity: 1, y: 0, stagger: 0.1 }
-  );
-
   return () => {
-   tl.revert();
+   console.log('unmount');
+   ctx.revert();
   };
  }, [width, textRef]);
 
  return (
-  <section className='lg:grid grid-cols-12 my-64'>
+  <section className='xl:grid grid-cols-12 my-64'>
    <p
     ref={textRef}
-    className='col-start-7 col-span-5 text-titleLarge md:text-headlineMedium'
+    className='ml-auto mr-0 xl:ml-0 xl:mr-auto max-w-1/2 col-start-7 col-span-5 text-titleMedium sm:text-headlineMedium'
    >
     I&apos;m a Front-End Developer with a broad background in Graphic and
     Digital Design. Commitment to visual excellence and engineering performance
