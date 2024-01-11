@@ -61,7 +61,7 @@ export default function AboutPage({ data }: { data: AboutData }) {
       <div className='col-span-1'></div>
       <div className='col-span-4'>
        {/* Subtitle */}
-       <p className='text-titleLarge md:text-headlineSmall col-span-5 mt-4'>
+       <p className='text-titleLarge md:text-headlineSmall col-span-5 mt-16 lg:mt-4'>
         {data.description}
        </p>
 
@@ -75,10 +75,10 @@ export default function AboutPage({ data }: { data: AboutData }) {
 
       {/* Marquee */}
       <GridDiv
-       divClass='col-span-full row-span-1 flex items-center py-16 mt-64'
+       divClass='col-span-full row-span-1 flex items-center py-16 mt-48 lg:mt-64'
        top={true}
       >
-       <Marquee speed={150}>
+       <Marquee>
         <h2 className='text-displaySmall xl:text-displayMedium font-normal whitespace-nowrap px-4'>
          Design & Web Development Design & Web Development
         </h2>
@@ -92,15 +92,15 @@ export default function AboutPage({ data }: { data: AboutData }) {
       <Expertise />
 
       {/* Heads up */}
-      <GridDiv divClass='col-span-12 mt-64' top={true}>
-       <p className='w-1/2 m-auto my-64 text-titleLarge md:text-headlineSmall text-center'>
+      <GridDiv divClass='col-span-12 mt-64 py-64 md:pb-0' top={true}>
+       <p className='md:w-1/2 m-auto text-titleLarge md:text-headlineSmall md:text-center'>
         {data.content2[0].children[0].text}
        </p>
       </GridDiv>
      </div>
      {/* <Experience experience={experience} /> */}
-     <Footer />
     </div>
+    <Footer />
    </div>
   )
  );

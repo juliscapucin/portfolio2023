@@ -23,7 +23,7 @@ export default function WorkPage({ data, allProjects }: Props) {
  const parallaxRef = useRef(null);
 
  useEnterTransitionDirection(pageRef);
- useFakeParallax(parallaxRef.current, breakpoint);
+ //  useFakeParallax(parallaxRef.current, breakpoint);
 
  return (
   <div ref={pageRef} className='page work-page pt-64'>

@@ -9,6 +9,7 @@ import CustomImage from './CustomImage';
 import Experience from './Experience';
 import ExperienceItem from './ExperienceItem';
 import Expertise from './Expertise';
+import ExpertiseItem from './ExpertiseItem';
 import FeedbackForm from './FeedbackForm';
 import Footer from './Footer';
 import FooterNav from './FooterNav';
@@ -45,6 +46,7 @@ export {
    Experience,
    ExperienceItem,
    Expertise,
+   ExpertiseItem,
    FeedbackForm,
    Footer,
    FooterNav,

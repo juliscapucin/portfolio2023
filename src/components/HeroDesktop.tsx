@@ -43,7 +43,7 @@ const HeroDesktop = () => {
 
  return (
   <div
-   className='hero__desktop grid grid-cols-12 grid-rows-6 h-screen max-h-screen w-full mt-32'
+   className='hero__desktop grid grid-cols-12 grid-rows-6 h-screen max-h-screen w-full'
    ref={heroRef}
   >
    {/* Status */}
@@ -73,7 +73,7 @@ const HeroDesktop = () => {
     divClass='col-span-full row-span-1 flex items-center'
     ref={descriptionRef}
    >
-    <Marquee speed={150}>
+    <Marquee>
      <h2 className='text-displaySmall xl:text-displayMedium font-normal whitespace-nowrap px-4'>
       Design & Web Development Design & Web Development
      </h2>
