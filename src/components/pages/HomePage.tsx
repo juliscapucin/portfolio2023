@@ -6,7 +6,7 @@ import gsap from 'gsap';
 
 import { breakpoints } from '@/constants';
 import { usePageContext } from '@/context';
-import { useMediaQuery } from '@/hooks';
+import { useFakeParallax, useMediaQuery } from '@/hooks';
 
 import {
  AboutText,
@@ -23,9 +23,12 @@ import { Project } from '@/types';
 export default function HomePage({ allProjects }: { allProjects: Project[] }) {
  const pathname = usePathname();
  const { previousPage, updatePreviousPage, pageRef } = usePageContext();
+ const parallaxRef = useRef(null);
 
  // Set breakpoint for mobile/desktop (values are in constants.ts)
  const breakpoint = useMediaQuery(breakpoints.desktop);
+
+ useFakeParallax(parallaxRef.current, breakpoint);
 
  //  Enter page animation
  useLayoutEffect(() => {
@@ -48,25 +51,27 @@ export default function HomePage({ allProjects }: { allProjects: Project[] }) {
 
  return (
   <div ref={pageRef} className='page home-page main-page'>
-   <GridDiv
-    divClass='overflow-clip lg:h-screen custom-min-h-screen'
-    bottom={breakpoint === 'desktop' && true}
-   >
-    {breakpoint === 'mobile' && <HeroMobile />}
-    {breakpoint === 'desktop' && <HeroDesktop />}
-   </GridDiv>
+   <div ref={parallaxRef}>
+    <GridDiv
+     divClass='overflow-clip lg:h-screen custom-min-h-screen'
+     bottom={breakpoint === 'desktop' && true}
+    >
+     {breakpoint === 'mobile' && <HeroMobile />}
+     {breakpoint === 'desktop' && <HeroDesktop />}
+    </GridDiv>
 
-   <AboutText />
+    <AboutText />
 
-   <SectionTitle title='Work' />
-   <ProjectsMenu
-    startVariant={breakpoint === 'desktop' ? 'list' : 'image'}
-    activeBreakpoint={breakpoint}
-    allProjects={allProjects}
-    startCategory='recent'
-   />
+    <SectionTitle title='Work' />
+    <ProjectsMenu
+     startVariant={breakpoint === 'desktop' ? 'list' : 'image'}
+     activeBreakpoint={breakpoint}
+     allProjects={allProjects}
+     startCategory='recent'
+    />
 
-   <Footer />
+    <Footer />
+   </div>
   </div>
  );
 }

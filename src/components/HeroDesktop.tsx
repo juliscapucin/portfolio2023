@@ -43,7 +43,7 @@ const HeroDesktop = () => {
 
  return (
   <div
-   className='hero__desktop grid grid-cols-12 grid-rows-6 h-screen max-h-screen w-full'
+   className='hero__desktop grid grid-cols-12 grid-rows-6 h-screen max-h-screen w-full mt-32'
    ref={heroRef}
   >
    {/* Status */}

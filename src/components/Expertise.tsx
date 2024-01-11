@@ -1,13 +1,14 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { Fragment, useLayoutEffect, useRef } from 'react';
 
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+import { useTextReveal } from '@/hooks';
+import SectionTitle from './SectionTitle';
+import { GridDiv } from './ui';
 
-type ServicesProps = { services?: string[] };
-
-const services = [
+const expertise = [
  {
   title: 'Branding & Design',
   items: [
@@ -31,28 +32,69 @@ const services = [
 ];
 
 export default function Expertise() {
- const servicesRef = useRef<HTMLDivElement | null>(null);
+ const expertiseRef = useRef<HTMLDivElement | null>(null);
+ const titleRef = useRef<HTMLHeadingElement | null>(null);
+
+ useTextReveal(titleRef);
+
+ useLayoutEffect(() => {
+  if (!expertiseRef.current) return;
+
+  const serviceItems: gsap.DOMTarget[] = gsap.utils.toArray('.service-wrapper');
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  let ctx = gsap.context(() => {
+   serviceItems.forEach((service) => {
+    const tl = gsap.timeline({
+     scrollTrigger: {
+      trigger: service,
+      start: 'top 100%',
+      end: 'bottom 20%',
+      // markers: true,
+      toggleActions: 'play none none reverse',
+     },
+    });
+
+    tl.fromTo(
+     service,
+     { yPercent: 100 },
+     { yPercent: -50, duration: 0.3, ease: 'power4.out' }
+    );
+   });
+  });
+
+  return () => ctx.revert();
+ }, [expertiseRef]);
 
  return (
-  <section className='w-full col-span-12 md:grid grid-cols-12 mt-64'>
-   <h2 className='col-span-6 text-displaySmall md:text-right mb-16'>
-    Expertise
-   </h2>
-   <div className='col-start-8 col-span-4'>
-    {services &&
-     services.map((service) => (
-      <div key={service.title} className='mb-16'>
-       <h3 className='text-titleLarge mb-4'>{service.title}</h3>
-       <ul>
-        {service.items.map((item) => (
-         <li key={item} className='text-bodyLarge font-light'>
-          {item}
-         </li>
-        ))}
-       </ul>
-      </div>
-     ))}
+  <section
+   ref={expertiseRef}
+   className='w-full col-span-12 md:grid grid-cols-12'
+  >
+   <div className='col-span-12 overflow-clip'>
+    <SectionTitle title='Expertise' />
    </div>
+   {expertise &&
+    expertise.map((service) => (
+     <Fragment key={service.title}>
+      <h3 className='col-start-6 col-span-7 text-displaySmall mt-64'>
+       {service.title}
+      </h3>
+      <ul className='col-start-6 col-span-7 mt-8'>
+       {service.items.map((item) => (
+        <div key={item} className='mt-8 h-16 overflow-clip'>
+         <div className='service-wrapper'>
+          <GridDiv bottom={true}>
+           <li className='text-titleLarge font-light'>{item}</li>
+           <li className='text-titleLarge font-light'>{item}</li>
+          </GridDiv>
+         </div>
+        </div>
+       ))}
+      </ul>
+     </Fragment>
+    ))}
   </section>
  );
 }

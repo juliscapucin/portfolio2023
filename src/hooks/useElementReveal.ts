@@ -23,15 +23,9 @@ export function useElementReveal(
                toggleActions: 'play complete none none',
                start: 'top 80%',
                scrub: 1,
-               // onEnterBack: () => {
-               //    maskRevealAnimation.play();
-               // },
                onEnter: () => {
                   maskRevealAnimation.play();
                },
-               // onLeaveBack: () => {
-               //    maskRevealAnimation.reverse();
-               // },
             },
          });
 
