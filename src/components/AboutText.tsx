@@ -2,17 +2,22 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/dist/SplitText';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useWindowResize } from '@/hooks';
 
 export default function AboutText() {
- const textRef = useRef(null);
+ const textRef = useRef<HTMLParagraphElement | null>(null);
+
+ const { width } = useWindowResize();
 
  useEffect(() => {
+  if (!textRef.current) return;
+
   gsap.registerPlugin(SplitText);
   gsap.registerPlugin(ScrollTrigger);
 
   // Create a new SplitText instance
   const splitText = new SplitText(textRef.current, {
-   type: 'words,chars, lines',
+   type: 'lines',
   });
 
   // Create timeline + start scrollTrigger
@@ -21,17 +26,21 @@ export default function AboutText() {
     trigger: textRef.current,
     start: 'top 80%',
     toggleActions: 'play none none reverse',
-    invalidateOnRefresh: true,
+    //  scrub: 1,
    },
   });
 
   // Animate each line
   tl.fromTo(
    splitText.lines,
-   { opacity: 0, y: 50 },
+   { opacity: 1, y: 50 },
    { opacity: 1, y: 0, stagger: 0.1 }
   );
- }, []);
+
+  return () => {
+   tl.revert();
+  };
+ }, [width, textRef]);
 
  return (
   <section className='lg:grid grid-cols-12 my-64'>

@@ -1,38 +1,28 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
+import { useWindowResize } from '@/hooks';
 
 type Props = {
  speed?: number;
  children: React.ReactNode;
 };
 
-const Marquee = ({ children, speed = 100 }: Props) => {
- const marqueeRef = useRef(null);
- const [elementWidth, setElementWidth] = useState(0);
+const Marquee = ({ children, speed = 50 }: Props) => {
+ const marqueeRef = useRef<HTMLDivElement | null>(null);
 
- // Get the width of the element
- useEffect(() => {
-  if (!marqueeRef.current) return;
-  const element = marqueeRef.current as HTMLDivElement;
-  if (!element) return;
-
-  setElementWidth(element.offsetWidth);
- }, [marqueeRef]);
+ const { width } = useWindowResize();
 
  // Animate the marquee + add event listener to window resize
  useEffect(() => {
+  if (!marqueeRef.current) return;
   const element = marqueeRef.current;
 
-  function handleResize() {
-   setElementWidth(elementWidth);
-  }
-
-  window.addEventListener('resize', handleResize);
+  console.log(width);
 
   // Calculate the duration based on the width of the element and the speed
-  const duration = elementWidth / speed;
+  const duration = width / speed;
 
   const tl = gsap.timeline({ repeat: -1, defaults: { ease: 'linear' } });
 
@@ -42,9 +32,8 @@ const Marquee = ({ children, speed = 100 }: Props) => {
   // Remove event listener on component unmount
   return () => {
    tl.revert();
-   window.removeEventListener('resize', handleResize);
   };
- }, [elementWidth]);
+ }, [width, marqueeRef]);
 
  return (
   <div className='overflow-hidden flex-1 relative'>

@@ -28,7 +28,7 @@ const HeroMobile = () => {
    <div>
     {/* Marquee */}
     <GridDiv divClass='h-64 flex items-center' top={true}>
-     <Marquee speed={150}>
+     <Marquee>
       <h2 className='text-displayMedium whitespace-nowrap px-2'>
        Design & Web Development
       </h2>

@@ -78,7 +78,7 @@ export default function AboutPage({ data }: { data: AboutData }) {
        divClass='col-span-full row-span-1 flex items-center py-16 mt-48 lg:mt-64'
        top={true}
       >
-       <Marquee speed={150}>
+       <Marquee>
         <h2 className='text-displaySmall xl:text-displayMedium font-normal whitespace-nowrap px-4'>
          Design & Web Development Design & Web Development
         </h2>
