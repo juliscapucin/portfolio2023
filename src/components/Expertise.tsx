@@ -59,7 +59,7 @@ export default function Expertise() {
     tl.fromTo(
      service,
      { yPercent: 100 },
-     { yPercent: -50, duration: 0.3, ease: 'power4.out' }
+     { yPercent: -50, duration: 0.3, ease: 'back.out(1)' }
     );
    });
   });

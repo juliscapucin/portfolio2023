@@ -39,7 +39,7 @@ export default function AboutText() {
    tl.fromTo(
     splitText.lines,
     { opacity: 0, yPercent: 200 },
-    { opacity: 1, yPercent: 0, stagger: 0.2 }
+    { opacity: 1, yPercent: 0, stagger: 0.2, ease: 'back.out(1)' }
    );
   });
 

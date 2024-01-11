@@ -19,6 +19,6 @@ export const animateSplitText = (
       yPercent: yPercent || 100,
       scaleY: 1.2,
       stagger: 0.05,
-      ease: 'expo.out',
+      ease: 'back.out(1)',
    });
 };

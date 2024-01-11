@@ -13,7 +13,7 @@ export const animateStaggerText = (
          delay: delay || 0,
          yPercent: 0,
          stagger: 0.1,
-         ease: 'expo.out',
+         ease: 'back.out(1)',
       }
    );
 };
