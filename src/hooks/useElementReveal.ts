@@ -19,13 +19,8 @@ export function useElementReveal(
          let tl = gsap.timeline({
             scrollTrigger: {
                trigger: wrapperDiv,
-               // as explained here: https://www.youtube.com/watch?v=SVjndrQ6v9I (min 7:20)
-               toggleActions: 'play complete none none',
                start: 'top 80%',
                scrub: 1,
-               onEnter: () => {
-                  maskRevealAnimation.play();
-               },
             },
          });
 
@@ -34,8 +29,19 @@ export function useElementReveal(
             duration: 0.5,
             ease: 'power1.out',
          });
+      }, wrapperDiv);
 
-         const maskRevealAnimation = gsap.to('.mask', {
+      ctx.add(() => {
+         let tl = gsap.timeline({
+            scrollTrigger: {
+               trigger: wrapperDiv,
+               // as explained here: https://www.youtube.com/watch?v=SVjndrQ6v9I (min 7:20)
+               toggleActions: 'play complete none reverse',
+               start: 'top 80%',
+            },
+         });
+
+         tl.to('.mask', {
             yPercent: 100,
             duration: 0.5,
             ease: 'power1.in',

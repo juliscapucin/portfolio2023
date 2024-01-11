@@ -6,12 +6,9 @@ export default function useFakeParallax(
    wrapperDiv: HTMLDivElement | null,
    breakpoint: string | undefined
 ) {
-   console.log(breakpoint);
    useLayoutEffect(() => {
       // Only run this effect on desktop
       if (breakpoint !== 'desktop') return;
-
-      console.log('running effect');
 
       let ctx = gsap.context(() => {});
       const parentDiv = wrapperDiv?.parentElement;

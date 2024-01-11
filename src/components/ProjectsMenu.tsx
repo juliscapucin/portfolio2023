@@ -326,8 +326,8 @@ export default function ProjectsMenu({
    {/* Thumb View */}
    {variant === 'thumbs' && (
     <div className='thumb-view filter-projects flex flex-col gap-8 p-8 pt-24 h-screen overflow-y-scroll'>
-     {projectItems &&
-      projectItems.map((project, index) => {
+     {allProjects &&
+      allProjects.map((project, index) => {
        return (
         <div className='w-56 h-56' key={project._id}>
          {project.title && project.slug && (

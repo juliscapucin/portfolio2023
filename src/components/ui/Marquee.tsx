@@ -19,8 +19,6 @@ const Marquee = ({ children, speed = 50 }: Props) => {
   if (!marqueeRef.current) return;
   const element = marqueeRef.current;
 
-  console.log(width);
-
   // Calculate the duration based on the width of the element and the speed
   const duration = width / speed;
 

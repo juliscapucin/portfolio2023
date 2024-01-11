@@ -96,9 +96,9 @@ export default function ProjectCard(props: ProjectCardProps) {
     </div>
    </div>
    <div className='relative w-full h-full overflow-clip z-0'>
-    {/* Element Reveal Mask */}
+    {/* Element Reveal Mask for useElementReveal hook */}
     {variant === 'image' && (
-     <div className='mask absolute top-0 left-0 w-full h-full bg-primary z-20'></div>
+     <div className='mask absolute top-0 left-0 w-full h-full bg-primary text-secondary z-20'></div>
     )}
     <button
      className='h-full w-full group flex justify-center items-center absolute'
