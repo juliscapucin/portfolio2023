@@ -46,6 +46,7 @@ export default function ProjectsMenu({
 
  const [isHovering, setIsHovering] = useState(false);
  const [category, setCategory] = useState<FilterCategoryKey>(startCategory);
+ const [variant, setVariant] = useState(startVariant);
  const [filterScrollOffset, setFilterScrollOffset] = useState(0);
  const [projectsMenuHeight, setProjectsMenuHeight] = useState(0);
  const [isFilterMenuPinned, setIsFilterMenuPinned] = useState(false);
@@ -55,9 +56,6 @@ export default function ProjectsMenu({
  const updateIsHovering = (state: boolean) => {
   setIsHovering(state);
  };
-
- // View options
- const [variant, setVariant] = useState(startVariant);
 
  // Refs
  const projectsMenuRef = useRef<HTMLDivElement>(null);
@@ -211,7 +209,9 @@ export default function ProjectsMenu({
    className='projects-menu custom-min-h-screen relative'
   >
    {/* Custom Cursor */}
-   {activeBreakpoint === 'desktop' && <CustomCursor isHovering={isHovering} />}
+   {activeBreakpoint === 'desktop' && (
+    <CustomCursor isHovering={isHovering} variant={variant} />
+   )}
 
    {/* Project Filter */}
    {variant !== 'thumbs' && (
