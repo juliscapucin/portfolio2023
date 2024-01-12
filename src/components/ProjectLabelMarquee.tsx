@@ -35,10 +35,10 @@ const ProjectLabelMarquee = ({ text, textStyle, speed = 100 }: Props) => {
   <div className='overflow-hidden flex-1 relative'>
    <div ref={marqueeRef} className={`flex flex-nowrap w-fit ${textStyle}`}>
     <span className='block whitespace-nowrap px-1'>
-     {text} . {text} . {text} . {text} .{' '}
+     . {text} . {text} . {text} . {text}{' '}
     </span>
     <span className='block whitespace-nowrap px-1'>
-     {text} . {text} . {text} . {text} .{' '}
+     . {text} . {text} . {text} . {text}{' '}
     </span>
    </div>
   </div>

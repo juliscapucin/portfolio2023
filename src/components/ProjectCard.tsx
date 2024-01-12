@@ -85,6 +85,14 @@ export default function ProjectCard(props: ProjectCardProps) {
    {variant === 'image' && (
     // If image, ref is passed to useElementReveal hook
     <div ref={imageWrapperRef} className='relative w-full'>
+     <ProjectLabel
+      title={title}
+      scope={scope}
+      textSize={`text-headingLarge lg:text-displaySmall`}
+      variant={variant}
+      index={index + 1}
+      imageStart={imageStart}
+     />
      <div className='sm:grid sm:grid-cols-20 md:grid-cols-12 w-full'>
       <div
        className={`custom-col-start-${imageStart} aspect-square relative overflow-clip`}
@@ -109,14 +117,6 @@ export default function ProjectCard(props: ProjectCardProps) {
        </div>
       </div>
      </div>
-     <ProjectLabel
-      title={title}
-      scope={scope}
-      textSize={`text-headingLarge lg:text-displaySmall`}
-      variant={variant}
-      index={index + 1}
-      imageStart={imageStart}
-     />
     </div>
    )}
 
