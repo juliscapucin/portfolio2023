@@ -2,6 +2,8 @@ import { IconArrow } from '@icons/.';
 import { ProjectLabelMarquee } from '@/components';
 import { GridDiv } from '@/components/ui';
 
+import { FilterCategoryKey } from '@/types';
+
 type Props = {
  title: string;
  scope: string;

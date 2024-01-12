@@ -305,21 +305,26 @@ export default function ProjectsMenu({
          } md:mb-64`}
          key={`${project._id}-${category}`}
         >
-         {project.title && project.slug && project.imageStart && (
-          <ProjectCard
-           {...{
-            title: project.title,
-            slug: project.slug,
-            id: project._id,
-            imageStart: project.imageStart,
-            scope: project.info.scope,
-            alt: project.coverImage.alt,
-            index,
-            variant,
-            updateIsHovering,
-           }}
-          />
-         )}
+         {project.title &&
+          project.slug &&
+          project.imageStart &&
+          project.category && (
+           <ProjectCard
+            {...{
+             title: project.title,
+             slug: project.slug,
+             projectCategory: project.category,
+             id: project._id,
+             imageStart: project.imageStart,
+             scope: project.info.scope,
+             alt: project.coverImage.alt,
+             index,
+             filterCategory: category,
+             variant,
+             updateIsHovering,
+            }}
+           />
+          )}
         </div>
        );
       })}

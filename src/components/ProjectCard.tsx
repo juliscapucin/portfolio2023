@@ -8,6 +8,8 @@ import { AnimationGridDiv, GridDiv } from '@/components/ui';
 import { animateToFullScreen } from '@/animations';
 import { useElementReveal } from '@/hooks';
 
+import { FilterCategoryKey } from '@/types';
+
 interface ProjectCardProps {
  index: number;
  id: string;
@@ -15,6 +17,8 @@ interface ProjectCardProps {
  scope: string;
  slug: string;
  alt: string;
+ projectCategory?: string;
+ filterCategory?: FilterCategoryKey;
  variant: 'list' | 'image' | 'thumbs';
  imageStart?: string;
  updateIsHovering: (state: boolean) => void;
@@ -30,6 +34,8 @@ export default function ProjectCard(props: ProjectCardProps) {
   id,
   slug,
   alt,
+  projectCategory,
+  filterCategory,
   variant,
   imageStart,
   updateIsHovering,
@@ -113,7 +119,17 @@ export default function ProjectCard(props: ProjectCardProps) {
          <div className='mask absolute top-0 left-0 w-full h-full bg-primary text-secondary z-20'></div>
         )}
 
-        <ProjectCardImage {...{ id, slug, alt, updateIsHovering, index }} />
+        <ProjectCardImage
+         {...{
+          id,
+          slug,
+          alt,
+          updateIsHovering,
+          index,
+          filterCategory,
+          projectCategory,
+         }}
+        />
        </div>
       </div>
      </div>
