@@ -1,13 +1,10 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { CldImage } from 'next-cloudinary';
 
-import { ProjectLabel } from '@/components';
-import { AnimationGridDiv, GridDiv } from '@/components/ui';
 import { animateToFullScreen } from '@/animations';
-import { useElementReveal } from '@/hooks';
 
 type Props = {
  id: string;
