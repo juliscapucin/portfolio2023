@@ -31,7 +31,7 @@ export default function CustomCursor({ isHovering, variant }: Props) {
  return (
   <div
    className={`${!isHovering && 'hidden'} ${
-    variant === 'image' ? 'w-96 h-96' : 'w-24 h-24 bg-secondary'
+    variant === 'image' ? 'w-96 h-96 bg-primary/30' : 'w-24 h-24 bg-secondary'
    } fixed top-0 left-0 rounded-full flex items-center justify-center z-15 pointer-events-none cursor-pointer border border-secondary`}
    ref={refCursor}
   >
@@ -39,7 +39,7 @@ export default function CustomCursor({ isHovering, variant }: Props) {
     <span
      className={`${
       variant === 'image'
-       ? 'text-headlineLarge'
+       ? 'text-headlineLarge font-extralight'
        : 'text-labelLarge text-primary'
      }`}
     >
