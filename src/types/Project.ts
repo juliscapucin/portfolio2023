@@ -5,9 +5,7 @@ export type Project = {
    description: string;
    _id: string;
    coverImage: { fileName: string; alt: string };
-   gridSize: number;
-   imageSize: number;
-   imageStart: number;
+   imageStart: string;
    images: string[];
    isWeb: boolean;
    info: { tech: string; scope: string; link: string };

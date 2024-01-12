@@ -1,5 +1,6 @@
 import { IconArrow } from '@icons/.';
 import { ProjectLabelMarquee } from '@/components';
+import { GridDiv } from '@/components/ui';
 
 type Props = {
  title: string;
@@ -8,6 +9,7 @@ type Props = {
  textSize: string;
  variant: 'list' | 'image' | 'thumbs';
  index?: number;
+ imageStart?: string;
 };
 
 export default function ProjectLabel({
@@ -17,39 +19,59 @@ export default function ProjectLabel({
  textSize,
  variant,
  index,
+ imageStart,
 }: Props) {
- return (
-  <div
-   className={`${
-    variant === 'image' ? '' : 'h-11 overflow-hidden '
-   } w-full ${divClass}`}
-  >
-   <div
-    className={`${
-     // Only animate if not thumbs variant
-     variant !== 'thumbs' && 'md:group-hover:-translate-y-1/2'
-    } flex flex-col justify-start items-start transition`}
-   >
-    <span
-     className={`${textSize} ${
-      variant === 'image' && 'w-full h-full font-semibold leading-none'
-     }`}
-    >
-     {index && `${index}. `}
-     {title}
-    </span>
+ const imageStartNum = imageStart ? parseInt(imageStart) : 0;
+ const labelStart =
+  imageStart && imageStartNum > 5 ? imageStartNum - 4 : imageStartNum + 4;
 
-    {/* Hover state – only render if list variant */}
-    {variant === 'list' && (
-     <div className='hidden md:flex gap-6 items-center w-full'>
-      <span className={`${textSize}`}>{title}</span>
-      <span className='-translate-x-1/2 group-hover:-translate-x-0 transition duration-500'>
-       <IconArrow />
-      </span>
-      <ProjectLabelMarquee text={scope} />
+ return (
+  <>
+   {/* //
+   //----- THUMBS VIEW -----//
+   // */}
+   {variant === 'thumbs' && (
+    <div className={`h-10 overflow-hidden w-full mx-4 ${divClass}`}>
+     <div className='md:group-hover:-translate-y-1/2 flex flex-col justify-start items-start transition'>
+      <span className={`${textSize} uppercase text-secondary`}>{title}</span>
+      <span className={`${textSize} uppercase text-secondary`}>{title}</span>
      </div>
-    )}
-   </div>
-  </div>
+    </div>
+   )}
+   {/* //
+   //----- IMAGE VIEW -----//
+   // */}
+   {variant === 'image' && (
+    <div className='absolute -top-16 bg-primary sm:bg-transparent sm:top-0 sm:grid sm:grid-cols-20 md:grid-cols-12 w-full'>
+     <div className={`custom-col-start-${labelStart} w-full`}>
+      <GridDiv divClass='whitespace-nowrap' top={true} bottom={true}>
+       <span className={`${textSize} uppercase text-secondary`}>{title}</span>
+      </GridDiv>
+      <GridDiv divClass='whitespace-nowrap' bottom={true}>
+       <ProjectLabelMarquee text={scope} textStyle={textSize} />
+      </GridDiv>
+     </div>
+    </div>
+   )}
+   {/* //
+   //----- LIST VIEW -----//
+   // */}
+   {variant === 'list' && (
+    <div className={`h-11 overflow-hidden w-full ${divClass}`}>
+     <div className='md:group-hover:-translate-y-1/2 flex flex-col justify-start items-start transition'>
+      <span className={`${textSize} uppercase text-secondary`}>{title}</span>
+
+      {/* Hover state */}
+      <div className='hidden md:flex gap-6 items-center w-full'>
+       <span className={`${textSize} uppercase text-secondary`}>{title}</span>
+       <span className='-translate-x-1/2 group-hover:-translate-x-0 transition duration-500'>
+        <IconArrow />
+       </span>
+       <ProjectLabelMarquee text={scope} />
+      </div>
+     </div>
+    </div>
+   )}
+  </>
  );
 }

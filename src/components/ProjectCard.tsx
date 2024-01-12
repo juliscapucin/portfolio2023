@@ -1,10 +1,9 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { CldImage } from 'next-cloudinary';
 
-import { ProjectLabel } from '@/components';
+import { ProjectCardImage, ProjectLabel } from '@/components';
 import { AnimationGridDiv, GridDiv } from '@/components/ui';
 import { animateToFullScreen } from '@/animations';
 import { useElementReveal } from '@/hooks';
@@ -17,12 +16,13 @@ interface ProjectCardProps {
  slug: string;
  alt: string;
  variant: 'list' | 'image' | 'thumbs';
- imageStart?: number;
+ imageStart?: string;
  updateIsHovering: (state: boolean) => void;
 }
 
 export default function ProjectCard(props: ProjectCardProps) {
  const router = useRouter();
+
  const {
   index,
   title,
@@ -34,144 +34,119 @@ export default function ProjectCard(props: ProjectCardProps) {
   imageStart,
   updateIsHovering,
  } = props;
- // need a local isHovering state for individual hover animation
- const [isHovering, setIsHovering] = useState(false);
  const imageWrapperRef = useRef(null);
 
  useElementReveal(imageWrapperRef.current, true);
 
- return variant === 'list' ? (
-  //
-  //----- LIST VIEW -----//
-  //
-  <GridDiv bottom={true} divClass='relative h-32'>
-   {/* Div for animation */}
-   <AnimationGridDiv
-    divClass={`project-card-${id} overflow-clip bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-screen pr-16 z-10 translate-x-full`}
-    top={true}
-    bottom={true}
-   >
-    <div className='m-auto mt-0 pt-48'>
-     <h1 className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge'>
-      {title}
-     </h1>
-    </div>
-   </AnimationGridDiv>
+ return (
+  <>
+   {/* //
+    //----- LIST VIEW -----//
+    // */}
+   {variant === 'list' && (
+    <GridDiv bottom={true} divClass='relative h-32'>
+     {/* Div for animation */}
+     <AnimationGridDiv
+      divClass={`project-card-${id} overflow-clip bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-screen pr-16 z-10 translate-x-full`}
+      top={true}
+      bottom={true}
+     >
+      <div className='m-auto mt-0 pt-48'>
+       <h1 className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge'>
+        {title}
+       </h1>
+      </div>
+     </AnimationGridDiv>
 
-   {/* Button action */}
-   <button
-    className='h-full w-full p-8 group'
-    onMouseEnter={() => updateIsHovering(true)}
-    onMouseLeave={() => updateIsHovering(false)}
-    onClick={() => {
-     animateToFullScreen(`.project-card-${id}`, () =>
-      router.push(`/work/${slug}`, { scroll: false })
-     );
-    }}
-   >
-    <ProjectLabel
-     title={title}
-     scope={scope}
-     textSize='text-headlineSmall'
-     variant='list'
-    />
-   </button>
-  </GridDiv>
- ) : (
-  //
-  //----- IMAGE VIEW + THUMBS VIEW -----//
-  //
-
-  // If image, ref is passed to useElementReveal hook
-
-  <div
-   ref={variant === 'image' ? imageWrapperRef : null}
-   className='sm:col-span-20 md:col-span-12 sm:grid sm:grid-cols-20 md:grid-cols-12 w-full'
-  >
-   {/* If image and imageStart is not 9, render ProjectLabel before image */}
-   {variant === 'image' && imageStart && imageStart == 9 && (
-    <ProjectLabel
-     title={title}
-     scope={scope}
-     divClass={`custom-col-start-${imageStart - 4}`}
-     textSize={`textHeadingLarge text-right`}
-     variant={variant}
-     index={index + 1}
-    />
-   )}
-   <div
-    className={`custom-col-start-${imageStart} aspect-square relative overflow-clip`}
-   >
-    {/* Div for animation */}
-    <div
-     className={`project-card-${id} overflow-clip bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-screen pr-16 z-30 translate-x-full`}
-    >
-     <div className='m-auto mt-0 pt-48 max-w-desktop overflow-clip'>
-      <h1 className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge col-span-5'>
-       {title}
-      </h1>
-     </div>
-    </div>
-    <div className='relative w-full h-full overflow-clip z-0'>
-     {/* Element Reveal Mask for useElementReveal hook */}
-     {variant === 'image' && (
-      <div className='mask absolute top-0 left-0 w-full h-full bg-primary text-secondary z-20'></div>
-     )}
+     {/* Button action */}
      <button
-      className='h-full w-full group flex justify-center items-center absolute'
-      onMouseEnter={() => {
-       setIsHovering(true);
-       updateIsHovering(true);
-      }}
-      onMouseLeave={() => {
-       setIsHovering(false);
-       updateIsHovering(false);
-      }}
+      className='h-full w-full p-8 group'
+      onMouseEnter={() => updateIsHovering(true)}
+      onMouseLeave={() => updateIsHovering(false)}
       onClick={() => {
        animateToFullScreen(`.project-card-${id}`, () =>
         router.push(`/work/${slug}`, { scroll: false })
        );
       }}
      >
-      {variant === 'thumbs' && (
-       <ProjectLabel
-        title={title}
-        scope={scope}
-        divClass='absolute bottom-0 left-4 z-10'
-        textSize='text-titleSmall'
-        variant={variant}
-       />
-      )}
-      <div
-       className={`relative w-full h-full overflow-clip transition-transform duration-300 ease-in-out ${
-        // Hover animation
-        isHovering && 'scale-[115%] -rotate-2'
-       }`}
-      >
-       <CldImage
-        src={`portfolio2023/work/${slug}/01`}
-        key={id}
-        alt={alt}
-        sizes='100vw (max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-        fill
-        priority={index === 1 ? true : false}
-       />
-      </div>
+      <ProjectLabel
+       title={title}
+       scope={scope}
+       textSize='text-headlineSmall'
+       variant='list'
+      />
      </button>
-    </div>
-    -
-   </div>
-   {/* If image and imageStart is not 9, render ProjectLabel after image */}
-   {variant === 'image' && imageStart && imageStart != 9 && (
-    <ProjectLabel
-     title={title}
-     scope={scope}
-     divClass={`custom-col-start-${imageStart + 4}`}
-     textSize={`textHeadingLarge`}
-     variant={variant}
-     index={index + 1}
-    />
+    </GridDiv>
    )}
-  </div>
+
+   {/* //
+   //----- IMAGE VIEW -----//
+   // */}
+   {variant === 'image' && (
+    // If image, ref is passed to useElementReveal hook
+    <div ref={imageWrapperRef} className='relative w-full'>
+     <div className='sm:grid sm:grid-cols-20 md:grid-cols-12 w-full'>
+      <div
+       className={`custom-col-start-${imageStart} aspect-square relative overflow-clip`}
+      >
+       {/* Div for transition animation */}
+       <div
+        className={`project-card-${id} overflow-clip bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-screen pr-16 z-30 translate-x-full`}
+       >
+        <div className='m-auto mt-0 pt-48 max-w-desktop overflow-clip'>
+         <h1 className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge col-span-5'>
+          {title}
+         </h1>
+        </div>
+       </div>
+       <div className='relative w-full h-full overflow-clip z-0'>
+        {/* Element Reveal Mask for useElementReveal hook */}
+        {variant === 'image' && (
+         <div className='mask absolute top-0 left-0 w-full h-full bg-primary text-secondary z-20'></div>
+        )}
+
+        <ProjectCardImage {...{ id, slug, alt, updateIsHovering, index }} />
+       </div>
+      </div>
+     </div>
+     <ProjectLabel
+      title={title}
+      scope={scope}
+      textSize={`text-headingLarge lg:text-displaySmall`}
+      variant={variant}
+      index={index + 1}
+      imageStart={imageStart}
+     />
+    </div>
+   )}
+
+   {/* //
+   //----- THUMBS VIEW -----//
+   // */}
+   {variant === 'thumbs' && (
+    <div className='aspect-square relative overflow-clip group'>
+     {/* Div for animation */}
+     <div
+      className={`project-card-${id} overflow-clip bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-screen pr-16 z-30 translate-x-full`}
+     >
+      <div className='m-auto mt-0 pt-48 max-w-desktop overflow-clip'>
+       <h1 className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge col-span-5'>
+        {title}
+       </h1>
+      </div>
+     </div>
+     <ProjectLabel
+      title={title}
+      scope={scope}
+      divClass='absolute bottom-0 z-10'
+      textSize='text-titleSmall'
+      variant={variant}
+     />
+     <div className='relative w-full h-full overflow-clip z-0'>
+      <ProjectCardImage {...{ id, slug, alt, updateIsHovering, index }} />
+     </div>
+    </div>
+   )}
+  </>
  );
 }

@@ -20,6 +20,7 @@ import HeroMobile from './HeroMobile';
 import MenuDesktop from './MenuDesktop';
 import MenuMobile from './MenuMobile';
 import ProjectCard from './ProjectCard';
+import ProjectCardImage from './ProjectCardImage';
 import ProjectImage from './ProjectImage';
 import ProjectInfo from './ProjectInfo';
 import ProjectLabel from './ProjectLabel';
@@ -57,6 +58,7 @@ export {
    MenuDesktop,
    MenuMobile,
    ProjectCard,
+   ProjectCardImage,
    ProjectImage,
    ProjectInfo,
    ProjectLabel,

@@ -3,10 +3,11 @@ import gsap from 'gsap';
 
 type Props = {
  text: string;
+ textStyle?: string;
  speed?: number;
 };
 
-const Marquee = ({ text, speed = 100 }: Props) => {
+const ProjectLabelMarquee = ({ text, textStyle, speed = 100 }: Props) => {
  const marqueeRef = useRef(null);
 
  useEffect(() => {
@@ -32,14 +33,16 @@ const Marquee = ({ text, speed = 100 }: Props) => {
 
  return (
   <div className='overflow-hidden flex-1 relative'>
-   <div ref={marqueeRef} className='flex flex-nowrap w-fit'>
-    <span className='block whitespace-nowrap px-1'>{text} . </span>
-    <span className='block whitespace-nowrap px-1'>{text} . </span>
-    <span className='block whitespace-nowrap px-1'>{text} . </span>
-    <span className='block whitespace-nowrap px-1'>{text} . </span>
+   <div ref={marqueeRef} className={`flex flex-nowrap w-fit ${textStyle}`}>
+    <span className='block whitespace-nowrap px-1'>
+     {text} . {text} . {text} . {text} .{' '}
+    </span>
+    <span className='block whitespace-nowrap px-1'>
+     {text} . {text} . {text} . {text} .{' '}
+    </span>
    </div>
   </div>
  );
 };
 
-export default Marquee;
+export default ProjectLabelMarquee;

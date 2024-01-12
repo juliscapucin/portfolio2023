@@ -298,7 +298,7 @@ export default function ProjectsMenu({
      {projectItems &&
       projectItems.map((project, index) => {
        return (
-        <div className='mb-32 md:mb-64' key={`${project._id}-${category}`}>
+        <div className='mb-16 md:mb-64' key={`${project._id}-${category}`}>
          {project.title && project.slug && project.imageStart && (
           <ProjectCard
            {...{
