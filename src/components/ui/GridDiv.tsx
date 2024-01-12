@@ -87,7 +87,7 @@ export const GridDiv = forwardRef(function GridDiv(
    ) : (
     <div
      ref={lineTopRef}
-     className='absolute top-0 left-0 h-[1px] w-full bg-primary z-0'
+     className='absolute top-0 left-0 h-[1px] w-full bg-transparent z-0'
     ></div>
    )}
    {right ? (
@@ -98,7 +98,7 @@ export const GridDiv = forwardRef(function GridDiv(
    ) : (
     <div
      ref={lineRightRef}
-     className='absolute top-0 right-0 w-[1px] h-full bg-primary z-0'
+     className='absolute top-0 right-0 w-[1px] h-full bg-transparent z-0'
     ></div>
    )}
    {bottom ? (
@@ -109,7 +109,7 @@ export const GridDiv = forwardRef(function GridDiv(
    ) : (
     <div
      ref={lineBottomRef}
-     className='absolute bottom-0 left-0 h-[1px] w-full bg-primary z-0'
+     className='absolute bottom-0 left-0 h-[1px] w-full bg-transparent z-0'
     ></div>
    )}
    {left ? (
@@ -120,7 +120,7 @@ export const GridDiv = forwardRef(function GridDiv(
    ) : (
     <div
      ref={lineLeftRef}
-     className='absolute top-0 left-0 w-[1px] h-full bg-primary z-0'
+     className='absolute top-0 left-0 w-[1px] h-full bg-transparent z-0'
     ></div>
    )}
    {children}

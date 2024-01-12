@@ -12,7 +12,7 @@ type Props = {
  imageStart?: string;
 };
 
-export default function ProjectLabel({
+export default function ProjectCardLabel({
  title,
  scope,
  divClass,
@@ -42,9 +42,13 @@ export default function ProjectLabel({
    //----- IMAGE VIEW -----//
    // */}
    {variant === 'image' && (
-    <div className='absolute -top-16 sm:top-0 sm:grid sm:grid-cols-20 md:grid-cols-12 w-full'>
-     <div className={`custom-col-start-${labelStart} w-full px-4`}>
-      <GridDiv divClass='whitespace-nowrap' top={true} bottom={true}>
+    <div className='absolute -bottom-32 md:top-0 sm:grid sm:grid-cols-20 md:grid-cols-12 w-full'>
+     <div className={`custom-col-start-${labelStart} w-full sm:px-4`}>
+      <GridDiv
+       divClass='sm:hidden md:block whitespace-nowrap'
+       top={true}
+       bottom={true}
+      >
        <span className={`${textSize}`}>
         {index && index < 10 && '0'}
         {index && index}
@@ -52,7 +56,7 @@ export default function ProjectLabel({
        </span>
       </GridDiv>
       <GridDiv divClass='whitespace-nowrap' bottom={true}>
-       <span className={`${textSize}`}>{title}</span>
+       <span className={`${textSize} font-semibold`}>{title}</span>
       </GridDiv>
       <GridDiv divClass='whitespace-nowrap' bottom={true}>
        <ProjectLabelMarquee text={scope} textStyle={textSize} />

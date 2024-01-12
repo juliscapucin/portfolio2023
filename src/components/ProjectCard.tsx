@@ -3,7 +3,7 @@
 import { useRef } from 'react';
 import { useRouter } from 'next/navigation';
 
-import { ProjectCardImage, ProjectLabel } from '@/components';
+import { ProjectCardImage, ProjectCardLabel } from '@/components';
 import { AnimationGridDiv, GridDiv } from '@/components/ui';
 import { animateToFullScreen } from '@/animations';
 import { useElementReveal } from '@/hooks';
@@ -69,7 +69,7 @@ export default function ProjectCard(props: ProjectCardProps) {
        );
       }}
      >
-      <ProjectLabel
+      <ProjectCardLabel
        title={title}
        scope={scope}
        textSize='text-headlineSmall'
@@ -85,10 +85,10 @@ export default function ProjectCard(props: ProjectCardProps) {
    {variant === 'image' && (
     // If image, ref is passed to useElementReveal hook
     <div ref={imageWrapperRef} className='relative w-full'>
-     <ProjectLabel
+     <ProjectCardLabel
       title={title}
       scope={scope}
-      textSize={`text-headingLarge lg:text-displaySmall`}
+      textSize={`sm:text-headlineSmall lg:text-headlineLarge`}
       variant={variant}
       index={index + 1}
       imageStart={imageStart}
@@ -135,7 +135,7 @@ export default function ProjectCard(props: ProjectCardProps) {
        </h1>
       </div>
      </div>
-     <ProjectLabel
+     <ProjectCardLabel
       title={title}
       scope={scope}
       divClass='absolute bottom-0 z-10'

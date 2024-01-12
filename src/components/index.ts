@@ -21,9 +21,9 @@ import MenuDesktop from './MenuDesktop';
 import MenuMobile from './MenuMobile';
 import ProjectCard from './ProjectCard';
 import ProjectCardImage from './ProjectCardImage';
+import ProjectCardLabel from './ProjectCardLabel';
 import ProjectImage from './ProjectImage';
 import ProjectInfo from './ProjectInfo';
-import ProjectLabel from './ProjectLabel';
 import ProjectLabelMarquee from './ProjectLabelMarquee';
 import ProjectsFilter from './ProjectsFilter';
 import ProjectsMenu from './ProjectsMenu';
@@ -59,9 +59,9 @@ export {
    MenuMobile,
    ProjectCard,
    ProjectCardImage,
+   ProjectCardLabel,
    ProjectImage,
    ProjectInfo,
-   ProjectLabel,
    ProjectLabelMarquee,
    ProjectsFilter,
    ProjectsMenu,
