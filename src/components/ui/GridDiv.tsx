@@ -12,6 +12,7 @@ type GridDivProps = {
  children?: React.ReactNode;
  divClass?: string;
  offsetStart?: string;
+ animationDelay?: number;
 };
 
 export const GridDiv = forwardRef(function GridDiv(
@@ -22,8 +23,6 @@ export const GridDiv = forwardRef(function GridDiv(
  const lineRightRef = useRef<HTMLDivElement>(null);
  const lineBottomRef = useRef<HTMLDivElement>(null);
  const lineLeftRef = useRef<HTMLDivElement>(null);
-
- let ctx = gsap.context(() => {});
 
  useLayoutEffect(() => {
   if (
@@ -36,6 +35,8 @@ export const GridDiv = forwardRef(function GridDiv(
 
   gsap.registerPlugin(ScrollTrigger);
 
+  let ctx = gsap.context(() => {});
+
   ctx.add(() => {
    gsap.set(lineTopRef.current, { xPercent: -100 });
    gsap.set(lineBottomRef.current, { xPercent: -100 });
@@ -47,7 +48,7 @@ export const GridDiv = forwardRef(function GridDiv(
      trigger: lineTopRef.current,
      start: `top ${offsetStart ? offsetStart : '100'}%`,
      //onEnter, onLeave, onEnterBack, onLeaveBack
-     toggleActions: 'play none none reverse',
+     toggleActions: 'play none none none',
     },
    });
 
@@ -81,45 +82,45 @@ export const GridDiv = forwardRef(function GridDiv(
    {top ? (
     <div
      ref={lineTopRef}
-     className='line absolute top-0 left-0 h-[1px] w-full bg-secondary z-5'
+     className='absolute top-0 left-0 h-[1px] w-full bg-secondary z-5'
     ></div>
    ) : (
     <div
      ref={lineTopRef}
-     className='line-transparent absolute top-0 left-0 h-[1px] w-full bg-primary z-0'
+     className='absolute top-0 left-0 h-[1px] w-full bg-primary z-0'
     ></div>
    )}
    {right ? (
     <div
      ref={lineRightRef}
-     className='line absolute top-0 right-0 w-[1px] h-full bg-secondary z-5'
+     className='absolute top-0 right-0 w-[1px] h-full bg-secondary z-5'
     ></div>
    ) : (
     <div
      ref={lineRightRef}
-     className='line-transparent absolute top-0 right-0 w-[1px] h-full bg-primary z-0'
+     className='absolute top-0 right-0 w-[1px] h-full bg-primary z-0'
     ></div>
    )}
    {bottom ? (
     <div
      ref={lineBottomRef}
-     className='line absolute bottom-0 left-0 h-[1px] w-full bg-secondary z-5'
+     className='absolute bottom-0 left-0 h-[1px] w-full bg-secondary z-5'
     ></div>
    ) : (
     <div
      ref={lineBottomRef}
-     className='line-transparent absolute bottom-0 left-0 h-[1px] w-full bg-primary z-0'
+     className='absolute bottom-0 left-0 h-[1px] w-full bg-primary z-0'
     ></div>
    )}
    {left ? (
     <div
      ref={lineLeftRef}
-     className='line absolute top-0 left-0 w-[1px] h-full bg-secondary z-5'
+     className='absolute top-0 left-0 w-[1px] h-full bg-secondary z-5'
     ></div>
    ) : (
     <div
      ref={lineLeftRef}
-     className='line-transparent absolute top-0 left-0 w-[1px] h-full bg-primary z-0'
+     className='absolute top-0 left-0 w-[1px] h-full bg-primary z-0'
     ></div>
    )}
    {children}

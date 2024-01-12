@@ -36,7 +36,7 @@ export function useElementReveal(
             scrollTrigger: {
                trigger: wrapperDiv,
                // as explained here: https://www.youtube.com/watch?v=SVjndrQ6v9I (min 7:20)
-               toggleActions: 'play complete none reverse',
+               toggleActions: 'play complete none none',
                start: 'top 80%',
             },
          });
