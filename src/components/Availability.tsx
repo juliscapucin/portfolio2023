@@ -59,10 +59,12 @@ export default function Availability({
    <div className='overflow-hidden h-28 group'>
     <a
      href='mailto:hello@juliscapucin.com'
-     className='flex flex-col text-displaySmall font-normal md:group-hover:-translate-y-1/2 transition-transform duration-200'
+     className='flex flex-col text-displaySmall md:group-hover:-translate-y-1/2 transition-transform duration-200'
     >
-     <span ref={textRef}>Say Hi :)</span>
-     <span>Say Hi :)</span>
+     <span ref={textRef} className='font-medium'>
+      Say Hi :)
+     </span>
+     <span className='font-medium'>Say Hi :)</span>
     </a>
    </div>
    <CopyEmailButton />
