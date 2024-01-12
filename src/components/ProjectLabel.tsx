@@ -21,7 +21,7 @@ export default function ProjectLabel({
  return (
   <div
    className={`${
-    variant === 'image' ? 'bg-red-500' : 'h-11 overflow-hidden '
+    variant === 'image' ? '' : 'h-11 overflow-hidden '
    } w-full ${divClass}`}
   >
    <div

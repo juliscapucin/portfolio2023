@@ -88,6 +88,17 @@ export default function ProjectCard(props: ProjectCardProps) {
    ref={variant === 'image' ? imageWrapperRef : null}
    className='sm:col-span-20 md:col-span-12 sm:grid sm:grid-cols-20 md:grid-cols-12 w-full'
   >
+   {/* If image and imageStart is not 9, render ProjectLabel before image */}
+   {variant === 'image' && imageStart && imageStart == 9 && (
+    <ProjectLabel
+     title={title}
+     scope={scope}
+     divClass={`custom-col-start-${imageStart - 4}`}
+     textSize={`textHeadingLarge text-right`}
+     variant={variant}
+     index={index + 1}
+    />
+   )}
    <div
     className={`custom-col-start-${imageStart} aspect-square relative overflow-clip`}
    >
@@ -150,12 +161,13 @@ export default function ProjectCard(props: ProjectCardProps) {
     </div>
     -
    </div>
-   {variant === 'image' && imageStart && (
+   {/* If image and imageStart is not 9, render ProjectLabel after image */}
+   {variant === 'image' && imageStart && imageStart != 9 && (
     <ProjectLabel
      title={title}
      scope={scope}
-     divClass={`custom-col-start-${imageStart === 1 ? 5 : imageStart - 4}`}
-     textSize={`textHeadingLarge text-right`}
+     divClass={`custom-col-start-${imageStart + 4}`}
+     textSize={`textHeadingLarge`}
      variant={variant}
      index={index + 1}
     />
