@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { GridDiv } from '@/components/ui';
 
 function Status() {
  const [currentDate, setCurrentDate] = useState(new Date());
@@ -21,13 +22,15 @@ function Status() {
  return (
   <div className='flex flex-col text-titleMedium mt-16 md:mt-4 lg:mt-2 ml-2 mb-16 lg:mb-0 md:col-span-4 lg:col-span-3 xlg:col-span-1 max-w-[250px]'>
    <span>Location: Amsterdam</span>
-   <span className='h-[1px] bg-secondary'></span>
-   <span>
-    {dayOfWeek} | {dayOfMonth} {month}
-   </span>
-   <span className='h-[1px] bg-secondary'></span>
+   {/* <span className='h-[1px] bg-secondary'></span> */}
+   <GridDiv top={true} bottom={true}>
+    <span>
+     {dayOfWeek} | {dayOfMonth} {month}
+    </span>
+   </GridDiv>
+   {/* <span className='h-[1px] bg-secondary'></span> */}
    <span>{time}</span>
-   <span className='h-[1px] bg-secondary'></span>
+   {/* <span className='h-[1px] bg-secondary'></span> */}
   </div>
  );
 }

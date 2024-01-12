@@ -2,6 +2,7 @@
 
 import { forwardRef, useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 
 type GridDivProps = {
  top?: boolean;
@@ -10,10 +11,11 @@ type GridDivProps = {
  left?: boolean;
  children?: React.ReactNode;
  divClass?: string;
+ offsetStart?: string;
 };
 
 export const GridDiv = forwardRef(function GridDiv(
- { top, right, bottom, left, children, divClass }: GridDivProps,
+ { top, right, bottom, left, children, divClass, offsetStart }: GridDivProps,
  ref: React.Ref<HTMLDivElement>
 ) {
  const lineTopRef = useRef<HTMLDivElement>(null);
@@ -32,21 +34,30 @@ export const GridDiv = forwardRef(function GridDiv(
   )
    return;
 
+  gsap.registerPlugin(ScrollTrigger);
+
   ctx.add(() => {
    gsap.set(lineTopRef.current, { xPercent: -100 });
    gsap.set(lineBottomRef.current, { xPercent: -100 });
    gsap.set(lineLeftRef.current, { yPercent: -100 });
    gsap.set(lineRightRef.current, { yPercent: -100 });
 
-   const tl = gsap.timeline();
+   const tl = gsap.timeline({
+    scrollTrigger: {
+     trigger: lineTopRef.current,
+     start: `top ${offsetStart ? offsetStart : '100'}%`,
+     //onEnter, onLeave, onEnterBack, onLeaveBack
+     toggleActions: 'play none none reverse',
+    },
+   });
 
    tl
     .to([lineTopRef.current, lineBottomRef.current], {
      xPercent: 0,
-     duration: 2,
-     delay: 0.5,
+     duration: 1,
+     delay: 0.2,
      ease: 'expo.out',
-     stagger: 0.5,
+     stagger: 0.3,
     })
     .to(
      [lineLeftRef.current, lineRightRef.current],

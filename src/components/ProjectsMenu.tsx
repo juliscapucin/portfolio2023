@@ -220,6 +220,7 @@ export default function ProjectsMenu({
       divClass='w-full bg-primary pt-10 pb-1 z-8'
       ref={filterRef}
       bottom={true}
+      offsetStart='20'
      >
       <ProjectsFilter
        {...{
