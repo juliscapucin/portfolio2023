@@ -16,7 +16,7 @@
       --color-burgundy: 128 0 32;
       --dark-burgundy: 54 0 0;
       --color-black: 10 10 15;
-      --color-white: 252 249 248;
+      --color-white: 220 220 214;
       --color-green: 0 128 0;
    }
    :root[data-theme='dark'] {
@@ -27,10 +27,10 @@
       --color-focus: 154, 152, 152;
    }
    :root[data-theme='light'] {
-      --color-primary: 249 246 238;
-      --color-secondary: 18 12 15;
+      --color-primary: 220 220 214;
+      --color-secondary: 33 33 33;
       --color-faded: 154 152 152;
-      --color-scroll: 18, 12, 15;
+      --color-scroll: 33, 33, 33;
       --color-focus: 154, 152, 152;
    }
    :root[data-theme='green'] {
