@@ -35,7 +35,7 @@ const ActiveViewButton = ({ label }: { label: FilterCategoryKey }) => {
 const FilterBadge = ({ projectsTotal }: { projectsTotal: number }) => {
  return (
   <div className='absolute w-6 h-6 -top-[4px] -right-[18px] flex justify-center items-center'>
-   <span className='text-labelSmall font-medium z-5'>({projectsTotal})</span>
+   <span className='text-labelSmall font-medium z-5'>[{projectsTotal}]</span>
   </div>
  );
 };

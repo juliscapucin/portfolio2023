@@ -16,7 +16,7 @@
       --color-burgundy: 128 0 32;
       --dark-burgundy: 54 0 0;
       --color-black: 10 10 15;
-      --color-white: 252 249 248;
+      --color-white: 220 220 214;
       --color-green: 0 128 0;
    }
    :root[data-theme='dark'] {

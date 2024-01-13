@@ -52,7 +52,7 @@ export default function ProjectCardImage(props: Props) {
    <div className={`relative w-full h-full overflow-clip`}>
     {filterCategory === 'all' && (
      <div className='absolute bottom-4 right-4 sm:hidden md:block whitespace-nowrap z-50'>
-      {projectCategory && <span>/ {projectCategory}</span>}
+      {projectCategory && <span>[ {projectCategory} ]</span>}
      </div>
     )}
     <CldImage
