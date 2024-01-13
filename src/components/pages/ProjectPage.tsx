@@ -60,47 +60,51 @@ export default function ProjectPage({
   return () => ctx.revert();
  }, [headerRef]);
 
- return project ? (
+ return (
   <ShallowPage isShallow={isShallow} key={project.slug}>
-   <ProjectsMenuThumbs allProjects={allProjects} />
+   {project ? (
+    <>
+     <ProjectsMenuThumbs allProjects={allProjects} />
 
-   <section className='relative w-full pt-32 z-30 bg-primary'>
-    {/* Title */}
-    <h1 className='text-displaySmall md:text-displayMedium lg:text-displayLarge mb-4'>
-     {project.title}
-    </h1>
+     <section className='relative w-full pt-32 z-30 bg-primary'>
+      {/* Title */}
+      <h1 className='text-displaySmall md:text-displayMedium lg:text-displayLarge mb-4'>
+       {project.title}
+      </h1>
 
-    {/* Header */}
-    <div ref={headerRef} className='md:grid grid-cols-12'>
-     {/* Cover Image */}
-     <div className={`col-span-7 block overflow-clip aspect-square relative`}>
-      <CldImage
-       src={`portfolio2023/work/${project.slug}/01`}
-       alt={project.coverImage.alt}
-       sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
-       fill
-       priority
-      />
-     </div>
-     <div className='md:col-span-4 md:pl-16 mt-8'>
-      {/* Description */}
-      <div className='mb-16'>
-       <p className='text-titleLarge md:text-headlineSmall mt-16 md:mt-0'>
-        {project.description}
-       </p>
+      {/* Header */}
+      <div ref={headerRef} className='md:grid grid-cols-12'>
+       {/* Cover Image */}
+       <div className={`col-span-7 block overflow-clip aspect-square relative`}>
+        <CldImage
+         src={`portfolio2023/work/${project.slug}/01`}
+         alt={project.coverImage.alt}
+         sizes='(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
+         fill
+         priority
+        />
+       </div>
+       <div className='md:col-span-4 md:pl-16 mt-8'>
+        {/* Description */}
+        <div className='mb-16'>
+         <p className='text-titleLarge md:text-headlineSmall mt-16 md:mt-0'>
+          {project.description}
+         </p>
+        </div>
+        {/* Project Info */}
+        <ProjectInfo info={project.info} />
+       </div>
       </div>
-      {/* Project Info */}
-      <ProjectInfo info={project.info} />
-     </div>
-    </div>
-   </section>
+     </section>
 
-   {/* Split Screen */}
-   {project.images && <ProjectSplitScreen project={project} />}
+     {/* Split Screen */}
+     {project.images && <ProjectSplitScreen project={project} />}
+    </>
+   ) : (
+    <div className='min-w-screen min-h-screen bg-primary flex items-center justify-center'>
+     <Loader />
+    </div>
+   )}
   </ShallowPage>
- ) : (
-  <div className='w-full h-screen bg-primary flex items-center justify-center'>
-   <Loader />
-  </div>
  );
 }
