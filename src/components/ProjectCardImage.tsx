@@ -16,6 +16,7 @@ type Props = {
  updateIsHovering: (state: boolean) => void;
  filterCategory?: FilterCategoryKey;
  projectCategory?: string;
+ variant?: 'list' | 'image' | 'thumbs';
 };
 
 export default function ProjectCardImage(props: Props) {
@@ -29,6 +30,7 @@ export default function ProjectCardImage(props: Props) {
   updateIsHovering,
   filterCategory,
   projectCategory,
+  variant,
  } = props;
  const [isHovering, setIsHovering] = useState(false);
 
@@ -62,8 +64,8 @@ export default function ProjectCardImage(props: Props) {
      sizes='100vw (max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw'
      fill
      priority={index < 2 ? true : false}
-     className={`${
-      isHovering && 'scale-[115%] -rotate-2'
+     className={`${isHovering && 'scale-[115%] -rotate-2'} ${
+      variant && variant === 'thumbs' && 'grayscale hover:grayscale-0'
      } transition-transform duration-300 ease-in-out`}
     />
    </div>
