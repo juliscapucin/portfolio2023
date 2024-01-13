@@ -159,7 +159,9 @@ export default function ProjectCard(props: ProjectCardProps) {
       variant={variant}
      />
      <div className='relative w-full h-full overflow-clip z-0'>
-      <ProjectCardImage {...{ id, slug, alt, updateIsHovering, index }} />
+      <ProjectCardImage
+       {...{ id, slug, alt, updateIsHovering, index, variant }}
+      />
      </div>
     </div>
    )}
