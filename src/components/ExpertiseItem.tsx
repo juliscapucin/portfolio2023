@@ -24,8 +24,6 @@ export default function ExpertiseItem({ expertise }: Props) {
      trigger: expertiseWrapperRef.current,
      start: 'top 100%',
      end: 'bottom 20%',
-     // markers: true,
-     //  toggleActions: 'play none none reverse',
      onEnter: () => {
       setIsTriggered(true);
       tl.play();

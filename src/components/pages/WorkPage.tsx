@@ -33,7 +33,7 @@ export default function WorkPage({ data, allProjects }: Props) {
      {data.description}
     </p>
     <ProjectsMenu
-     startVariant='image'
+     startVariant='list'
      activeBreakpoint={breakpoint}
      allProjects={allProjects}
      startCategory='all'

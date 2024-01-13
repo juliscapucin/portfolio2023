@@ -21,7 +21,7 @@ export function useTextReveal(
          const tl = gsap.timeline({
             scrollTrigger: {
                trigger: textRef.current,
-               start: 'top 90%',
+               start: 'top 85%',
                //onEnter, onLeave, onEnterBack, onLeaveBack
                onEnter: () => {
                   gsap.set(textRef.current!, { yPercent: 0 });

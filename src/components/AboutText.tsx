@@ -44,7 +44,6 @@ export default function AboutText() {
   });
 
   return () => {
-   console.log('unmount');
    ctx.revert();
   };
  }, [width, textRef]);

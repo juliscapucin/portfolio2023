@@ -6,7 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { usePageContext } from '@/context';
 
 import { animateHorizontalTransition } from '@/animations/pageTransitions';
-import { Footer } from '@/components';
+import { Availability, Footer } from '@/components';
 import { ButtonBack } from '@buttons/.';
 
 type Props = { children: React.ReactNode; isShallow: boolean };
@@ -92,7 +92,11 @@ export default function ShallowPage({ children, isShallow }: Props) {
 
      {children}
     </div>
-    <Footer />
+    {/* <Footer /> */}
+    <div className='mb-32'>
+     <div className='h-[1px] bg-secondary mb-32'></div>
+     <Availability />
+    </div>
    </div>
   )
  );

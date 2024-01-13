@@ -46,6 +46,7 @@ export default function ProjectsMenu({
 
  const [isHovering, setIsHovering] = useState(false);
  const [category, setCategory] = useState<FilterCategoryKey>(startCategory);
+ const [variant, setVariant] = useState(startVariant);
  const [filterScrollOffset, setFilterScrollOffset] = useState(0);
  const [projectsMenuHeight, setProjectsMenuHeight] = useState(0);
  const [isFilterMenuPinned, setIsFilterMenuPinned] = useState(false);
@@ -55,9 +56,6 @@ export default function ProjectsMenu({
  const updateIsHovering = (state: boolean) => {
   setIsHovering(state);
  };
-
- // View options
- const [variant, setVariant] = useState(startVariant);
 
  // Refs
  const projectsMenuRef = useRef<HTMLDivElement>(null);
@@ -211,7 +209,9 @@ export default function ProjectsMenu({
    className='projects-menu custom-min-h-screen relative'
   >
    {/* Custom Cursor */}
-   {activeBreakpoint === 'desktop' && <CustomCursor isHovering={isHovering} />}
+   {activeBreakpoint === 'desktop' && (
+    <CustomCursor isHovering={isHovering} variant={variant} />
+   )}
 
    {/* Project Filter */}
    {variant !== 'thumbs' && (
@@ -220,6 +220,7 @@ export default function ProjectsMenu({
       divClass='w-full bg-primary pt-10 pb-1 z-8'
       ref={filterRef}
       bottom={true}
+      offsetStart='20'
      >
       <ProjectsFilter
        {...{
@@ -299,24 +300,31 @@ export default function ProjectsMenu({
       projectItems.map((project, index) => {
        return (
         <div
-         className='sm:grid grid-cols-20 lg:grid-cols-12 mb-32 md:mb-64'
+         className={`${
+          index === projectItems.length - 1 ? 'mb-64' : 'mb-32'
+         } md:mb-64`}
          key={`${project._id}-${category}`}
         >
-         {project.title && project.slug && project.imageStart && (
-          <ProjectCard
-           {...{
-            title: project.title,
-            slug: project.slug,
-            id: project._id,
-            imageStart: project.imageStart,
-            scope: project.info.scope,
-            alt: project.coverImage.alt,
-            index,
-            variant,
-            updateIsHovering,
-           }}
-          />
-         )}
+         {project.title &&
+          project.slug &&
+          project.imageStart &&
+          project.category && (
+           <ProjectCard
+            {...{
+             title: project.title,
+             slug: project.slug,
+             projectCategory: project.category,
+             id: project._id,
+             imageStart: project.imageStart,
+             scope: project.info.scope,
+             alt: project.coverImage.alt,
+             index,
+             filterCategory: category,
+             variant,
+             updateIsHovering,
+            }}
+           />
+          )}
         </div>
        );
       })}
@@ -326,8 +334,8 @@ export default function ProjectsMenu({
    {/* Thumb View */}
    {variant === 'thumbs' && (
     <div className='thumb-view filter-projects flex flex-col gap-8 p-8 pt-24 h-screen overflow-y-scroll'>
-     {projectItems &&
-      projectItems.map((project, index) => {
+     {allProjects &&
+      allProjects.map((project, index) => {
        return (
         <div className='w-56 h-56' key={project._id}>
          {project.title && project.slug && (

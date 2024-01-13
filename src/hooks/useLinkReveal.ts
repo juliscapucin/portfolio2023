@@ -21,7 +21,7 @@ export function useLinkReveal(
          const tl = gsap.timeline({
             scrollTrigger: {
                trigger: linkRef.current,
-               start: 'top 98%',
+               start: 'top 100%',
                //onEnter, onLeave, onEnterBack, onLeaveBack
                onEnter: () => {
                   if (!linkRef.current) return;

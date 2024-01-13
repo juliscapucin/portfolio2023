@@ -1,4 +1,6 @@
-import { useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
+
+import gsap from 'gsap';
 
 import { filterCategories } from '@/constants';
 import { FilterCategoryKey } from '@/types';
@@ -77,46 +79,55 @@ export default function ProjectsFilter({
  numberOfProjectsByCategory,
  isFilterMenuPinned,
 }: ProjectsFilterProps) {
- const filterButtonsRef = useRef(null);
  const [activeButton, setActiveButton] = useState(startCategory);
+ const titleWrapperRef = useRef<HTMLDivElement>(null);
 
  const handleActiveButton = (label: FilterCategoryKey) => {
   setActiveButton(label);
  };
 
- return (
-  <div className='w-full flex gap-16 bg-primary overflow-x-clip justify-between items-end mr-4 mb-4 lg:mb-8'>
-   {/* Hidden Work Title on scroll */}
-   <h2
-    className={`${
-     activeBreakpoint !== 'desktop' && 'absolute'
-    } pr-2 text-displaySmall transition-transform duration-200 ease-in-out ${
-     isFilterMenuPinned ? '' : '-translate-x-full'
-    }`}
-   >
-    Work
-   </h2>
-   {/* Filter buttons */}
-   <div
-    ref={filterButtonsRef}
-    className={`flex flex-col w-full md:w-fit md:flex-row gap-2 md:gap-8 items-end md:items-start lg:items-center align-bottom`}
-   >
-    {filterCategories.map((label, index) => {
-     return (
-      <div key={label} className='flex gap-8'>
-       {index !== 0 && activeBreakpoint === 'desktop' && <span>/</span>}
-       <FilterButton
-        label={label}
-        filterProjects={filterProjects}
-        handleActiveButton={handleActiveButton}
-        active={activeButton === label ? true : false}
-        numberOfProjectsByCategory={numberOfProjectsByCategory}
-       />
-      </div>
-     );
-    })}
-   </div>
+ useLayoutEffect(() => {
+  if (!titleWrapperRef.current) return;
 
+  gsap.to(titleWrapperRef.current, {
+   xPercent: isFilterMenuPinned ? 0 : -100,
+   duration: 0.7,
+   ease: 'power4.out',
+  });
+ }, [isFilterMenuPinned, titleWrapperRef]);
+
+ return (
+  <div
+   ref={titleWrapperRef}
+   className='w-full flex md:gap-16 bg-primary overflow-x-clip justify-between items-end mr-4 mb-4 lg:mb-8'
+  >
+   <div className='flex items-end gap-32 w-full'>
+    {/* Hidden Work Title on scroll */}
+    <h2
+     className={`${
+      activeBreakpoint !== 'desktop' && 'absolute'
+     } pr-2 text-displaySmall transition-transform duration-200 ease-in-out`}
+    >
+     Work
+    </h2>
+    {/* Filter buttons */}
+    <div className='flex flex-col w-full md:w-fit md:flex-row gap-2 md:gap-8 items-end md:items-start lg:items-center pr-8'>
+     {filterCategories.map((label, index) => {
+      return (
+       <div key={label} className='flex gap-8'>
+        {index !== 0 && activeBreakpoint === 'desktop' && <span>/</span>}
+        <FilterButton
+         label={label}
+         filterProjects={filterProjects}
+         handleActiveButton={handleActiveButton}
+         active={activeButton === label ? true : false}
+         numberOfProjectsByCategory={numberOfProjectsByCategory}
+        />
+       </div>
+      );
+     })}
+    </div>
+   </div>
    {/* View buttons */}
    <div className='hidden lg:flex gap-8 align-bottom mr-4'>
     {variant === 'list' ? (
