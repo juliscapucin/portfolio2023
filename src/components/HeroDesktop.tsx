@@ -31,7 +31,7 @@ const HeroDesktop = () => {
    // Name
    animateSplitText(nameRef.current!, 200, 0.7);
    // Description
-   animateStaggerText(descriptionRef.current!, 0.7);
+   // animateStaggerText(descriptionRef.current!, 0.7); // fix this
    // Number
    animateSplitText(yearRef.current!, 150, 1.4);
    // Status
@@ -43,22 +43,21 @@ const HeroDesktop = () => {
 
  return (
   <div
-   className='hero__desktop grid grid-cols-12 grid-rows-6 h-screen max-h-screen w-full'
+   className='hero__desktop grid grid-cols-12 grid-rows-6 h-screen custom-min-h-screen max-h-screen w-full'
    ref={heroRef}
   >
    {/* Status */}
    <GridDiv
     ref={statusRef}
-    divClass='status col-span-full row-span-1 grid grid-cols-12'
+    divClass='status col-span-full row-span-1 grid grid-cols-12 bg-primary sticky top-16 z-5'
    >
     <Status />
    </GridDiv>
 
    {/* Name */}
    <GridDiv
-    divClass='col-span-full row-span-1 overflow-clip flex items-center justify-end'
+    divClass='col-span-full row-span-1 overflow-clip flex items-center justify-end bg-primary sticky top-16 z-10'
     top={true}
-    bottom={true}
    >
     <h1
      ref={nameRef}
@@ -70,8 +69,10 @@ const HeroDesktop = () => {
 
    {/* Marquee */}
    <GridDiv
-    divClass='col-span-full row-span-1 flex items-center'
+    divClass='col-span-full row-span-1 flex items-center bg-primary sticky top-16 z-20'
     ref={descriptionRef}
+    top={true}
+    bottom={true}
    >
     <Marquee>
      <h2 className='text-displaySmall xl:text-displayMedium font-normal whitespace-nowrap px-4'>
@@ -84,27 +85,19 @@ const HeroDesktop = () => {
    </GridDiv>
 
    {/* Year */}
-   <GridDiv
-    divClass='col-span-4 row-span-3 overflow-clip flex flex-nowrap items-center justify-center'
-    top={true}
-   >
-    <h3
-     ref={yearRef}
-     className='year font-normal tracking-tightest flex -ml-16'
+   <GridDiv divClass='col-span-full row-span-3 grid grid-cols-12 bg-primary'>
+    <GridDiv
+     divClass='col-span-4 overflow-clip flex flex-nowrap items-center justify-center'
+     right={true}
     >
-     {year}
-    </h3>
+     <h3
+      ref={yearRef}
+      className='year font-normal tracking-tightest flex -ml-16'
+     >
+      {year}
+     </h3>
+    </GridDiv>
    </GridDiv>
-
-   {/* Theme */}
-   <GridDiv divClass='col-span-8 row-span-3' top={true} left={true}></GridDiv>
-
-   {/* Arrow */}
-   {/* <GridDiv divClass='col-span-2 row-span-1' top={true} left={true}></GridDiv> */}
-   {/* Snackbar */}
-   {/* <GridDiv divClass='col-span-9 row-span-1' top={true} left={true}></GridDiv> */}
-   {/* Blank Space */}
-   <GridDiv divClass='col-span-7 row-span-3' top={true}></GridDiv>
   </div>
  );
 };

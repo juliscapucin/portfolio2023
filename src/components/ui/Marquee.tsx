@@ -34,7 +34,7 @@ const Marquee = ({ children, speed = 50 }: Props) => {
  }, [width, marqueeRef]);
 
  return (
-  <div className='overflow-hidden flex-1 relative'>
+  <div className='overflow-clip flex-1 relative'>
    <div ref={marqueeRef} className='flex flex-nowrap w-fit'>
     {children}
    </div>

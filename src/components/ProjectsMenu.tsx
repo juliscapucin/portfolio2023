@@ -206,7 +206,7 @@ export default function ProjectsMenu({
  return (
   <section
    ref={projectsMenuRef}
-   className='projects-menu custom-min-h-screen relative'
+   className='projects-menu custom-min-h-screen relative bg-primary'
   >
    {/* Custom Cursor */}
    {activeBreakpoint === 'desktop' && (

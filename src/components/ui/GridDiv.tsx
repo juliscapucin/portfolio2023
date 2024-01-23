@@ -13,12 +13,23 @@ type GridDivProps = {
  divClass?: string;
  offsetStart?: string;
  animationDelay?: number;
+ useSection?: boolean;
 };
 
 export const GridDiv = forwardRef(function GridDiv(
- { top, right, bottom, left, children, divClass, offsetStart }: GridDivProps,
+ {
+  top,
+  right,
+  bottom,
+  left,
+  children,
+  divClass,
+  offsetStart,
+  useSection,
+ }: GridDivProps,
  ref: React.Ref<HTMLDivElement>
 ) {
+ const Tag = useSection ? 'section' : 'div';
  const lineTopRef = useRef<HTMLDivElement>(null);
  const lineRightRef = useRef<HTMLDivElement>(null);
  const lineBottomRef = useRef<HTMLDivElement>(null);
@@ -78,7 +89,7 @@ export const GridDiv = forwardRef(function GridDiv(
  }, [lineTopRef, lineRightRef, lineBottomRef, lineLeftRef]);
 
  return (
-  <div className={`grid-element relative overflow-clip ${divClass}`} ref={ref}>
+  <Tag className={`grid-element relative overflow-clip ${divClass}`} ref={ref}>
    {top ? (
     <div
      ref={lineTopRef}
@@ -124,6 +135,6 @@ export const GridDiv = forwardRef(function GridDiv(
     ></div>
    )}
    {children}
-  </div>
+  </Tag>
  );
 });

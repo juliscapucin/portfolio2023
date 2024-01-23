@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { SplitText } from 'gsap/dist/SplitText';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useWindowResize } from '@/hooks';
+import { GridDiv } from '@/components/ui';
 
 export default function AboutText() {
  const textRef = useRef<HTMLParagraphElement | null>(null);
@@ -49,7 +50,11 @@ export default function AboutText() {
  }, [width, textRef]);
 
  return (
-  <section className='xl:grid grid-cols-12 my-64'>
+  <GridDiv
+   divClass='xl:grid grid-cols-12 py-64 sticky top-16 z-40'
+   useSection={true}
+   top={true}
+  >
    <p
     ref={textRef}
     className='ml-auto mr-0 xl:ml-0 xl:mr-auto max-w-1/2 col-start-7 col-span-5 text-titleMedium sm:text-headlineMedium'
@@ -58,6 +63,6 @@ export default function AboutText() {
     Digital Design. Commitment to visual excellence and engineering performance
     is part of my DNA.
    </p>
-  </section>
+  </GridDiv>
  );
 }
