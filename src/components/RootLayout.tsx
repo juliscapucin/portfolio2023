@@ -13,7 +13,11 @@ export default function RootLayout(props: { children: React.ReactNode }) {
  }, []);
 
  return (
-  <html lang='en' data-theme={rootTheme} className='max-w-desktop mx-auto'>
+  <html
+   lang='en'
+   data-theme={rootTheme}
+   className='max-w-desktop mx-auto overflow-x-clip'
+  >
    {props.children}
   </html>
  );

@@ -21,7 +21,7 @@ export default function ProjectsMenuThumbs({
  );
 
  return (
-  <div className='fixed top-0 right-0 w-screen h-screen z-40 pointer-events-none'>
+  <div className='fixed top-16 right-0 w-screen h-screen z-40 pointer-events-none'>
    <div className='w-full h-full max-w-desktop mx-auto flex justify-end overflow-clip'>
     <div
      ref={projectsMenuRef}
@@ -31,7 +31,7 @@ export default function ProjectsMenuThumbs({
     >
      {/* All projects button */}
      <GridDiv
-      divClass='relative w-16 bg-primary h-screen mt-16'
+      divClass='relative w-16 bg-primary h-screen'
       left={true}
       right={true}
      >
@@ -47,6 +47,7 @@ export default function ProjectsMenuThumbs({
        </span>
       </button>
      </GridDiv>
+
      <ProjectsMenu
       allProjects={allProjects}
       activeBreakpoint={breakpoint}

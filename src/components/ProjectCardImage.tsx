@@ -65,7 +65,7 @@ export default function ProjectCardImage(props: Props) {
      fill
      priority={index < 2 ? true : false}
      className={`${isHovering && 'scale-[115%] -rotate-2'} ${
-      variant && variant === 'thumbs' && 'grayscale hover:grayscale-0'
+      variant && variant === 'thumbs' && ''
      } transition-transform duration-300 ease-in-out`}
     />
    </div>
