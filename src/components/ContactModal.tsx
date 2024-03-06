@@ -48,14 +48,11 @@ export default function ContactModal() {
  return (
   <aside
    ref={modalRef}
-   className={`w-full max-w-desktop h-1/2 bg-primary fixed top-full mx-auto px-8 z-20 transition-transform ${
+   className={`w-full max-w-desktop h-1/2 bg-primary fixed top-full mx-auto px-8 border-0 z-20 transition-transform ${
     modalOpen ? '-translate-y-full' : ''
    }`}
   >
-   <GridDiv
-    divClass='block lg:flex justify-between items-center h-full p-8 relative'
-    top={true}
-   >
+   <GridDiv divClass='lg:flex justify-between items-center h-full p-8 border-t-[1px] border-secondary'>
     <div className='absolute top-8 right-0' onClick={updateModalOpen}>
      <ButtonClose action={() => updateModalOpen} />
     </div>

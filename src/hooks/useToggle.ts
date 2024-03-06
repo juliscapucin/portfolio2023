@@ -9,7 +9,6 @@ export function useToggle(
 ) {
    const [open, setOpen] = useState(initialState);
    const [addBackground, setAddBackground] = useState(false);
-   const translateX = open ? '0px' : '184px';
 
    const toggle = () => {
       setOpen(!open);
@@ -19,7 +18,7 @@ export function useToggle(
       if (!element) return;
 
       gsap.set(element, {
-         x: translateX,
+         xPercent: 83,
          opacity: 1,
       });
    }, [element]);
@@ -31,13 +30,13 @@ export function useToggle(
          setAddBackground(true);
          gsap.to(element, {
             duration: 0.5,
-            x: translateX,
+            xPercent: 0,
             ease: 'expo.out',
          });
       } else {
          gsap.to(element, {
             duration: 0.5,
-            x: translateX,
+            xPercent: 83,
             ease: 'expo.out',
             onComplete: () => {
                setAddBackground(false);

@@ -76,6 +76,7 @@ export default function ShallowPage({ children, isShallow }: Props) {
  }, [onKeyDown]);
 
  return (
+  // this is used as a workaround to prevent the intercepted route of showing in all pages
   shouldShowShallowPage && (
    <div
     ref={isShallow ? shallowPageRef : pageRef}
