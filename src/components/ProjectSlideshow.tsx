@@ -16,7 +16,6 @@ export default function Slideshow({
  isWeb,
 }: Props) {
  const [slideIndex, setSlideIndex] = useState(1);
- const slideshowRef = useRef<HTMLDivElement | null>(null);
  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
  const resetTimeout = () => {
@@ -41,10 +40,7 @@ export default function Slideshow({
  }, [slideIndex]);
 
  return (
-  <div
-   ref={slideshowRef}
-   className='slideshow relative w-full aspect-square flex flex-nowrap overflow-hidden'
-  >
+  <div className='slideshow relative w-full aspect-square flex flex-nowrap overflow-hidden'>
    {projectImages.map((index) => {
     return (
      <div
