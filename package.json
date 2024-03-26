@@ -10,7 +10,6 @@
    },
    "dependencies": {
       "@sanity/vision": "^3.16.7",
-      "@storyblok/react": "^2.4.7",
       "@types/node": "20.3.3",
       "@types/react": "18.2.14",
       "@types/react-dom": "18.2.6",
