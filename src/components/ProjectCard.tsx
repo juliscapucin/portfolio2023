@@ -57,7 +57,7 @@ export default function ProjectCard(props: ProjectCardProps) {
       top={true}
       bottom={true}
      >
-      <div className='m-auto mt-0 pt-48'>
+      <div className='mt-0 pt-48'>
        <h1 className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge'>
         {title}
        </h1>
@@ -107,7 +107,7 @@ export default function ProjectCard(props: ProjectCardProps) {
        <div
         className={`project-card-${id} overflow-clip bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-screen pr-16 z-30 translate-x-full`}
        >
-        <div className='m-auto mt-0 pt-48 max-w-desktop overflow-clip'>
+        <div className='mt-0 pt-48 max-w-desktop overflow-clip'>
          <h1 className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge col-span-5'>
           {title}
          </h1>
@@ -145,7 +145,7 @@ export default function ProjectCard(props: ProjectCardProps) {
      <div
       className={`project-card-${id} overflow-clip bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-screen pr-16 z-30 translate-x-full`}
      >
-      <div className='m-auto mt-0 pt-48 max-w-desktop overflow-clip'>
+      <div className='mt-0 pt-48 max-w-desktop overflow-clip'>
        <h1 className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge col-span-5'>
         {title}
        </h1>

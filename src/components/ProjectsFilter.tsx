@@ -106,7 +106,7 @@ export default function ProjectsFilter({
     <h2
      className={`${
       activeBreakpoint !== 'desktop' && 'absolute'
-     } pr-2 text-displaySmall transition-transform duration-200 ease-in-out`}
+     } px-2 text-displaySmall transition-transform duration-200 ease-in-out`}
     >
      Work
     </h2>
