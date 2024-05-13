@@ -82,7 +82,7 @@ export default function ShallowPage({ children, isShallow }: Props) {
     ref={isShallow ? shallowPageRef : pageRef}
     className={`${
      isShallow && 'shallow-page'
-    } page scroll-trigger fixed top-0 left-0 bottom-0 right-0 mx-auto pl-8 pr-16 lg:pr-8 bg-primary max-w-desktop overflow-y-scroll overflow-x-clip z-10`}
+    } page scroll-trigger fixed top-0 left-0 bottom-0 right-0 mx-auto pl-8 pr-16 lg:pr-8 max-w-desktop overflow-y-scroll overflow-x-clip z-10`}
    >
     <div
      className='wrapper max-w-desktop overflow-clip m-auto mt-0 py-32 bg-primary'
