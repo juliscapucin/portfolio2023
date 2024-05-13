@@ -44,7 +44,7 @@ export default function FooterNav({ variant, modalOpen }: Props) {
       return (
        <GridDiv
         bottom={true}
-        divClass='relative max-h-32 min-h-32 flex justify-start items-start'
+        divClass='relative h-16 flex justify-start items-center'
         key={link.order}
        >
         <button
