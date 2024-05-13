@@ -56,12 +56,12 @@
       border: none;
    }
 
-   @supports (scrollbar-color: #ccc #fff) {
+   /* @supports (scrollbar-color: #000 #fff) {
       & > * {
-         scrollbar-color: #ccc #fff;
-         scrollbar-width: thin;
+         scrollbar-color: #000 #fff;
+         scrollbar-width: 4px;
       }
-   }
+   } */
 
    p {
       @apply text-bodyLarge;
