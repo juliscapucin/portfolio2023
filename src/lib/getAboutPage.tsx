@@ -1,6 +1,8 @@
 import { createClient, groq } from 'next-sanity';
 import clientConfig from '@sanity/config/client-config';
 
+export const revalidate = 3600;
+
 export default async function getAboutPage() {
  const client = createClient(clientConfig);
  const res = await client.fetch(
@@ -16,8 +18,7 @@ export default async function getAboutPage() {
     content1,
     content2,
       services
-}`,
-  { next: { revalidate: 3600 } }
+}`
  );
 
  if (!res) return undefined;
