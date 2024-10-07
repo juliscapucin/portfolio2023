@@ -23,7 +23,7 @@
       "react": "18.2.0",
       "react-dom": "18.2.0",
       "react-transition-group": "^4.4.5",
-      "sanity": "^3.37.0",
+      "sanity": "3.59.1",
       "tailwind-merge": "^1.13.2",
       "tailwindcss-animate": "^1.0.6",
       "typescript": "5.1.6"
