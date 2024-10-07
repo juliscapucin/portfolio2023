@@ -25,9 +25,6 @@ export async function generateMetadata({ params: { slug } }: Params) {
  };
 }
 
-// Opt out of caching for all data requests in the route segment
-export const dynamic = 'force-dynamic';
-
 const allProjectsData = getProjects();
 
 export default async function Page({ params }: { params: { slug: string } }) {
@@ -57,3 +54,6 @@ export async function generateStaticParams() {
   };
  });
 }
+
+// Revalidation – Incremental Static Regeneration
+export const revalidate = 30; // 300 seconds = 5 minutes
