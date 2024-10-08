@@ -54,6 +54,3 @@ export async function generateStaticParams() {
   };
  });
 }
-
-// Revalidation – Incremental Static Regeneration
-export const revalidate = 30; // 300 seconds = 5 minutes

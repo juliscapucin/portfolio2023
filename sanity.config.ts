@@ -1,6 +1,5 @@
 import { defineConfig } from 'sanity';
-import { deskTool } from 'sanity/desk';
-import schemas from '../sanity/schemas';
+import schemas from './src/sanity/schemas';
 
 export default defineConfig({
    title: 'Folio 2023',
@@ -9,8 +8,6 @@ export default defineConfig({
    dataset: 'production',
    apiVersion: '2022-09-29',
    basePath: '/admin',
-
-   plugins: [deskTool()],
 
    schema: { types: schemas },
 });

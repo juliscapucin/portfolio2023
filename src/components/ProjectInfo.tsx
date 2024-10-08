@@ -12,7 +12,6 @@ export default function ProjectInfo({ info }: ProjectInfoProps) {
    <span className='my-2 h-[1px] bg-secondary'></span>
    <span className='mx-2'>Tech: {info.tech}</span>
    <span className='my-2 h-[1px] bg-secondary'></span>
-   {/* If link data starts with http, it's a link. If not, it's a span */}
    {info.link && (
     <>
      <Link

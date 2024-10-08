@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getSocialLinks } from '@sanity/sanity-queries';
+import { getSocialLinks } from '@/sanity/sanity-queries';
 
 export async function GET() {
    const data = await getSocialLinks();
