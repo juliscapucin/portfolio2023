@@ -2,10 +2,12 @@
 
 import { useEffect, useState } from 'react';
 
+function getThemeStorage() {
+   return localStorage.getItem('theme') || 'dark';
+}
+
 export function useThemeStorage() {
-   const [theme, setTheme] = useState<string | null>(() => {
-      return localStorage.getItem('theme') || 'dark';
-   });
+   const [theme, setTheme] = useState<string>(getThemeStorage);
 
    const updateTheme = (theme: string) => {
       localStorage.setItem('theme', theme);
