@@ -1,18 +1,38 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 
+const timeZone = 'Europe/Amsterdam';
+
 function Status() {
- const [currentDate, setCurrentDate] = useState(new Date());
+ const [dateTime, setDateTime] = useState({ day: '', date: '', time: '' });
  const statusWrapperRef = useRef<HTMLDivElement>(null);
 
  useEffect(() => {
-  const intervalId = setInterval(() => {
-   setCurrentDate(new Date());
-  }, 1000); // Update every second
+  const updateDateTime = () => {
+   const now = new Date();
+   const day = new Intl.DateTimeFormat('en-US', {
+    timeZone,
+    weekday: 'long',
+   }).format(now);
+   const date = new Intl.DateTimeFormat('en-US', {
+    timeZone,
+    day: 'numeric',
+    month: 'long',
+   }).format(now);
+   const time = new Intl.DateTimeFormat('en-US', {
+    timeZone,
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+   }).format(now);
 
-  return () => {
-   clearInterval(intervalId);
+   setDateTime({ day, date, time });
   };
+
+  updateDateTime(); // Set initial date and time
+  const intervalId = setInterval(updateDateTime, 1000); // Update every second
+
+  return () => clearInterval(intervalId);
  }, []);
 
  useLayoutEffect(() => {
@@ -31,11 +51,6 @@ function Status() {
   };
  }, [statusWrapperRef]);
 
- const dayOfWeek = currentDate.toLocaleDateString('en-US', { weekday: 'long' });
- const dayOfMonth = currentDate.toLocaleDateString('en-US', { day: 'numeric' });
- const month = currentDate.toLocaleDateString('en-US', { month: 'long' });
- const time = currentDate.toLocaleTimeString('en-US');
-
  return (
   <div
    ref={statusWrapperRef}
@@ -44,10 +59,10 @@ function Status() {
    <span>Location: Amsterdam</span>
    <span className='line h-[1px] bg-secondary'></span>
    <span>
-    {dayOfWeek} | {dayOfMonth} {month}
+    {dateTime.day} | {dateTime.date}
    </span>
    <span className='line h-[1px] bg-secondary'></span>
-   <span>{time}</span>
+   <span>{dateTime.time}</span>
    <span className='line h-[1px] bg-secondary'></span>
   </div>
  );
