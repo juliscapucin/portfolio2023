@@ -1,4 +1,5 @@
 import { defineConfig } from 'sanity';
+import { structureTool } from 'sanity/structure';
 import schemas from './src/sanity/schemas';
 
 export default defineConfig({
@@ -10,4 +11,8 @@ export default defineConfig({
    basePath: '/admin',
 
    schema: { types: schemas },
+   releases: {
+      enabled: false,
+   },
+   plugins: [structureTool()],
 });

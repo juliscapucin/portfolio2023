@@ -9,6 +9,7 @@
       "lint": "next lint"
    },
    "dependencies": {
+      "@sanity/image-url": "^1.1.0",
       "@types/node": "20.3.3",
       "@types/react": "18.2.14",
       "@types/react-dom": "18.3.0",
@@ -16,14 +17,13 @@
       "clsx": "^1.2.1",
       "eslint": "8.44.0",
       "eslint-config-next": "13.4.7",
-      "gsap": "npm:@gsap/shockingly@^3.12.2",
+      "gsap": "^3.13.0",
       "next": "^14.2.14",
       "next-cloudinary": "^5.20.0",
-      "next-sanity": "^9.5.0",
+      "next-sanity": "^9.11.0",
       "react": "^18.3.1",
       "react-dom": "^18.3.1",
       "react-transition-group": "^4.4.5",
-      "sanity": "^3.59.1",
       "tailwind-merge": "^1.13.2",
       "tailwindcss-animate": "^1.0.6",
       "typescript": "5.1.6"
