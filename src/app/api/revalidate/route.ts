@@ -14,6 +14,8 @@ export async function POST(req: NextRequest) {
       const body = await req.json();
       const slug = body?.slug?.current;
 
+      console.log('📦 Webhook payload:', JSON.stringify(body, null, 2));
+
       const dynamicPath = slug ? `/work/${slug}` : null;
 
       // Revalidate static paths
