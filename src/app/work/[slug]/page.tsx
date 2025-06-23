@@ -6,12 +6,18 @@ import { getProject, getProjects } from '@/lib';
 import { ProjectPage } from '@/components/pages';
 
 type Params = {
- params: {
+ params: Promise<{
   slug: string;
- };
+ }>;
 };
 
-export async function generateMetadata({ params: { slug } }: Params) {
+export async function generateMetadata(props: Params) {
+ const params = await props.params;
+
+ const {
+  slug
+ } = params;
+
  const projectData = getProject(slug);
  const project = await projectData;
 
@@ -27,7 +33,8 @@ export async function generateMetadata({ params: { slug } }: Params) {
 
 const allProjectsData = getProjects();
 
-export default async function Page({ params }: { params: { slug: string } }) {
+export default async function Page(props: { params: Promise<{ slug: string }> }) {
+ const params = await props.params;
  const { slug } = params;
  const projectData = getProject(slug);
 
