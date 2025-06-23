@@ -1,8 +1,6 @@
 import { createClient, groq } from 'next-sanity';
 import clientConfig from '@/sanity/config/client-config';
 
-export const revalidate = 3600;
-
 export default async function getProject(slug: string) {
  const client = createClient(clientConfig);
  const res = await client.fetch(
