@@ -3,7 +3,8 @@ import { getProject } from '@/sanity/sanity-queries';
 
 export const dynamic = 'force-dynamic';
 
-export async function GET(_: any, { params }: { params: { slug: string } }) {
+export async function GET(_: any, props: { params: Promise<{ slug: string }> }) {
+   const params = await props.params;
    const slug = params.slug;
    const res = await getProject(slug);
 

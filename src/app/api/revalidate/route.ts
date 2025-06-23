@@ -3,8 +3,15 @@ import { revalidatePath } from 'next/cache';
 
 const STATIC_PATHS = ['/', '/work', '/about'];
 
+// Map Sanity `_type` to your URL structure
 const typeToPath = (type: string, slug: string): string | null => {
-   return type === 'work' && slug ? `/work/${slug}` : null;
+   switch (type) {
+      case 'work':
+         return `/work/${slug}`;
+      // Add more if needed (like nested paths or dynamic routing logic)
+      default:
+         return null;
+   }
 };
 
 export async function POST(req: NextRequest) {
