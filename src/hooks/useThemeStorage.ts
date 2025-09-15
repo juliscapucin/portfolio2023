@@ -19,5 +19,5 @@ export function useThemeStorage() {
       updateTheme(theme);
    }, [theme]);
 
-   return { theme, setTheme };
+   return { theme, updateTheme };
 }

@@ -17,20 +17,20 @@ interface Props {
 }
 
 export default function ThemeSwitcher({ variant }: Props) {
- const { theme, setTheme } = useThemeStorage();
+ const { theme, updateTheme } = useThemeStorage();
  const [menuOpen, setMenuOpen] = useState(false);
 
  useEffect(() => {
   if (theme && theme.length === 0) {
-   setTheme('dark');
+   updateTheme('dark');
   }
- }, []);
+ }, [theme, updateTheme]);
 
  const handleThemeChange = (
   e: MouseEvent<HTMLButtonElement>,
-  color: string
+  color: string,
  ) => {
-  setTheme(color);
+  updateTheme(color);
   toggleMenu();
   e.currentTarget.classList.add('active');
  };
@@ -76,14 +76,17 @@ export default function ThemeSwitcher({ variant }: Props) {
    )}
    {variant === 'header' && (
     <div
-     className={`theme-switcher flex items-center h-full pb-[6px] transition-transform duration-200 ${
+     className={`theme-switcher flex items-center h-full transition-transform duration-200 ${
       !menuOpen && `translate-x-[80px]`
      }`}
     >
      {/* Open Theme Menu */}
-     <button className='flex gap-2 h-full items-end mr-4' onClick={toggleMenu}>
+     <button
+      className='flex gap-2 h-full items-center mr-4 -mb-[3px]'
+      onClick={toggleMenu}
+     >
       <span
-       className={`mr-4 transition-transform duration-200 ${
+       className={`mr-4 leading-tight transition-transform duration-200 ${
         menuOpen && `translate-x-[38px]`
        }`}
       >
@@ -91,35 +94,24 @@ export default function ThemeSwitcher({ variant }: Props) {
       </span>
       {/* Active State */}
       <div
-       className={`w-6 h-6 border border-secondary mb-2 ${
-        menuOpen && 'opacity-0'
-       }
+       className={`w-6 h-6 border border-secondary ${menuOpen && 'opacity-0'}
        }`}
       ></div>
       {/* Chevron */}
-      <div className='mb-2'>
-       <IconChevron />
-      </div>
+      <IconChevron />
      </button>
-     <div className='flex gap-4'>
-      {/* Themes buttons */}
+     {/* Themes buttons */}
+     <div className='flex gap-4 items-center -mb-[3px]'>
       {themes.map((item) => {
        return (
-        <div className='relative' key={item.theme}>
-         {/* Active State */}
-         {/* <div
-          className={`absolute top-0 left-0 arrow w-8 h-8 transition-opacity border-2 border-secondary pointer-events-none ${
-           theme !== item.theme && 'opacity-0'
-          }`}
-         ></div> */}
-         <button
-          type='button'
-          className={`${item.color} ${
-           item.theme === theme && 'active'
-          } border border-colorFaded w-6 h-6 hover:scale-125 transition-transform duration-200`}
-          onClick={(e) => handleThemeChange(e, item.theme)}
-         ></button>
-        </div>
+        <button
+         key={item.theme}
+         type='button'
+         className={`${item.color} ${
+          item.theme === theme && 'active'
+         } border border-colorFaded w-6 h-6 hover:scale-125 transition-transform duration-200`}
+         onClick={(e) => handleThemeChange(e, item.theme)}
+        ></button>
        );
       })}
      </div>
