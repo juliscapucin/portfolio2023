@@ -11,6 +11,7 @@ export function useThemeStorage() {
 
    const updateTheme = (theme: string) => {
       localStorage.setItem('theme', theme);
+      setTheme(theme);
    };
 
    // Update theme in session storage on change
