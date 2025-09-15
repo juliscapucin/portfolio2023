@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 
-const timeZone = 'Europe/Amsterdam';
+const timeZone = 'Europe/London';
 
 function Status() {
  const [dateTime, setDateTime] = useState({ day: '', date: '', time: '' });
@@ -56,7 +56,7 @@ function Status() {
    ref={statusWrapperRef}
    className='flex flex-col text-titleMedium mt-16 md:mt-4 lg:mt-2 ml-2 mb-16 lg:mb-0 md:col-span-4 lg:col-span-3 xlg:col-span-1 max-w-[250px] overflow-clip'
   >
-   <span>Location: Amsterdam</span>
+   <span>Location: London</span>
    <span className='line h-[1px] bg-secondary'></span>
    <span>
     {dateTime.day} | {dateTime.date}
