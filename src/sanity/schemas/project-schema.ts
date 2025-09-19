@@ -7,21 +7,25 @@ const projectSchema = {
          title: 'Release Date',
          name: 'releaseDate',
          type: 'date',
+         validation: (Rule: any) => Rule.required(),
       },
       {
          name: 'title',
-         title: 'Title',
+         title: 'Title (Required)',
          type: 'string',
+         validation: (Rule: any) => Rule.required(),
       },
       {
          name: 'slug',
-         title: 'Slug',
+         title: 'Slug (Required)',
          type: 'slug',
+         validation: (Rule: any) => Rule.required(),
       },
       {
          name: 'description',
-         title: 'Description',
+         title: 'Description (Required)',
          type: 'text',
+         validation: (Rule: any) => Rule.required(),
       },
       {
          name: 'coverImage',
@@ -41,7 +45,12 @@ const projectSchema = {
          ],
       },
       { name: 'url', title: 'URL', type: 'url' },
-      { name: 'imageStart', title: 'Image Start', type: 'string' },
+      {
+         name: 'imageStart',
+         title: 'Image Start (Required. Defines image position on projects image view)',
+         type: 'string',
+         validation: (Rule: any) => Rule.required(),
+      },
       {
          name: 'images',
          title: 'Images',
@@ -51,12 +60,17 @@ const projectSchema = {
       { name: 'isWeb', title: 'Is Web Project', type: 'boolean' },
       {
          name: 'category',
-         title: 'Category',
-         type: 'array',
-         of: [{ type: 'string' }],
+         title: 'Category (Required)',
+         type: 'string',
          options: {
-            layout: 'tags',
+            list: [
+               { title: 'Recent', value: 'recent' },
+               { title: 'Playground', value: 'playground' },
+               { title: 'Archive', value: 'archive' },
+            ],
+            layout: 'dropdown',
          },
+         validation: (Rule: any) => Rule.required(),
       },
       {
          name: 'content1',
