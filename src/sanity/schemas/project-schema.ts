@@ -49,6 +49,14 @@ const projectSchema = {
          name: 'imageStart',
          title: 'Image Start (Required. Defines image position on projects image view)',
          type: 'string',
+         options: {
+            list: [
+               { title: 'Start', value: '1' },
+               { title: 'Center', value: '5' },
+               { title: 'End', value: '9' },
+            ],
+            layout: 'dropdown',
+         },
          validation: (Rule: any) => Rule.required(),
       },
       {
