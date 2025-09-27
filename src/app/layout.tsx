@@ -49,7 +49,7 @@ export default function Layout(props: {
       <main className={`mt-16 mx-8 overflow-x-clip`}>
        {/* Transition Overlay */}
        <div
-        className='transition-fullscreen inset-x-8 bottom-0 max-w-desktop top-16 fixed z-50 overflow-clip pointer-events-none bg-primary hidden'
+        className='transition-fullscreen bottom-0 w-full max-w-desktop top-16 fixed z-50 overflow-clip pointer-events-none bg-primary hidden'
         sr-hidden='true'
        ></div>
        {props.children}
