@@ -48,7 +48,7 @@ export default function Layout(props: {
 
       <main className={`mt-16 mx-8 overflow-x-clip`}>
        {/* Transition Overlay */}
-       <div className='transition-fullscreen hidden h-screen w-screen max-w-desktop top-16 fixed z-50 overflow-clip pointer-events-none'></div>
+       <div className='transition-fullscreen hidden h-screen w-screen max-w-desktop top-16 fixed z-50 overflow-clip pointer-events-none bg-primary'></div>
        {props.children}
        {props.shallowPage}
       </main>

@@ -38,7 +38,7 @@ export default function ProjectCard(props: ProjectCardProps) {
   filterCategory,
   variant,
   imageStart,
-  updateIsHovering,
+  updateIsHovering: handleMouseEnter,
  } = props;
  const imageWrapperRef = useRef(null);
 
@@ -53,7 +53,7 @@ export default function ProjectCard(props: ProjectCardProps) {
     <GridDiv bottom={true} divClass='relative h-32'>
      {/* Div for animation */}
      <AnimationGridDiv
-      divClass={`project-card-${id} overflow-clip bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-screen pr-16 z-10 translate-x-full`}
+      divClass={`project-card-${id} overflow-clip bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-screen pr-16`}
       top={true}
       bottom={true}
      >
@@ -67,11 +67,11 @@ export default function ProjectCard(props: ProjectCardProps) {
      {/* Button action */}
      <button
       className='h-full w-full p-8 group'
-      onMouseEnter={() => updateIsHovering(true)}
-      onMouseLeave={() => updateIsHovering(false)}
+      onMouseEnter={() => handleMouseEnter(true)}
+      onMouseLeave={() => handleMouseEnter(false)}
       onClick={() => {
        animateToFullScreen(`.project-card-${id}`, () =>
-        router.push(`/work/${slug}`, { scroll: false })
+        router.push(`/work/${slug}`, { scroll: false }),
        );
       }}
      >
@@ -103,16 +103,18 @@ export default function ProjectCard(props: ProjectCardProps) {
       <div
        className={`custom-col-start-${imageStart} aspect-square relative overflow-clip`}
       >
-       {/* Div for transition animation */}
+       {/* TRANSITION ANIMATION DIV */}
        <div
-        className={`project-card-${id} overflow-clip bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-screen pr-16 z-30 translate-x-full`}
+        className={`project-card-${id} overflow-clip bg-primary pointer-events-none absolute inset-0 w-screen pr-16`}
        >
         <div className='mt-0 pt-48 max-w-desktop overflow-clip'>
-         <h1 className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge col-span-5'>
+         <span className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge font-medium leading-[0.8] tracking-[-0.025em]'>
           {title}
-         </h1>
+         </span>
         </div>
        </div>
+
+       {/* IMAGE */}
        <div className='relative w-full h-full overflow-clip z-0'>
         {/* Element Reveal Mask for useElementReveal hook */}
         {variant === 'image' && (
@@ -124,7 +126,7 @@ export default function ProjectCard(props: ProjectCardProps) {
           id,
           slug,
           alt,
-          updateIsHovering,
+          updateIsHovering: handleMouseEnter,
           index,
           filterCategory,
           projectCategory,
@@ -143,10 +145,10 @@ export default function ProjectCard(props: ProjectCardProps) {
     <div className='aspect-square relative overflow-clip group'>
      {/* Div for animation */}
      <div
-      className={`project-card-${id} overflow-clip bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-screen pr-16 z-30 translate-x-full`}
+      className={`project-card-${id} overflow-clip bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-screen pr-16  translate-x-full`}
      >
       <div className='mt-0 pt-48 max-w-desktop overflow-clip'>
-       <h1 className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge col-span-5'>
+       <h1 className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge'>
         {title}
        </h1>
       </div>
@@ -160,7 +162,14 @@ export default function ProjectCard(props: ProjectCardProps) {
      />
      <div className='relative w-full h-full overflow-clip z-0'>
       <ProjectCardImage
-       {...{ id, slug, alt, updateIsHovering, index, variant }}
+       {...{
+        id,
+        slug,
+        alt,
+        updateIsHovering: handleMouseEnter,
+        index,
+        variant,
+       }}
       />
      </div>
     </div>

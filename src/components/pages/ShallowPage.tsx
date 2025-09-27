@@ -6,7 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { usePageContext } from '@/context';
 
 import { animateHorizontalTransition } from '@/animations/pageTransitions';
-import { Availability, Footer } from '@/components';
+import { Availability } from '@/components';
 import { ButtonBack } from '@buttons/.';
 
 type Props = { children: React.ReactNode; isShallow: boolean };
@@ -14,7 +14,7 @@ type Props = { children: React.ReactNode; isShallow: boolean };
 export default function ShallowPage({ children, isShallow }: Props) {
  const wrapper = useRef<HTMLDivElement | null>(null);
  const [showBackButton, setShowBackButton] = useState<boolean>(
-  isShallow ? true : false
+  isShallow ? true : false,
  );
 
  const router = useRouter();
@@ -46,7 +46,7 @@ export default function ShallowPage({ children, isShallow }: Props) {
   }
  }, []);
 
- const onDismiss = useCallback(() => {
+ const handleDismiss = useCallback(() => {
   //  Remove scroll from wrapper div
   if (shallowPageRef.current) {
    shallowPageRef.current.classList.remove('overflow-y-scroll');
@@ -64,16 +64,16 @@ export default function ShallowPage({ children, isShallow }: Props) {
 
  const onKeyDown = useCallback(
   (e: KeyboardEvent) => {
-   if (e.key === 'Escape') onDismiss();
+   if (e.key === 'Escape') handleDismiss();
   },
-  [onDismiss]
+  [handleDismiss],
  );
 
  useEffect(() => {
   if (!isShallow) return;
   document.addEventListener('keydown', onKeyDown);
   return () => document.removeEventListener('keydown', onKeyDown);
- }, [onKeyDown]);
+ }, [onKeyDown, isShallow]);
 
  return (
   // this is used as a workaround to prevent the intercepted route of showing in all pages
@@ -89,7 +89,7 @@ export default function ShallowPage({ children, isShallow }: Props) {
      ref={wrapper}
     >
      {/* Back button */}
-     {showBackButton && <ButtonBack action={onDismiss} />}
+     {showBackButton && <ButtonBack action={handleDismiss} />}
 
      {children}
     </div>

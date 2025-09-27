@@ -1,13 +1,13 @@
 import {
    animateHorizontal,
    animateHorizontalTransition,
-   animateToFullScreen,
 } from './pageTransitions';
 
 import { animateMobileMenu } from './mobileMenu';
 import { animateProjectsMenu } from './projectsMenu';
 import { animateSplitText } from './animateSplitText';
 import { animateStaggerText } from './animateStaggerText';
+import { animateToFullScreen } from './animateToFullScreen';
 import { ctx } from './gsap-context';
 
 export {
