@@ -27,14 +27,17 @@ export const animateToFullScreen = (
    // append clone to animationStart parent div
    animationStartParent.appendChild(animationStartClone);
 
+   const xTranslate = (animationStartParent as Element).getBoundingClientRect()
+      .width;
+
    const translateXAnimation = () => {
       return gsap.fromTo(
          animationStartClone,
-         { x: '400px' },
+         { x: xTranslate + 'px' },
          {
             x: '0px',
-            duration: 2,
-            ease: 'expo.out',
+            duration: 0.3,
+            ease: 'expo.in',
             zIndex: 100,
             onComplete: () => {
                flipAnimation();
@@ -45,12 +48,12 @@ export const animateToFullScreen = (
 
    const flipAnimation = () => {
       animationEnd.classList.remove('hidden');
-      const state = Flip.getState(animationStartClone);
+      const state = Flip.getState(animationStartClone, { props: 'width' });
 
       animationEnd.appendChild(animationStartClone);
 
       return Flip.from(state, {
-         duration: 1,
+         duration: 0.8,
          absolute: true,
          ease: 'expo.out',
          onComplete: () => {

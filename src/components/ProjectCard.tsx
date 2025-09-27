@@ -38,7 +38,7 @@ export default function ProjectCard(props: ProjectCardProps) {
   filterCategory,
   variant,
   imageStart,
-  updateIsHovering: handleMouseEnter,
+  updateIsHovering,
  } = props;
  const imageWrapperRef = useRef(null);
 
@@ -51,24 +51,24 @@ export default function ProjectCard(props: ProjectCardProps) {
     // */}
    {variant === 'list' && (
     <GridDiv bottom={true} divClass='relative h-32'>
-     {/* Div for animation */}
+     {/* TRANSITION ANIMATION DIV */}
      <AnimationGridDiv
-      divClass={`project-card-${id} overflow-clip bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-screen pr-16`}
+      divClass={`project-card-${id} overflow-clip bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-screen pr-16 translate-x-full`}
       top={true}
       bottom={true}
      >
       <div className='mt-0 pt-48'>
-       <h1 className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge'>
+       <span className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge font-medium leading-[0.8] tracking-[-0.025em]'>
         {title}
-       </h1>
+       </span>
       </div>
      </AnimationGridDiv>
 
      {/* Button action */}
      <button
       className='h-full w-full p-8 group'
-      onMouseEnter={() => handleMouseEnter(true)}
-      onMouseLeave={() => handleMouseEnter(false)}
+      onMouseEnter={() => updateIsHovering(true)}
+      onMouseLeave={() => updateIsHovering(false)}
       onClick={() => {
        animateToFullScreen(`.project-card-${id}`, () =>
         router.push(`/work/${slug}`, { scroll: false }),
@@ -105,9 +105,9 @@ export default function ProjectCard(props: ProjectCardProps) {
       >
        {/* TRANSITION ANIMATION DIV */}
        <div
-        className={`project-card-${id} overflow-clip bg-primary pointer-events-none absolute inset-0 w-screen pr-16`}
+        className={`project-card-${id} bg-primary pointer-events-none absolute inset-0 pr-16`}
        >
-        <div className='mt-0 pt-48 max-w-desktop overflow-clip'>
+        <div className='mt-0 pt-48 overflow-clip w-screen'>
          <span className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge font-medium leading-[0.8] tracking-[-0.025em]'>
           {title}
          </span>
@@ -126,7 +126,7 @@ export default function ProjectCard(props: ProjectCardProps) {
           id,
           slug,
           alt,
-          updateIsHovering: handleMouseEnter,
+          updateIsHovering,
           index,
           filterCategory,
           projectCategory,
@@ -143,14 +143,14 @@ export default function ProjectCard(props: ProjectCardProps) {
    // */}
    {variant === 'thumbs' && (
     <div className='aspect-square relative overflow-clip group'>
-     {/* Div for animation */}
+     {/* TRANSITION ANIMATION DIV */}
      <div
       className={`project-card-${id} overflow-clip bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-screen pr-16  translate-x-full`}
      >
       <div className='mt-0 pt-48 max-w-desktop overflow-clip'>
-       <h1 className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge'>
+       <span className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge font-medium leading-[0.8] tracking-[-0.025em]'>
         {title}
-       </h1>
+       </span>
       </div>
      </div>
      <ProjectCardLabel
@@ -166,7 +166,7 @@ export default function ProjectCard(props: ProjectCardProps) {
         id,
         slug,
         alt,
-        updateIsHovering: handleMouseEnter,
+        updateIsHovering,
         index,
         variant,
        }}
