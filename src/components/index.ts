@@ -6,6 +6,7 @@ import ContactModal from './ContactModal';
 import Copyright from './Copyright';
 import CustomCursor from './CustomCursor';
 import CustomImage from './CustomImage';
+import DisableDraftMode from './disableDraftMode';
 import Experience from './Experience';
 import ExperienceItem from './ExperienceItem';
 import Expertise from './Expertise';
@@ -44,6 +45,7 @@ export {
    Copyright,
    CustomCursor,
    CustomImage,
+   DisableDraftMode,
    Experience,
    ExperienceItem,
    Expertise,

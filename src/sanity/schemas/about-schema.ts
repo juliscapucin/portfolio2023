@@ -1,24 +1,26 @@
-const aboutSchema = {
+import { defineField, defineType } from 'sanity';
+
+const aboutSchema = defineType({
    name: 'aboutPage',
    title: 'About Page',
    type: 'document',
    fields: [
-      {
+      defineField({
          name: 'title',
          title: 'Title',
          type: 'string',
-      },
-      {
+      }),
+      defineField({
          name: 'slug',
          title: 'Slug',
          type: 'slug',
-      },
-      {
+      }),
+      defineField({
          name: 'description',
          title: 'Description',
          type: 'text',
-      },
-      {
+      }),
+      defineField({
          name: 'coverImage',
          title: 'Cover Image',
          type: 'image',
@@ -33,21 +35,21 @@ const aboutSchema = {
                description: 'Important for SEO and accessiblity.',
             },
          ],
-      },
-      { name: 'url', title: 'URL', type: 'url' },
-      {
+      }),
+      defineField({ name: 'url', title: 'URL', type: 'url' }),
+      defineField({
          name: 'content1',
          title: 'Content 1',
          type: 'array',
          of: [{ type: 'block' }],
-      },
-      {
+      }),
+      defineField({
          name: 'content2',
          title: 'Content 2',
          type: 'array',
          of: [{ type: 'block' }],
-      },
-      {
+      }),
+      defineField({
          name: 'services',
          title: 'Services',
          type: 'array',
@@ -55,7 +57,7 @@ const aboutSchema = {
          options: {
             layout: 'tags',
          },
-      },
+      }),
    ],
    preview: {
       select: {
@@ -63,6 +65,6 @@ const aboutSchema = {
          media: 'coverImage',
       },
    },
-};
+});
 
 export default aboutSchema;

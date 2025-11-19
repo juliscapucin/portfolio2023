@@ -1,6 +1,14 @@
 import localFont from 'next/font/local';
 
-import { Header, RootLayout, ContactModal } from '@/components';
+import { draftMode } from 'next/headers';
+import { VisualEditing } from 'next-sanity/visual-editing';
+
+import {
+ Header,
+ RootLayout,
+ ContactModal,
+ DisableDraftMode,
+} from '@/components';
 
 import { ModalContextProvider, PageContextProvider } from '@/context';
 
@@ -16,24 +24,24 @@ const myFont = localFont({
  variable: '--font-primary',
  src: [
   {
-   path: '../../public/fonts/n27-bold-webfont.woff2',
+   path: '../../../public/fonts/n27-bold-webfont.woff2',
    weight: '700',
   },
-  { path: '../../public/fonts/n27-medium-webfont.woff2', weight: '500' },
+  { path: '../../../public/fonts/n27-medium-webfont.woff2', weight: '500' },
   {
-   path: '../../public/fonts/n27-regular-webfont.woff2',
+   path: '../../../public/fonts/n27-regular-webfont.woff2',
    weight: '400',
   },
-  { path: '../../public/fonts/n27-light-webfont.woff2', weight: '300' },
+  { path: '../../../public/fonts/n27-light-webfont.woff2', weight: '300' },
   {
-   path: '../../public/fonts/n27-extralight-webfont.woff2',
+   path: '../../../public/fonts/n27-extralight-webfont.woff2',
    weight: '200',
   },
-  { path: '../../public/fonts/n27-thin-webfont.woff2', weight: '100' },
+  { path: '../../../public/fonts/n27-thin-webfont.woff2', weight: '100' },
  ],
 });
 
-export default function Layout(props: {
+export default async function Layout(props: {
  children: React.ReactNode;
  shallowPage: React.ReactNode;
 }) {
@@ -54,6 +62,12 @@ export default function Layout(props: {
        ></div>
        {props.children}
        {props.shallowPage}
+       {(await draftMode()).isEnabled && (
+        <>
+         <VisualEditing />
+         <DisableDraftMode />
+        </>
+       )}
       </main>
 
       <ContactModal />

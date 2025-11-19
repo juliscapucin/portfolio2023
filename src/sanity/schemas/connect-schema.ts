@@ -1,14 +1,16 @@
-const connectSchema = {
+import { defineField, defineType } from 'sanity';
+
+const connectSchema = defineType({
    name: 'connect',
    title: 'Connect',
    type: 'document',
    fields: [
-      {
+      defineField({
          name: 'availability',
          title: 'Availability',
          type: 'text',
-      },
-      {
+      }),
+      defineField({
          name: 'services',
          title: 'Services',
          type: 'array',
@@ -16,7 +18,7 @@ const connectSchema = {
          options: {
             layout: 'tags',
          },
-      },
+      }),
    ],
    preview: {
       select: {
@@ -24,6 +26,6 @@ const connectSchema = {
          media: 'coverImage',
       },
    },
-};
+});
 
 export default connectSchema;

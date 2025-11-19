@@ -1,33 +1,35 @@
-const projectSchema = {
+import { defineField, defineType } from 'sanity';
+
+const projectSchema = defineType({
    name: 'project',
    title: 'Projects',
    type: 'document',
    fields: [
-      {
+      defineField({
          title: 'Release Date',
          name: 'releaseDate',
          type: 'date',
          validation: (Rule: any) => Rule.required(),
-      },
-      {
+      }),
+      defineField({
          name: 'title',
          title: 'Title (Required)',
          type: 'string',
          validation: (Rule: any) => Rule.required(),
-      },
-      {
+      }),
+      defineField({
          name: 'slug',
          title: 'Slug (Required)',
          type: 'slug',
          validation: (Rule: any) => Rule.required(),
-      },
-      {
+      }),
+      defineField({
          name: 'description',
          title: 'Description (Required)',
          type: 'text',
          validation: (Rule: any) => Rule.required(),
-      },
-      {
+      }),
+      defineField({
          name: 'coverImage',
          title: 'Cover Image',
          type: 'document',
@@ -43,9 +45,9 @@ const projectSchema = {
                title: 'Alt text',
             },
          ],
-      },
-      { name: 'url', title: 'URL', type: 'url' },
-      {
+      }),
+      defineField({ name: 'url', title: 'URL', type: 'url' }),
+      defineField({
          name: 'imageStart',
          title: 'Image Start (Required. Defines image position on projects image view)',
          type: 'string',
@@ -58,15 +60,15 @@ const projectSchema = {
             layout: 'dropdown',
          },
          validation: (Rule: any) => Rule.required(),
-      },
-      {
+      }),
+      defineField({
          name: 'images',
          title: 'Images',
          type: 'array',
          of: [{ type: 'string' }],
-      },
-      { name: 'isWeb', title: 'Is Web Project', type: 'boolean' },
-      {
+      }),
+      defineField({ name: 'isWeb', title: 'Is Web Project', type: 'boolean' }),
+      defineField({
          name: 'category',
          title: 'Category (Required)',
          type: 'string',
@@ -79,20 +81,20 @@ const projectSchema = {
             layout: 'dropdown',
          },
          validation: (Rule: any) => Rule.required(),
-      },
-      {
+      }),
+      defineField({
          name: 'content1',
          title: 'Content 1',
          type: 'array',
          of: [{ type: 'block' }],
-      },
-      {
+      }),
+      defineField({
          name: 'content2',
          title: 'Content 2',
          type: 'array',
          of: [{ type: 'block' }],
-      },
-      {
+      }),
+      defineField({
          name: 'info',
          title: 'Info',
          type: 'array',
@@ -118,7 +120,7 @@ const projectSchema = {
                ],
             },
          ],
-      },
+      }),
    ],
    orderings: [
       {
@@ -133,6 +135,6 @@ const projectSchema = {
          media: 'coverImage',
       },
    },
-};
+});
 
 export default projectSchema;
