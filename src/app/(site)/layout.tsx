@@ -1,6 +1,14 @@
 import localFont from 'next/font/local';
 
-import { Header, RootLayout, ContactModal } from '@/components';
+import { draftMode } from 'next/headers';
+import { VisualEditing } from 'next-sanity/visual-editing';
+
+import {
+ Header,
+ RootLayout,
+ ContactModal,
+ DisableDraftMode,
+} from '@/components';
 
 import { ModalContextProvider, PageContextProvider } from '@/context';
 
@@ -33,7 +41,7 @@ const myFont = localFont({
  ],
 });
 
-export default function Layout(props: {
+export default async function Layout(props: {
  children: React.ReactNode;
  shallowPage: React.ReactNode;
 }) {
@@ -54,6 +62,12 @@ export default function Layout(props: {
        ></div>
        {props.children}
        {props.shallowPage}
+       {(await draftMode()).isEnabled && (
+        <>
+         <VisualEditing />
+         <DisableDraftMode />
+        </>
+       )}
       </main>
 
       <ContactModal />
