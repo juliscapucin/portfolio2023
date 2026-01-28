@@ -16,7 +16,7 @@ import '@/styles/styles.css';
 
 export const metadata = {
  title: 'Juli Scapucin',
- description: 'Front-End Developer based in Amsterdam',
+ description: 'Designer & Web Developer based in London',
 };
 
 // Load custom font //
