@@ -7,7 +7,7 @@ import { SectionTitle, ExpertiseItem } from '@/components';
 const expertises = [
  {
   title: 'Branding & Design',
-  items: ['UI & UX Design', 'Art Direction', 'Photo Direction'],
+  items: ['UI & UX Design', 'Design Systems', 'Art Direction'],
  },
 
  {
