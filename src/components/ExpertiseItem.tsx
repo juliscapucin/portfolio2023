@@ -56,7 +56,7 @@ export default function ExpertiseItem({ expertise }: Props) {
     <li className='text-titleLarge font-light'>{expertise}</li>
     <li className='text-titleLarge font-light'>{expertise}</li>
     <div
-     className={`h-[1px] bg-secondary transition-transform duration-500 delay-500 ${
+     className={`h-px bg-secondary transition-transform duration-500 delay-500 ${
       isTriggered ? '' : '-translate-x-full'
      }`}
     ></div>

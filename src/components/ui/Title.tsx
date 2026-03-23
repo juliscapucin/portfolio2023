@@ -20,7 +20,7 @@ export default function Title({ title }: TitleProps) {
   <div className='overflow-clip'>
    <h1
     ref={titleRef}
-    className='text-displayMedium md:text-displayLarge lg:text-displayLarge whitespace-nowrap'
+    className='text-displayMedium md:text-displayLarge lg:text-displayLarge whitespace-nowrap font-medium'
    >
     {title}
    </h1>

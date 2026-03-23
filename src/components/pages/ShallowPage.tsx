@@ -95,7 +95,7 @@ export default function ShallowPage({ children, isShallow }: Props) {
     </div>
     {/* <Footer /> */}
     <div className='mb-32'>
-     <div className='h-[1px] bg-secondary mb-32'></div>
+     <div className='h-px bg-secondary mb-32'></div>
      <Availability />
     </div>
    </div>

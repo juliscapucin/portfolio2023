@@ -22,7 +22,7 @@ export default function MenuLink({
    {activeState ? (
     <div className='relative max-h-8'>
      <span className='text-titleMedium uppercase text-secondary'>{label}</span>
-     <div className='absolute -bottom-1 w-full h-[1px] bg-secondary'></div>
+     <div className='absolute -bottom-1 w-full h-px bg-secondary'></div>
     </div>
    ) : (
     <div className='overflow-clip max-h-8'>

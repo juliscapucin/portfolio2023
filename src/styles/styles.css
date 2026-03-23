@@ -1,46 +1,114 @@
-@import url('https://use.typekit.net/cbg5juo.css');
+@import url('https://use.typekit.net/cbg5juo.css') layer(base);
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
 :root {
-   --max-width: 1100px;
-   --border-radius: 12px;
-   --font-secondary: 'ff-real-text-pro', sans-serif;
+   --color-black: 10 10 15;
+   --color-white: 220 220 214;
+   --color-green: 0 128 0;
+}
+:root[data-theme='dark'] {
+   --color-primary: 18 12 15;
+   --color-secondary: 252 249 248;
+   --color-faded: 154 152 152;
+   --color-scroll: 252, 249, 248;
+   --color-focus: 154, 152, 152;
+}
+:root[data-theme='light'] {
+   --color-primary: 220 220 214;
+   --color-secondary: 33 33 33;
+   --color-faded: 154 152 152;
+   --color-scroll: 33, 33, 33;
+   --color-focus: 154, 152, 152;
+}
+:root[data-theme='green'] {
+   --color-primary: 0 40 0;
+   --color-secondary: 0 255 0;
+   --color-faded: 0 100 0;
+   --color-scroll: 0, 255, 0;
+   --color-focus: 0, 100, 0;
+}
+
+@theme inline {
+   --animate-fade-in: fadeIn 1s linear forwards;
+
+   --container-desktop: 2000px;
+
+   --min-height-1\/2: 50vh;
+
+   --font-headline: var(--font-primary), sans-serif;
+   --font-text: var(--font-secondary);
+
+   --z-index-5: 5;
+   --z-index-8: 8;
+   --z-index-15: 15;
+   --z-index-100: 100;
+
+   --tracking-tightest: -0.075em;
+
+   --color-colorBlack: rgb(var(--color-black));
+   --color-colorWhite: rgb(var(--color-white));
+   --color-colorGreen: rgb(var(--color-green));
+   --color-primary: rgb(var(--color-primary));
+   --color-secondary: rgb(var(--color-secondary));
+   --color-colorFaded: rgb(var(--color-faded));
+
+   --grid-template-columns-20: repeat(20, 1fr);
+
+   --text-numberDesktop: 30vw;
+   --text-numberTablet: 40vw;
+   --text-numberMobile: 80vw;
+   --text-huge: 32rem;
+   --text-displayLarge: 18rem;
+   --text-displayMedium: 10.3rem;
+   --text-displaySmall: 5.7rem;
+   --text-headlineLarge: 3.2rem;
+   --text-headlineMedium: 2.8rem;
+   --text-headlineSmall: 2.4rem;
+   --text-titleLarge: 2.2rem;
+   --text-titleMedium: 1.6rem;
+   --text-titleSmall: 1.4rem;
+   --text-bodyLarge: 1.8rem;
+   --text-bodyMedium: 1.6rem;
+   --text-bodySmall: 1.4rem;
+   --text-labelLarge: 1.4rem;
+   --text-labelMedium: 1.2rem;
+   --text-labelSmall: 1.1rem;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+   *,
+   ::after,
+   ::before,
+   ::backdrop,
+   ::file-selector-button {
+      border-color: var(--color-gray-200, currentcolor);
+   }
+
+   * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+   }
+}
+
+@layer utilities {
+   :root {
+      --max-width: 1100px;
+      --border-radius: 12px;
+      --font-secondary: 'ff-real-text-pro', sans-serif;
+   }
 }
 
 @layer base {
-   :root {
-      --color-crimson: 220 20 60;
-      --color-burgundy: 128 0 32;
-      --dark-burgundy: 54 0 0;
-      --color-black: 10 10 15;
-      --color-white: 220 220 214;
-      --color-green: 0 128 0;
-   }
-   :root[data-theme='dark'] {
-      --color-primary: 18 12 15;
-      --color-secondary: 252 249 248;
-      --color-faded: 154 152 152;
-      --color-scroll: 252, 249, 248;
-      --color-focus: 154, 152, 152;
-   }
-   :root[data-theme='light'] {
-      --color-primary: 220 220 214;
-      --color-secondary: 33 33 33;
-      --color-faded: 154 152 152;
-      --color-scroll: 33, 33, 33;
-      --color-focus: 154, 152, 152;
-   }
-   :root[data-theme='green'] {
-      --color-primary: 0 40 0;
-      --color-secondary: 0 255 0;
-      --color-faded: 0 100 0;
-      --color-scroll: 0, 255, 0;
-      --color-focus: 0, 100, 0;
-   }
-
    ::-webkit-scrollbar {
       width: 4px;
       height: 4px;
@@ -91,12 +159,6 @@
    button:focus-visible::before {
       opacity: 1;
    }
-}
-
-* {
-   box-sizing: border-box;
-   padding: 0;
-   margin: 0;
 }
 
 html {
@@ -179,7 +241,6 @@ textarea {
 }
 
 /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */ /* GRID */
-
 .animation-grid-element .static-line:nth-child(1) {
    width: 100%;
    height: 1px;
@@ -216,7 +277,6 @@ textarea {
 }
 
 /* WORKAROUND FOR COL-START BUG */
-
 .custom-col-start-1 {
    grid-column: 1 / 12;
 }

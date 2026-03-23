@@ -9,9 +9,9 @@ export default function ProjectInfo({ info }: ProjectInfoProps) {
  return (
   <div className='md:col-span-5 flex flex-col text-titleMedium mt-16'>
    <span className='mx-2'>Scope: {info.scope}</span>
-   <span className='my-2 h-[1px] bg-secondary'></span>
+   <span className='my-2 h-px bg-secondary'></span>
    <span className='mx-2'>Tech: {info.tech}</span>
-   <span className='my-2 h-[1px] bg-secondary'></span>
+   <span className='my-2 h-px bg-secondary'></span>
    {info.link && (
     <>
      <Link
@@ -31,7 +31,7 @@ export default function ProjectInfo({ info }: ProjectInfoProps) {
        </div>
       </div>
      </Link>
-     <span className='my-2 h-[1px] bg-secondary'></span>
+     <span className='my-2 h-px bg-secondary'></span>
     </>
    )}
   </div>

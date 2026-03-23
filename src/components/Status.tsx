@@ -57,13 +57,13 @@ function Status() {
    className='flex flex-col text-titleMedium mt-16 md:mt-4 lg:mt-2 ml-2 mb-16 lg:mb-0 md:col-span-4 lg:col-span-3 xlg:col-span-1 max-w-[250px] overflow-clip'
   >
    <span>Location: London</span>
-   <span className='line h-[1px] bg-secondary'></span>
+   <span className='line h-px bg-secondary'></span>
    <span>
     {dateTime.day} | {dateTime.date}
    </span>
-   <span className='line h-[1px] bg-secondary'></span>
+   <span className='line h-px bg-secondary'></span>
    <span>{dateTime.time}</span>
-   <span className='line h-[1px] bg-secondary'></span>
+   <span className='line h-px bg-secondary'></span>
   </div>
  );
 }

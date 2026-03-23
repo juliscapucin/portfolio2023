@@ -82,45 +82,45 @@ export const GridDiv = forwardRef(function GridDiv(
    {top ? (
     <div
      ref={lineTopRef}
-     className='absolute top-0 left-0 h-[1px] w-full bg-secondary z-5'
+     className='absolute top-0 left-0 h-px w-full bg-secondary z-5'
     ></div>
    ) : (
     <div
      ref={lineTopRef}
-     className='absolute top-0 left-0 h-[1px] w-full bg-transparent z-0'
+     className='absolute top-0 left-0 h-px w-full bg-transparent z-0'
     ></div>
    )}
    {right ? (
     <div
      ref={lineRightRef}
-     className='absolute top-0 right-0 w-[1px] h-full bg-secondary z-5'
+     className='absolute top-0 right-0 w-px h-full bg-secondary z-5'
     ></div>
    ) : (
     <div
      ref={lineRightRef}
-     className='absolute top-0 right-0 w-[1px] h-full bg-transparent z-0'
+     className='absolute top-0 right-0 w-px h-full bg-transparent z-0'
     ></div>
    )}
    {bottom ? (
     <div
      ref={lineBottomRef}
-     className='absolute bottom-0 left-0 h-[1px] w-full bg-secondary z-5'
+     className='absolute bottom-0 left-0 h-px w-full bg-secondary z-5'
     ></div>
    ) : (
     <div
      ref={lineBottomRef}
-     className='absolute bottom-0 left-0 h-[1px] w-full bg-transparent z-0'
+     className='absolute bottom-0 left-0 h-px w-full bg-transparent z-0'
     ></div>
    )}
    {left ? (
     <div
      ref={lineLeftRef}
-     className='absolute top-0 left-0 w-[1px] h-full bg-secondary z-5'
+     className='absolute top-0 left-0 w-px h-full bg-secondary z-5'
     ></div>
    ) : (
     <div
      ref={lineLeftRef}
-     className='absolute top-0 left-0 w-[1px] h-full bg-transparent z-0'
+     className='absolute top-0 left-0 w-px h-full bg-transparent z-0'
     ></div>
    )}
    {children}

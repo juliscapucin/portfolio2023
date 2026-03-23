@@ -27,7 +27,7 @@ const ActiveViewButton = ({ label }: { label: FilterCategoryKey }) => {
  return (
   <div className='relative'>
    <span>{label}</span>
-   <div className='w-full h-[1px] bg-secondary bottom-0'></div>
+   <div className='w-full h-px bg-secondary bottom-0'></div>
   </div>
  );
 };
@@ -53,7 +53,7 @@ const FilterButton = ({
    {active ? (
     <>
      <span>{label}</span>
-     <div className='w-full h-[1px] bg-secondary bottom-0'></div>
+     <div className='w-full h-px bg-secondary bottom-0'></div>
     </>
    ) : (
     <button

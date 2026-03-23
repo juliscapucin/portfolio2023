@@ -1,14 +1,6 @@
 import localFont from 'next/font/local';
 
-import { draftMode } from 'next/headers';
-import { VisualEditing } from 'next-sanity/visual-editing';
-
-import {
- Header,
- RootLayout,
- ContactModal,
- DisableDraftMode,
-} from '@/components';
+import { Header, RootLayout, ContactModal } from '@/components';
 
 import { ModalContextProvider, PageContextProvider } from '@/context';
 
@@ -62,12 +54,6 @@ export default async function Layout(props: {
        ></div>
        {props.children}
        {props.shallowPage}
-       {(await draftMode()).isEnabled && (
-        <>
-         <VisualEditing />
-         <DisableDraftMode />
-        </>
-       )}
       </main>
 
       <ContactModal />

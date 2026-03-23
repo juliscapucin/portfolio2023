@@ -52,7 +52,7 @@ export default function ContactModal() {
     modalOpen ? '-translate-y-full' : ''
    }`}
   >
-   <GridDiv divClass='lg:flex justify-between items-center h-full p-8 border-t-[1px] border-secondary'>
+   <GridDiv divClass='lg:flex justify-between items-center h-full p-8 border-t border-secondary'>
     <div className='absolute top-8 right-0' onClick={updateModalOpen}>
      <ButtonClose action={() => updateModalOpen} />
     </div>

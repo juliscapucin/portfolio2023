@@ -31,7 +31,7 @@ export default function Button({ label, action, activeState }: ButtonProps) {
     <span className='text-titleMedium uppercase text-secondary'>{label}</span>
    </button>
    {activeState && (
-    <div className='absolute bottom-0 w-full h-[1px] bg-secondary'></div>
+    <div className='absolute bottom-0 w-full h-px bg-secondary'></div>
    )}
   </div>
  );

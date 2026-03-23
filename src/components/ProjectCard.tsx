@@ -56,11 +56,12 @@ export default function ProjectCard(props: ProjectCardProps) {
       divClass={`project-card-${id} overflow-clip bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-screen pr-16 translate-x-full`}
       top={true}
       bottom={true}
+      sr-hidden='true'
      >
       <div className='mt-0 pt-48'>
-       <span className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge font-medium leading-[0.8] tracking-[-0.025em]'>
+       <h1 className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge leading-[0.8] tracking-[-0.025em]'>
         {title}
-       </span>
+       </h1>
       </div>
      </AnimationGridDiv>
 
@@ -106,11 +107,12 @@ export default function ProjectCard(props: ProjectCardProps) {
        {/* TRANSITION ANIMATION DIV */}
        <div
         className={`project-card-${id} bg-primary pointer-events-none absolute inset-0 pr-16`}
+        sr-hidden='true'
        >
         <div className='mt-0 pt-48 overflow-clip w-screen'>
-         <span className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge font-medium leading-[0.8] tracking-[-0.025em]'>
+         <h1 className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge font-medium leading-[0.8] tracking-[-0.025em]'>
           {title}
-         </span>
+         </h1>
         </div>
        </div>
 
@@ -148,9 +150,9 @@ export default function ProjectCard(props: ProjectCardProps) {
       className={`project-card-${id} overflow-clip bg-primary pointer-events-none absolute top-0 left-0 bottom-0 w-screen pr-16  translate-x-full`}
      >
       <div className='mt-0 pt-48 max-w-desktop overflow-clip'>
-       <span className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge font-medium leading-[0.8] tracking-[-0.025em]'>
+       <h1 className='page-transition-title text-displaySmall md:text-displayMedium lg:text-displayLarge font-medium leading-[0.8] tracking-[-0.025em]'>
         {title}
-       </span>
+       </h1>
       </div>
      </div>
      <ProjectCardLabel

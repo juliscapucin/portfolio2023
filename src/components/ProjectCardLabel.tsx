@@ -77,7 +77,7 @@ export default function ProjectCardLabel({
       {/* Hover state */}
       <div className='hidden md:flex gap-6 items-center w-full'>
        <span className={`${textSize}`}>{title}</span>
-       <span className='-translate-x-1/2 group-hover:-translate-x-0 transition duration-500'>
+       <span className='-translate-x-1/2 group-hover:translate-x-0 transition duration-500'>
         <IconArrow />
        </span>
        <ProjectLabelMarquee text={scope} />
