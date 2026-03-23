@@ -13,7 +13,7 @@ module.exports = {
             '1/2': '50vh',
          },
          fontFamily: {
-            headline: ['var(--font-primary) sans-serif'],
+            headline: ['var(--font-primary)', 'sans-serif'],
             text: ['var(--font-secondary)'],
          },
          zIndex: {

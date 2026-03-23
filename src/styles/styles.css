@@ -130,7 +130,7 @@ span,
 button,
 a {
    text-transform: uppercase;
-   font-family: var(--font-primary) sans-serif;
+   font-family: var(--font-primary), sans-serif;
    overflow-wrap: break-word;
 }
 
