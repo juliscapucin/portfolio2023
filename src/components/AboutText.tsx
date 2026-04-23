@@ -39,7 +39,7 @@ export default function AboutText() {
    tl.fromTo(
     splitText.lines,
     { opacity: 0, yPercent: 200 },
-    { opacity: 1, yPercent: 0, stagger: 0.2, ease: 'back.out(1)' }
+    { opacity: 1, yPercent: 0, stagger: 0.2, ease: 'back.out(1)' },
    );
   });
 
@@ -52,7 +52,7 @@ export default function AboutText() {
   <section className='xl:grid grid-cols-12 my-64'>
    <p
     ref={textRef}
-    className='ml-auto mr-0 xl:ml-0 xl:mr-auto max-w-1/2 col-start-7 col-span-5 text-titleMedium sm:text-headlineMedium'
+    className='ml-auto mr-0 xl:ml-0 xl:mr-auto max-w-1/2 xl:max-w-full col-start-7 col-span-5 text-titleMedium sm:text-headlineMedium'
    >
     I&apos;m a Front-End Developer with a broad background in Graphic and
     Digital Design. Commitment to visual excellence and engineering performance
