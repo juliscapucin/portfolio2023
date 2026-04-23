@@ -3,6 +3,7 @@
 import { forwardRef, useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 
 type GridDivProps = {
  top?: boolean;
@@ -17,7 +18,7 @@ type GridDivProps = {
 
 export const GridDiv = forwardRef(function GridDiv(
  { top, right, bottom, left, children, divClass, offsetStart }: GridDivProps,
- ref: React.Ref<HTMLDivElement>
+ ref: React.Ref<HTMLDivElement>,
 ) {
  const lineTopRef = useRef<HTMLDivElement>(null);
  const lineRightRef = useRef<HTMLDivElement>(null);
@@ -33,11 +34,7 @@ export const GridDiv = forwardRef(function GridDiv(
   )
    return;
 
-  gsap.registerPlugin(ScrollTrigger);
-
-  let ctx = gsap.context(() => {});
-
-  ctx.add(() => {
+  const ctx = gsap.context(() => {
    gsap.set(lineTopRef.current, { xPercent: -100 });
    gsap.set(lineBottomRef.current, { xPercent: -100 });
    gsap.set(lineLeftRef.current, { yPercent: -100 });
@@ -68,61 +65,52 @@ export const GridDiv = forwardRef(function GridDiv(
       ease: 'expo.out',
       stagger: 0.5,
      },
-     '-=1'
+     '-=1',
     );
   });
 
-  return () => {
-   ctx.revert();
-  };
- }, [lineTopRef, lineRightRef, lineBottomRef, lineLeftRef]);
+  return () => ctx.revert();
+ }, [offsetStart]);
+
+ const borderColor = (isVisible?: boolean) =>
+  isVisible ? 'bg-secondary z-5' : 'bg-transparent z-0';
+
+ const lines = [
+  {
+   key: 'top',
+   show: top,
+   className: 'absolute top-0 left-0 h-px w-full',
+   ref: lineTopRef,
+  },
+  {
+   key: 'right',
+   show: right,
+   className: 'absolute top-0 right-0 w-px h-full',
+   ref: lineRightRef,
+  },
+  {
+   key: 'bottom',
+   show: bottom,
+   className: 'absolute bottom-0 left-0 h-px w-full',
+   ref: lineBottomRef,
+  },
+  {
+   key: 'left',
+   show: left,
+   className: 'absolute top-0 left-0 w-px h-full',
+   ref: lineLeftRef,
+  },
+ ] as const;
 
  return (
   <div className={`grid-element relative overflow-clip ${divClass}`} ref={ref}>
-   {top ? (
+   {lines.map((line) => (
     <div
-     ref={lineTopRef}
-     className='absolute top-0 left-0 h-px w-full bg-secondary z-5'
+     key={line.key}
+     ref={line.ref}
+     className={`${line.className} ${borderColor(line.show)}`}
     ></div>
-   ) : (
-    <div
-     ref={lineTopRef}
-     className='absolute top-0 left-0 h-px w-full bg-transparent z-0'
-    ></div>
-   )}
-   {right ? (
-    <div
-     ref={lineRightRef}
-     className='absolute top-0 right-0 w-px h-full bg-secondary z-5'
-    ></div>
-   ) : (
-    <div
-     ref={lineRightRef}
-     className='absolute top-0 right-0 w-px h-full bg-transparent z-0'
-    ></div>
-   )}
-   {bottom ? (
-    <div
-     ref={lineBottomRef}
-     className='absolute bottom-0 left-0 h-px w-full bg-secondary z-5'
-    ></div>
-   ) : (
-    <div
-     ref={lineBottomRef}
-     className='absolute bottom-0 left-0 h-px w-full bg-transparent z-0'
-    ></div>
-   )}
-   {left ? (
-    <div
-     ref={lineLeftRef}
-     className='absolute top-0 left-0 w-px h-full bg-secondary z-5'
-    ></div>
-   ) : (
-    <div
-     ref={lineLeftRef}
-     className='absolute top-0 left-0 w-px h-full bg-transparent z-0'
-    ></div>
-   )}
+   ))}
    {children}
   </div>
  );
